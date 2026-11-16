@@ -1,0 +1,979 @@
+{
+ "number": 4,
+ "title": "TRÍ TUỆ NHÂN TẠO VÀ GENERATIVE AI",
+ "titleText": "Trí tuệ nhân tạo và Generative AI",
+ "blocks": [
+  {
+   "t": "h2",
+   "text": "Giới thiệu chương",
+   "band": true
+  },
+  {
+   "t": "p",
+   "text": "Trí tuệ nhân tạo (AI), đặc biệt là AI tạo sinh (Generative AI), đang thay đổi cách học tập, làm việc và sáng tạo nội dung, trong khi phần lớn công cụ nền tảng của lĩnh vực này, từ ngôn ngữ Python và các thư viện học máy đến kho mô hình và notebook thực hành, đều được phát triển và chia sẻ theo mô hình mã nguồn mở. Chương này đưa người học đi từ hiểu khái niệm đến sử dụng công cụ và dùng AI có trách nhiệm. Phần đầu phân biệt AI, học máy và AI tạo sinh, nêu các lĩnh vực ứng dụng và làm rõ vai trò của phần mềm mã nguồn mở, trong đó mã chương trình, trọng số mô hình và giấy phép là những thành phần cần xem xét riêng. Phần thứ hai giới thiệu Python cùng các thư viện cơ bản, Hugging Face và cách đọc thẻ mô hình, Jupyter Notebook và Google Colab làm môi trường thực hành. Phần thứ ba trình bày nguyên lý của AI tạo sinh, cách tạo văn bản, hình ảnh và nội dung số, cùng nguyên tắc đặt câu lệnh. Phần cuối tập trung vào sử dụng AI an toàn: kiểm chứng thông tin, bảo vệ dữ liệu và quyền riêng tư, đạo đức, bản quyền và trách nhiệm. Các tình huống, dữ liệu nhỏ, câu lệnh và bài tập trong chương mang tính giả định phục vụ giảng dạy; chúng không phải kết quả khảo sát hay bằng chứng về hiệu quả triển khai thực tế.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "h3",
+   "text": "Mục tiêu học tập"
+  },
+  {
+   "t": "p",
+   "text": "Sau khi học xong chương này, người học có thể:",
+   "indent": true,
+   "left": true
+  },
+  {
+   "t": "list",
+   "ordered": false,
+   "items": [
+    "Phân biệt được AI, học máy và AI tạo sinh qua nhiệm vụ và đầu ra; giải thích được vai trò của phần mềm mã nguồn mở trong AI và nhận diện được điều kiện sử dụng mô hình (mã, trọng số, dữ liệu, giấy phép).",
+    "Sử dụng được Python, notebook và các thư viện cơ bản để thực hiện một quy trình học máy nhập môn; đọc được thông tin mô hình trên Hugging Face và lựa chọn công cụ theo yêu cầu bài tập.",
+    "Xây dựng được câu lệnh tạo văn bản và hình ảnh, kiểm chứng được sản phẩm, đồng thời thực hiện được các bước bảo vệ dữ liệu, ghi nhận nguồn và chịu trách nhiệm về nội dung sử dụng."
+   ]
+  },
+  {
+   "t": "h2",
+   "text": "4.1. Tổng quan về trí tuệ nhân tạo"
+  },
+  {
+   "t": "h3",
+   "text": "4.1.1. Khái niệm AI, Machine Learning và Generative AI"
+  },
+  {
+   "t": "p",
+   "text": "Trí tuệ nhân tạo (Artificial Intelligence, AI) là lĩnh vực xây dựng hệ thống thực hiện những nhiệm vụ gắn với năng lực trí tuệ, như nhận biết, suy luận và giải quyết vấn đề. AI có thể sử dụng tri thức và quy tắc do con người thiết kế hoặc các phương pháp học từ dữ liệu. Vì vậy, AI không đồng nghĩa với một ứng dụng trò chuyện.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Học máy (Machine Learning, ML) là một hướng tiếp cận trong AI: thay vì viết sẵn mọi quy tắc, người phát triển dùng dữ liệu để hình thành mô hình phục vụ một nhiệm vụ. Học sâu (Deep Learning, DL) là một nhánh của ML, sử dụng nhiều lớp xử lý để học các biểu diễn dữ liệu. Cách phân biệt này giúp đặt công cụ vào đúng phạm vi kiến thức, thay vì gọi mọi chương trình tự động là học máy [@goodfellow].",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "AI tạo sinh (Generative AI, GenAI) chỉ nhóm mô hình có khả năng tạo nội dung như văn bản, hình ảnh hoặc âm thanh dựa trên những đặc trưng đã học [@nist600].",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Ví dụ phân biệt: một thư viện muốn hỗ trợ người đọc bằng ba chức năng:",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Tra cứu sách theo mã: chương trình truy vấn dữ liệu; riêng chức năng này chưa đủ để kết luận hệ thống dùng ML. Phân loại yêu cầu thành “mượn sách” hoặc “tài khoản”: có thể huấn luyện mô hình từ các yêu cầu đã gán nhãn. Soạn thư trả lời dựa trên quy định thư viện: có thể sử dụng AI tạo sinh.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Điểm cần quan sát là cách hệ thống được xây dựng và dạng đầu ra. Một hệ thống thực tế có thể kết hợp truy vấn, phân loại và tạo văn bản. Người học cần phân tích từng chức năng trước khi gán tên cho toàn bộ hệ thống.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "callout",
+   "kind": "tinhhuong",
+   "title": "Tự kiểm tra",
+   "texts": [
+    "Chương trình sắp xếp danh sách điểm theo thứ tự giảm dần có nhất thiết là học máy không? Hãy giải thích bằng vai trò của dữ liệu huấn luyện."
+   ]
+  },
+  {
+   "t": "h3",
+   "text": "4.1.2. Các lĩnh vực ứng dụng phổ biến của AI"
+  },
+  {
+   "t": "p",
+   "text": "AI được nghiên cứu và ứng dụng trong xử lý ngôn ngữ, thị giác máy tính và các bài toán học từ dữ liệu. Xử lý ngôn ngữ tự nhiên (Natural Language Processing, NLP) bao gồm nhiều nhiệm vụ với văn bản; các công cụ hiện có hỗ trợ phân loại, trả lời câu hỏi, dịch và sinh văn bản [@hfllm].",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Để hiểu ứng dụng, nên mô tả cụ thể “đầu vào – nhiệm vụ – đầu ra – cách kiểm tra”. Bảng sau là các tình huống giảng dạy, không phải bảng xếp hạng mức độ phổ biến hoặc hiệu quả.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "table",
+   "caption": "Ví dụ phân tích nhiệm vụ AI",
+   "header": [
+    "Lĩnh vực",
+    "Đầu vào giả định",
+    "Nhiệm vụ",
+    "Đầu ra cần kiểm tra"
+   ],
+   "rows": [
+    [
+     "Giáo dục",
+     "Bài đọc do giảng viên cung cấp",
+     "Tạo câu hỏi ôn tập",
+     "Câu hỏi đúng nội dung, có đáp án kiểm tra được"
+    ],
+    [
+     "Hành chính",
+     "Yêu cầu hỗ trợ đã loại thông tin riêng tư",
+     "Phân loại yêu cầu",
+     "Nhãn phù hợp với nội dung"
+    ],
+    [
+     "Sản xuất",
+     "Ảnh sản phẩm đã gán nhãn",
+     "Phát hiện dấu hiệu lỗi",
+     "Vị trí nghi lỗi để người phụ trách kiểm tra"
+    ],
+    [
+     "Thư viện",
+     "Lịch sử mượn được phép sử dụng",
+     "Gợi ý tài liệu",
+     "Danh sách phù hợp nhu cầu người đọc"
+    ],
+    [
+     "Truyền thông",
+     "Mô tả một sự kiện giả định",
+     "Soạn bản nháp thông báo",
+     "Nội dung đúng dữ kiện và đối tượng nhận"
+    ]
+   ],
+   "widths": [
+    3.4,
+    4.2,
+    4.2,
+    4.2
+   ],
+   "font": 11.5,
+   "firstBold": true,
+   "center": []
+  },
+  {
+   "t": "p",
+   "text": "Trong bài tập giáo dục, một câu hỏi có ngữ pháp đúng vẫn chưa đạt nếu kiến thức chưa được học hoặc đáp án không có trong tài liệu. Với phân loại yêu cầu, cần kiểm tra các trường hợp dễ nhầm, chẳng hạn một thư vừa hỏi về tài khoản vừa hỏi về mượn sách. Cách đặt tiêu chí như vậy giúp người học đánh giá theo nhiệm vụ thay vì chỉ theo cảm giác đầu ra “hay” hoặc “giống người”.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "h3",
+   "text": "4.1.3. Vai trò của phần mềm mã nguồn mở trong AI"
+  },
+  {
+   "t": "p",
+   "text": "Phần mềm mã nguồn mở tạo điều kiện nghiên cứu cách triển khai, sửa đổi và chia sẻ theo giấy phép. Đối với AI, cần phân biệt mã chương trình, trọng số mô hình và thông tin dữ liệu. Theo định nghĩa Open Source AI 1.0 của Open Source Initiative (OSI), quyền sử dụng, nghiên cứu, sửa đổi và chia sẻ phải đi cùng các thành phần cần thiết để sửa đổi hệ thống, gồm thông tin dữ liệu, mã và tham số. Việc cho tải trọng số riêng lẻ chưa đủ để kết luận một hệ thống đáp ứng định nghĩa này [@osai].",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Trọng số mô hình (model weights) là các giá trị tham số được điều chỉnh trong huấn luyện. Chúng khác với mã mô tả cách tính toán [@hftransformers].",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Trong học tập, người học có thể đọc ví dụ, thử sửa mã và trao đổi notebook. Tuy nhiên, phải xét giấy phép của từng thành phần; không lấy giấy phép của thư viện làm căn cứ cho quyền sử dụng mọi mô hình chạy bằng thư viện đó.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "callout",
+   "kind": "tinhhuong",
+   "title": "Tình huống thảo luận",
+   "texts": [
+    "Nhóm sinh viên tìm được một kho mô hình cho phép tải về nhưng không thấy giấy phép. Nhóm nên ghi nhận “chưa xác định điều kiện sử dụng”, tìm tệp giấy phép và tài liệu của bên phát hành trước khi phân phối lại. Đây là bài tập đọc điều kiện sử dụng, không phải kết luận pháp lý về một mô hình cụ thể."
+   ]
+  },
+  {
+   "t": "callout",
+   "kind": "nho",
+   "title": "Phân biệt trước khi sử dụng",
+   "texts": [
+    "**AI là phạm vi rộng; học máy hình thành mô hình từ dữ liệu; AI tạo sinh tạo nội dung.** Mã chương trình, trọng số và giấy phép là những thành phần cần xem xét riêng.1.1 và 4.1.3."
+   ]
+  },
+  {
+   "t": "h2",
+   "text": "4.2. Công cụ và nền tảng AI mã nguồn mở"
+  },
+  {
+   "t": "h3",
+   "text": "4.2.1. Giới thiệu Python và các thư viện AI cơ bản"
+  },
+  {
+   "t": "p",
+   "text": "Python là ngôn ngữ lập trình có cấu trúc dữ liệu và cú pháp phù hợp để xây dựng chương trình xử lý dữ liệu. Người học cần nắm biến, danh sách, câu lệnh điều kiện, vòng lặp, hàm và cách nhập mô-đun trước khi đọc mã học máy [@pytut].",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Các thư viện đảm nhiệm những vai trò khác nhau:",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "NumPy: xử lý mảng nhiều chiều và phép toán số. Mảng giúp biểu diễn nhiều mẫu dữ liệu trong một cấu trúc thống nhất [@numpy]. pandas: tổ chức và xử lý dữ liệu dạng bảng, trong đó DataFrame là cấu trúc dữ liệu quan trọng [@pandas]. scikit-learn: cung cấp công cụ học máy, tiền xử lý và đánh giá; các thao tác thường gặp là huấn luyện bằng fit và dự đoán bằng predict [@sklearn]. PyTorch: cung cấp tensor, tính đạo hàm tự động và thành phần xây dựng mạng nơ-ron. Tensor là cấu trúc biểu diễn dữ liệu nhiều chiều [@pytorch].",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Ví dụ thực hành: phân loại màu theo giá trị đo giả định. Dữ liệu dưới đây được tạo cho bài học. Mỗi mẫu gồm hai đặc trưng, tức hai giá trị mô tả mẫu: mức đỏ và mức xanh. Nhãn là tên nhóm. Ví dụ dùng cây quyết định để minh họa quy trình, không mô phỏng đầy đủ thị giác máy tính.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Trong một ô notebook, cài thư viện nếu môi trường chưa có:",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "code",
+   "text": "%pip install scikit-learn",
+   "title": ""
+  },
+  {
+   "t": "p",
+   "text": "Trong ô tiếp theo:",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "code",
+   "text": "import sys\nimport sklearn\nfrom sklearn.tree import DecisionTreeClassifier\nfrom sklearn.metrics import accuracy_score\n\n# Du lieu gia dinh, khong phai phep do thuc te.\nX_train = [[9, 1], [8, 2], [7, 1], [1, 9], [2, 8], [1, 7]]\ny_train = [\"do\", \"do\", \"do\", \"xanh\", \"xanh\", \"xanh\"]\nX_test = [[8, 1], [1, 8]]\ny_test = [\"do\", \"xanh\"]\n\nmodel = DecisionTreeClassifier(max_depth=2, random_state=42)\nmodel.fit(X_train, y_train)\npredictions = model.predict(X_test)\n\nprint(\"Python:\", sys.version.split()[0])\nprint(\"scikit-learn:\", sklearn.__version__)\nprint(\"Du doan:\", predictions.tolist())\nprint(\"Accuracy:\", accuracy_score(y_test, predictions))",
+   "title": ""
+  },
+  {
+   "t": "p",
+   "text": "Mã ví dụ được viết theo giao diện huấn luyện và đánh giá của scikit-learn. Tập huấn luyện dùng để hình thành mô hình; tập kiểm tra dùng để đánh giá trên những mẫu không đưa vào fit. Độ chính xác (accuracy) trong bài này là số dự đoán đúng chia tổng số mẫu kiểm tra [@sklearn].",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Hãy chạy mã rồi giải thích từng đầu ra. Dù mô hình dự đoán đúng cả hai mẫu, kết quả đó chỉ nói về hai mẫu kiểm tra rất đơn giản. Nó không chứng minh mô hình nhận diện màu đáng tin cậy trong ảnh thực tế. Các giá trị max_depth=2 và random_state=42 là lựa chọn minh họa, không phải tham số được chứng minh tối ưu.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Khi làm bài toán lớn hơn, tránh để thông tin tập kiểm tra tham gia huấn luyện hoặc tiền xử lý có học tham số. Hiện tượng này gọi là rò rỉ dữ liệu (data leakage) [@sklpitfalls].",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Bài tập ngắn: Thử dự đoán mẫu [5, 5]. Vì sao nhãn trả về chưa đủ để khẳng định đó là màu đỏ hoặc xanh trong thực tế?",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "figure",
+   "src": "assets/img/chuong4-hinh1.jpg",
+   "caption": "Quy trình học máy trong ví dụ thực hành [@sklearn,@sklpitfalls]",
+   "width": 14.5
+  },
+  {
+   "t": "p",
+   "text": "Hình 4.1 mô tả các bước của ví dụ phân loại màu ở mục này. Dữ liệu giả định được chia thành **tập huấn luyện** và tập kiểm tra. Mô hình chỉ được hình thành từ tập huấn luyện bằng lệnh `fit`; sau đó mô hình dự đoán nhãn cho các mẫu của tập kiểm tra bằng lệnh `predict`, và nhãn dự đoán được so sánh với nhãn thật để tính độ chính xác. Ghi chú “không fit trên tập kiểm tra” nhắc quy tắc quan trọng nhất của đánh giá: tập kiểm tra phải giữ độc lập, nếu không kết quả sẽ đẹp hơn thực tế.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "h3",
+   "text": "4.2.2. Giới thiệu Hugging Face và kho mô hình AI"
+  },
+  {
+   "t": "p",
+   "text": "Hugging Face cung cấp hệ sinh thái công cụ và Hub để chia sẻ tài nguyên AI. Thư viện Transformers hỗ trợ sử dụng các mô hình đã huấn luyện cho nhiều nhiệm vụ. Cần phân biệt nền tảng lưu trữ, thư viện lập trình và mô hình cụ thể: chúng không phải cùng một thành phần [@hfllm].",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Thẻ mô hình (model card) là tài liệu mô tả mô hình. Trên Hub, thẻ có thể ghi nhiệm vụ, ngôn ngữ, giấy phép, dữ liệu, cách sử dụng, đánh giá và hạn chế. Chất lượng thông tin phụ thuộc vào nội dung bên phát hành cung cấp; sự tồn tại của một trang mô hình không thay thế việc đọc tài liệu [@modelcards].",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Quy trình đọc mô hình trong bài thực hành:",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Trước hết, viết rõ nhiệm vụ, ví dụ tạo bản nháp thông báo bằng tiếng Việt. Tiếp theo, tìm mô hình có nhiệm vụ phù hợp và xác định bên phát hành. Thứ ba, đọc model card, tệp giấy phép và ví dụ sử dụng. Thứ tư, ghi yêu cầu môi trường, giới hạn đã công bố và thông tin còn thiếu. Thứ năm, thử bằng dữ liệu giả định, đối chiếu kết quả với tiêu chí của bài. Cuối cùng, lưu tên mô hình, phiên bản hoặc mã revision và ngày thử.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Phiếu ghi nhận nên có các trường: đường dẫn mô hình; mục đích; ngôn ngữ; giấy phép; môi trường; đầu vào thử; đầu ra; lỗi phát hiện; quyết định sử dụng. Nếu tài liệu không nêu khả năng tiếng Việt thì ghi “chưa có thông tin”, không suy ra từ tên mô hình.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "callout",
+   "kind": "luuy",
+   "title": "Rủi ro khi nạp tệp mô hình",
+   "texts": [
+    "**Tệp mô hình cũng có thể chứa rủi ro kỹ thuật.** Định dạng pickle có khả năng thực thi mã khi nạp; chức năng quét không bảo đảm phát hiện mọi nguy cơ. Chỉ nạp tài nguyên từ nguồn đã xem xét, và không tự động chấp nhận yêu cầu chạy mã bổ sung [@hfpickle]."
+   ]
+  },
+  {
+   "t": "h3",
+   "text": "4.2.3. Google Colab, Jupyter Notebook và môi trường thực hành AI"
+  },
+  {
+   "t": "p",
+   "text": "Jupyter Notebook hỗ trợ tài liệu tương tác kết hợp mã, văn bản giải thích và kết quả. JupyterLab cung cấp môi trường làm việc với notebook và các tệp liên quan. Đây là các công cụ thuộc dự án mã nguồn mở Jupyter [@jupyter].",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Google Colab là dịch vụ notebook được lưu trữ và vận hành trên hạ tầng của Google, dựa trên Jupyter. Vì vậy, việc dùng nền tảng mã nguồn mở ở bên dưới không đồng nghĩa toàn bộ dịch vụ Colab là phần mềm mã nguồn mở. Tài nguyên của dịch vụ có giới hạn và có thể thay đổi; không nên thiết kế bài học dựa trên giả định luôn được cấp GPU. GPU là bộ xử lý đồ họa, thường được dùng để tăng tốc một số phép tính [@colab].",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "table",
+   "caption": "Lựa chọn môi trường theo điều kiện bài học",
+   "header": [
+    "Điều kiện",
+    "Jupyter chạy trên máy cá nhân",
+    "Colab với môi trường do Google quản lý"
+   ],
+   "rows": [
+    [
+     "Chuẩn bị",
+     "Cần cài và quản lý môi trường cục bộ",
+     "Làm việc qua trình duyệt"
+    ],
+    [
+     "Tính toán",
+     "Phụ thuộc máy đang chạy kernel",
+     "Phụ thuộc tài nguyên được cấp"
+    ],
+    [
+     "Dữ liệu",
+     "Người học quản lý vị trí lưu và kết nối",
+     "Cần xem xét dữ liệu đưa lên dịch vụ"
+    ],
+    [
+     "Lưu kết quả",
+     "Chủ động lưu notebook và tệp",
+     "Cần lưu tệp cần thiết trước khi phiên kết thúc"
+    ]
+   ],
+   "widths": [
+    4.2,
+    5.4,
+    6.4
+   ],
+   "font": 11.5,
+   "firstBold": true,
+   "center": []
+  },
+  {
+   "t": "p",
+   "text": "Quy trình thực hành đề nghị. Tạo notebook; viết mục đích ở ô văn bản; kiểm tra môi trường; nhập dữ liệu; chạy mã; ghi nhận kết quả; khởi động lại kernel hoặc phiên chạy và chạy lại theo thứ tự. Kernel là tiến trình thực thi mã của notebook. Bước chạy lại giúp phát hiện tình huống một ô phụ thuộc biến được tạo ở lần chạy trước nhưng chưa có trong trình tự hiện tại [@jupyter].",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Khi nộp bài, kèm phiên bản thư viện và hướng dẫn chạy. Trước khi chia sẻ Colab, kiểm tra cả mã lẫn đầu ra: nội dung notebook được chia sẻ có thể bao gồm kết quả đã in ra, trong khi tệp riêng trong máy ảo không tự đi cùng notebook [@colab].",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "h4",
+   "text": "Thực hành cho mục 4.2"
+  },
+  {
+   "t": "p",
+   "text": "Tạo notebook tên bai_4_2.ipynb, chạy ví dụ phân loại ở mục 4.2.1 và thêm một ô giải thích giới hạn của dữ liệu. Sau đó chọn một model card để lập phiếu đọc theo mục 4.2.2; phần này chỉ yêu cầu đọc tài liệu, không bắt buộc tải mô hình lớn.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Sản phẩm đạt yêu cầu khi notebook chạy theo thứ tự, có phiên bản môi trường, và phiếu mô hình phân biệt rõ thông tin được công bố với thông tin chưa có.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "callout",
+   "kind": "nho",
+   "title": "Đánh giá theo nhiệm vụ",
+   "texts": [
+    "**Đọc model card và giấy phép; ghi môi trường chạy; giữ tập kiểm tra độc lập.** Hai mẫu giả định được dự đoán đúng không chứng minh hiệu quả trong thực tế.2.1–4.2.3."
+   ]
+  },
+  {
+   "t": "h2",
+   "text": "4.3. Generative AI và ứng dụng cơ bản"
+  },
+  {
+   "t": "h3",
+   "text": "4.3.1. Nguyên lý cơ bản của Generative AI"
+  },
+  {
+   "t": "p",
+   "text": "Cần phân biệt huấn luyện (training) với suy luận (inference). Huấn luyện điều chỉnh tham số từ dữ liệu; suy luận dùng mô hình đã có để xử lý đầu vào. Tinh chỉnh (fine-tuning) là huấn luyện tiếp mô hình đã được huấn luyện trước cho mục đích cụ thể [@hftransformers].",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Mô hình ngôn ngữ sinh tự hồi quy dự đoán token tiếp theo dựa vào ngữ cảnh rồi lặp lại. Token là đơn vị biểu diễn văn bản, không nhất thiết là một từ [@nist600].",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "figure",
+   "src": "assets/img/chuong4-hinh2.jpg",
+   "caption": "Minh họa quá trình sinh văn bản tự hồi quy [@hftransformers]",
+   "width": 14.5
+  },
+  {
+   "t": "p",
+   "text": "Hình 4.2 mô tả vòng lặp sinh văn bản của mô hình ngôn ngữ tự hồi quy. Mô hình nhận câu lệnh và ngữ cảnh, biểu diễn chúng thành các token, tính khả năng xuất hiện của token tiếp theo, chọn một token rồi bổ sung vào ngữ cảnh. Sau mỗi lần chọn, mô hình kiểm tra điều kiện dừng: nếu chưa dừng thì quay lại bước tính token tiếp theo với ngữ cảnh đã dài thêm, nếu đã dừng thì trả về văn bản đầu ra. Vòng lặp này giải thích vì sao đầu ra có thể trôi chảy nhưng vẫn sai: mỗi token được chọn dựa trên khả năng xuất hiện chứ không dựa trên việc đã kiểm tra sự thật.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Không phải mọi mô hình tạo sinh hoạt động theo sơ đồ trên. Trong sinh ảnh bằng mô hình khuếch tán, quá trình tạo ảnh thường bắt đầu từ nhiễu và thực hiện các bước khử nhiễu theo điều kiện như mô tả văn bản. Câu lệnh hướng dẫn nội dung nhưng không quy định chính xác từng điểm ảnh [@hft2i].",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Ví dụ tư duy: Với đầu vào “Hãy viết lời mời dự buổi đọc sách”, có nhiều cách diễn đạt phù hợp. Tuy nhiên, thời gian và địa điểm không thể được coi là dữ kiện chỉ vì hệ thống đã điền vào lời mời. Người dùng phải cung cấp dữ kiện hoặc yêu cầu để trống phần chưa biết.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "h3",
+   "text": "4.3.2. Tạo văn bản, hình ảnh và nội dung số bằng AI"
+  },
+  {
+   "t": "p",
+   "text": "Để tạo một sản phẩm học tập, hãy xác định dữ liệu được phép dùng, đầu ra mong muốn và cách nghiệm thu trước khi mở công cụ. Các ví dụ dưới đây mang tính giả định; phần đầu ra mong đợi là tiêu chí kiểm tra, không phải kết quả chạy mô hình đã được ghi nhận.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "h4",
+   "text": "a) Tạo văn bản"
+  },
+  {
+   "t": "p",
+   "text": "Giả sử câu lạc bộ tổ chức buổi trao đổi về phần mềm mã nguồn mở. Có thể dùng câu lệnh:",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "quote",
+   "text": "Viết bản nháp thông báo bằng tiếng Việt cho sinh viên. Dữ kiện: hoạt động là trao đổi về phần mềm mã nguồn mở; địa điểm là phòng thực hành A; thời gian chưa được xác định; đăng ký qua lớp trưởng. Viết một đoạn ngắn, sau đó liệt kê các thông tin còn thiếu. Ghi “chưa xác định” ở phần thời gian."
+  },
+  {
+   "t": "p",
+   "text": "Sau khi nhận kết quả, đối chiếu từng dữ kiện. Nếu đầu ra tự thêm diễn giả, lệ phí hoặc lịch tổ chức thì đánh dấu đó là nội dung chưa có căn cứ. Một bản nháp đạt yêu cầu phải bảo toàn dữ kiện và thể hiện phần còn thiếu.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "h4",
+   "text": "b) Tạo hình ảnh"
+  },
+  {
+   "t": "p",
+   "text": "Với công cụ hoặc mô hình hỗ trợ text-to-image, người dùng cung cấp mô tả văn bản để điều khiển nội dung ảnh [@hft2i].",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Câu lệnh thực hành:",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "quote",
+   "text": "Tạo hình minh họa phẳng cho tài liệu nhập môn: ba sinh viên đang trao đổi quanh một máy tính trong phòng học. Bố cục ngang, nền sáng, chừa vùng trống bên phải để thêm chú thích. Không có chữ trong ảnh."
+  },
+  {
+   "t": "p",
+   "text": "Kiểm tra số người, bố cục, các vật thể và mức phù hợp với mục tiêu bài học. Chú thích nên được biên tập bằng công cụ văn bản để dễ sửa. Ghi rõ đây là hình minh họa có sử dụng AI; không trình bày như ảnh ghi nhận một sự kiện thật.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "h4",
+   "text": "c) Tạo nội dung số kết hợp"
+  },
+  {
+   "t": "p",
+   "text": "Bài thực hành có thể gồm một thông báo, một hình minh họa và một trang trình bày. Sinh viên tự ghép các thành phần, kiểm tra tính thống nhất và ghi nhận phần đã sửa. Chẳng hạn, nếu thông báo nói về phần mềm mã nguồn mở nhưng hình chứa giao diện không liên quan, cần chỉnh sửa hoặc tạo lại hình.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Phiếu nghiệm thu gồm các nội dung sau: Đúng mục đích; đúng dữ kiện; hình và chữ nhất quán; không chứa thông tin riêng tư; có ghi nhận công cụ; có người kiểm tra. Chỉ chấp nhận sản phẩm sau khi xử lý các điểm chưa đạt, thay vì chọn theo mức độ đẹp mắt.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "h3",
+   "text": "4.3.3. Nguyên tắc đặt câu lệnh và khai thác công cụ AI hiệu quả"
+  },
+  {
+   "t": "p",
+   "text": "Câu lệnh đầu vào (prompt) là thông tin hướng dẫn mô hình thực hiện nhiệm vụ. Có thể cải thiện khả năng đáp ứng bằng cách nêu rõ yêu cầu, tách chỉ dẫn khỏi dữ liệu và mô tả định dạng đầu ra. Một số nhiệm vụ có thể dùng ví dụ mẫu, thường gọi là few-shot prompting. Các kỹ thuật này cần được thử với mô hình và nhiệm vụ cụ thể [@hfprompt].",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Trong chương này, người học sử dụng mẫu thực hành sau:",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "code",
+   "text": "Nhiệm vụ: ...\nNgười đọc hoặc người sử dụng: ...\nDữ liệu được cung cấp:\n<du_lieu>\n...\n</du_lieu>\nYêu cầu đầu ra: ...\nCách xử lý thông tin thiếu: ...\nTiêu chí kiểm tra: ...",
+   "title": ""
+  },
+  {
+   "t": "p",
+   "text": "Ví dụ: yêu cầu “Hãy viết về AI” chưa cho biết mục đích. Có thể thay bằng:",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "quote",
+   "text": "Dựa trên đoạn tài liệu tôi cung cấp, viết phần giải thích AI và học máy cho người mới học. Đầu ra gồm hai định nghĩa ngắn và một ví dụ thư viện. Chỉ sử dụng dữ kiện trong đoạn tài liệu. Nếu đoạn tài liệu không đủ để phân biệt hai khái niệm, nêu rõ phần cần bổ sung."
+  },
+  {
+   "t": "p",
+   "text": "Mẫu này giúp người viết chủ động định nghĩa nhiệm vụ. Tuy nhiên, câu “chỉ sử dụng tài liệu” vẫn là chỉ dẫn cần kiểm tra, không phải bằng chứng đầu ra đã tuân thủ.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Thử nghiệm câu lệnh trong lớp: Giữ nguyên tài liệu và tiêu chí; chạy câu lệnh A; ghi lỗi; chỉ sửa một điểm thành câu lệnh B; so sánh kết quả. Chẳng hạn, thêm yêu cầu liệt kê thông tin thiếu rồi xem mô hình còn tự điền ngày tháng hay không. Lưu cả kết quả chưa đạt để giải thích tác dụng và giới hạn của điều chỉnh.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Câu hỏi: Nếu câu lệnh B tạo câu văn trôi chảy hơn nhưng làm sai một dữ kiện, có nên kết luận B tốt hơn A không? Trả lời theo tiêu chí của nhiệm vụ.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "callout",
+   "kind": "nho",
+   "title": "Câu lệnh rõ, đầu ra vẫn cần kiểm tra",
+   "texts": [
+    "**Nêu nhiệm vụ, dữ liệu, định dạng và cách xử lý thông tin thiếu.** Đánh giá tính đúng đắn riêng với độ trôi chảy hoặc vẻ đẹp của sản phẩm.3.2–4.3.3."
+   ]
+  },
+  {
+   "t": "h2",
+   "text": "4.4. Sử dụng AI an toàn và có trách nhiệm"
+  },
+  {
+   "t": "h3",
+   "text": "4.4.1. Kiểm chứng thông tin do AI tạo ra"
+  },
+  {
+   "t": "p",
+   "text": "AI tạo sinh có thể đưa ra nội dung sai bằng cách diễn đạt tự tin, thường được gọi là ảo giác (hallucination); tài liệu NIST dùng thuật ngữ confabulation. Trích dẫn hoặc lập luận do mô hình tạo ra cũng có thể sai [@nist600].",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Quy trình kiểm chứng đề xuất cho bài học:",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Trước hết, tách đầu ra thành các phát biểu kiểm tra được: định nghĩa, số liệu, tên nguồn, ngày tháng và hướng dẫn kỹ thuật. Tiếp theo, xác định nguồn phù hợp. Với thư viện, ưu tiên tài liệu chính thức; với nghiên cứu, đọc công bố gốc. Thứ ba, mở nguồn và tìm phần hỗ trợ trực tiếp. Nguồn tồn tại chưa có nghĩa là nguồn ủng hộ phát biểu. Thứ tư, so sánh điều kiện và phạm vi. Không dùng kết quả trên một bộ dữ liệu để khẳng định hiệu quả cho mọi bài toán. Cuối cùng, sửa hoặc loại bỏ phát biểu chưa đủ căn cứ; lưu nguồn và ngày kiểm tra.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Ví dụ kiểm tra: AI viết: “Mô hình này phù hợp với mọi ngôn ngữ.” Sinh viên mở model card nhưng chỉ thấy mô tả thử nghiệm tiếng Anh. Kết luận phù hợp là chưa có bằng chứng cho tuyên bố “mọi ngôn ngữ”; không thay bằng một tỷ lệ chính xác tự ước lượng.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "table",
+   "caption": "Mẫu ghi nhận kiểm chứng",
+   "header": [
+    "Phát biểu cần kiểm tra",
+    "Bằng chứng đã đọc",
+    "Kết luận",
+    "Cách xử lý"
+   ],
+   "rows": [
+    [
+     "Mô hình hỗ trợ tốt tiếng Việt",
+     "Chưa có đánh giá tiếng Việt trong tài liệu đã đọc",
+     "Chưa đủ căn cứ",
+     "Ghi giới hạn, đề xuất thử nghiệm riêng"
+    ],
+    [
+     "Địa điểm hoạt động là phòng A",
+     "Dữ kiện của bài tập",
+     "Phù hợp dữ liệu đầu vào",
+     "Giữ lại"
+    ],
+    [
+     "Có một bài báo được AI dẫn tên",
+     "Chưa tìm được công bố gốc",
+     "Chưa xác minh",
+     "Không đưa vào tài liệu tham khảo"
+    ]
+   ],
+   "widths": [
+    3.4,
+    4.2,
+    4.2,
+    4.2
+   ],
+   "font": 11.5,
+   "firstBold": true,
+   "center": []
+  },
+  {
+   "t": "p",
+   "text": "Nhờ một hệ thống AI khác nhận xét có thể là bước hỗ trợ tìm lỗi trong bài tập, nhưng người học vẫn phải mở nguồn và đối chiếu bằng chứng trước khi xác nhận.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "figure",
+   "src": "assets/img/chuong4-hinh3.jpg",
+   "caption": "Ra quyết định khi kiểm chứng đầu ra AI [@nist600]",
+   "width": 14.5
+  },
+  {
+   "t": "p",
+   "text": "Hình 4.3 mô tả quy trình ra quyết định khi kiểm chứng đầu ra của AI. Trước hết tách đầu ra thành các phát biểu có thể kiểm tra, sau đó tìm và đọc nguồn phù hợp. Nếu nguồn hỗ trợ trực tiếp phát biểu thì giữ lại đúng phạm vi mà nguồn cho phép; nếu chưa có căn cứ thì sửa hoặc loại bỏ phát biểu đó. Cuối cùng lưu nguồn, ngày kiểm tra và duyệt bản cuối. Nhánh “chưa đủ căn cứ” không dẫn đến kết luận sai, mà dẫn đến việc không đưa phát biểu chưa xác minh vào sản phẩm.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "h3",
+   "text": "4.4.2. Bảo mật dữ liệu và quyền riêng tư khi sử dụng AI"
+  },
+  {
+   "t": "p",
+   "text": "NIST nhận diện rủi ro về dữ liệu cá nhân, tiết lộ trái phép và suy ra thông tin nhạy cảm trong hệ thống AI tạo sinh [@nist600]. UNESCO nhấn mạnh bảo vệ quyền riêng tư và quản trị dữ liệu trong sử dụng AI [@unesco].",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Trong học phần này, thực hành theo nguyên tắc chỉ đưa vào những dữ liệu cần thiết và được phép sử dụng. Trước khi gửi dữ liệu, trả lời bốn câu hỏi: dữ liệu thuộc về ai; có được phép dùng cho mục đích này không; được xử lý ở đâu; ai có thể xem đầu vào và kết quả?",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "callout",
+   "kind": "tinhhuong",
+   "title": "Bảo vệ dữ liệu khi thử công cụ AI",
+   "texts": [
+    "Tình huống: giảng viên cần thử công cụ viết nhận xét học tập. Bài thực hành dùng hồ sơ giả định “SV-A, hoàn thành bài đúng hạn, cần cải thiện cách trích nguồn” thay cho bảng điểm thật. Không đưa kèm họ tên, mã sinh viên, email hoặc hoàn cảnh cá nhân vì chúng không cần thiết cho mục tiêu thử cách diễn đạt."
+   ]
+  },
+  {
+   "t": "p",
+   "text": "Chỉ bỏ tên chưa đủ để coi một hồ sơ đã ẩn danh: nhiều thuộc tính kết hợp vẫn có thể dẫn đến nhận diện [@nist600].",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Các bước thực hành trong lớp:",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Ưu tiên dữ liệu tự tạo; kiểm tra cả nội dung tệp và phần đầu ra đã lưu. Không đặt mật khẩu hoặc khóa truy cập trong ô mã được chia sẻ. Đọc chính sách dữ liệu của dịch vụ tại thời điểm dùng, chú ý lưu trữ và quyền truy cập. Nếu chưa xác định được quyền đưa dữ liệu lên dịch vụ, chuyển sang dữ liệu giả định. Khi phát hiện gửi nhầm dữ liệu, dừng chia sẻ thêm và báo người phụ trách theo quy trình của cơ sở đào tạo.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Chạy mô hình trên máy cá nhân cũng cần kiểm tra thư viện, kết nối và tệp ghi kết quả. Vị trí chạy là một yếu tố của phương án bảo vệ, không thay cho việc kiểm soát toàn bộ cách xử lý dữ liệu.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "h3",
+   "text": "4.4.3. Đạo đức, bản quyền và trách nhiệm trong sử dụng AI"
+  },
+  {
+   "t": "p",
+   "text": "Sử dụng AI có trách nhiệm bao gồm xem xét tác động đến con người, sự công bằng, tính minh bạch và trách nhiệm giải trình. UNESCO đặt quyền con người và sự giám sát của con người ở vị trí trung tâm của khuyến nghị đạo đức AI [@unesco].",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Trong bài học, sinh viên cần phân biệt ba câu hỏi về bản quyền: có quyền dùng tài liệu đầu vào không; giấy phép công cụ hoặc mô hình cho phép làm gì; việc sử dụng và công bố đầu ra có liên quan đến quyền của bên khác không. WIPO trình bày AI và sở hữu trí tuệ như một lĩnh vực có nhiều vấn đề chính sách cần xem xét; không nên suy ra một kết luận chung rằng mọi đầu ra AI đều được tự do sử dụng hoặc đều được bảo hộ [@wipo].",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Tình huống 1 – trung thực học thuật. Sinh viên dùng AI sửa cách diễn đạt của báo cáo. Bài nộp cần tuân theo quy định môn học, giữ nguồn cho các nhận định học thuật và ghi phạm vi hỗ trợ nếu được yêu cầu. Không dùng tên công cụ AI thay cho tài liệu gốc.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Tình huống 2 – đại diện công bằng. Khi xây dựng hình minh họa nghề nghiệp, nhóm học tập kiểm tra xem sản phẩm có lặp lại khuôn mẫu giới hoặc gán đặc điểm tiêu cực cho một nhóm người hay không. Nếu có, nhóm điều chỉnh yêu cầu và giải thích lý do biên tập.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Tình huống 3 – trách nhiệm công bố. Nếu bản nháp thông báo do AI tạo sai địa điểm, người phụ trách phải sửa trước khi phát hành. Việc công cụ tạo ra câu sai không thay thế trách nhiệm kiểm tra của người sử dụng.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Có thể ghi nhận việc dùng AI theo mẫu thực hành:",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "quote",
+   "text": "Công cụ được dùng để đề xuất cấu trúc và sửa diễn đạt. Người viết đã kiểm tra dữ kiện, đọc các nguồn được dẫn và biên tập bản cuối."
+  },
+  {
+   "t": "p",
+   "text": "Mẫu phải phản ánh đúng việc đã làm. Phần này trình bày nguyên tắc học tập và quản trị; khi xử lý một tình huống pháp lý cụ thể, phải đối chiếu văn bản áp dụng cho tình huống đó.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "callout",
+   "kind": "nho",
+   "title": "Trước khi công bố",
+   "texts": [
+    "**Đối chiếu nguồn → bảo vệ dữ liệu → xem xét quyền sử dụng → duyệt bản cuối → ghi nhận hỗ trợ của AI.** Người sử dụng chịu trách nhiệm về sản phẩm đưa vào học tập và công việc.4."
+   ]
+  },
+  {
+   "t": "h2",
+   "text": "Kết luận chương",
+   "band": true
+  },
+  {
+   "t": "p",
+   "text": "AI là phạm vi rộng, trong đó học máy là cách xây dựng mô hình từ dữ liệu và AI tạo sinh tạo ra nội dung mới như văn bản, hình ảnh, nên mỗi hệ thống cần được phân tích theo nhiệm vụ, đầu vào và đầu ra. Phần mềm mã nguồn mở là nền tảng của lĩnh vực này, nhưng với AI cần xem xét riêng mã, trọng số, dữ liệu và giấy phép, và việc cho tải trọng số chưa đủ để khẳng định một hệ thống là mã nguồn mở. Python, các thư viện NumPy, pandas, scikit-learn, PyTorch cùng notebook Jupyter và Colab hỗ trợ thực hành, song kết quả đánh giá chỉ có ý nghĩa khi tập kiểm tra được tách riêng và môi trường chạy được ghi rõ. Câu lệnh rõ ràng giúp mô hình đáp ứng tốt hơn nhưng đầu ra vẫn có thể sai, vì vậy người dùng phải kiểm chứng bằng nguồn đáng tin cậy, bảo vệ dữ liệu cá nhân, xem xét quyền sử dụng và chịu trách nhiệm về sản phẩm công bố. Những nguyên tắc về nguồn, giấy phép và ghi nhận này cũng là cốt lõi của tài nguyên giáo dục mở, nội dung của chương tiếp theo, nơi người học tìm hiểu cách khai thác, đánh giá và chia sẻ học liệu mở một cách hợp pháp.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "h2",
+   "text": "Câu hỏi ôn tập",
+   "band": true
+  },
+  {
+   "t": "h3",
+   "text": "A. Nhận biết và hiểu"
+  },
+  {
+   "t": "list",
+   "ordered": true,
+   "items": [
+    "Phân biệt AI, học máy và AI tạo sinh bằng ba chức năng trong một thư viện.",
+    "Vì sao không thể gọi mọi chương trình tự động là học máy?",
+    "Cho phép tải trọng số có đủ để khẳng định một hệ thống AI là mã nguồn mở theo OSI không? Giải thích.",
+    "NumPy, pandas, scikit-learn và PyTorch có vai trò gì trong một bài thực hành?",
+    "Tập huấn luyện khác tập kiểm tra ở mục đích sử dụng như thế nào?",
+    "Phân biệt huấn luyện, tinh chỉnh và suy luận."
+   ]
+  },
+  {
+   "t": "h3",
+   "text": "B. Vận dụng và phân tích"
+  },
+  {
+   "t": "list",
+   "ordered": true,
+   "items": [
+    "Cần đọc những thông tin nào trong model card trước khi lựa chọn một mô hình?",
+    "Jupyter chạy cục bộ khác Google Colab do Google quản lý ở những điểm nào? Khi nào nên chọn từng loại?",
+    "Hãy sửa câu lệnh “Viết giúp tôi một báo cáo” thành một yêu cầu có thể kiểm tra được.",
+    "Vì sao câu văn trôi chảy chưa đủ chứng minh thông tin đúng? Trình bày quy trình kiểm chứng đầu ra của AI.",
+    "Vì sao xóa tên trong một hồ sơ chưa đủ để kết luận hồ sơ đã được ẩn danh?"
+   ]
+  },
+  {
+   "t": "h3",
+   "text": "C. Tình huống thảo luận"
+  },
+  {
+   "t": "list",
+   "ordered": true,
+   "items": [
+    "Người nộp báo cáo cần làm gì khi đã dùng AI hỗ trợ viết?",
+    "Nhóm sinh viên tìm được một kho mô hình cho phép tải về nhưng không thấy giấy phép. Nhóm nên xử lý như thế nào trước khi sử dụng hoặc phân phối lại?"
+   ]
+  },
+  {
+   "t": "h2",
+   "text": "Bài tập vận dụng",
+   "band": true
+  },
+  {
+   "t": "h3",
+   "text": "Bài 1. Thực hành học máy và giới hạn đánh giá"
+  },
+  {
+   "t": "p",
+   "text": "Chạy mã ở mục 4.2.1, ghi môi trường và kết quả. Thêm ít nhất hai mẫu giả định có đặc trưng gần nhau nhưng nhãn khác nhau; giải thích vì sao tình huống này làm việc phân loại khó hơn. Không đưa các mẫu kiểm tra vào huấn luyện để làm đẹp kết quả.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "**Sản phẩm:** Notebook có giải thích dữ liệu, kết quả và giới hạn. Đánh giá dựa trên quy trình và lập luận, không dựa vào việc đạt accuracy cao.",
+   "indent": false,
+   "left": false
+  },
+  {
+   "t": "h3",
+   "text": "Bài 2. Đọc và so sánh hai model card"
+  },
+  {
+   "t": "p",
+   "text": "Chọn hai mô hình cùng nhiệm vụ trên Hugging Face. Ghi nhiệm vụ, giấy phép, ngôn ngữ, cách chạy, kết quả đánh giá được công bố và thông tin còn thiếu. Trích đường dẫn cụ thể của từng mô hình tại thời điểm làm bài.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "**Sản phẩm:** Bảng đối chiếu và một đoạn lựa chọn có lý do. Không kết luận mô hình tốt hơn chỉ từ số lượt tải hoặc một chỉ số đo trong điều kiện khác nhau.",
+   "indent": false,
+   "left": false
+  },
+  {
+   "t": "h3",
+   "text": "Bài 3. Tạo bộ thông báo có kiểm chứng"
+  },
+  {
+   "t": "p",
+   "text": "Dùng dữ kiện giả định ở mục 4.3.2 để tạo bản nháp thông báo và hình minh họa. Thử hai phiên bản câu lệnh; lưu đầu ra, lỗi và bản đã sửa. Nếu không có công cụ tạo ảnh phù hợp, hoàn thành phần mô tả ảnh và phiếu tiêu chí để giảng viên tổ chức thử ở môi trường lớp học.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "**Sản phẩm:** Câu lệnh, sản phẩm, phiếu kiểm chứng và ghi nhận công cụ. Tiêu chí: đúng dữ kiện; đúng đối tượng; nhất quán hình–chữ; xác định phần thiếu; bảo vệ dữ liệu.",
+   "indent": false,
+   "left": false
+  },
+  {
+   "t": "h3",
+   "text": "Bài 4. Phân tích trách nhiệm"
+  },
+  {
+   "t": "p",
+   "text": "Một nhóm định gửi danh sách sinh viên và điểm số lên công cụ AI công cộng để tạo nhận xét, sau đó công bố nguyên văn kết quả. Hãy đề xuất phương án thực hiện bài tập bằng dữ liệu giả định; xác định bước kiểm tra, người duyệt và cách ghi nhận hỗ trợ của AI.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "**Sản phẩm:** Quy trình ngắn có giải thích cho từng bước. Phân biệt đề xuất quản trị của nhóm với yêu cầu pháp luật đã có nguồn xác minh.",
+   "indent": false,
+   "left": false
+  },
+  {
+   "t": "h3",
+   "text": "Gợi ý tự đánh giá"
+  },
+  {
+   "t": "p",
+   "text": "Với câu hỏi về trọng số và định nghĩa của OSI, hãy đối chiếu quyền và các thành phần theo OSI chứ không chỉ khả năng tải trọng số. Với câu hỏi về tập huấn luyện và tập kiểm tra, cần nhớ rằng tập kiểm tra phục vụ đánh giá; thông tin của nó không được dùng để điều chỉnh mô hình rồi vẫn coi là kiểm tra độc lập. Huấn luyện và tinh chỉnh cập nhật tham số, còn suy luận sử dụng mô hình đã có. Khi đánh giá câu văn do AI tạo ra, cần đánh giá riêng tính mạch lạc và sự phù hợp với bằng chứng. Với bài so sánh hai model card, chấp nhận kết luận “chưa đủ thông tin để lựa chọn” nếu chỉ rõ còn thiếu gì; với các bài tạo thông báo và phân tích trách nhiệm, người học phải giải thích các quyết định chỉnh sửa và chịu trách nhiệm về sản phẩm nộp.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "h2",
+   "text": "Tài liệu tham khảo",
+   "band": true
+  },
+  {
+   "t": "refs"
+  }
+ ],
+ "refs": {
+  "goodfellow": "Goodfellow, I., Bengio, Y., & Courville, A. (2016). *Deep learning* (Chapter 1: Introduction). MIT Press. https://www.deeplearningbook.org/",
+  "nist600": "National Institute of Standards and Technology. (2024). *Artificial intelligence risk management framework: Generative artificial intelligence profile* (NIST AI 600-1). https://doi.org/10.6028/NIST.AI.600-1",
+  "hfllm": "Hugging Face. (n.d.). *Introduction*. LLM Course. https://huggingface.co/learn/llm-course/chapter1/1",
+  "osai": "Open Source Initiative. (2024). *The Open Source AI Definition 1.0*. https://opensource.org/ai/open-source-ai-definition",
+  "hftransformers": "Hugging Face. (n.d.). *How do Transformers work?* LLM Course. https://huggingface.co/learn/llm-course/chapter1/4",
+  "pytut": "Python Software Foundation. (n.d.). *The Python tutorial*. https://docs.python.org/3/tutorial/",
+  "numpy": "NumPy Developers. (n.d.). *NumPy: The absolute basics for beginners*. https://numpy.org/doc/stable/user/absolute_beginners.html",
+  "pandas": "pandas Development Team. (n.d.). *Package overview*. https://pandas.pydata.org/docs/getting_started/overview.html",
+  "sklearn": "scikit-learn Developers. (n.d.). *Getting started*. https://scikit-learn.org/stable/getting_started.html",
+  "pytorch": "PyTorch. (n.d.). *Learn the basics*. https://pytorch.org/tutorials/beginner/basics/intro.html",
+  "sklpitfalls": "scikit-learn Developers. (n.d.). *Common pitfalls and recommended practices*. https://scikit-learn.org/stable/common_pitfalls.html",
+  "modelcards": "Hugging Face. (n.d.). *Model cards*. Hugging Face Hub documentation. https://huggingface.co/docs/hub/model-cards",
+  "hfpickle": "Hugging Face. (n.d.). *Pickle scanning*. Hugging Face Hub documentation. https://huggingface.co/docs/hub/security-pickle",
+  "jupyter": "Project Jupyter. (n.d.). *Project Jupyter*. https://jupyter.org/",
+  "colab": "Google. (n.d.). *Colaboratory: Frequently asked questions*. https://research.google.com/colaboratory/faq.html",
+  "hft2i": "Hugging Face. (n.d.). *Text-to-image*. https://huggingface.co/tasks/text-to-image",
+  "hfprompt": "Hugging Face. (n.d.). *Prompt engineering*. Transformers documentation. https://huggingface.co/docs/transformers/tasks/prompting",
+  "unesco": "UNESCO. (n.d.). *Ethics of artificial intelligence*. https://www.unesco.org/en/artificial-intelligence/recommendation-ethics",
+  "wipo": "World Intellectual Property Organization. (n.d.). *Artificial intelligence and intellectual property*. https://www.wipo.int/about-ip/en/artificial_intelligence/"
+ },
+ "order": [
+  "goodfellow",
+  "nist600",
+  "hfllm",
+  "osai",
+  "hftransformers",
+  "pytut",
+  "numpy",
+  "pandas",
+  "sklearn",
+  "pytorch",
+  "sklpitfalls",
+  "modelcards",
+  "hfpickle",
+  "jupyter",
+  "colab",
+  "hft2i",
+  "hfprompt",
+  "unesco",
+  "wipo"
+ ]
+}

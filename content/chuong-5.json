@@ -1,0 +1,890 @@
+{
+ "number": 5,
+ "title": "KHAI THÁC TÀI NGUYÊN GIÁO DỤC MỞ",
+ "titleText": "Khai thác tài nguyên giáo dục mở",
+ "blocks": [
+  {
+   "t": "h2",
+   "text": "Giới thiệu chương",
+   "band": true
+  },
+  {
+   "t": "p",
+   "text": "Sự phát triển của Internet và công nghệ số đã làm thay đổi mạnh mẽ cách tri thức được tạo lập, lưu trữ và chia sẻ, nhưng khả năng truy cập tài liệu trên Internet không đồng nghĩa với quyền sao chép, chỉnh sửa hoặc phân phối lại, và điều này đặt ra nhu cầu về các mô hình chia sẻ tri thức có tính mở. Tài nguyên giáo dục mở (OER) là một thành phần quan trọng của xu hướng đó: trong giáo dục đại học, OER mở rộng khả năng tiếp cận học liệu và tạo điều kiện để giảng viên lựa chọn, điều chỉnh, chia sẻ tài nguyên phù hợp với mục tiêu đào tạo; với công nghệ thông tin, OER càng có ý nghĩa vì nội dung chuyên môn thay đổi thường xuyên và nhu cầu chia sẻ học liệu, mã nguồn, dữ liệu, bài thực hành ngày càng cao. Chương này giới thiệu khái niệm giáo dục mở và OER, các loại tài nguyên và vai trò của chúng trong giáo dục đại học; trình bày phương pháp tìm kiếm, đánh giá chất lượng, khai thác và tái sử dụng OER theo mô hình 5R; sau đó đi vào bản quyền và chia sẻ với hệ thống giấy phép Creative Commons, nguyên tắc ghi nhận nguồn và quy trình xây dựng, chia sẻ tài nguyên giáo dục mở.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "h3",
+   "text": "Mục tiêu học tập"
+  },
+  {
+   "t": "p",
+   "text": "Sau khi học xong chương này, người học có thể:",
+   "indent": true,
+   "left": true
+  },
+  {
+   "t": "list",
+   "ordered": false,
+   "items": [
+    "Trình bày được khái niệm giáo dục mở và tài nguyên giáo dục mở (OER), phân biệt được OER với tài nguyên miễn phí trên Internet và với phần mềm mã nguồn mở, đồng thời nêu được các loại OER và vai trò của chúng trong giáo dục đại học.",
+    "Tìm kiếm, đánh giá và lựa chọn được OER theo các tiêu chí chất lượng; vận dụng được mô hình 5R và các cách Adopt, Adapt khi khai thác, tái sử dụng tài nguyên.",
+    "Phân biệt và lựa chọn được giấy phép Creative Commons; thực hiện được việc ghi nhận nguồn đúng quy định (TASL, citation, attribution) và xây dựng, chia sẻ được OER hợp pháp, có tính đến quy định của pháp luật Việt Nam."
+   ]
+  },
+  {
+   "t": "h2",
+   "text": "5.1. Tổng quan về tài nguyên giáo dục mở"
+  },
+  {
+   "t": "h3",
+   "text": "5.1.1. Khái niệm giáo dục mở và OER"
+  },
+  {
+   "t": "p",
+   "text": "Giáo dục mở, hay Open Education, là cách tiếp cận hướng đến việc giảm những rào cản đối với quá trình tiếp cận, tham gia và chia sẻ tri thức. Tính mở trong giáo dục không chỉ thể hiện ở việc người học có thể truy cập tài liệu mà còn liên quan đến cách tài nguyên được tạo ra, sử dụng, điều chỉnh và chia sẻ trong cộng đồng. Theo cách tiếp cận này, người học không hoàn toàn phụ thuộc vào một nguồn học liệu cố định, trong khi giảng viên có nhiều khả năng hơn trong việc lựa chọn và tổ chức nội dung phù hợp với bối cảnh đào tạo.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Cần phân biệt giáo dục mở với giáo dục trực tuyến. Một khóa học được tổ chức hoàn toàn qua Internet vẫn có thể giới hạn quyền truy cập hoặc yêu cầu người học trả phí. Ngược lại, một giáo trình được phát hành dưới dạng tệp số và cho phép người khác sử dụng, chỉnh sửa và chia sẻ theo giấy phép mở có thể là một tài nguyên giáo dục mở ngay cả khi tài liệu đó không thuộc một khóa học trực tuyến. Vì vậy, yếu tố “mở” không được quyết định bởi môi trường trực tuyến mà chủ yếu liên quan đến quyền mà người sử dụng được phép thực hiện đối với tài nguyên.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Trong bối cảnh đó, thuật ngữ Tài nguyên giáo dục mở, tiếng Anh là Open Educational Resources và thường được viết tắt là OER, được sử dụng để chỉ những tài nguyên phục vụ dạy, học và nghiên cứu có khả năng tiếp cận và tái sử dụng theo những điều kiện mở. UNESCO định nghĩa OER là các tài liệu phục vụ học tập, giảng dạy và nghiên cứu, tồn tại dưới bất kỳ định dạng hoặc phương tiện nào, thuộc phạm vi công cộng hoặc được bảo hộ quyền tác giả nhưng đã được phát hành theo một giấy phép mở. Giấy phép này cho phép người khác tiếp cận miễn phí và thực hiện những quyền nhất định như sử dụng lại, điều chỉnh và phân phối lại tài nguyên [@oer1].",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "callout",
+   "kind": "nho",
+   "title": "OER không đồng nghĩa với miễn phí",
+   "texts": [
+    "**Theo nghĩa đó, OER không đơn thuần là tài liệu “miễn phí”.** Một tệp PDF có thể được tải miễn phí nhưng nếu tác giả vẫn bảo lưu toàn bộ quyền và không cho phép chỉnh sửa hoặc phân phối lại thì tài liệu đó chưa thể được xem là tài nguyên mở theo nghĩa đầy đủ. Ngược lại, một giáo trình được phát hành theo giấy phép CC BY cho phép người khác sử dụng, điều chỉnh và chia sẻ lại khi thực hiện đúng yêu cầu ghi công sẽ phù hợp hơn với bản chất của OER."
+   ]
+  },
+  {
+   "t": "p",
+   "text": "Có thể nhận diện OER dựa trên ba đặc điểm cơ bản. Trước hết, tài nguyên phải có mục đích phục vụ hoạt động dạy, học tập hoặc nghiên cứu. Tiếp theo, người sử dụng có khả năng tiếp cận tài nguyên mà không phải trả phí cho bản thân nội dung đó. Quan trọng hơn, tài nguyên phải có cơ sở pháp lý cho phép các hoạt động tái sử dụng nhất định, thông qua việc tài nguyên thuộc phạm vi công cộng hoặc được phát hành theo giấy phép mở.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "figure",
+   "src": "assets/img/chuong5-hinh1.jpg",
+   "caption": "Mối quan hệ giữa giáo dục mở và tài nguyên giáo dục mở",
+   "width": 14.0
+  },
+  {
+   "t": "p",
+   "text": "Mối quan hệ trên cho thấy OER là một phương tiện quan trọng để hiện thực hóa giáo dục mở nhưng không đồng nhất với toàn bộ khái niệm giáo dục mở. Giáo dục mở có phạm vi rộng hơn và có thể bao gồm cả thực hành giáo dục mở, khóa học mở, dữ liệu mở và các mô hình chia sẻ tri thức khác.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "table",
+   "caption": "Phân biệt OER với một số dạng tài nguyên số",
+   "header": [
+    "Tiêu chí",
+    "OER",
+    "Tài nguyên miễn phí trên Internet",
+    "Tài nguyên có bản quyền truyền thống"
+   ],
+   "rows": [
+    [
+     "Có thể truy cập miễn phí",
+     "Có",
+     "Có",
+     "Có thể có hoặc không"
+    ],
+    [
+     "Có quyền tác giả",
+     "Có thể có",
+     "Thường có",
+     "Có"
+    ],
+    [
+     "Có giấy phép mở",
+     "Có",
+     "Không nhất thiết",
+     "Thường không"
+    ],
+    [
+     "Có thể chỉnh sửa",
+     "Tùy giấy phép",
+     "Không mặc nhiên",
+     "Thường phải xin phép"
+    ],
+    [
+     "Có thể phân phối lại",
+     "Theo giấy phép",
+     "Không mặc nhiên",
+     "Thường bị hạn chế"
+    ],
+    [
+     "Có thể phát triển phiên bản mới",
+     "Tùy giấy phép",
+     "Không mặc nhiên",
+     "Thường phải xin phép"
+    ]
+   ],
+   "widths": [
+    3.4,
+    4.2,
+    4.2,
+    4.2
+   ],
+   "font": 11.5,
+   "firstBold": true,
+   "center": []
+  },
+  {
+   "t": "p",
+   "text": "Sự khác biệt này đặc biệt quan trọng trong môi trường số. Ví dụ, một giảng viên tìm thấy hai tài liệu hướng dẫn sử dụng Git. Tài liệu thứ nhất được tải miễn phí nhưng ghi “All Rights Reserved”, trong khi tài liệu thứ hai sử dụng giấy phép CC BY 4.0. Cả hai đều có thể đọc miễn phí, nhưng chỉ tài liệu thứ hai trao trước cho người sử dụng những quyền rộng hơn để dịch, chỉnh sửa hoặc xây dựng phiên bản mới theo các điều kiện của giấy phép.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Như vậy, OER vừa liên quan đến khả năng tiếp cận, vừa gắn với quyền sử dụng hợp pháp. Đây là nền tảng để người học và giảng viên có thể chuyển từ việc chỉ tiếp nhận nội dung sang việc lựa chọn, điều chỉnh và phát triển tài nguyên phục vụ những bối cảnh giáo dục khác nhau.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "h3",
+   "text": "5.1.2. Các loại tài nguyên giáo dục mở"
+  },
+  {
+   "t": "p",
+   "text": "Tài nguyên giáo dục mở có thể tồn tại dưới nhiều hình thức. OER không chỉ bao gồm giáo trình hoặc sách điện tử mà còn có thể là bài giảng, hình ảnh, video, bài tập, mô phỏng, dữ liệu, mã nguồn, notebook hoặc một khóa học hoàn chỉnh. Vì vậy, định dạng của tài nguyên không quyết định bản thân tài nguyên có phải OER hay không. Yếu tố quan trọng vẫn là mục đích giáo dục và quyền sử dụng được pháp luật hoặc giấy phép trao cho người dùng.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Giáo trình và tài liệu dạng văn bản là nhóm OER phổ biến nhất trong giáo dục đại học. Các tài nguyên này có thể là giáo trình mở, sách chuyên khảo, tài liệu hướng dẫn, bài đọc, chương sách hoặc tài liệu thực hành. Giáo trình mở về nội dung có thể tương tự giáo trình truyền thống nhưng thường được phát hành theo giấy phép cho phép người dùng sao chép và trong nhiều trường hợp có thể chỉnh sửa. Khi tài nguyên đồng thời được cung cấp dưới các định dạng như HTML, EPUB, DOCX, ODT hoặc XML, khả năng tái sử dụng và thích nghi thường thuận lợi hơn so với việc chỉ cung cấp một bản PDF cố định.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "OER còn bao gồm nhiều loại tài liệu phục vụ trực tiếp cho hoạt động dạy và học như slide, giáo án, đề cương, bài thực hành, phiếu học tập, câu hỏi thảo luận và các tài nguyên đánh giá. Đây thường là các học liệu có phạm vi nhỏ hơn và tương đối thuận lợi khi tích hợp vào một bài học. Chẳng hạn, trong học phần Linux, giảng viên có thể kết hợp một sơ đồ về hệ thống tệp, một tài liệu hướng dẫn các lệnh cơ bản và một bài thực hành về quyền truy cập để tạo thành một đơn vị học tập hoàn chỉnh.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Sự phát triển của công nghệ đa phương tiện cũng làm gia tăng vai trò của hình ảnh, âm thanh, video, animation và screencast trong OER. Những tài nguyên này đặc biệt phù hợp với các nội dung đòi hỏi minh họa trực quan. Trong lĩnh vực CNTT, video có thể được sử dụng để minh họa quá trình cài đặt Linux, cấu hình Web Server hoặc thực hiện các thao tác Git. Tuy nhiên, việc một video được đăng công khai trên Internet không tự động đồng nghĩa với việc người dùng có quyền tải, chỉnh sửa hoặc sử dụng lại. Giấy phép của từng tài nguyên vẫn phải được kiểm tra trước khi khai thác.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Một nhóm OER khác ngày càng phổ biến là tài nguyên tương tác và mô phỏng. Chúng cho phép người học thay đổi tham số, quan sát kết quả hoặc nhận phản hồi trực tiếp. Trong đào tạo CNTT, các tài nguyên dạng này có thể là mô phỏng thuật toán, bài tập tương tác, phòng thí nghiệm ảo hoặc notebook cho phép chạy mã nguồn trực tiếp.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Đối với những lĩnh vực như lập trình, khoa học dữ liệu và trí tuệ nhân tạo, ranh giới giữa học liệu và tài nguyên kỹ thuật ngày càng trở nên linh hoạt. Một Jupyter Notebook có thể đồng thời chứa văn bản giải thích, mã Python, dữ liệu mẫu, biểu đồ và bài tập. Khi tài nguyên này được phát hành theo giấy phép phù hợp, nó có thể trở thành một OER có giá trị cao cho hoạt động học tập.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "figure",
+   "src": "assets/img/chuong5-hinh2.jpg",
+   "caption": "Các dạng tài nguyên giáo dục mở",
+   "width": 14.0
+  },
+  {
+   "t": "callout",
+   "kind": "nho",
+   "title": "OER và phần mềm mã nguồn mở",
+   "texts": [
+    "**Trong lĩnh vực CNTT cần phân biệt OER với phần mềm mã nguồn mở.** Linux, Apache hay LibreOffice là phần mềm mã nguồn mở; một giáo trình hướng dẫn Linux hoặc bộ slide về Apache được cấp giấy phép mở mới là OER. Hai nhóm cùng chia sẻ tinh thần mở nhưng được điều chỉnh bởi các hệ thống giấy phép khác nhau."
+   ]
+  },
+  {
+   "t": "h3",
+   "text": "5.1.3. Vai trò của OER trong giáo dục đại học"
+  },
+  {
+   "t": "p",
+   "text": "Giá trị của OER trong giáo dục đại học không chỉ nằm ở việc giảm chi phí học liệu mà còn ở khả năng mở rộng tiếp cận, điều chỉnh nội dung và thúc đẩy hợp tác giữa người học, giảng viên và cơ sở đào tạo.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Đối với người học, OER tạo điều kiện tiếp cận học liệu trước, trong và sau khi kết thúc một học phần. Trong một số mô hình tài nguyên thương mại, quyền truy cập của sinh viên có thể hết hiệu lực khi học kỳ kết thúc. Với OER, người học thường có khả năng tiếp tục lưu giữ và sử dụng tài nguyên nếu tài nguyên vẫn được cung cấp hoặc quyền lưu giữ được giấy phép cho phép. Điều này phù hợp với xu hướng học tập suốt đời, đặc biệt trong lĩnh vực CNTT, nơi kiến thức cần được thường xuyên cập nhật.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "OER cũng góp phần giảm chi phí tiếp cận tài liệu. Tuy nhiên, cần hiểu rằng tài nguyên miễn phí không đồng nghĩa toàn bộ hoạt động học tập không phát sinh chi phí. Người học vẫn cần thiết bị, kết nối Internet hoặc chi phí in ấn. Giá trị của OER chủ yếu nằm ở việc làm giảm rào cản đối với nội dung học liệu.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Đối với giảng viên, lợi ích quan trọng hơn cả việc miễn phí là khả năng thích nghi tài liệu. Một giáo trình được cấp giấy phép phù hợp có thể được lựa chọn từng chương, sắp xếp lại, rút gọn, cập nhật hoặc dịch sang ngôn ngữ khác. Nhờ đó, nội dung có thể được điều chỉnh gần hơn với chuẩn đầu ra, trình độ người học và đặc điểm chương trình đào tạo. Trong lĩnh vực CNTT, khả năng cập nhật đặc biệt có ý nghĩa vì phiên bản phần mềm, giao diện, công cụ và quy trình kỹ thuật có thể thay đổi nhanh hơn vòng đời của một giáo trình truyền thống.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "OER còn thúc đẩy sự cộng tác giữa giảng viên. Một tài liệu được công bố mở có thể được đồng nghiệp thử nghiệm, bổ sung, phát hiện lỗi và cải tiến. Cách tiếp cận này có nhiều điểm tương đồng với mô hình phát triển phần mềm mã nguồn mở, trong đó sản phẩm được hoàn thiện dần thông qua đóng góp của cộng đồng.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Ở cấp độ cơ sở giáo dục, OER tạo cơ hội xây dựng kho học liệu dùng chung, giảm sự trùng lặp trong quá trình phát triển tài liệu và mở rộng khả năng chia sẻ tri thức ra ngoài phạm vi từng lớp học. UNESCO xem việc xây dựng năng lực, phát triển chính sách hỗ trợ, bảo đảm khả năng tiếp cận OER có chất lượng, phát triển mô hình bền vững và tăng cường hợp tác là những hướng hành động quan trọng đối với OER [@oer1].",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Tuy nhiên, OER không phải lúc nào cũng dễ khai thác. Số lượng tài nguyên giữa các lĩnh vực không đồng đều, trong khi chất lượng, mức độ cập nhật và hình thức trình bày có thể khác nhau đáng kể. Một tài nguyên phù hợp về chuyên môn nhưng được xây dựng trong bối cảnh khác có thể cần dịch, điều chỉnh thuật ngữ hoặc thay đổi ví dụ trước khi sử dụng cho sinh viên Việt Nam. Ngoài ra, việc tìm kiếm, kiểm tra giấy phép và biên tập tài nguyên cũng đòi hỏi thời gian và năng lực số của người sử dụng.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "h2",
+   "text": "5.2. Tìm kiếm và khai thác OER"
+  },
+  {
+   "t": "h3",
+   "text": "5.2.1. Công cụ và phương pháp tìm kiếm OER"
+  },
+  {
+   "t": "p",
+   "text": "Tìm kiếm OER không đơn giản là nhập từ khóa vào Google. Một tài nguyên có nội dung phù hợp nhưng không có giấy phép phù hợp có thể không đáp ứng mục đích tái sử dụng. Vì vậy, tìm kiếm OER cần kết hợp xác định nhu cầu, lựa chọn từ khóa, lựa chọn kho tài nguyên và kiểm tra quyền sử dụng [@oer4].",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Yêu cầu tìm kiếm càng cụ thể thì kết quả càng có giá trị. Thay vì tìm “Linux”, người sử dụng có thể tìm “Linux open textbook”, “Linux administration CC BY” hoặc “Linux file management OER”. Trong nhiều trường hợp, từ khóa tiếng Anh giúp tiếp cận nhiều tài nguyên quốc tế hơn.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Google và các công cụ tìm kiếm thông thường có phạm vi rộng nhưng không phân biệt đầy đủ giữa tài nguyên mở và tài nguyên có bản quyền. Vì vậy, chúng nên được xem là phương tiện phát hiện. Sau khi tìm thấy tài nguyên, người sử dụng cần quay lại trang xuất bản gốc để xác định tác giả và giấy phép.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Các kho OER chuyên biệt thường cho phép tìm kiếm hiệu quả hơn. OER Commons cung cấp OER thuộc nhiều lĩnh vực; MERLOT tập trung vào tài nguyên học tập đại học; Open Textbook Library phù hợp với giáo trình; MIT OpenCourseWare cung cấp học liệu khóa học; Openverse phù hợp với hình ảnh và âm thanh; Pressbooks Directory cung cấp nhiều sách và giáo trình số.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Quá trình tìm kiếm hiệu quả có thể được tổ chức thành một chu trình liên tục, trong đó kết quả ở bước đánh giá có thể khiến người sử dụng quay lại điều chỉnh từ khóa hoặc lựa chọn một nguồn khác.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "figure",
+   "src": "assets/img/chuong5-hinh3.jpg",
+   "caption": "Quy trình tìm kiếm và lựa chọn OER",
+   "width": 14.0
+  },
+  {
+   "t": "p",
+   "text": "Hình 5.3 gồm sáu bước. Trước hết xác định nhu cầu về môn học, trình độ người học, loại tài nguyên và giấy phép mong muốn; tiếp theo xây dựng từ khóa cụ thể; sau đó chọn kho hoặc công cụ tìm kiếm phù hợp rồi tìm kiếm và sàng lọc kết quả. Ở bước thứ năm, kiểm tra nguồn gốc và giấy phép của từng tài nguyên; cuối cùng lưu thông tin tài nguyên gồm tên, tác giả, nguồn, giấy phép và ngày truy cập để sau này ghi nhận nguồn đúng. Đường nét đứt “lặp lại khi cần” cho thấy kết quả của các bước sau có thể làm thay đổi từ khóa hoặc kho tìm kiếm ở các bước trước.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "h3",
+   "text": "5.2.2. Đánh giá chất lượng và độ tin cậy của OER"
+  },
+  {
+   "t": "p",
+   "text": "Việc một tài nguyên được cấp giấy phép mở không bảo đảm rằng tài nguyên đó có chất lượng cao. Giấy phép trả lời câu hỏi “người dùng được phép làm gì”, trong khi đánh giá chất lượng trả lời câu hỏi “tài nguyên có phù hợp để sử dụng hay không”. Hai vấn đề này cần được xem xét độc lập [@oer4].",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Trước hết, nội dung phải phù hợp với mục tiêu của học phần và trình độ người học. Một giáo trình chuyên sâu về quản trị kernel có thể hoàn toàn chính xác nhưng không thích hợp với sinh viên mới học Linux. Vì vậy, chất lượng của một OER luôn cần được đánh giá trong bối cảnh sử dụng cụ thể.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Độ chính xác và độ tin cậy là yếu tố tiếp theo. Người dùng cần xem xét tác giả, tổ chức xuất bản, tài liệu tham khảo, tính nhất quán của kiến thức và khả năng đối chiếu với các nguồn chuyên môn khác. Đối với CNTT, việc kiểm tra câu lệnh, đoạn mã, phiên bản phần mềm và liên kết đặc biệt quan trọng. Một tài liệu có thể đúng về nguyên lý nhưng chứa hướng dẫn kỹ thuật đã lỗi thời.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Tính cập nhật có mức độ quan trọng khác nhau tùy lĩnh vực. Các khái niệm nền tảng thường ổn định hơn, trong khi công nghệ Web, thư viện lập trình, Docker hay các công cụ bảo mật có thể thay đổi nhanh. Vì vậy, năm xuất bản không phải tiêu chí duy nhất; người đánh giá cần xác định nội dung nào còn giá trị và nội dung nào cần cập nhật.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "OER cũng cần được xem xét dưới góc độ sư phạm và khả năng tiếp cận. Một tài liệu dễ hiểu, có ví dụ, hoạt động thực hành và cấu trúc logic thường có giá trị sử dụng cao hơn một tài liệu chỉ cung cấp thông tin rời rạc. Đồng thời, những yếu tố như mô tả thay thế cho hình ảnh, phụ đề video, cấu trúc heading và khả năng sử dụng trên nhiều thiết bị cũng ảnh hưởng đến mức độ tiếp cận của người học.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Cuối cùng, khả năng chỉnh sửa cần được đánh giá cả về pháp lý lẫn kỹ thuật. Một tài liệu CC BY được phép chỉnh sửa về mặt pháp lý nhưng chỉ cung cấp dưới dạng PDF scan sẽ khó thích nghi hơn một tài liệu có tệp DOCX, HTML hoặc Markdown.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Có thể tổng hợp việc đánh giá OER theo mười nhóm tiêu chí như sau:",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "table",
+   "caption": "Các tiêu chí cơ bản khi đánh giá OER",
+   "header": [
+    "Tiêu chí",
+    "Nội dung xem xét"
+   ],
+   "rows": [
+    [
+     "Phù hợp mục tiêu",
+     "Mức độ phù hợp với nội dung và người học"
+    ],
+    [
+     "Chính xác, tin cậy",
+     "Kiến thức, số liệu, nguồn"
+    ],
+    [
+     "Tác giả và nguồn",
+     "Uy tín và nguồn gốc"
+    ],
+    [
+     "Tính cập nhật",
+     "Phiên bản, công nghệ, liên kết"
+    ],
+    [
+     "Trình bày",
+     "Cấu trúc, ngôn ngữ, hình ảnh"
+    ],
+    [
+     "Giá trị sư phạm",
+     "Ví dụ, bài tập, hướng dẫn"
+    ],
+    [
+     "Thực hành",
+     "Mã nguồn, mô phỏng, tương tác"
+    ],
+    [
+     "Accessibility",
+     "Khả năng tiếp cận"
+    ],
+    [
+     "Khả năng chỉnh sửa",
+     "Định dạng nguồn"
+    ],
+    [
+     "Giấy phép",
+     "Quyền sử dụng phù hợp"
+    ]
+   ],
+   "widths": [
+    4.4,
+    11.6
+   ],
+   "font": 11.5,
+   "firstBold": true,
+   "center": []
+  },
+  {
+   "t": "callout",
+   "kind": "luuy",
+   "title": "",
+   "texts": [
+    "**Trong thực hành, mỗi tiêu chí có thể được đánh giá theo thang 1 đến 5.** Tuy nhiên, điểm số chỉ hỗ trợ quyết định. Một lỗi nghiêm trọng về kiến thức hoặc quyền sử dụng vẫn có thể làm cho tài nguyên không phù hợp."
+   ]
+  },
+  {
+   "t": "h3",
+   "text": "5.2.3. Khai thác và tái sử dụng tài nguyên giáo dục mở"
+  },
+  {
+   "t": "p",
+   "text": "Một đặc điểm quan trọng của OER là người dùng không chỉ được đọc tài nguyên mà trong nhiều trường hợp còn có thể lưu giữ, sử dụng lại, điều chỉnh và chia sẻ. David Wiley khái quát khả năng này thông qua mô hình 5R, gồm Retain, Reuse, Revise, Remix và Redistribute [@oer2].",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Retain thể hiện quyền lưu giữ một bản sao của tài nguyên. Người dùng có thể tải giáo trình hoặc tệp nguồn về máy thay vì hoàn toàn phụ thuộc vào một dịch vụ trực tuyến. Reuse là việc sử dụng tài nguyên ở dạng nguyên bản trong những bối cảnh khác nhau, chẳng hạn đưa một hình CC BY vào bài giảng hoặc sử dụng một chương của giáo trình làm tài liệu đọc.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Revise là quyền điều chỉnh nội dung. Đây là khả năng đặc biệt có giá trị trong giáo dục vì người dạy có thể sửa lỗi, cập nhật ví dụ, thay đổi độ khó hoặc dịch tài nguyên sang ngôn ngữ khác. Remix mở rộng khả năng này bằng việc kết hợp nhiều tài nguyên để tạo thành sản phẩm mới. Một bài học về Linux có thể đồng thời sử dụng phần giải thích từ một giáo trình, hình từ Wikimedia Commons và bài thực hành do giảng viên tự xây dựng. Cuối cùng, Redistribute là việc chia sẻ lại tài nguyên gốc hoặc phiên bản đã được điều chỉnh.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "figure",
+   "src": "assets/img/chuong5-hinh4.jpg",
+   "caption": "Mô hình 5R của tài nguyên giáo dục mở [@oer2]",
+   "width": 14.0
+  },
+  {
+   "t": "p",
+   "text": "Trong thực tế, người dùng không nhất thiết thực hiện đủ năm hoạt động. Một tài nguyên có thể được sử dụng nguyên trạng hoặc chỉ chỉnh sửa một phần. Hai thuật ngữ thường gặp là Adopt và Adapt. Adopt chỉ việc tiếp nhận và sử dụng tương đối nguyên bản; Adapt là quá trình điều chỉnh tài nguyên cho bối cảnh cụ thể.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Quá trình tái sử dụng OER nên bắt đầu bằng việc xác định mục đích sử dụng và kiểm tra giấy phép. Nếu chỉ liên kết đến tài nguyên thì yêu cầu về quyền khác với việc dịch toàn bộ và phát hành lại. Khi tài nguyên được điều chỉnh, người biên soạn nên lưu bản gốc, thông tin tác giả và giấy phép, đồng thời theo dõi những thay đổi đã thực hiện.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "callout",
+   "kind": "vidu",
+   "title": "Sử dụng giáo trình CC BY 4.0",
+   "texts": [
+    "Ví dụ, một giáo trình Linux tiếng Anh theo CC BY 4.0 có thể được sử dụng làm nền cho tài liệu tiếng Việt. Giảng viên có thể lựa chọn một số chương, dịch nội dung, thay ví dụ, cập nhật câu lệnh và bổ sung bài thực hành. Nếu kết hợp thêm hình hoặc tài nguyên của bên thứ ba, giấy phép của từng thành phần cần được kiểm tra. Khi phiên bản mới được công bố, nguồn gốc và những thay đổi chính phải được ghi nhận rõ."
+   ]
+  },
+  {
+   "t": "p",
+   "text": "Đối với tài liệu có nhiều khả năng được tiếp tục chỉnh sửa, nên chia sẻ cả phiên bản phục vụ đọc và tệp nguồn. Chẳng hạn, PDF thích hợp cho người đọc, trong khi DOCX, ODT, Markdown hoặc HTML thuận lợi hơn cho Revise và Remix. Như vậy, tính mở không chỉ liên quan đến giấy phép mà còn liên quan đến khả năng chỉnh sửa thực tế của tài nguyên.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "h2",
+   "text": "5.3. Bản quyền và chia sẻ OER"
+  },
+  {
+   "t": "h3",
+   "text": "5.3.1. Creative Commons và các loại giấy phép"
+  },
+  {
+   "t": "p",
+   "text": "Một tài nguyên có thể được truy cập miễn phí nhưng vẫn chịu sự bảo hộ đầy đủ của quyền tác giả. Vì vậy, muốn sử dụng OER đúng quy định cần hiểu rõ cơ chế giấy phép mở. Creative Commons là hệ thống giấy phép được sử dụng phổ biến cho tài nguyên giáo dục, hình ảnh, văn bản và nhiều loại nội dung số [@oer6].",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Creative Commons không làm mất quyền tác giả. Chủ sở hữu vẫn giữ quyền đối với tác phẩm nhưng chủ động trao trước một số quyền sử dụng cho cộng đồng. Có thể xem đây là cách tiếp cận “Some Rights Reserved”, khác với tư duy “All Rights Reserved” của mô hình bản quyền truyền thống.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Sáu giấy phép Creative Commons chính được xây dựng từ bốn thành phần BY, SA, NC và ND. BY, hay Attribution, yêu cầu người sử dụng ghi công. SA, hay ShareAlike, yêu cầu phiên bản điều chỉnh khi chia sẻ phải tiếp tục tuân thủ điều kiện chia sẻ tương tự. NC, hay NonCommercial, giới hạn quyền được cấp trước vào những mục đích phi thương mại theo định nghĩa của giấy phép. ND, hay NoDerivatives, không cho phép chia sẻ bản adaptation dựa trên giấy phép.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Từ bốn thành phần trên hình thành sáu loại giấy phép chính.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "table",
+   "caption": "So sánh các giấy phép Creative Commons",
+   "header": [
+    "Giấy phép",
+    "Chỉnh sửa và chia sẻ bản chỉnh sửa",
+    "Sử dụng thương mại theo giấy phép",
+    "ShareAlike"
+   ],
+   "rows": [
+    [
+     "CC BY",
+     "Có",
+     "Có",
+     "Không"
+    ],
+    [
+     "CC BY-SA",
+     "Có",
+     "Có",
+     "Có"
+    ],
+    [
+     "CC BY-NC",
+     "Có",
+     "Không",
+     "Không"
+    ],
+    [
+     "CC BY-NC-SA",
+     "Có",
+     "Không",
+     "Có"
+    ],
+    [
+     "CC BY-ND",
+     "Không",
+     "Có",
+     "Không"
+    ],
+    [
+     "CC BY-NC-ND",
+     "Không",
+     "Không",
+     "Không"
+    ]
+   ],
+   "widths": [
+    3.4,
+    4.2,
+    4.2,
+    4.2
+   ],
+   "font": 11.5,
+   "firstBold": true,
+   "center": []
+  },
+  {
+   "t": "p",
+   "text": "Trong hoạt động phát triển OER, CC BY thường tạo điều kiện thuận lợi nhất vì cho phép sử dụng, chỉnh sửa và chia sẻ với yêu cầu chính là ghi công. CC BY-SA cũng cho phép điều chỉnh nhưng đặt thêm nghĩa vụ ShareAlike. Các giấy phép có NC cần được xem xét kỹ nếu tài nguyên được đưa vào hoạt động xuất bản hoặc mô hình có yếu tố thương mại. Hai giấy phép có ND không phù hợp khi mục tiêu là phát hành bản dịch hoặc phiên bản đã chỉnh sửa dựa trên quyền của giấy phép.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Ngoài sáu giấy phép trên, Creative Commons còn cung cấp CC0. Đây không phải là một giấy phép CC theo nghĩa thông thường mà là công cụ cho phép chủ sở hữu từ bỏ quyền trong phạm vi tối đa pháp luật cho phép, đưa tài nguyên đến trạng thái gần với public domain nhất có thể. Public Domain Mark lại là dấu hiệu nhằm nhận diện những tác phẩm đã thuộc phạm vi công cộng, chứ không làm thay đổi trạng thái pháp lý của tác phẩm.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Khi lựa chọn giấy phép cho một OER mới, tác giả cần cân nhắc ba vấn đề chính: có cho phép chỉnh sửa hay không, có cho phép sử dụng thương mại hay không và có yêu cầu phiên bản điều chỉnh tiếp tục sử dụng cùng điều kiện chia sẻ hay không. Việc lựa chọn giấy phép nên phản ánh mục tiêu chia sẻ của tác giả, thay vì mặc nhiên chọn một giấy phép hạn chế vì cảm giác an toàn hơn.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "h3",
+   "text": "5.3.2. Trích dẫn và sử dụng OER đúng quy định"
+  },
+  {
+   "t": "p",
+   "text": "Việc sử dụng OER cần đi kèm với ghi nhận tác giả và nguồn tài nguyên. Trong giáo dục và nghiên cứu, hai khái niệm thường gặp là citation và attribution. Chúng có liên quan nhưng không hoàn toàn đồng nhất.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Citation là hoạt động trích dẫn học thuật nhằm chỉ rõ nguồn của kiến thức, ý tưởng hoặc số liệu. Citation thường tuân theo những chuẩn như APA, IEEE, Chicago hoặc quy định của nhà xuất bản. Attribution lại liên quan trực tiếp đến việc tuân thủ giấy phép mở, đặc biệt là điều kiện BY trong Creative Commons. Trong một giáo trình, hai hình thức này có thể cùng xuất hiện: tài liệu khoa học được đưa vào danh mục tham khảo theo chuẩn học thuật, trong khi hình ảnh CC BY được ghi attribution ngay tại chú thích hình hoặc phần nguồn.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Creative Commons thường sử dụng nguyên tắc TASL để hỗ trợ việc attribution. TASL tương ứng với Title, Author, Source và License. Khi có đủ thông tin, một attribution tốt cần giúp người đọc nhận biết tên tài nguyên, tác giả, nơi tìm thấy tài nguyên và giấy phép được áp dụng [@oer7].",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "callout",
+   "kind": "vidu",
+   "title": "Cách ghi nhận nguồn",
+   "texts": [
+    "Ví dụ, một hình ảnh có thể được ghi theo dạng: “Linux Architecture, John Smith, Wikimedia Commons, CC BY 4.0”. Nếu tài nguyên đã được chỉnh sửa, thông tin này cần được bổ sung bằng việc ghi rõ tài nguyên đã được thay đổi. Chẳng hạn: “Điều chỉnh từ Linux Architecture của John Smith, CC BY 4.0”.",
+    "Đối với tài nguyên đã dịch, việc ghi nguồn càng cần rõ ràng. Một cách trình bày phù hợp có thể là: “Nội dung được dịch và điều chỉnh từ Linux Fundamentals của John Smith, CC BY 4.0; phiên bản tiếng Việt đã được rút gọn và bổ sung bài thực hành”. Cách ghi này vừa thực hiện attribution vừa giúp người đọc phân biệt nội dung của tác giả ban đầu với phần được người biên soạn thay đổi."
+   ]
+  },
+  {
+   "t": "p",
+   "text": "Attribution không nên được thực hiện theo cách mơ hồ như “Nguồn: Internet”, “Nguồn: Google” hoặc chỉ ghi “Creative Commons”. Google chỉ là công cụ tìm kiếm, còn Creative Commons là hệ thống giấy phép chứ không phải tác giả của mọi tài nguyên được cấp phép CC.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "callout",
+   "kind": "luuy",
+   "title": "Trích dẫn không tạo ra quyền sử dụng",
+   "texts": [
+    "**Một nguyên tắc quan trọng khác là trích dẫn không tự động tạo ra quyền sử dụng.** Việc ghi đầy đủ tên tác giả và tài liệu không có nghĩa người dùng được phép sao chép hoặc dịch toàn bộ một cuốn sách có bản quyền. Quyền sử dụng phải được xác định từ pháp luật, giấy phép hoặc sự cho phép của chủ sở hữu."
+   ]
+  },
+  {
+   "t": "callout",
+   "kind": "mo",
+   "title": "Bối cảnh Việt Nam",
+   "texts": [
+    "Trong bối cảnh Việt Nam, việc sử dụng tác phẩm còn chịu sự điều chỉnh của Luật Sở hữu trí tuệ và các văn bản liên quan, trong đó có Luật số 07/2022/QH15 và Nghị định số 17/2023/NĐ-CP [@oer8,oer9]. Pháp luật có quy định một số ngoại lệ đối với quyền tác giả trong hoạt động nghiên cứu, học tập và giảng dạy, nhưng các ngoại lệ này không nên được hiểu thành quyền sao chép tự do mọi tài liệu phục vụ giáo dục. Khi một tài nguyên được đưa vào giáo trình xuất bản, người biên soạn cần thận trọng hơn, đặc biệt với các hình ảnh, bảng biểu, đoạn dịch dài và tài nguyên có điều khoản NC, ND hoặc SA."
+   ]
+  },
+  {
+   "t": "p",
+   "text": "Trong quá trình biên soạn OER, nên lưu thông tin nguồn ngay khi tài nguyên được đưa vào bản thảo. Cách làm này hiệu quả hơn nhiều so với việc hoàn thành toàn bộ tài liệu rồi mới tìm lại nguồn ở giai đoạn cuối.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "h3",
+   "text": "5.3.3. Xây dựng và chia sẻ tài nguyên giáo dục mở"
+  },
+  {
+   "t": "p",
+   "text": "OER không chỉ là những tài nguyên được tạo ra bởi các tổ chức lớn. Giảng viên và sinh viên đều có thể phát triển những tài nguyên có phạm vi phù hợp như tài liệu thực hành, bộ slide, notebook, video, câu hỏi hoặc một mô-đun học tập [@oer3].",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Quá trình xây dựng OER nên bắt đầu từ mục tiêu học tập và đối tượng sử dụng. Một tài nguyên không cần có quy mô lớn mới có giá trị. Một bài hướng dẫn Git dài vài trang, một notebook Python hoặc một bộ bài thực hành Linux vẫn có thể là OER tốt nếu đáp ứng rõ mục tiêu, có chất lượng và được chia sẻ với giấy phép phù hợp.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Trước khi tạo mới hoàn toàn, người biên soạn nên kiểm tra các OER đã có. Nếu một tài nguyên đáp ứng gần như đầy đủ yêu cầu, có thể Adopt. Nếu tài nguyên chỉ phù hợp một phần, có thể Adapt bằng cách dịch, rút gọn, cập nhật hoặc kết hợp với nguồn khác. Chỉ khi không có tài nguyên phù hợp mới cần cân nhắc xây dựng hoàn toàn từ đầu [@oer5].",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Trong quá trình phát triển, nội dung cần được tổ chức dựa trên mục tiêu học tập thay vì dựa trên số lượng tài liệu có sẵn. Một tài liệu thực hành chẳng hạn có thể bao gồm mục tiêu, kiến thức chuẩn bị, nội dung hướng dẫn, ví dụ, bài tập và tài liệu tham khảo. Nếu sử dụng nội dung của người khác, thông tin về nguồn và giấy phép nên được lưu ngay trong giai đoạn biên soạn.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Nhiều công cụ có thể hỗ trợ xây dựng OER. LibreOffice phù hợp với tài liệu văn bản và slide. Pressbooks phù hợp với giáo trình và sách số. H5P hỗ trợ nội dung tương tác, trong khi Jupyter Notebook đặc biệt hữu ích với lập trình, dữ liệu và trí tuệ nhân tạo. Git, GitHub và GitLab có thể hỗ trợ quản lý phiên bản và cộng tác phát triển tài nguyên.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "callout",
+   "kind": "nho",
+   "title": "Công cụ mở không tự tạo ra OER",
+   "texts": [
+    "**Cần lưu ý rằng công cụ mã nguồn mở không làm cho nội dung được tạo ra bằng công cụ đó tự động trở thành OER.** Một tài liệu được tạo bằng LibreOffice chỉ là OER khi chủ sở hữu áp dụng giấy phép mở phù hợp. Tương tự, một repository GitHub công khai chưa chắc là tài nguyên mở nếu repository không có thông tin giấy phép."
+   ]
+  },
+  {
+   "t": "p",
+   "text": "Đối với các tài nguyên CNTT có cả văn bản và mã nguồn, có thể cần sử dụng những loại giấy phép khác nhau. Creative Commons phù hợp với nội dung văn bản, hình ảnh hoặc học liệu, trong khi mã nguồn thường nên sử dụng giấy phép phần mềm chuyên biệt như MIT, Apache hoặc GPL tùy mục tiêu. Vì vậy, một repository giáo dục có thể ghi rõ rằng nội dung tài liệu được cấp CC BY 4.0, trong khi mã nguồn trong thư mục riêng sử dụng giấy phép MIT.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Trước khi công bố, tài nguyên cần được kiểm tra về nội dung, bản quyền, khả năng tiếp cận và tính kỹ thuật. Các hình ảnh, biểu đồ, video và nội dung của bên thứ ba phải có nguồn rõ ràng. Nếu tài nguyên có mã nguồn hoặc bài thực hành, cần chạy thử lại. Đối với tài liệu số, nên kiểm tra cấu trúc heading, hyperlink, mô tả hình ảnh và khả năng sử dụng trên các thiết bị phổ biến.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Sau khi xác định mình có quyền cấp phép, tác giả lựa chọn giấy phép phù hợp và hiển thị giấy phép rõ ràng trên tài nguyên. Một cách ghi có thể là: “© 2026 Tác giả. Tài liệu này được cấp phép theo Creative Commons Attribution 4.0 International, trừ khi có ghi chú khác”.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Bên cạnh nội dung, metadata giúp tài nguyên dễ được nhận diện và tìm kiếm. Những thông tin cơ bản như tên tài nguyên, tác giả, chủ đề, ngôn ngữ, đối tượng, phiên bản và giấy phép nên được cung cấp rõ ràng.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "OER cũng nên được chia sẻ theo những định dạng hỗ trợ cả việc đọc và tái sử dụng. PDF thuận lợi cho đọc và in, nhưng nếu có thể nên cung cấp thêm DOCX, ODT, Markdown, XML, PPTX hoặc tệp .ipynb tùy loại tài nguyên. Việc cung cấp tệp nguồn giúp cộng đồng dễ thực hiện các hoạt động Revise và Remix.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "OER không phải là sản phẩm bất biến. Đặc biệt trong CNTT, công nghệ có thể thay đổi nhanh, vì vậy tài nguyên cần được cập nhật định kỳ. Việc quản lý phiên bản giúp người sử dụng nhận biết tài nguyên đang ở trạng thái nào. Một thay đổi nhỏ có thể tạo phiên bản 1.1, trong khi những thay đổi lớn về cấu trúc hoặc nội dung có thể tạo phiên bản 2.0.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "callout",
+   "kind": "nho",
+   "title": "Chu trình phát triển OER",
+   "texts": [
+    "Xác định nhu cầu → Tìm tài nguyên hiện có → Lựa chọn hoặc điều chỉnh → Xây dựng nội dung → Kiểm tra bản quyền và chất lượng → Cấp giấy phép → Xuất bản và chia sẻ → Nhận phản hồi → Cập nhật."
+   ]
+  },
+  {
+   "t": "p",
+   "text": "Chu trình này cho thấy tài nguyên giáo dục mở không chỉ là một sản phẩm cuối cùng mà còn là một quá trình cộng tác và cải tiến liên tục. Giá trị của OER nằm ở khả năng tri thức được tiếp tục sử dụng, điều chỉnh và phát triển bởi những người dùng khác trong cộng đồng.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "h2",
+   "text": "Kết luận chương",
+   "band": true
+  },
+  {
+   "t": "p",
+   "text": "Tài nguyên giáo dục mở là các tài nguyên phục vụ dạy, học và nghiên cứu được cung cấp theo những điều kiện cho phép người sử dụng tiếp cận và thực hiện các quyền tái sử dụng nhất định; đặc điểm quan trọng của OER không chỉ là miễn phí mà còn ở quyền sử dụng hợp pháp được xác định bằng public domain hoặc giấy phép mở. OER có nhiều hình thức như giáo trình, slide, hình ảnh, video, mô phỏng, bài tập, dữ liệu, mã nguồn và notebook, góp phần mở rộng tiếp cận học liệu, hỗ trợ giảng viên điều chỉnh nội dung và thúc đẩy hợp tác giữa người học, người dạy và cơ sở đào tạo. Khai thác OER hiệu quả đòi hỏi tìm kiếm, đánh giá và lựa chọn tài nguyên theo chất lượng chuyên môn, độ tin cậy, tính cập nhật, khả năng tiếp cận, định dạng và giấy phép, trong đó mô hình 5R mô tả các hoạt động Retain, Reuse, Revise, Remix và Redistribute. Creative Commons giúp tác giả xác định quyền mà cộng đồng được thực hiện, nên người dùng cần kiểm tra các điều kiện BY, SA, NC, ND, thực hiện attribution phù hợp và phân biệt quyền sử dụng theo giấy phép với trích dẫn học thuật; còn việc xây dựng và chia sẻ OER cần gắn chất lượng nội dung với bản quyền, giấy phép, khả năng tiếp cận và định dạng kỹ thuật. Những nguyên tắc về giấy phép, nguồn gốc và trách nhiệm sử dụng này cũng là một phần của an toàn thông tin, và chương tiếp theo sẽ chuyển sang an toàn và bảo mật hệ thống mã nguồn mở, từ nhận diện nguy cơ đến bảo vệ hệ điều hành, tài khoản và sử dụng các công cụ giám sát.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "h2",
+   "text": "Câu hỏi ôn tập",
+   "band": true
+  },
+  {
+   "t": "h3",
+   "text": "A. Nhận biết và hiểu"
+  },
+  {
+   "t": "list",
+   "ordered": true,
+   "items": [
+    "Trình bày khái niệm tài nguyên giáo dục mở và phân biệt OER với tài nguyên miễn phí trên Internet.",
+    "Phân tích mối quan hệ giữa giáo dục mở và tài nguyên giáo dục mở.",
+    "Trình bày các loại OER thường gặp và cho ví dụ trong lĩnh vực công nghệ thông tin.",
+    "Phân tích vai trò của OER đối với người học, giảng viên và cơ sở giáo dục.",
+    "Trình bày ý nghĩa của BY, SA, NC và ND trong Creative Commons.",
+    "Phân biệt Citation với Attribution và giải thích nguyên tắc TASL trong ghi nhận nguồn OER."
+   ]
+  },
+  {
+   "t": "h3",
+   "text": "B. Vận dụng và phân tích"
+  },
+  {
+   "t": "list",
+   "ordered": true,
+   "items": [
+    "Tại sao kết quả tìm kiếm trên Google không thể được xem ngay là OER? Nêu quy trình tìm kiếm và lựa chọn OER.",
+    "Những tiêu chí nào cần được xem xét khi đánh giá chất lượng một OER? Cho biết vì sao điểm số chỉ hỗ trợ quyết định.",
+    "Trình bày mô hình 5R và minh họa bằng một tài nguyên công nghệ thông tin; phân biệt Adopt và Adapt.",
+    "So sánh CC BY và CC BY-SA; giải thích vì sao tài nguyên có điều khoản ND không phù hợp với mục tiêu dịch và phát hành bản dịch.",
+    "Tại sao repository GitHub công khai chưa chắc là tài nguyên mở?",
+    "Trình bày những vấn đề cần kiểm tra trước khi công bố một OER."
+   ]
+  },
+  {
+   "t": "h3",
+   "text": "C. Tình huống thảo luận"
+  },
+  {
+   "t": "list",
+   "ordered": true,
+   "items": [
+    "Một giảng viên muốn dịch sang tiếng Việt và phát hành một giáo trình Linux tiếng Anh đang theo giấy phép CC BY-NC-ND. Hãy phân tích khả năng thực hiện và đề xuất cách xử lý.",
+    "Một nhóm giảng viên xây dựng bộ bài thực hành Git gồm văn bản hướng dẫn và mã mẫu. Hãy đề xuất giấy phép cho từng thành phần, cách ghi nhận nguồn các hình lấy từ tài nguyên khác và định dạng chia sẻ."
+   ]
+  },
+  {
+   "t": "h2",
+   "text": "Bài tập vận dụng",
+   "band": true
+  },
+  {
+   "t": "h3",
+   "text": "Bài 1. Tìm kiếm và đánh giá OER"
+  },
+  {
+   "t": "p",
+   "text": "Chọn một chủ đề công nghệ thông tin (ví dụ Linux, Git hoặc cơ sở dữ liệu). Tìm tài nguyên giáo dục mở về chủ đề này trên ít nhất ba kho khác nhau (như OER Commons, MERLOT, Open Textbook Library, MIT OpenCourseWare), ghi lại từ khóa đã dùng và số kết quả thu được. Chọn hai tài nguyên, đánh giá từng tài nguyên theo mười nhóm tiêu chí (thang 1 đến 5), ghi giấy phép và nêu kết luận có nên sử dụng hay không.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "**Sản phẩm:** Bảng tìm kiếm, bảng đánh giá hai tài nguyên và một đoạn lựa chọn có lý do. Không kết luận chỉ dựa vào tổng điểm; phải xét riêng lỗi nghiêm trọng về kiến thức hoặc quyền sử dụng.",
+   "indent": false,
+   "left": false
+  },
+  {
+   "t": "h3",
+   "text": "Bài 2. Ghi nhận nguồn theo TASL"
+  },
+  {
+   "t": "p",
+   "text": "Cho ba tài nguyên giả định: một hình CC BY 4.0 chưa chỉnh sửa, một bài viết CC BY-SA 4.0 đã được dịch và rút gọn, và một tài liệu CC BY-NC 4.0 được dùng làm bài đọc. Hãy viết phần ghi nhận nguồn cho từng trường hợp theo nguyên tắc TASL (Title, Author, Source, License), nêu rõ phần đã chỉnh sửa; sau đó viết thêm một trích dẫn học thuật cho bài viết thứ hai và giải thích vì sao trích dẫn không thay thế được việc ghi nhận theo giấy phép.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "**Sản phẩm:** Ba đoạn ghi nhận nguồn, một trích dẫn học thuật và hai câu phân biệt Citation với Attribution.",
+   "indent": false,
+   "left": false
+  },
+  {
+   "t": "h3",
+   "text": "Bài 3. Chọn giấy phép cho một OER mới"
+  },
+  {
+   "t": "p",
+   "text": "Một nhóm giảng viên xây dựng bộ bài thực hành Git gồm văn bản hướng dẫn, hình minh họa và mã mẫu. Hãy xác định nhóm có quyền cấp phép cho từng thành phần hay không, chọn giấy phép phù hợp cho văn bản và hình (có cân nhắc BY, SA, NC, ND) và giấy phép phần mềm cho mã mẫu theo Chương 1, kiểm tra các điều kiện tương thích khi trộn tài nguyên có giấy phép khác nhau, rồi soạn thông báo giấy phép và các thông tin metadata cơ bản (tên, tác giả, mô tả, ngôn ngữ, giấy phép, ngày cập nhật).",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "**Sản phẩm:** Bảng “thành phần – giấy phép – lý do”, thông báo giấy phép và bản metadata.",
+   "indent": false,
+   "left": false
+  },
+  {
+   "t": "h3",
+   "text": "Bài 4. Adopt và Adapt một tài nguyên"
+  },
+  {
+   "t": "p",
+   "text": "Chọn một giáo trình hoặc bài thực hành theo CC BY. Lập kế hoạch Adapt gồm các thay đổi dự kiến (dịch, rút gọn, cập nhật phiên bản phần mềm, bổ sung bài tập), xác định hoạt động nào thuộc mô hình 5R (Retain, Reuse, Revise, Remix, Redistribute), nêu các điều kiện giấy phép phải tuân thủ khi phát hành bản điều chỉnh và cách ghi nhận phần thay đổi.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "**Sản phẩm:** Kế hoạch điều chỉnh có ánh xạ vào 5R, phần ghi nhận nguồn cho bản điều chỉnh và định dạng chia sẻ (bản đọc và tệp nguồn) đề xuất.",
+   "indent": false,
+   "left": false
+  },
+  {
+   "t": "h2",
+   "text": "Tài liệu tham khảo",
+   "band": true
+  },
+  {
+   "t": "refs"
+  }
+ ],
+ "refs": {
+  "oer1": "UNESCO. (2019). *Recommendation on Open Educational Resources (OER)*. UNESCO. https://www.unesco.org/en/legal-affairs/recommendation-open-educational-resources-oer",
+  "oer4": "Moist, S. (n.d.). *Faculty OER toolkit*. BCcampus Open Education. https://opentextbc.ca/facultyoertoolkit/",
+  "oer2": "Wiley, D. (n.d.). *Defining the “open” in open content and open educational resources*. OpenContent.org. https://opencontent.org/definition/",
+  "oer6": "Creative Commons. (n.d.). *Creative Commons licenses*. https://creativecommons.org/share-your-work/cclicenses/",
+  "oer7": "Creative Commons. (n.d.). *Reusing CC-licensed content*. https://creativecommons.org/use-remix/",
+  "oer8": "Quốc hội. (2022). *Luật số 07/2022/QH15 sửa đổi, bổ sung một số điều của Luật Sở hữu trí tuệ*.",
+  "oer9": "Chính phủ. (2023). *Nghị định số 17/2023/NĐ-CP quy định chi tiết một số điều và biện pháp thi hành Luật Sở hữu trí tuệ về quyền tác giả, quyền liên quan*.",
+  "oer3": "University of Manitoba Libraries. (2024). *OER starter kit: A guide to open publishing at the University of Manitoba*. University of Manitoba Libraries.",
+  "oer5": "Aesoph, L. M. (n.d.). *Adaptation guide*. BCcampus Open Education."
+ },
+ "order": [
+  "oer1",
+  "oer4",
+  "oer2",
+  "oer6",
+  "oer7",
+  "oer8",
+  "oer9",
+  "oer3",
+  "oer5"
+ ]
+}

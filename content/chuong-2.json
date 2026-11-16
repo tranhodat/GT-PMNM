@@ -1,0 +1,2531 @@
+{
+ "number": 2,
+ "title": "HỆ ĐIỀU HÀNH VÀ PHẦN MỀM MÃ NGUỒN MỞ",
+ "titleText": "Hệ điều hành và phần mềm mã nguồn mở",
+ "blocks": [
+  {
+   "t": "h2",
+   "text": "Giới thiệu chương",
+   "band": true
+  },
+  {
+   "t": "p",
+   "text": "Nếu Chương 1 trả lời câu hỏi mã nguồn mở là gì thì chương này đưa người học bước vào sản phẩm mã nguồn mở tiêu biểu nhất: hệ điều hành Linux, nền tảng của phần lớn máy chủ, hạ tầng đám mây và nhiều thiết bị di động hiện nay. Chương mở đầu bằng việc phân biệt nhân Linux với hệ thống Linux hoàn chỉnh, giới thiệu các bản phân phối phổ biến như Debian, Ubuntu, Fedora và cách chọn, cài đặt, sử dụng một bản phân phối ở mức cơ bản. Phần tiếp theo hướng dẫn làm việc với Linux: tổ chức tệp và thư mục, đường dẫn, các lệnh thông dụng trong Terminal, cách chuyển hướng dữ liệu, quản lý người dùng và đặc biệt là mô hình phân quyền truy cập, vốn là nền tảng của an toàn hệ thống ở Chương 6. Phần cuối giới thiệu những ứng dụng mã nguồn mở thông dụng trong học tập và công việc hằng ngày gồm bộ văn phòng LibreOffice, trình duyệt Firefox, trình phát VLC, công cụ xử lý ảnh GIMP và công cụ vẽ vector Inkscape, qua đó người học thấy được rằng mã nguồn mở không chỉ dành cho lập trình viên. Cuối chương có bảng thuật ngữ, các lỗi thường gặp cùng chín bài thực hành giúp người học tự kiểm tra kiến thức.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "h3",
+   "text": "Mục tiêu học tập"
+  },
+  {
+   "t": "p",
+   "text": "Sau khi học xong chương này, người học có thể:",
+   "indent": true,
+   "left": true
+  },
+  {
+   "t": "list",
+   "ordered": false,
+   "items": [
+    "Phân biệt được nhân Linux, bản phân phối và hệ thống Linux hoàn chỉnh; lựa chọn và cài đặt được một bản phân phối phù hợp trên máy thật hoặc máy ảo.",
+    "Làm việc thành thạo với hệ thống tệp, đường dẫn và các lệnh cơ bản trong Terminal; quản lý được người dùng và đặt được quyền truy cập hợp lý cho tệp, thư mục.",
+    "Sử dụng được các ứng dụng mã nguồn mở thông dụng cho văn phòng, Internet, đa phương tiện và đồ họa, đồng thời lưu ý đến giấy phép và nguồn gốc nội dung."
+   ]
+  },
+  {
+   "t": "h2",
+   "text": "2.1. Hệ điều hành Linux"
+  },
+  {
+   "t": "h3",
+   "text": "2.1.1. Khái niệm và đặc điểm của Linux"
+  },
+  {
+   "t": "p",
+   "text": "Trong đời sống, người ta thường nói “máy chạy Linux”. Cách gọi này tiện, nhưng có thể chỉ hai thứ khác nhau. Theo nghĩa hẹp, Linux là nhân hệ điều hành: phần mềm làm việc trực tiếp với bộ xử lý, bộ nhớ, ổ đĩa và thiết bị. Theo nghĩa rộng, một hệ thống Linux còn có chương trình khởi động, các lệnh, thư viện, trình quản lý gói, môi trường đồ họa và ứng dụng. Người dùng làm việc với cả hệ thống ấy, chứ không chỉ với nhân.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Có thể hình dung một người viết báo cáo bằng LibreOffice Writer. Writer là ứng dụng. Khi cần mở tệp, nó yêu cầu hệ điều hành đọc dữ liệu từ ổ đĩa. Nhân Linux phối hợp với hệ thống tệp và trình điều khiển thiết bị để thực hiện yêu cầu; sau đó dữ liệu trở về Writer để hiển thị. Các lớp có nhiệm vụ khác nhau. Vì vậy, nếu Writer không mở được tệp, nguyên nhân có thể nằm ở tên tệp, quyền truy cập, ứng dụng hoặc thiết bị lưu trữ. Chỉ nói “Linux bị lỗi” sẽ không giúp tìm được nguyên nhân.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "figure",
+   "src": "assets/img/chuong2-hinh1.jpg",
+   "caption": "Các lớp chính của một hệ thống Linux",
+   "width": 14.5
+  },
+  {
+   "t": "p",
+   "text": "Một máy Linux có thể chạy nhiều chương trình cùng lúc và có nhiều tài khoản. Hệ điều hành phải phân chia thời gian xử lý, bộ nhớ và quyền sử dụng tài nguyên cho từng chương trình, từng người. Đây là lý do ta gặp những khái niệm như tiến trình, người dùng, nhóm và quyền truy cập trong các mục sau. Linux được dùng trên máy cá nhân, máy chủ và nhiều thiết bị khác, nhưng cách bố trí giao diện hoặc bộ công cụ có thể thay đổi theo từng bản phân phối.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "callout",
+   "kind": "nho",
+   "title": "",
+   "texts": [
+    "**Mã nguồn mở là một đặc điểm về giấy phép và quyền sử dụng mã nguồn, không phải tên khác của Linux.** Firefox và LibreOffice là phần mềm mã nguồn mở nhưng có thể chạy trên nhiều hệ điều hành. Ngược lại, trên một máy Linux vẫn có thể cài phần mềm với giấy phép riêng. Khi cần biết một thành phần có được sửa đổi hoặc phân phối lại hay không, phải đọc giấy phép của chính thành phần đó. Nhân Linux hiện được phát hành theo giấy phép GPL phiên bản 2, nên bất kỳ ai phân phối bản nhân đã sửa đổi đều phải công bố mã nguồn tương ứng, đúng như các nguyên tắc về giấy phép ở Chương 1 [@kernellic]."
+   ]
+  },
+  {
+   "t": "h3",
+   "text": "2.1.2. Các bản phân phối Linux phổ biến"
+  },
+  {
+   "t": "p",
+   "text": "Nhân Linux tự nó chưa tạo thành một hệ thống sẵn dùng. Cần thêm chương trình cài đặt, công cụ quản lý tệp, thư viện, kho phần mềm và cơ chế cập nhật. Một bản phân phối tập hợp những thành phần ấy và cung cấp cách cài đặt, bảo trì chúng. Ubuntu, Debian và Fedora là ba ví dụ thường gặp. Chúng cùng dựa trên nhân Linux nên nhiều lệnh cơ bản giống nhau; giao diện mặc định, lịch phát hành và cách cài gói có thể khác.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "figure",
+   "src": "assets/img/chuong2-hinh2.jpg",
+   "caption": "Linux và ba bản phân phối Ubuntu, Debian, Fedora",
+   "width": 14.5
+  },
+  {
+   "t": "p",
+   "text": "Các bản phân phối có thể dùng những công cụ khác nhau để cài phần mềm. Ubuntu và Debian dùng họ gói `.deb` với công cụ quản lý gói APT, còn Fedora dùng họ gói `.rpm` với công cụ DNF; chẳng hạn VLC được cài bằng `sudo apt install vlc` trên Ubuntu hoặc Debian và bằng `sudo dnf install vlc` trên Fedora. Sự khác nhau ấy không có nghĩa bản nào tốt hơn trong mọi trường hợp. Với máy cá nhân, người dùng có thể quan tâm giao diện và ứng dụng sẵn có. Với máy chủ, thời gian được hỗ trợ và cách cập nhật thường quan trọng hơn.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Các ví dụ lệnh trong chương dùng Ubuntu Desktop. Trên bản phân phối khác, trước hết cần xác định tên hệ thống và tra cú pháp của trình quản lý gói tương ứng; cùng dùng nhân Linux không có nghĩa mọi lệnh cài phần mềm đều giống nhau.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "h4",
+   "text": "Những điểm khác nhau giữa các bản phân phối"
+  },
+  {
+   "t": "p",
+   "text": "Khi chọn một bản phân phối, người dùng thường quan tâm ba điều: máy có sẵn những phần mềm nào, việc cập nhật diễn ra ra sao và có thể tìm trợ giúp ở đâu. Debian được biết đến với cách phát hành thận trọng. Ubuntu dựa trên Debian và có nhiều tài liệu hướng dẫn cho máy cá nhân. Fedora thường giới thiệu những phiên bản phần mềm mới sớm hơn. Các đặc điểm này có thể thay đổi theo từng phiên bản, vì vậy cần xem thông tin của phiên bản đang định sử dụng [@debian,@ubrel,@fedora].",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Mỗi bản phân phối có một kho phần mềm: nơi tập hợp các chương trình đã được chuẩn bị để cài đặt. Khi người dùng chọn một chương trình, công cụ quản lý gói sẽ tìm và tải cả những thành phần chương trình ấy cần để hoạt động. Nhờ vậy, việc cài đặt và cập nhật có thể được theo dõi cùng một chỗ. Nếu lấy chương trình từ nguồn bên ngoài, cần biết rõ nguồn phát hành và quyền mà chương trình yêu cầu.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "h3",
+   "text": "2.1.3. Cài đặt và sử dụng Linux cơ bản"
+  },
+  {
+   "t": "h4",
+   "text": "Chuẩn bị môi trường cài đặt"
+  },
+  {
+   "t": "p",
+   "text": "Linux có thể được cài trực tiếp lên máy tính, cài song song với một hệ điều hành khác hoặc chạy trong máy ảo. Cài trực tiếp giúp Linux sử dụng toàn bộ tài nguyên phần cứng. Cài song song cho phép người dùng chọn hệ điều hành khi khởi động máy. Máy ảo tạo ra một máy tính mô phỏng bên trong máy tính thật, nhờ đó người học có thể thực hành mà ít ảnh hưởng đến hệ điều hành đang sử dụng.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Trước khi cài đặt, người dùng cần chọn bản phân phối phù hợp, tải tệp ảnh cài đặt ISO từ trang chính thức và kiểm tra yêu cầu phần cứng. Nếu cài trên máy thật, tệp ISO thường được ghi vào USB có khả năng khởi động. Nếu cài trên máy ảo, tệp ISO được gắn vào ổ đĩa quang ảo [@ubinstall].",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Quá trình cài đặt thông thường gồm các bước: chọn ngôn ngữ; chọn bố trí bàn phím; chọn múi giờ; chuẩn bị vùng lưu trữ; tạo tài khoản; đặt tên máy; cài bộ nạp khởi động; sao chép các gói phần mềm; và khởi động lại hệ thống. Tên gọi và thứ tự của một vài bước có thể khác nhau giữa các bản phân phối, nhưng ý nghĩa chung vẫn giống nhau.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Sau lần đăng nhập đầu tiên, nên cập nhật danh sách gói, cài các bản sửa lỗi và kiểm tra kết nối mạng, âm thanh, màn hình cùng các thiết bị ngoại vi. Người dùng cũng cần ghi nhớ tên tài khoản và mật khẩu đã tạo. Linux phân biệt chữ hoa với chữ thường, vì vậy Khoa, khoa và KHOA được hiểu là ba tên khác nhau.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "h4",
+   "text": "Cấu trúc của một câu lệnh Linux"
+  },
+  {
+   "t": "p",
+   "text": "Trong cửa sổ dòng lệnh, người dùng đưa yêu cầu cho hệ thống bằng một câu lệnh. Không có một khuôn dài duy nhất mà mọi câu lệnh đều phải có. Ở mức khái quát nhất, câu lệnh gồm tên chương trình cần chạy và có thể có thêm các thành phần bổ sung.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "code",
+   "text": "TÊN_LỆNH [THÀNH_PHẦN_BỔ_SUNG]...",
+   "title": ""
+  },
+  {
+   "t": "p",
+   "text": "Khi cần phân tích chi tiết, nhiều công cụ Linux có thể được đọc theo mô hình thường gặp dưới đây: [@shotts]",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "code",
+   "text": "TÊN_LỆNH [LỆNH_CON] [TÙY_CHỌN [GIÁ_TRỊ]] [ĐỐI_SỐ]...",
+   "title": ""
+  },
+  {
+   "t": "p",
+   "text": "Tên lệnh là thành phần cốt lõi và cho biết chương trình nào sẽ được thực hiện. Lệnh con xuất hiện ở một số công cụ có nhiều nhóm chức năng, chẳng hạn chức năng cài đặt hoặc gỡ bỏ của công cụ quản lý gói. Tùy chọn điều chỉnh cách lệnh làm việc; tùy chọn ngắn thường bắt đầu bằng một dấu gạch ngang, còn tùy chọn dài thường bắt đầu bằng hai dấu gạch ngang. Giá trị của tùy chọn bổ sung thông tin cho một tùy chọn cần dữ liệu đi kèm. Đối số chỉ đối tượng mà lệnh sẽ tác động, chẳng hạn tên tệp, tên thư mục, tên gói hoặc đường dẫn.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Trong đó, tên lệnh là thành phần duy nhất luôn phải có. Các thành phần đặt trong dấu ngoặc vuông là thành phần có thể xuất hiện hoặc được bỏ qua tùy theo từng lệnh và mục đích sử dụng. Dấu ba chấm cho biết thành phần đứng trước có thể lặp lại. Một lệnh đơn giản có thể chỉ gồm tên lệnh. Một lệnh khác có thể cần thêm lệnh con, tùy chọn, giá trị hoặc một hay nhiều đối số. Vị trí chính xác và quy tắc kết hợp các thành phần do từng chương trình quy định; mô hình trên giúp nhận biết thành phần chứ không thay thế cú pháp riêng của lệnh.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "h4",
+   "text": "Trường hợp sử dụng sudo"
+  },
+  {
+   "t": "p",
+   "text": "sudo không thuộc cấu trúc chung của mọi câu lệnh Linux. Đây là một lệnh riêng, chỉ được dùng khi thao tác cần quyền của tài khoản khác, thường là quyền quản trị, và người dùng đã được chính sách hệ thống cho phép [@ubman_user].",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "code",
+   "text": "sudo [TÙY_CHỌN_CỦA_SUDO] CÂU_LỆNH_CẦN_THỰC_HIỆN",
+   "title": ""
+  },
+  {
+   "t": "callout",
+   "kind": "luuy",
+   "title": "",
+   "texts": [
+    "**Trong cấu trúc này, sudo là tên lệnh thứ nhất.** Phần đứng sau là một câu lệnh khác mà sudo được yêu cầu thực hiện với quyền đã được cấp. Vì vậy, không thêm sudo vào đầu câu lệnh theo thói quen. Trước hết cần xác định thao tác có thật sự cần quyền quản trị hay không và tài khoản hiện tại có được phép thực hiện hay không."
+   ]
+  },
+  {
+   "t": "p",
+   "text": "Khoảng trắng dùng để ngăn cách các thành phần. Khi tên tệp hoặc chuỗi văn bản chứa khoảng trắng, cần đặt toàn bộ tên hoặc chuỗi đó trong dấu nháy. Câu lệnh dưới đây truyền cụm Bai tap thành một đối số duy nhất.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "code",
+   "text": "ls \"Bai tap\"",
+   "title": ""
+  },
+  {
+   "t": "h4",
+   "text": "Đọc một câu lệnh hoàn chỉnh"
+  },
+  {
+   "t": "table",
+   "caption": "Cách đọc một số câu lệnh hoàn chỉnh",
+   "header": [
+    "Câu lệnh",
+    "Cách phân tích các thành phần",
+    "Cách đọc"
+   ],
+   "rows": [
+    [
+     "`uname -a`",
+     "Tên lệnh `uname`; thành phần điều khiển: -a; đối số: Không có",
+     "Yêu cầu uname hiển thị bản tổng hợp thông tin hệ thống."
+    ],
+    [
+     "`apt install vlc`",
+     "Tên lệnh `apt`; thành phần điều khiển: Lệnh con install; đối số: Tên gói vlc",
+     "Yêu cầu công cụ quản lý gói cài gói có tên vlc."
+    ],
+    [
+     "`head -n 5 ghi-chu.txt`",
+     "Tên lệnh `head`; thành phần điều khiển: Tùy chọn -n, giá trị 5; đối số: Tệp ghi-chu.txt",
+     "Yêu cầu head đọc tệp và lấy năm dòng đầu."
+    ],
+    [
+     "`ls -lah /var/log`",
+     "Tên lệnh `ls`; thành phần điều khiển: Nhóm tùy chọn -lah; đối số: Thư mục /var/log",
+     "Yêu cầu ls liệt kê nội dung thư mục theo cách đã chọn."
+    ]
+   ],
+   "widths": [
+    5.4,
+    5.6,
+    5.0
+   ],
+   "font": 11,
+   "firstBold": false,
+   "center": []
+  },
+  {
+   "t": "p",
+   "text": "Trong -lah, ba tùy chọn ngắn -l, -a và -h được viết liền nhau. Cách gộp này chỉ dùng được khi công cụ cho phép và các tùy chọn đó không cần một giá trị riêng ở giữa. Khi chưa chắc về cú pháp, người dùng nên viết từng tùy chọn riêng hoặc xem trang trợ giúp của lệnh.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "h4",
+   "text": "Nhóm lệnh nhận biết hệ thống và quản lý gói"
+  },
+  {
+   "t": "p",
+   "text": "Bảng dưới đây trình bày mỗi lệnh đúng một lần, gồm cú pháp, các lệnh con hoặc tùy chọn thường gặp cùng đối số cần thay, và công dụng; đây không phải danh sách toàn bộ khả năng của công cụ.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "table",
+   "caption": "Lệnh nhận biết hệ thống và quản lý gói [@coreutils,@ubman_sys]",
+   "header": [
+    "Cú pháp",
+    "Lệnh con, tùy chọn thường gặp",
+    "Công dụng"
+   ],
+   "rows": [
+    [
+     "`cat [TÙY_CHỌN] TỆP...`",
+     "Không bắt buộc; có thể dùng -n\nĐối số: Đường dẫn tệp",
+     "Đọc và đưa nội dung của một hoặc nhiều tệp ra thiết bị xuất chuẩn."
+    ],
+    [
+     "`uname [TÙY_CHỌN]`",
+     "-s, -r, -m, -n, -a\nĐối số: Thường không có",
+     "Hiển thị thông tin nhận dạng của nhân và hệ thống đang chạy."
+    ],
+    [
+     "`hostname [TÙY_CHỌN] [TÊN_MÁY]`",
+     "-I, -f\nĐối số: Có thể là tên máy mới khi được phép",
+     "Xem hoặc thiết lập tên mà hệ thống dùng để nhận dạng máy."
+    ],
+    [
+     "`whoami`",
+     "Không có tùy chọn cần thiết trong cách dùng cơ bản",
+     "Hiển thị tên của tài khoản đang thực hiện phiên làm việc."
+    ],
+    [
+     "`date [TÙY_CHỌN] [+ĐỊNH_DẠNG]`",
+     "+ĐỊNH_DẠNG, --iso-8601\nĐối số: Chuỗi định dạng hoặc thời điểm",
+     "Hiển thị hoặc, khi có quyền, thiết lập ngày giờ của hệ thống."
+    ],
+    [
+     "`apt LỆNH_CON [TÙY_CHỌN] [TÊN_GÓI...]`",
+     "update, upgrade, install, remove, search, show\nĐối số: Tên gói phần mềm",
+     "Quản lý gói phần mềm trên Debian, Ubuntu và các hệ thống liên quan."
+    ],
+    [
+     "`sudo [TÙY_CHỌN] CÂU_LỆNH`",
+     "-u, -i, -k\nĐối số: Người dùng đích hoặc câu lệnh cần chạy",
+     "Thực hiện một câu lệnh với quyền của tài khoản khác theo chính sách hệ thống."
+    ]
+   ],
+   "widths": [
+    5.4,
+    5.6,
+    5.0
+   ],
+   "font": 11,
+   "firstBold": false,
+   "center": []
+  },
+  {
+   "t": "h4",
+   "text": "Ví dụ minh họa: ghi nhận thông tin của máy đang sử dụng"
+  },
+  {
+   "t": "p",
+   "text": "Người dùng cần ghi lại phiên bản nhân, kiến trúc phần cứng, tên tài khoản và ngày giờ hiện tại. Bốn lệnh có thể được thực hiện độc lập như sau:",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "code",
+   "text": "uname -r\nuname -m\nwhoami\ndate",
+   "title": ""
+  },
+  {
+   "t": "p",
+   "text": "Hai dòng đầu lần lượt cho biết phiên bản nhân và kiến trúc mà hệ thống báo cáo. Dòng thứ ba in tên tài khoản đang thực hiện phiên làm việc. Dòng cuối hiển thị ngày giờ theo thiết lập của máy. Kết quả trên từng máy có thể khác nhau; người đọc cần ghi đúng dữ liệu được hệ thống của mình trả về.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "h4",
+   "text": "Ví dụ minh họa: tra cứu một gói phần mềm"
+  },
+  {
+   "t": "p",
+   "text": "Trước khi cài một chương trình, có thể tìm tên gói và đọc thông tin mô tả của gói. Ví dụ dưới đây tra cứu VLC nhưng chưa làm thay đổi phần mềm trên máy [@ubman_sys].",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "code",
+   "text": "apt search vlc\napt show vlc",
+   "title": ""
+  },
+  {
+   "t": "p",
+   "text": "Dòng thứ nhất tìm những gói có thông tin liên quan đến từ khóa vlc. Dòng thứ hai hiển thị mô tả chi tiết của gói mang đúng tên vlc. Nếu không tìm thấy gói, cần kiểm tra kết nối mạng và danh mục gói của hệ thống thay vì tự thêm sudo vào lệnh tra cứu.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "h4",
+   "text": "Một số lỗi thường gặp khi bắt đầu sử dụng"
+  },
+  {
+   "t": "p",
+   "text": "Thông báo command not found cho biết trình thông dịch lệnh không tìm thấy chương trình có tên đã nhập. Nguyên nhân thường là gõ sai tên, chương trình chưa được cài hoặc thư mục chứa chương trình chưa có trong biến PATH.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Thông báo No such file or directory cho biết đường dẫn không dẫn tới đối tượng cần tìm. Người dùng cần kiểm tra thư mục hiện tại, chính tả, chữ hoa chữ thường và dấu nháy quanh tên có khoảng trắng.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Thông báo Permission denied xuất hiện khi tài khoản không có quyền thực hiện thao tác. Cần xác định quyền nào đang thiếu và đối tượng nào bị từ chối. Không nên thêm sudo theo thói quen, vì quyền quản trị có thể làm thay đổi hoặc xóa dữ liệu toàn hệ thống.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Thông báo về tùy chọn không hợp lệ, thường có dạng invalid option hoặc unrecognized option, cho biết công cụ không hỗ trợ tùy chọn đã nhập. Cách viết tùy chọn có thể khác nhau giữa các công cụ và phiên bản; trang hướng dẫn của chính hệ thống là nguồn tra cứu phù hợp nhất.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "h2",
+   "text": "2.2. Làm việc với Linux"
+  },
+  {
+   "t": "h3",
+   "text": "2.2.1. Giao diện và quản lý tập tin"
+  },
+  {
+   "t": "p",
+   "text": "Máy tính lưu nội dung thành các tệp. Để dễ tìm, người dùng đặt tệp vào thư mục; một thư mục còn có thể chứa các thư mục nhỏ hơn. Trên Linux, các thư mục nối với nhau thành một cây bắt đầu từ thư mục gốc. Địa chỉ đi qua các thư mục để đến một tệp được gọi là đường dẫn.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Giao diện đồ họa cho phép người dùng nhìn thấy thư mục và tệp dưới dạng cửa sổ, biểu tượng và danh sách. Trong nhiều môi trường Linux dành cho máy cá nhân, ứng dụng quản lý tệp có tên Files. Bên trái cửa sổ thường là những vị trí hay dùng; phần chính hiển thị nội dung của thư mục đang mở. Thanh địa chỉ cho biết người dùng đang ở đâu. Nhấp đúp để mở, kéo thả để di chuyển, hoặc dùng menu để sao chép và đổi tên là những thao tác quen thuộc. Giao diện có thể khác giữa các bản phân phối, nhưng cách tổ chức tệp vẫn dựa trên thư mục và đường dẫn.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "figure",
+   "src": "assets/img/chuong2-hinh3.jpg",
+   "caption": "Minh họa cửa sổ quản lý tệp trên Linux",
+   "width": 14.5
+  },
+  {
+   "t": "p",
+   "text": "Trong cửa sổ quản lý tệp, sao chép tạo thêm một bản ở nơi khác, còn di chuyển đổi nơi lưu của tệp. Đổi tên thay cách gọi mà không thay nội dung bên trong. Khi đưa tệp vào Thùng rác, người dùng thường còn có thể khôi phục; xóa vĩnh viễn thì khó lấy lại hơn. Trước mỗi thao tác, cần nhìn tên và thư mục đích để tránh sửa nhầm tệp.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Trình quản lý tệp và Terminal cùng nhìn vào một hệ thống tệp. Một tệp được mở trong cửa sổ đồ họa cũng có địa chỉ để chỉ đến nó trong Terminal. Hiểu địa chỉ ấy giúp người dùng tìm lại tệp, giải thích vì sao một chương trình không mở được tệp, và biết thao tác sao chép sẽ đưa tệp đến đâu.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "figure",
+   "src": "assets/img/chuong2-hinh4.jpg",
+   "caption": "Cây thư mục Linux và một đường dẫn tuyệt đối",
+   "width": 14.5
+  },
+  {
+   "t": "p",
+   "text": "Một đường dẫn tuyệt đối đi từ gốc nên không phụ thuộc vị trí hiện tại. Một đường dẫn tương đối đi từ thư mục mà Terminal đang đứng. Hai cách viết có thể chỉ cùng một tệp. Hộp dưới cho thấy điều đó với một tệp báo cáo giả định; đây là ví dụ địa chỉ, không phải lệnh để thực thi.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "code",
+   "text": "Thư mục hiện tại:       /home/lan\nĐường dẫn tuyệt đối:   /home/lan/tai-lieu/ket-qua.txt\nĐường dẫn tương đối:   tai-lieu/ket-qua.txt",
+   "title": ""
+  },
+  {
+   "t": "p",
+   "text": "Khi đọc ví dụ, hãy chú ý điểm bắt đầu. Dòng thứ hai luôn bắt đầu từ gốc. Dòng thứ ba chỉ có nghĩa khi biết thư mục hiện tại ở dòng đầu. Nếu chuyển sang một thư mục khác mà vẫn giữ nguyên đường dẫn tương đối, hệ thống sẽ tìm một vị trí khác.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Bốn ký hiệu ngắn giúp viết đường dẫn gọn hơn và sẽ xuất hiện thường xuyên trong các ví dụ lệnh ở mục tiếp theo. Ký hiệu `/` ở đầu đường dẫn là gốc của cây thư mục, nghĩa là đường dẫn bắt đầu từ gốc (ví dụ `/home/lan`); `~` là thư mục nhà của tài khoản hiện tại (ví dụ `~/tai-lieu`); `.` là thư mục hiện tại (ví dụ `./ket-qua.txt`); còn `..` là thư mục cha (ví dụ `../du-lieu`).",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Vị trí của dấu gạch chéo có thể đổi hẳn địa chỉ. Một ví dụ đi lên thư mục cha rồi vào thư mục dữ liệu; ví dụ kia tìm thư mục dữ liệu ngay dưới gốc. Đặt hai địa chỉ cạnh nhau sẽ thấy khác biệt ngay ở ký tự đầu:",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "code",
+   "text": "../du-lieu\n/du-lieu",
+   "title": ""
+  },
+  {
+   "t": "p",
+   "text": "Tên tệp trên Linux thường phân biệt chữ hoa và chữ thường. Hai tên sau có thể cùng tồn tại trong một thư mục; nếu gõ nhầm chữ hoa, hệ thống có thể báo không tìm thấy tệp dù mắt thường thấy một tên gần giống.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "code",
+   "text": "BaoCao.txt\nbaocao.txt",
+   "title": ""
+  },
+  {
+   "t": "p",
+   "text": "Một số thư mục gần gốc có vai trò thường gặp theo chuẩn cấu trúc thư mục của Linux [@fhs]: `/home` là thư mục riêng của các tài khoản, `/etc` chứa tệp cấu hình hệ thống, `/var` chứa dữ liệu thay đổi khi hệ thống hoạt động như nhật ký, và `/tmp` chứa dữ liệu tạm thời. Việc biết vai trò này giúp định hướng, không hàm ý mọi tệp bên trong đều được phép sửa.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Khi gặp thông báo không tìm thấy tệp, hãy xác định thư mục hiện tại, rồi lần theo từng thành phần của đường dẫn từ trái sang phải. Việc này thường giải quyết vấn đề nhanh hơn thử nhiều tên khác nhau. Cách xem vị trí hiện tại và liệt kê thư mục được trình bày ngay sau đây.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "h3",
+   "text": "2.2.2. Các lệnh Linux cơ bản"
+  },
+  {
+   "t": "h4",
+   "text": "Từ nhu cầu đến câu lệnh"
+  },
+  {
+   "t": "p",
+   "text": "Khi làm việc bằng dòng lệnh, người dùng nên xác định ba điều trước khi gõ: muốn hệ thống làm việc gì, thao tác lên đối tượng nào và có cần thay đổi cách làm mặc định hay không. Tên lệnh trả lời câu hỏi thứ nhất. Đối số trả lời câu hỏi thứ hai. Tùy chọn và giá trị đi kèm trả lời câu hỏi thứ ba.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "code",
+   "text": "TÊN_LỆNH [TÙY_CHỌN] [GIÁ_TRỊ] [ĐỐI_SỐ NGUỒN] [ĐỐI_SỐ ĐÍCH]",
+   "title": ""
+  },
+  {
+   "t": "p",
+   "text": "Xét câu lệnh sao chép sau:",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "code",
+   "text": "cp -i bao-cao.txt ban-sao/",
+   "title": ""
+  },
+  {
+   "t": "p",
+   "text": "Trong câu lệnh này, cp là tên lệnh, -i là tùy chọn, bao-cao.txt là đối số nguồn và ban-sao/ là đối số đích. Nếu bỏ -i, công việc sao chép vẫn được thực hiện nhưng cách xử lý khi tệp đích đã tồn tại có thể khác.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "h4",
+   "text": "Quy tắc đọc bảng lệnh"
+  },
+  {
+   "t": "p",
+   "text": "Các bảng trong mục này dùng một dòng cho mỗi lệnh. Cột đầu nêu mẫu cú pháp, mô tả trật tự các thành phần của lệnh; cột thứ hai nêu lệnh con hoặc tùy chọn thường gặp, kèm loại giá trị hoặc đối số cần thay; cột cuối nêu công dụng chung của lệnh, không diễn giải lại từng tổ hợp tùy chọn.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "h4",
+   "text": "Di chuyển và quan sát hệ thống tệp"
+  },
+  {
+   "t": "table",
+   "caption": "Lệnh di chuyển và quan sát hệ thống tệp [@coreutils,@ubman_find,@ubman_files]",
+   "header": [
+    "Cú pháp",
+    "Lệnh con, tùy chọn thường gặp",
+    "Công dụng"
+   ],
+   "rows": [
+    [
+     "`pwd [TÙY_CHỌN]`",
+     "-L, -P",
+     "Hiển thị đường dẫn của thư mục làm việc hiện tại."
+    ],
+    [
+     "`cd [THƯ_MỤC]`",
+     "-, ~, .. là các đích đặc biệt thường dùng\nĐối số: Đường dẫn thư mục đích",
+     "Chuyển thư mục làm việc hiện tại của trình thông dịch lệnh."
+    ],
+    [
+     "`ls [TÙY_CHỌN] [ĐƯỜNG_DẪN...]`",
+     "-l, -a, -h, -R, -t, -S, --color\nĐối số: Một hoặc nhiều đường dẫn",
+     "Liệt kê thông tin về tệp và thư mục tại vị trí được chỉ định."
+    ],
+    [
+     "`file [TÙY_CHỌN] TỆP...`",
+     "-b, -i, -L\nĐối số: Một hoặc nhiều tệp",
+     "Nhận biết kiểu dữ liệu của tệp bằng nội dung và dấu hiệu định dạng."
+    ],
+    [
+     "`find [ĐƯỜNG_DẪN...] [BIỂU_THỨC]`",
+     "Các biểu thức như -name, -type, -size, -mtime, -exec\nĐối số: Điểm bắt đầu, điều kiện và hành động",
+     "Tìm đối tượng trong cây thư mục theo điều kiện và có thể thực hiện hành động trên kết quả."
+    ],
+    [
+     "`du [TÙY_CHỌN] [ĐƯỜNG_DẪN...]`",
+     "-h, -s, -a, --max-depth\nĐối số: Tệp hoặc thư mục cần đo",
+     "Ước lượng dung lượng lưu trữ mà tệp và thư mục đang sử dụng."
+    ],
+    [
+     "`df [TÙY_CHỌN] [ĐƯỜNG_DẪN...]`",
+     "-h, -T, -i\nĐối số: Hệ thống tệp hoặc đường dẫn",
+     "Báo cáo dung lượng tổng, đã dùng và còn trống của hệ thống tệp."
+    ]
+   ],
+   "widths": [
+    5.4,
+    5.6,
+    5.0
+   ],
+   "font": 11,
+   "firstBold": false,
+   "center": []
+  },
+  {
+   "t": "h4",
+   "text": "Ví dụ minh họa: chuyển đến một thư mục và quan sát nội dung"
+  },
+  {
+   "t": "p",
+   "text": "Giả sử trong thư mục nhà đã có thư mục lab2. Người dùng muốn biết vị trí hiện tại, chuyển vào thư mục đó, kiểm tra lại vị trí và xem toàn bộ nội dung, kể cả các mục ẩn.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "code",
+   "text": "pwd\ncd ~/lab2\npwd\nls -la",
+   "title": ""
+  },
+  {
+   "t": "p",
+   "text": "Dòng thứ nhất cho biết thư mục đang làm việc trước khi di chuyển. Dòng thứ hai dùng ~ để bắt đầu từ thư mục nhà rồi chuyển vào lab2. Dòng thứ ba giúp xác nhận việc chuyển thư mục đã thành công. Dòng cuối liệt kê nội dung theo dạng chi tiết; tùy chọn -a làm xuất hiện cả những tên bắt đầu bằng dấu chấm.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "h4",
+   "text": "Tạo, sao chép, di chuyển và xóa"
+  },
+  {
+   "t": "table",
+   "caption": "Lệnh tạo, sao chép, di chuyển và xóa [@coreutils]",
+   "header": [
+    "Cú pháp",
+    "Lệnh con, tùy chọn thường gặp",
+    "Công dụng"
+   ],
+   "rows": [
+    [
+     "`mkdir [TÙY_CHỌN] THƯ_MỤC...`",
+     "-p, -m, -v\nĐối số: Một hoặc nhiều tên thư mục",
+     "Tạo một hoặc nhiều thư mục mới."
+    ],
+    [
+     "`touch [TÙY_CHỌN] TỆP...`",
+     "-a, -m, -t, -c\nĐối số: Một hoặc nhiều tên tệp",
+     "Cập nhật mốc thời gian của tệp và có thể tạo tệp rỗng khi tệp chưa tồn tại."
+    ],
+    [
+     "`cp [TÙY_CHỌN] NGUỒN... ĐÍCH`",
+     "-i, -r, -a, -u, -v\nĐối số: Nguồn và đích",
+     "Sao chép tệp hoặc cây thư mục từ nguồn tới đích."
+    ],
+    [
+     "`mv [TÙY_CHỌN] NGUỒN... ĐÍCH`",
+     "-i, -n, -u, -v\nĐối số: Nguồn và đích",
+     "Di chuyển đối tượng hoặc đổi tên tệp và thư mục."
+    ],
+    [
+     "`rmdir [TÙY_CHỌN] THƯ_MỤC...`",
+     "-p, -v\nĐối số: Một hoặc nhiều thư mục rỗng",
+     "Xóa thư mục khi thư mục không còn nội dung."
+    ],
+    [
+     "`rm [TÙY_CHỌN] ĐỐI_TƯỢNG...`",
+     "-i, -r, -f, -d, -v\nĐối số: Một hoặc nhiều tệp hay thư mục",
+     "Xóa các đối tượng được chỉ định khỏi hệ thống tệp."
+    ]
+   ],
+   "widths": [
+    5.4,
+    5.6,
+    5.0
+   ],
+   "font": 11,
+   "firstBold": false,
+   "center": []
+  },
+  {
+   "t": "p",
+   "text": "Lệnh cp và mv thường có ít nhất hai đối số: nguồn và đích. Khi có nhiều nguồn, đối số cuối phải là thư mục đích. Với rm, tùy chọn đệ quy mở rộng thao tác xóa xuống toàn bộ cây thư mục; vì vậy người dùng cần kiểm tra đường dẫn và kết quả mở rộng ký tự đại diện trước khi thực hiện.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "h4",
+   "text": "Ví dụ minh họa: tạo thư mục và sắp xếp hai tệp"
+  },
+  {
+   "t": "p",
+   "text": "Giả sử thư mục lab2 đã có trong thư mục nhà. Người dùng tạo hai thư mục con, tạo hai tệp rỗng, sao chép một tệp sang thư mục báo cáo rồi đổi tên tệp còn lại.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "code",
+   "text": "mkdir -p ~/lab2/dulieu ~/lab2/baocao\ntouch ~/lab2/dulieu/sach.txt ~/lab2/dulieu/tac-gia.txt\ncp ~/lab2/dulieu/sach.txt ~/lab2/baocao/\nmv ~/lab2/dulieu/tac-gia.txt ~/lab2/dulieu/tacgia.txt\nls -l ~/lab2/dulieu ~/lab2/baocao",
+   "title": ""
+  },
+  {
+   "t": "p",
+   "text": "Dòng đầu tạo hai thư mục; tùy chọn -p cho phép dùng đường dẫn chứa thư mục cha đã có. Dòng thứ hai tạo hai tệp rỗng. Dòng thứ ba tạo một bản sao của sach.txt trong thư mục baocao. Dòng thứ tư đổi tên tệp mà không chuyển nó sang thư mục khác. Dòng cuối dùng để kiểm tra vị trí và tên của các tệp sau thao tác.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "h4",
+   "text": "Đọc và xử lý văn bản"
+  },
+  {
+   "t": "table",
+   "caption": "Lệnh đọc và xử lý văn bản [@coreutils,@ubman_find,@ubman_files]",
+   "header": [
+    "Cú pháp",
+    "Lệnh con, tùy chọn thường gặp",
+    "Công dụng"
+   ],
+   "rows": [
+    [
+     "`cat [TÙY_CHỌN] [TỆP...]`",
+     "-n, -b, -s\nĐối số: Một hoặc nhiều tệp",
+     "Nối nội dung các tệp và đưa kết quả ra thiết bị xuất chuẩn."
+    ],
+    [
+     "`less [TÙY_CHỌN] [TỆP...]`",
+     "-N, -S, -i, +G\nĐối số: Tệp hoặc dữ liệu từ đường ống",
+     "Mở nội dung dài theo từng màn hình để đọc và tìm kiếm tương tác."
+    ],
+    [
+     "`head [TÙY_CHỌN] [TỆP...]`",
+     "-n, -c, -q\nĐối số: Số lượng và tệp",
+     "Lấy phần đầu của dữ liệu văn bản."
+    ],
+    [
+     "`tail [TÙY_CHỌN] [TỆP...]`",
+     "-n, -c, -f, -F\nĐối số: Số lượng và tệp",
+     "Lấy phần cuối của dữ liệu và có thể theo dõi dữ liệu mới được ghi thêm."
+    ],
+    [
+     "`grep [TÙY_CHỌN] MẪU [TỆP...]`",
+     "-i, -n, -v, -r, -E, -w\nĐối số: Mẫu cần tìm và nguồn dữ liệu",
+     "Chọn các dòng phù hợp với mẫu tìm kiếm."
+    ],
+    [
+     "`wc [TÙY_CHỌN] [TỆP...]`",
+     "-l, -w, -c, -m\nĐối số: Một hoặc nhiều tệp",
+     "Đếm dòng, từ, byte hoặc ký tự trong dữ liệu."
+    ],
+    [
+     "`diff [TÙY_CHỌN] ĐỐI_TƯỢNG_1 ĐỐI_TƯỢNG_2`",
+     "-u, -q, -r, --color\nĐối số: Hai tệp hoặc hai thư mục",
+     "So sánh hai nguồn dữ liệu và mô tả các điểm khác nhau."
+    ],
+    [
+     "`printf ĐỊNH_DẠNG [GIÁ_TRỊ...]`",
+     "Không bắt buộc; chuỗi định dạng chứa các ký hiệu điều khiển\nĐối số: Chuỗi định dạng và các giá trị",
+     "Tạo văn bản đầu ra theo một định dạng xác định."
+    ]
+   ],
+   "widths": [
+    5.4,
+    5.6,
+    5.0
+   ],
+   "font": 11,
+   "firstBold": false,
+   "center": []
+  },
+  {
+   "t": "p",
+   "text": "cat phù hợp với nội dung ngắn hoặc khi cần nối luồng dữ liệu. less phù hợp hơn khi tệp dài vì chương trình chỉ hiển thị từng phần và cho phép di chuyển, tìm kiếm. head và tail lấy một phần ở đầu hoặc cuối mà không cần đọc toàn bộ nội dung trên màn hình.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "h4",
+   "text": "Ví dụ minh họa: đọc và tìm một từ trong tệp văn bản"
+  },
+  {
+   "t": "p",
+   "text": "Giả sử tệp sach.txt đã chứa danh sách tên sách. Người dùng xem toàn bộ nội dung, xem ba dòng đầu, tìm những dòng có từ Linux mà không phân biệt chữ hoa và chữ thường, rồi đếm tổng số dòng.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "code",
+   "text": "cat ~/lab2/dulieu/sach.txt\nhead -n 3 ~/lab2/dulieu/sach.txt\ngrep -in \"linux\" ~/lab2/dulieu/sach.txt\nwc -l ~/lab2/dulieu/sach.txt",
+   "title": ""
+  },
+  {
+   "t": "p",
+   "text": "cat đưa toàn bộ nội dung ra màn hình. head chỉ lấy ba dòng đầu vì tùy chọn -n nhận giá trị 3. Trong lệnh grep, tùy chọn -i bỏ qua sự khác nhau giữa chữ hoa và chữ thường, còn -n in thêm số dòng. wc -l cho biết tệp có bao nhiêu dòng.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "callout",
+   "kind": "luuy",
+   "title": "",
+   "texts": [
+    "**Kết quả rỗng của grep có thể chỉ có nghĩa là không có dòng nào phù hợp.** Nó không đồng nghĩa với việc tệp bị hỏng. Nếu tên tệp sai, chương trình sẽ đưa ra thông báo lỗi riêng."
+   ]
+  },
+  {
+   "t": "h4",
+   "text": "Chuyển hướng và đường ống"
+  },
+  {
+   "t": "p",
+   "text": "Chuyển hướng và đường ống do trình thông dịch lệnh xử lý. Chúng không phải tùy chọn của lệnh đứng cạnh. Thiết bị xuất chuẩn thường mang kết quả bình thường; thiết bị xuất lỗi chuẩn mang thông báo lỗi. Hai luồng này có thể được chuyển tới những đích khác nhau [@ubman_bash].",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "table",
+   "caption": "Toán tử chuyển hướng và đường ống [@ubman_bash]",
+   "header": [
+    "Cú pháp",
+    "Dữ liệu vào và đích",
+    "Công dụng"
+   ],
+   "rows": [
+    [
+     "`LỆNH > TỆP`",
+     "Dữ liệu: Kết quả chuẩn của một lệnh; đích: Tệp đích",
+     "Ghi kết quả vào tệp và thay nội dung cũ của tệp."
+    ],
+    [
+     "`LỆNH >> TỆP`",
+     "Dữ liệu: Kết quả chuẩn của một lệnh; đích: Tệp đích",
+     "Ghi nối kết quả vào cuối tệp."
+    ],
+    [
+     "`LỆNH < TỆP`",
+     "Dữ liệu: Không có dữ liệu vào trực tiếp; đích: Tệp nguồn",
+     "Lấy dữ liệu đầu vào chuẩn của lệnh từ tệp."
+    ],
+    [
+     "`LỆNH 2> TỆP`",
+     "Dữ liệu: Thông báo lỗi của một lệnh; đích: Tệp đích",
+     "Ghi luồng lỗi chuẩn vào tệp."
+    ],
+    [
+     "`LỆNH_1 | LỆNH_2`",
+     "Dữ liệu: Kết quả chuẩn của lệnh trước; đích: Lệnh tiếp theo",
+     "Dùng kết quả của lệnh trước làm dữ liệu vào cho lệnh sau."
+    ]
+   ],
+   "widths": [
+    5.4,
+    5.6,
+    5.0
+   ],
+   "font": 11,
+   "firstBold": false,
+   "center": []
+  },
+  {
+   "t": "h4",
+   "text": "Ví dụ minh họa: đếm kết quả tìm kiếm và lưu vào tệp"
+  },
+  {
+   "t": "p",
+   "text": "Ví dụ dưới đây chọn các dòng chứa từ linux, đếm số dòng tìm được, rồi ghi con số đó vào một tệp kết quả.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "code",
+   "text": "grep -i \"linux\" ~/lab2/dulieu/sach.txt | wc -l > ~/lab2/baocao/so-dong.txt\ncat ~/lab2/baocao/so-dong.txt",
+   "title": ""
+  },
+  {
+   "t": "p",
+   "text": "Trong dòng thứ nhất, grep chọn các dòng phù hợp; dấu | đưa kết quả cho wc; wc đếm số dòng nhận được; dấu > ghi con số vào so-dong.txt. Dòng thứ hai đọc tệp kết quả để kiểm tra. Nếu tệp đích đã có nội dung, toán tử > sẽ thay nội dung cũ; muốn ghi nối cần dùng >>.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "h4",
+   "text": "Tra cứu cú pháp"
+  },
+  {
+   "t": "table",
+   "caption": "Lệnh tra cứu cú pháp [@ubman_files,@ubman_bash]",
+   "header": [
+    "Cú pháp",
+    "Lệnh con, tùy chọn thường gặp",
+    "Công dụng"
+   ],
+   "rows": [
+    [
+     "`man [TÙY_CHỌN] [PHẦN] TÊN`",
+     "-k, -f, số phần tài liệu\nĐối số: Tên lệnh hoặc từ khóa",
+     "Đọc các trang hướng dẫn được cài trên hệ thống."
+    ],
+    [
+     "`help [TÙY_CHỌN] [TÊN]`",
+     "-d, -m, -s\nĐối số: Tên lệnh tích hợp của shell",
+     "Hiển thị trợ giúp cho các lệnh được tích hợp trong Bash."
+    ]
+   ],
+   "widths": [
+    5.4,
+    5.6,
+    5.0
+   ],
+   "font": 11,
+   "firstBold": false,
+   "center": []
+  },
+  {
+   "t": "h4",
+   "text": "Ví dụ minh họa: tra cứu cách dùng lệnh"
+  },
+  {
+   "t": "p",
+   "text": "Tùy chọn --help thường được truyền trực tiếp cho chương trình cần tra cứu. Lệnh help của Bash lại dùng để xem trợ giúp cho lệnh tích hợp của shell. Hai cách viết được tách rõ dưới đây.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "code",
+   "text": "ls --help\nhelp cd",
+   "title": ""
+  },
+  {
+   "t": "p",
+   "text": "Dòng thứ nhất yêu cầu chính chương trình ls cung cấp trợ giúp. Dòng thứ hai yêu cầu Bash giải thích lệnh tích hợp cd, vì lệnh này thay đổi trạng thái của chính trình thông dịch lệnh.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "h4",
+   "text": "Nhận biết và xử lý lỗi"
+  },
+  {
+   "t": "p",
+   "text": "Khi câu lệnh thất bại, nên đọc thông báo từ trái sang phải để xác định chương trình nào báo lỗi, đối tượng nào liên quan và nguyên nhân được hệ thống nêu ra. Không nên chỉ gõ lại câu lệnh nhiều lần vì lỗi về đường dẫn, quyền hoặc cú pháp sẽ không tự biến mất. Ngoài ba lỗi đã nêu ở mục 2.1.3, hai thông báo hay gặp khác là `Directory not empty` (thao tác chỉ áp dụng cho thư mục rỗng, nên cần kiểm tra nội dung ẩn và nội dung còn lại) và `File exists` (đối tượng đích đã tồn tại trong tình huống không cho phép ghi đè, nên cần xem lại tên đích và cách xử lý tệp đã có). Với `No such file or directory` hay `Permission denied`, hãy dùng `pwd` và `ls` để kiểm tra lại vị trí, thay vì tạo thêm một tệp chỉ để thông báo lỗi biến mất hoặc thêm `sudo` theo thói quen.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Mã thoát cho biết kết quả ở mức chương trình: giá trị 0 thường biểu thị thành công, còn giá trị khác 0 biểu thị một dạng thất bại. Sau khi chạy một lệnh trong Bash, có thể xem mã thoát gần nhất như sau:",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "code",
+   "text": "echo $?",
+   "title": ""
+  },
+  {
+   "t": "p",
+   "text": "Mã này hữu ích khi ghép nhiều lệnh trong kịch bản, nhưng vẫn cần đọc thông báo lỗi để hiểu nguyên nhân cụ thể.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "h3",
+   "text": "2.2.3. Quản lý người dùng và tệp tin cơ bản"
+  },
+  {
+   "t": "p",
+   "text": "Một máy Linux có thể được nhiều người sử dụng. Mỗi người cần một nơi lưu tài liệu riêng; một số tài liệu lại cần chia sẻ cho cả nhóm. Vì vậy, hệ điều hành phải biết ai đang sử dụng máy, tệp thuộc về ai và người đó được làm gì với tệp. Quản lý người dùng và quyền truy cập giúp trả lời ba câu hỏi này.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Quyền truy cập là sự cho phép thực hiện một thao tác đối với tệp hoặc thư mục. Người được đọc tài liệu chưa chắc được sửa tài liệu. Người được sửa nội dung của một tệp chưa chắc được xóa tệp ấy khỏi thư mục. Muốn hiểu các trường hợp này, cần phân biệt tài khoản, chủ sở hữu, nhóm sở hữu và quyền trên từng đối tượng.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "h4",
+   "text": "Tài khoản người dùng và nhóm người dùng"
+  },
+  {
+   "t": "p",
+   "text": "Tài khoản người dùng là danh tính mà hệ điều hành dùng để nhận biết người sử dụng. Tài khoản thường có tên đăng nhập, thư mục nhà và thông tin xác thực. Hai người cùng sử dụng một máy nên có hai tài khoản riêng để hệ thống phân biệt dữ liệu, thiết lập và quyền của từng người.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Linux cũng có tài khoản dành cho dịch vụ. Một chương trình phục vụ Web, in ấn hoặc cơ sở dữ liệu có thể chạy dưới tài khoản riêng để giới hạn những tài nguyên mà chương trình được phép truy cập.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Nhóm người dùng là tập hợp các tài khoản cần chia sẻ một số quyền. Một tài khoản có một nhóm chính và có thể thuộc nhiều nhóm bổ sung. Cấp quyền cho nhóm giúp quản lý một nhóm người cùng làm việc mà không phải thiết lập riêng cho từng tài khoản.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Hệ điều hành dùng UID để nhận diện người dùng và GID để nhận diện nhóm. UID và GID là số định danh; chúng không phải các chữ số quyền của tệp. Chẳng hạn, UID 1001 chỉ cho biết một tài khoản có mã 1001, không cho biết tài khoản đó được đọc hay ghi một tệp [@ubman_id].",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "table",
+   "caption": "Lệnh xem danh tính và nhóm người dùng [@ubman_id]",
+   "header": [
+    "Cú pháp",
+    "Lệnh con, tùy chọn thường gặp",
+    "Công dụng"
+   ],
+   "rows": [
+    [
+     "`whoami`",
+     "Không có tùy chọn cần thiết trong cách dùng cơ bản",
+     "Hiển thị tên tài khoản có hiệu lực của tiến trình hiện tại."
+    ],
+    [
+     "`id [TÙY_CHỌN] [TÀI_KHOẢN]`",
+     "-u, -g, -G, -n\nĐối số: Tên tài khoản khi cần xem người khác",
+     "Hiển thị UID, GID và tư cách thành viên nhóm của một tài khoản."
+    ],
+    [
+     "`groups [TÀI_KHOẢN...]`",
+     "Không có tùy chọn cần thiết trong cách dùng cơ bản\nĐối số: Một hoặc nhiều tên tài khoản",
+     "Hiển thị tên các nhóm gắn với tài khoản hoặc phiên hiện tại."
+    ]
+   ],
+   "widths": [
+    5.4,
+    5.6,
+    5.0
+   ],
+   "font": 11,
+   "firstBold": false,
+   "center": []
+  },
+  {
+   "t": "p",
+   "text": "Thông tin nhóm trong một phiên đăng nhập phản ánh các quyền mà tiến trình của phiên đang có. Nếu quản trị viên vừa thêm tài khoản vào nhóm, người dùng có thể cần đăng xuất và đăng nhập lại để phiên mới nhận danh sách nhóm đã thay đổi.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "h4",
+   "text": "Ví dụ minh họa: xác định danh tính của phiên hiện tại"
+  },
+  {
+   "t": "code",
+   "text": "whoami\nid\ngroups",
+   "title": ""
+  },
+  {
+   "t": "p",
+   "text": "Dòng thứ nhất cho biết tên tài khoản có hiệu lực. Dòng thứ hai hiển thị UID, GID chính và các nhóm của tiến trình hiện tại. Dòng cuối trình bày danh sách nhóm theo tên. Các số xuất hiện trong kết quả của id là số định danh người dùng và nhóm; không đọc chúng như số quyền của tệp.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "h4",
+   "text": "Chủ sở hữu, nhóm sở hữu và những người khác"
+  },
+  {
+   "t": "p",
+   "text": "Mỗi tệp và thư mục có một chủ sở hữu và một nhóm sở hữu. Chủ sở hữu thường là tài khoản tạo ra đối tượng; nhóm sở hữu được xác định theo môi trường và thiết lập khi tạo. Một tệp có thể thuộc nhóm biên tập, trong khi chủ sở hữu của nó vẫn là Lan.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Quyền cơ bản được ghi riêng cho ba đối tượng sau:",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Chữ `u` (từ *user*) chỉ chủ sở hữu, tức tài khoản được ghi là chủ của tệp hoặc thư mục; `g` chỉ nhóm sở hữu, tức những tài khoản thuộc nhóm sở hữu khi tài khoản đang truy cập không phải chủ; còn `o` (từ *others*) chỉ những người khác, tức những tài khoản không phải chủ và không thuộc nhóm sở hữu.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Giả sử một tệp do Lan sở hữu và thuộc nhóm biên tập. Khi Lan mở tệp, hệ thống xét quyền của chủ sở hữu. Khi Minh thuộc nhóm biên tập mở tệp, hệ thống xét quyền của nhóm. Khi Hùng không thuộc nhóm biên tập mở tệp, hệ thống xét quyền của những người khác.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Trong mô hình quyền cơ bản này, hệ thống chọn nhóm quyền phù hợp theo thứ tự chủ sở hữu, rồi nhóm sở hữu, rồi những người khác. Các quyền của ba đối tượng không được cộng lại. Nếu chủ sở hữu không có quyền ghi, hệ thống không chuyển sang quyền của nhóm chỉ để tìm thêm quyền ghi cho người đó.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Các ví dụ trong mục này xét tài khoản thông thường và ba nhóm quyền cơ bản. Tài khoản quản trị, danh sách kiểm soát truy cập mở rộng và các cơ chế bảo vệ khác có thể ảnh hưởng đến việc truy cập; chúng không cần thiết cho phép tính ba chữ số được trình bày dưới đây.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "h4",
+   "text": "Ba quyền đọc, ghi và thực thi"
+  },
+  {
+   "t": "p",
+   "text": "Linux phân biệt ba quyền cơ bản: đọc, ghi và thực thi. Với thư mục, quyền thường được gọi là thực thi có nghĩa là được đi vào hoặc đi qua thư mục để truy cập một đối tượng bên trong. Bởi vậy, cùng một ký hiệu nhưng ý nghĩa thao tác trên tệp và thư mục khác nhau.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "table",
+   "caption": "Ý nghĩa của các quyền r, w, x đối với tệp và thư mục",
+   "header": [
+    "Quyền và ký hiệu",
+    "Đối với tệp thường",
+    "Đối với thư mục"
+   ],
+   "rows": [
+    [
+     "Đọc — r",
+     "Đọc nội dung, chẳng hạn mở một tài liệu văn bản",
+     "Liệt kê tên những mục có trong thư mục"
+    ],
+    [
+     "Ghi — w",
+     "Sửa, ghi thêm hoặc ghi đè nội dung",
+     "Thay đổi các mục trong thư mục, chẳng hạn tạo hoặc xóa tệp; thông thường cần thêm quyền đi qua"
+    ],
+    [
+     "Thực thi / đi qua — x",
+     "Cho phép chạy tệp trực tiếp như một chương trình, nếu tệp có nội dung phù hợp",
+     "Đi vào thư mục và truy cập mục đã biết tên bên trong"
+    ]
+   ],
+   "widths": [
+    4.2,
+    5.4,
+    6.4
+   ],
+   "font": 11.5,
+   "firstBold": true,
+   "center": []
+  },
+  {
+   "t": "p",
+   "text": "Một tệp văn bản thông thường chỉ cần quyền đọc để xem và quyền ghi để sửa. Thêm quyền thực thi không biến tài liệu thành chương trình. Ngược lại, một tệp chứa kịch bản có thể cần quyền thực thi khi được chạy trực tiếp. Nội dung và cách chạy tệp vẫn phải phù hợp.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Đối với thư mục, quyền đọc cho biết bên trong có những tên nào, còn quyền đi qua cho phép truy cập các mục bên trong theo tên. Để làm việc thuận tiện với nội dung của một thư mục, người dùng thường cần cả hai quyền. Quyền ghi trên thư mục dùng khi cần tạo, đổi tên hoặc xóa các mục, và thường đi cùng quyền đi qua.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "h4",
+   "text": "Đọc thông tin quyền đang có trên một tệp"
+  },
+  {
+   "t": "p",
+   "text": "Thông tin quyền được hệ thống tệp lưu cùng các thông tin như chủ sở hữu, nhóm sở hữu và thời điểm sửa đổi. Nó không nằm trong nội dung tài liệu. Có thể xem thông tin này bằng trình quản lý tệp hoặc bằng lệnh liệt kê chi tiết.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Lệnh xem một tệp. Ví dụ dưới đây giả sử tài khoản hiện tại là Lan, trong thư mục tài liệu của Lan đã có một tệp ghi chú. Các lệnh xem không tạo ra tệp này.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "code",
+   "text": "ls -l ~/tai-lieu/ghi-chu.txt",
+   "title": ""
+  },
+  {
+   "t": "p",
+   "text": "Kết quả minh họa:",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "code",
+   "text": "-rw-r----- 1 lan bien-tap 128 Oct 5 09:00 ghi-chu.txt",
+   "title": ""
+  },
+  {
+   "t": "p",
+   "text": "Dòng kết quả được đọc từ trái sang phải. Phần đầu là kiểu đối tượng và quyền (`-rw-r-----`): một ký tự kiểu đối tượng rồi chín ký tự quyền. Tiếp theo là số liên kết cứng (`1`), tức số tên liên kết cứng tới tệp, không phải một chữ số quyền; chủ sở hữu (`lan`); nhóm sở hữu (`bien-tap`), nhóm được dùng để xét quyền của nhóm; kích thước (`128`, tính bằng byte); thời điểm sửa đổi gần nhất (`Oct 5 09:00`, theo cách hiển thị của hệ thống); và cuối cùng là tên tệp (`ghi-chu.txt`). Kích thước, ngày giờ và tên trong ví dụ chỉ nhằm minh họa.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Trong chuỗi quyền ở đầu dòng, ký tự đầu tiên cho biết kiểu đối tượng: dấu gạch ngang `-` biểu thị tệp thường, còn ký tự `d` xuất hiện khi đối tượng là thư mục. Chín vị trí tiếp theo được chia thành ba nhóm, mỗi nhóm ba vị trí theo thứ tự đọc, ghi, thực thi. Một dấu gạch ngang trong các vị trí này có nghĩa là quyền tương ứng chưa được cấp.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Lệnh xem chính thư mục. Tùy chọn chỉ đối tượng thư mục giúp xem quyền của thư mục được nêu, thay vì liệt kê các tệp bên trong.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "code",
+   "text": "ls -ld ~/tai-lieu",
+   "title": ""
+  },
+  {
+   "t": "p",
+   "text": "Kết quả minh họa:",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "code",
+   "text": "drwxr-x--- 2 lan bien-tap 4096 Oct 5 09:00 /home/lan/tai-lieu",
+   "title": ""
+  },
+  {
+   "t": "p",
+   "text": "Ở đây, chủ sở hữu có thể liệt kê, đi vào và thay đổi các mục trong thư mục. Nhóm có thể liệt kê và đi qua, nhưng không được tạo hay xóa mục. Những người khác không được cấp ba quyền cơ bản trên thư mục này.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "h4",
+   "text": "Vì sao quyền được viết bằng các số 4, 2 và 1?"
+  },
+  {
+   "t": "p",
+   "text": "Mỗi quyền có hai trạng thái: được cấp hoặc không được cấp. Máy tính có thể biểu diễn hai trạng thái đó bằng một bit: 1 là được cấp, 0 là không được cấp. Với ba quyền, cần ba bit đặt theo thứ tự đọc, ghi, thực thi.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Trong hệ nhị phân, ba vị trí từ trái sang phải có giá trị 4, 2 và 1. Khi một vị trí có giá trị 1, giá trị của vị trí ấy được đưa vào phép cộng; khi vị trí có giá trị 0, nó không đóng góp vào tổng. Đây là cơ sở của cách viết quyền bằng số.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Ba vị trí quyền theo thứ tự đọc (`r`), ghi (`w`), thực thi (`x`) có giá trị lần lượt là 4 (tức 2²), 2 (tức 2¹) và 1 (tức 2⁰). Khi quyền được cấp, giá trị của vị trí đó được cộng vào; khi quyền không được cấp, cộng 0.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Một nhóm ba quyền có tổng nhỏ nhất là 0 và lớn nhất là 7. Vì vậy, một chữ số từ 0 đến 7 đủ để biểu diễn quyền của một đối tượng. Cách biểu diễn này dùng hệ cơ số tám, còn gọi là hệ bát phân. Người dùng không cần đổi cả một số dài sang hệ nhị phân; chỉ cần tính riêng từng nhóm ba quyền.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "table",
+   "caption": "Giá trị của chữ số quyền từ 0 đến 7",
+   "header": [
+    "Chữ số",
+    "Phép tính",
+    "Dạng ký tự",
+    "Quyền được cấp"
+   ],
+   "rows": [
+    [
+     "0",
+     "0 + 0 + 0",
+     "---",
+     "Không có quyền nào trong ba quyền cơ bản"
+    ],
+    [
+     "1",
+     "0 + 0 + 1",
+     "--x",
+     "Chỉ thực thi hoặc đi qua"
+    ],
+    [
+     "2",
+     "0 + 2 + 0",
+     "-w-",
+     "Chỉ ghi"
+    ],
+    [
+     "3",
+     "0 + 2 + 1",
+     "-wx",
+     "Ghi và thực thi hoặc đi qua"
+    ],
+    [
+     "4",
+     "4 + 0 + 0",
+     "r--",
+     "Chỉ đọc"
+    ],
+    [
+     "5",
+     "4 + 0 + 1",
+     "r-x",
+     "Đọc và thực thi hoặc đi qua"
+    ],
+    [
+     "6",
+     "4 + 2 + 0",
+     "rw-",
+     "Đọc và ghi"
+    ],
+    [
+     "7",
+     "4 + 2 + 1",
+     "rwx",
+     "Cả ba quyền cơ bản"
+    ]
+   ],
+   "widths": [
+    2.0,
+    3.0,
+    3.0,
+    8.0
+   ],
+   "font": 11.5,
+   "firstBold": true,
+   "center": []
+  },
+  {
+   "t": "callout",
+   "kind": "nho",
+   "title": "Đọc đúng các chữ số quyền",
+   "texts": [
+    "**Các chữ số không phải mức độ tốt hay xấu của quyền.** Chẳng hạn, quyền ghi được biểu diễn bằng 2 không bao gồm quyền đọc được biểu diễn bằng 4. Mỗi chữ số chỉ cho biết những quyền nào đang được bật. Khi đọc bảng, cần nhìn tổ hợp quyền, thay vì hiểu rằng số lớn luôn bao gồm mọi quyền của số nhỏ."
+   ]
+  },
+  {
+   "t": "h4",
+   "text": "Cách tính và cách đọc quyền 640"
+  },
+  {
+   "t": "p",
+   "text": "Giả sử một tài liệu cần được phân quyền như sau: chủ sở hữu được đọc và sửa; thành viên của nhóm được đọc nhưng không sửa; những người khác không được truy cập nội dung. Ta tính riêng cho từng đối tượng rồi ghi ba kết quả cạnh nhau, theo đúng thứ tự chủ sở hữu, nhóm sở hữu, những người khác.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Với quyền `640`: chủ sở hữu được đọc và ghi nên `4 + 2 + 0 = 6`; nhóm sở hữu chỉ được đọc nên `4 + 0 + 0 = 4`; những người khác không được cấp quyền nên `0 + 0 + 0 = 0`.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "figure",
+   "src": "assets/img/chuong2-hinh5.jpg",
+   "caption": "Cách tính quyền 640 cho ba nhóm đối tượng",
+   "width": 14.5
+  },
+  {
+   "t": "p",
+   "text": "Như vậy, ba chữ số là cách viết gọn của chín vị trí quyền. Không cộng ba chữ số với nhau để lấy một kết quả chung. Khi đọc, cần đọc lần lượt từng vị trí: sáu cho chủ, bốn cho nhóm, không cho người khác.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "h4",
+   "text": "Quyền 777 có nghĩa gì?"
+  },
+  {
+   "t": "p",
+   "text": "Nếu một đối tượng được cấp cả ba quyền thì chữ số của đối tượng đó là tổng của 4, 2 và 1, tức 7. Khi cả chủ sở hữu, nhóm sở hữu và những người khác đều được cấp cả ba quyền, ta có ba chữ số giống nhau.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Với quyền `777`, cả chủ sở hữu, nhóm sở hữu và những người khác đều được cấp ba quyền, nên mỗi đối tượng có `4 + 2 + 1 = 7`, tương ứng dạng ký tự `rwx`.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Đối với tệp thường, cách cấp quyền này cho phép mọi tài khoản trên hệ thống đọc, sửa và thực thi tệp theo mô hình quyền cơ bản. Quyền thực thi chỉ cho phép yêu cầu chạy; tệp vẫn phải có nội dung chạy được. Đối với thư mục, mọi tài khoản được liệt kê, đi qua và thay đổi các mục bên trong, nếu không có giới hạn khác ngăn cản.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "callout",
+   "kind": "luuy",
+   "title": "Quyền 777",
+   "texts": [
+    "**Do đó, ba chữ số bảy không phải cách sửa chung cho mọi lỗi truy cập.** Một tài liệu riêng không cần cho mọi người sửa; một tệp văn bản không cần được cấp quyền chạy. Cách lựa chọn phù hợp là xác định ai cần làm thao tác nào rồi tính quyền từ nhu cầu ấy. Nếu lỗi đến từ đường dẫn sai, ổ lưu trữ chỉ cho đọc hoặc tệp đang chạy có nội dung sai, mở rộng quyền không giải quyết được nguyên nhân."
+   ]
+  },
+  {
+   "t": "h4",
+   "text": "Xem quyền dưới dạng số và thay đổi quyền"
+  },
+  {
+   "t": "p",
+   "text": "Lệnh liệt kê chi tiết thường hiển thị quyền bằng ký tự. Công cụ stat có thể trình bày cùng thông tin dưới dạng số bát phân. Công cụ chmod dùng số hoặc ký hiệu để thay đổi quyền đang có. Thay quyền không làm đổi tên, nội dung, chủ sở hữu hay nhóm sở hữu của đối tượng.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "table",
+   "caption": "Lệnh xem thuộc tính và thay đổi quyền [@coreutils,@ubman_id]",
+   "header": [
+    "Cú pháp",
+    "Lệnh con, tùy chọn thường gặp",
+    "Công dụng"
+   ],
+   "rows": [
+    [
+     "`stat [TÙY_CHỌN] ĐƯỜNG_DẪN...`",
+     "-c, -f, -L, -t\nĐối số: Chuỗi định dạng hoặc đường dẫn",
+     "Hiển thị thuộc tính chi tiết của tệp, thư mục hoặc hệ thống tệp."
+    ],
+    [
+     "`chmod [TÙY_CHỌN] CHẾ_ĐỘ ĐƯỜNG_DẪN...`",
+     "-R, -v, -c, --reference\nĐối số: Chế độ quyền và đường dẫn",
+     "Thay đổi các bit quyền truy cập của tệp và thư mục."
+    ]
+   ],
+   "widths": [
+    5.4,
+    5.6,
+    5.0
+   ],
+   "font": 11,
+   "firstBold": false,
+   "center": []
+  },
+  {
+   "t": "p",
+   "text": "Trong chuỗi định dạng của GNU stat, %a đại diện cho quyền ở dạng số và %n đại diện cho tên đối tượng. Chuỗi định dạng thuộc về tùy chọn -c; đường dẫn đứng sau là đối số chỉ tệp hoặc thư mục cần xem. Khi chmod thành công, chương trình thường không in thông báo, vì vậy có thể dùng chế độ liệt kê chi tiết của ls hoặc dùng stat để kiểm tra lại.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "h4",
+   "text": "Ví dụ minh họa: đặt và kiểm tra quyền 640"
+  },
+  {
+   "t": "p",
+   "text": "Giả sử tệp ghi-chu.txt đã có trong thư mục baocao. Người dùng đặt quyền để chủ sở hữu được đọc và ghi, nhóm chỉ được đọc, còn những người khác không có quyền cơ bản.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "code",
+   "text": "chmod 640 ~/lab2/baocao/ghi-chu.txt\nls -l ~/lab2/baocao/ghi-chu.txt\nstat -c '%a %n' ~/lab2/baocao/ghi-chu.txt",
+   "title": ""
+  },
+  {
+   "t": "p",
+   "text": "Nếu thay đổi thành công, dòng liệt kê chi tiết cần thể hiện chuỗi quyền tương ứng với rw-r-----; lệnh stat cần in số 640 cùng tên tệp. Nếu tệp không tồn tại, chmod không tạo tệp mới mà báo lỗi đường dẫn.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "h4",
+   "text": "Thêm, bỏ hoặc đặt quyền bằng ký hiệu"
+  },
+  {
+   "t": "p",
+   "text": "Ngoài cách dùng ba chữ số, quyền có thể được mô tả bằng ký hiệu theo cấu trúc sau:",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "code",
+   "text": "ĐỐI_TƯỢNG PHÉP_TOÁN QUYỀN",
+   "title": ""
+  },
+  {
+   "t": "p",
+   "text": "Thành phần đầu là đối tượng: `u` (chủ sở hữu), `g` (nhóm sở hữu), `o` (những người khác) hoặc `a` (cả ba nhóm). Tiếp theo là phép toán: `+` thêm quyền, `-` bỏ quyền, `=` đặt đúng các quyền được nêu. Cuối cùng là quyền: `r` (đọc), `w` (ghi), `x` (thực thi đối với tệp hoặc đi qua đối với thư mục).",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Chẳng hạn, biểu thức u+x có nghĩa là thêm quyền thực thi cho chủ sở hữu; g-w có nghĩa là bỏ quyền ghi của nhóm; u=rw,g=r,o= đặt chủ được đọc và ghi, nhóm chỉ đọc, người khác không có quyền cơ bản. Biểu thức cuối tạo kết quả tương đương số 640.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Dấu cộng và dấu trừ chỉ thay các quyền được nêu, còn dấu bằng đặt lại toàn bộ quyền của đối tượng được chọn. Vì vậy, cần chọn phép toán theo ý định: điều chỉnh một phần hay đặt một trạng thái chính xác.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Chế độ quyền có thể là số như 640 hoặc biểu thức ký hiệu như u=rw,g=r,o=. Tùy chọn đệ quy làm thao tác đi qua cả cây thư mục. Vì tệp và thư mục có ý nghĩa khác nhau đối với quyền thực thi, không nên áp một chế độ giống nhau cho toàn bộ cây nếu chưa xác định nhu cầu của từng loại đối tượng [@coreutils].",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "h4",
+   "text": "Chọn quyền cho tệp và thư mục"
+  },
+  {
+   "t": "p",
+   "text": "Không có một bộ ba chữ số phù hợp cho mọi đối tượng. Tài liệu cá nhân, tài liệu chia sẻ và thư mục cần các quyền khác nhau. Bảng dưới trình bày một số cách cấp quyền thường gặp để thấy mối liên hệ giữa nhu cầu sử dụng và phép tính.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "table",
+   "caption": "Một số bộ quyền thường dùng",
+   "header": [
+    "Quyền",
+    "Dạng ký tự",
+    "Nhu cầu minh họa"
+   ],
+   "rows": [
+    [
+     "600",
+     "rw-------",
+     "Tệp chỉ cho chủ đọc và sửa"
+    ],
+    [
+     "640",
+     "rw-r-----",
+     "Tệp cho chủ đọc, sửa; nhóm chỉ đọc"
+    ],
+    [
+     "644",
+     "rw-r--r--",
+     "Tệp cho chủ đọc, sửa; nhóm và người khác chỉ đọc"
+    ],
+    [
+     "700",
+     "rwx------",
+     "Thư mục riêng, chỉ chủ được liệt kê, đi qua và thay đổi các mục"
+    ],
+    [
+     "750",
+     "rwxr-x---",
+     "Thư mục cho chủ quản lý; nhóm liệt kê và đi qua; người khác không có quyền"
+    ],
+    [
+     "755",
+     "rwxr-xr-x",
+     "Thư mục cho chủ quản lý; nhóm và người khác liệt kê, đi qua"
+    ]
+   ],
+   "widths": [
+    4.2,
+    5.4,
+    6.4
+   ],
+   "font": 11.5,
+   "firstBold": true,
+   "center": []
+  },
+  {
+   "t": "p",
+   "text": "Chẳng hạn, thư mục tài liệu dùng chung để nhóm đọc thường cần quyền đọc và đi qua cho nhóm. Cách đặt quyền trong ví dụ dưới cấp đủ hai quyền đó, đồng thời chỉ cho chủ tạo hoặc xóa các mục.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "code",
+   "text": "chmod 750 ~/tai-lieu",
+   "title": ""
+  },
+  {
+   "t": "p",
+   "text": "Không nên áp dụng nguyên bộ quyền của tệp ghi chú cho thư mục chứa nó. Nếu thư mục được đặt giống tệp ghi chú ở ví dụ trên thì cả chủ và nhóm đều thiếu quyền đi qua. Người dùng có thể thấy tên thư mục nhưng không truy cập được các tệp bên trong theo cách thông thường.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Quyền của thư mục cha cũng phải được xét. Nếu nhóm được đọc tệp và đi qua thư mục tài liệu nhưng không được đi qua thư mục nhà của Lan thì nhóm vẫn không tới được tệp. Vì vậy, tài liệu dùng chung nên được đặt ở một vị trí chia sẻ có quyền phù hợp, thay vì mở rộng quyền của toàn bộ thư mục cá nhân chỉ để chia sẻ một tệp.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "callout",
+   "kind": "luuy",
+   "title": "Quyền xóa tệp",
+   "texts": [
+    "**Quyền xóa tệp cần được hiểu riêng.** Sửa nội dung tác động vào tệp; xóa tên tệp khỏi thư mục tác động vào thư mục chứa nó. Một người có quyền ghi và đi qua thư mục cha có thể xóa một mục trong đó dù không có quyền ghi nội dung của tệp, nếu không có hạn chế bổ sung như quyền bảo vệ đặc biệt của thư mục. Ngược lại, người được ghi nội dung tệp nhưng không được thay đổi thư mục cha có thể sửa tệp mà không được xóa tên của nó."
+   ]
+  },
+  {
+   "t": "p",
+   "text": "Một số chương trình soạn thảo lưu bằng cách tạo tệp mới rồi thay tệp cũ. Khi ấy, quyền trên thư mục cũng ảnh hưởng đến việc lưu. Do đó, thông báo không lưu được tài liệu cần được xem cùng cách chương trình ghi tệp, không chỉ cùng quyền của tệp hiện có.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "h4",
+   "text": "Quyền khi tệp mới được tạo"
+  },
+  {
+   "t": "p",
+   "text": "Tệp và thư mục mới đã có quyền ban đầu. Chương trình tạo đối tượng đề nghị một bộ quyền; hệ thống dùng mặt nạ quyền để loại những quyền không được phép cấp ngay từ đầu. Mặt nạ thường được gọi theo tên công cụ umask.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "table",
+   "caption": "Lệnh umask [@coreutils]",
+   "header": [
+    "Cú pháp",
+    "Lệnh con, tùy chọn thường gặp",
+    "Công dụng"
+   ],
+   "rows": [
+    [
+     "`umask [TÙY_CHỌN] [MẶT_NẠ]`",
+     "-S, -p\nĐối số: Giá trị mặt nạ khi cần thiết lập",
+     "Xem hoặc đặt mặt nạ quyền mà shell áp dụng khi tạo đối tượng mới."
+    ]
+   ],
+   "widths": [
+    5.4,
+    5.6,
+    5.0
+   ],
+   "font": 11,
+   "firstBold": false,
+   "center": []
+  },
+  {
+   "t": "p",
+   "text": "Với mặt nạ 0022, ba chữ số cuối là 0, 2, 2. Số 2 biểu diễn quyền ghi, nên quyền ghi bị loại khỏi nhóm sở hữu và những người khác. Nếu chương trình đề nghị quyền 666 cho tệp thường, kết quả thông thường là 644. Nếu chương trình đề nghị quyền 777 cho thư mục, kết quả thông thường là 755.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Mặt nạ nêu những quyền cần loại, trong khi số quyền của tệp nêu những quyền đang được cấp. Mặt nạ không sửa các đối tượng đã tồn tại. Quyền thực tế còn phụ thuộc bộ quyền mà chương trình đề nghị và các thiết lập khác của thư mục, vì vậy cần kiểm tra đối tượng sau khi tạo.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "h4",
+   "text": "Ví dụ minh họa: xem ảnh hưởng của mặt nạ khi tạo tệp"
+  },
+  {
+   "t": "code",
+   "text": "umask\ntouch ~/lab2/baocao/tep-moi.txt\nstat -c '%a %n' ~/lab2/baocao/tep-moi.txt",
+   "title": ""
+  },
+  {
+   "t": "p",
+   "text": "Dòng đầu xem mặt nạ đang có mà không thay đổi nó. Dòng thứ hai tạo một tệp rỗng. Dòng cuối hiển thị quyền thực tế của tệp vừa tạo. Nếu mặt nạ là 0022 và chương trình tạo tệp theo bộ quyền thông thường, kết quả thường là 644.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "h4",
+   "text": "Tạo tài khoản và đổi mật khẩu ở mức cơ bản"
+  },
+  {
+   "t": "p",
+   "text": "Người dùng thông thường có thể đổi mật khẩu của chính mình theo chính sách của hệ thống. Tạo tài khoản hoặc quản lý trạng thái mật khẩu của tài khoản khác là công việc quản trị và thường cần quyền được cấp qua sudo [@ubman_user].",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "table",
+   "caption": "Lệnh tạo tài khoản, đổi mật khẩu và quyền quản trị [@ubman_user]",
+   "header": [
+    "Cú pháp",
+    "Lệnh con, tùy chọn thường gặp",
+    "Công dụng"
+   ],
+   "rows": [
+    [
+     "`sudo adduser [TÙY_CHỌN] TÊN_TÀI_KHOẢN`",
+     "Các tùy chọn tùy bản phân phối; cách dùng cơ bản không cần tùy chọn\nĐối số: Tên tài khoản mới",
+     "Tạo tài khoản theo quy trình tương tác và chuẩn bị môi trường ban đầu."
+    ],
+    [
+     "`passwd [TÙY_CHỌN] [TÊN_TÀI_KHOẢN]`",
+     "-l, -u, -e, -S\nĐối số: Tên tài khoản khi quản trị người khác",
+     "Thiết lập hoặc quản lý thông tin mật khẩu của tài khoản."
+    ],
+    [
+     "`sudo [TÙY_CHỌN] CÂU_LỆNH`",
+     "-u, -i, -k, -l\nĐối số: Người dùng đích hoặc câu lệnh cần chạy",
+     "Thực hiện câu lệnh theo quyền mà chính sách quản trị cho phép."
+    ]
+   ],
+   "widths": [
+    5.4,
+    5.6,
+    5.0
+   ],
+   "font": 11,
+   "firstBold": false,
+   "center": []
+  },
+  {
+   "t": "p",
+   "text": "sudo có thể yêu cầu mật khẩu của tài khoản đang đăng nhập để xác thực. Việc xác thực thành công chưa đủ để thực hiện mọi lệnh; chính sách sudo còn quyết định tài khoản được phép chạy lệnh nào. Không nên dùng quyền quản trị khi thao tác thông thường đã có thể hoàn thành bằng quyền của người dùng.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "h4",
+   "text": "Ví dụ minh họa: tạo và kiểm tra một tài khoản thử nghiệm"
+  },
+  {
+   "t": "p",
+   "text": "Ví dụ này chỉ thực hiện trên máy ảo hoặc máy thực hành được phép quản trị. Tên tài khoản cần tuân theo quy định của hệ thống.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "code",
+   "text": "sudo adduser svthuchanh\nid svthuchanh",
+   "title": ""
+  },
+  {
+   "t": "p",
+   "text": "Dòng đầu khởi động quy trình tạo tài khoản và yêu cầu nhập những thông tin cần thiết. Dòng thứ hai kiểm tra UID, GID và nhóm của tài khoản vừa tạo. Không ghi mật khẩu vào báo cáo, ảnh chụp hoặc tệp kết quả.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "h4",
+   "text": "Ví dụ minh họa: cập nhật danh mục và cài một gói nhỏ"
+  },
+  {
+   "t": "p",
+   "text": "Trên máy thực hành có kết nối tới kho phần mềm, có thể cập nhật danh mục gói, cài công cụ tree và kiểm tra vị trí chương trình như sau:",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "code",
+   "text": "sudo apt update\nsudo apt install tree\ncommand -v tree",
+   "title": ""
+  },
+  {
+   "t": "p",
+   "text": "Hai dòng đầu cần quyền quản trị vì chúng thay đổi dữ liệu quản lý gói của hệ thống. Dòng cuối chỉ tra cứu vị trí chương trình nên không cần sudo. Nếu việc cài đặt thất bại, cần đọc thông báo về kết nối, kho phần mềm hoặc tên gói trước khi chạy lại.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "h4",
+   "text": "Phân biệt đổi quyền với đổi chủ và đổi nhóm"
+  },
+  {
+   "t": "p",
+   "text": "Quyền truy cập, chủ sở hữu và nhóm sở hữu là ba loại thuộc tính khác nhau. chmod thay các quyền r, w, x. chown thay chủ sở hữu và có thể thay cả nhóm. chgrp chỉ thay nhóm sở hữu. Một thao tác không tự động thay các thuộc tính thuộc loại còn lại.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "table",
+   "caption": "Lệnh đổi quyền, chủ sở hữu và nhóm [@coreutils,@ubman_id]",
+   "header": [
+    "Cú pháp",
+    "Lệnh con, tùy chọn thường gặp",
+    "Công dụng"
+   ],
+   "rows": [
+    [
+     "`chmod [TÙY_CHỌN] CHẾ_ĐỘ ĐƯỜNG_DẪN...`",
+     "-R, -v, -c, --reference\nĐối số: Chế độ quyền và đường dẫn",
+     "Thay đổi quyền truy cập của tệp và thư mục."
+    ],
+    [
+     "`chown [TÙY_CHỌN] CHỦ[:NHÓM] ĐƯỜNG_DẪN...`",
+     "-R, -v, -c, --reference\nĐối số: Chủ mới, nhóm mới và đường dẫn",
+     "Thay đổi chủ sở hữu và, khi được chỉ định, nhóm sở hữu."
+    ],
+    [
+     "`chgrp [TÙY_CHỌN] NHÓM ĐƯỜNG_DẪN...`",
+     "-R, -v, -c, --reference\nĐối số: Nhóm mới và đường dẫn",
+     "Thay đổi nhóm sở hữu của tệp hoặc thư mục."
+    ],
+    [
+     "`stat [TÙY_CHỌN] ĐƯỜNG_DẪN...`",
+     "-c, -f, -L, -t\nĐối số: Chuỗi định dạng hoặc đường dẫn",
+     "Xem các thuộc tính chi tiết để đối chiếu sau thay đổi."
+    ]
+   ],
+   "widths": [
+    5.4,
+    5.6,
+    5.0
+   ],
+   "font": 11,
+   "firstBold": false,
+   "center": []
+  },
+  {
+   "t": "p",
+   "text": "Các thao tác đổi chủ thường cần quyền quản trị. Tùy chọn đệ quy tác động đến toàn bộ cây bên dưới thư mục; do đó cần kiểm tra đúng đường dẫn, chủ mới và nhóm mới trước khi thực hiện.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "h4",
+   "text": "Đọc thông báo lỗi và tìm nguyên nhân"
+  },
+  {
+   "t": "p",
+   "text": "Khi không mở, sửa hoặc thay quyền được một tệp, thông báo lỗi là thông tin giúp xác định điều cần kiểm tra. Bảng dưới tách nguyên nhân thường gặp theo từng loại thông báo.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "table",
+   "caption": "Thông báo lỗi thường gặp khi thao tác với tệp và quyền",
+   "header": [
+    "Thông báo thường gặp",
+    "Cách hiểu",
+    "Điều cần kiểm tra"
+   ],
+   "rows": [
+    [
+     "Permission denied",
+     "Một thao tác truy cập không được phép",
+     "Danh tính người chạy, quyền tệp và quyền đi qua các thư mục cha"
+    ],
+    [
+     "Operation not permitted",
+     "Người chạy hoặc cơ chế bảo vệ không cho phép thay đổi được yêu cầu",
+     "Có phải chủ tệp hay không; có quyền quản trị cần thiết hay không; đối tượng có bị bảo vệ bổ sung hay không"
+    ],
+    [
+     "No such file or directory",
+     "Không tìm thấy đối tượng theo đường dẫn đã nêu",
+     "Tên, chữ hoa/chữ thường, vị trí hiện tại và các thành phần đường dẫn"
+    ],
+    [
+     "Read-only file system",
+     "Hệ thống tệp đang được gắn ở chế độ chỉ đọc",
+     "Chế độ của ổ hoặc phân vùng; thay quyền không làm nó trở thành nơi có thể ghi"
+    ],
+    [
+     "invalid mode",
+     "Cách viết quyền không hợp lệ",
+     "Với ba chữ số quyền cơ bản, mỗi chữ số chỉ từ 0 đến 7; kiểm tra cả cú pháp ký hiệu"
+    ],
+    [
+     "group ... does not exist / invalid group",
+     "Nhóm được nêu chưa có hoặc tên bị sai",
+     "Tên nhóm thực tế trên máy"
+    ],
+    [
+     "user ... already exists",
+     "Tên tài khoản đã được sử dụng",
+     "Danh sách tài khoản và tên định tạo"
+    ]
+   ],
+   "widths": [
+    4.2,
+    5.4,
+    6.4
+   ],
+   "font": 11.5,
+   "firstBold": true,
+   "center": []
+  },
+  {
+   "t": "p",
+   "text": "Chẳng hạn, nếu chủ tệp không có quyền ghi thì yêu cầu ghi thêm bằng Terminal có thể bị từ chối. Nếu tệp cho phép đọc mà vẫn không mở được thì cần kiểm tra các thư mục cha. Nếu đang thao tác trên một ổ chỉ đọc thì cấp thêm quyền ghi cho tài khoản không giải quyết được việc ghi lên ổ.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Các lệnh sau thu thập những thông tin cơ bản cho tình huống tệp ghi chú. Chúng chỉ xem thông tin, không sửa quyền.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "code",
+   "text": "whoami\nid\nls -ld /home /home/lan /home/lan/tai-lieu\nls -l /home/lan/tai-lieu/ghi-chu.txt\nstat -c '%a %n' /home/lan/tai-lieu/ghi-chu.txt",
+   "title": ""
+  },
+  {
+   "t": "p",
+   "text": "Từ kết quả, trước hết xác định tài khoản đang truy cập là chủ, thành viên nhóm hay người khác. Tiếp theo xác định thao tác cần quyền đọc, ghi hay đi qua. Cuối cùng đối chiếu quyền đó trên tệp và các thư mục liên quan. Cách đọc này giúp chọn đúng thay đổi cần thực hiện.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "callout",
+   "kind": "nho",
+   "title": "Tóm lại về quyền truy cập",
+   "texts": [
+    "**Tóm lại, một bộ ba chữ số quyền được tạo bằng cách tính ba lần: một lần cho chủ sở hữu, một lần cho nhóm sở hữu và một lần cho những người khác.** Trong mỗi lần tính, cộng 4 nếu được đọc, cộng 2 nếu được ghi, cộng 1 nếu được thực thi hoặc đi qua. Ghi ba kết quả cạnh nhau đúng thứ tự sẽ có cách biểu diễn quyền bằng số. Muốn chọn quyền phù hợp, phải bắt đầu từ người cần truy cập và thao tác cần thực hiện."
+   ]
+  },
+  {
+   "t": "h2",
+   "text": "2.3. Phần mềm mã nguồn mở"
+  },
+  {
+   "t": "h3",
+   "text": "2.3.1. LibreOffice và các ứng dụng văn phòng"
+  },
+  {
+   "t": "p",
+   "text": "Một báo cáo thường chứa nhiều loại nội dung: lời giải thích, số liệu và hình minh họa. LibreOffice có những ứng dụng khác nhau cho từng loại công việc. Writer giúp soạn và bố trí văn bản; Calc lưu số liệu trong bảng và tính toán bằng công thức; Impress dùng để trình bày ý chính trên các trang chiếu. Chẳng hạn, số liệu của một cuộc khảo sát có thể được tính trong Calc, giải thích trong Writer và tóm lược bằng Impress. Việc chọn đúng ứng dụng giúp tài liệu dễ sửa hơn về sau [@lodocs].",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "figure",
+   "src": "assets/img/chuong2-hinh6.jpg",
+   "caption": "Minh họa không gian làm việc của LibreOffice Writer",
+   "width": 14.5
+  },
+  {
+   "t": "p",
+   "text": "Trong Writer, hình thức của một đoạn văn nên đi cùng vai trò của đoạn ấy. Tiêu đề chương, tiêu đề mục, đoạn thường và chú thích hình có vai trò khác nhau. Kiểu định dạng (style) ghi lại những vai trò đó. Khi một mục được gán kiểu tiêu đề, Writer biết mục ấy thuộc cấu trúc tài liệu và có thể đưa nó vào mục lục. Nếu chỉ làm cho dòng chữ to và đậm bằng tay, người đọc có thể thấy nó giống tiêu đề, nhưng phần mềm không nhận ra quan hệ giữa các mục.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Với bảng số liệu, Calc có ưu điểm là tính lại kết quả khi dữ liệu đầu vào thay đổi. Giả sử một bảng có số lượng và đơn giá. Nếu cột thành tiền chứa công thức, việc sửa số lượng sẽ tự làm kết quả thay đổi theo. Nếu thành tiền được gõ bằng tay, người sửa bảng phải nhớ tính lại từng ô. Dù dùng công cụ nào, một bảng chỉ có ích khi tên cột, đơn vị và nguồn số liệu được ghi rõ.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Có thể chọn ứng dụng theo nhu cầu: soạn và sửa báo cáo bằng Writer (tệp gốc `.odt`), tính toán và lập bảng bằng Calc (`.ods`), trình bày nội dung bằng Impress (`.odp`), còn khi cần gửi bản để đọc hoặc in thì xuất PDF (`.pdf`).",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Tệp gốc giữ các thành phần để tiếp tục chỉnh sửa. PDF thích hợp khi cần gửi một bản có bố cục ổn định để đọc hoặc in. Tuy nhiên, cùng một tài liệu có thể trông hơi khác trên những máy thiếu phông chữ hoặc dùng phần mềm khác. Vì vậy, trước khi phát hành, cần mở bản PDF để xem lại dấu tiếng Việt, vị trí hình, bảng và ngắt trang. Tệp gốc và bản PDF phục vụ hai mục đích khác nhau; giữ cả hai giúp việc sửa và đối chiếu thuận tiện hơn.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "callout",
+   "kind": "luuy",
+   "title": "",
+   "texts": [
+    "**Phần mềm mã nguồn mở không làm cho mọi nội dung được tạo bằng nó trở thành nội dung tự do sử dụng.** Một bức ảnh, bộ số liệu hoặc đoạn văn lấy từ nguồn khác vẫn phải được ghi nguồn và dùng đúng điều kiện cho phép."
+   ]
+  },
+  {
+   "t": "h3",
+   "text": "2.3.2. Firefox, VLC và các ứng dụng Internet – đa phương tiện"
+  },
+  {
+   "t": "p",
+   "text": "Firefox là trình duyệt Web. Khi người dùng nhập một địa chỉ, trình duyệt tìm máy chủ theo tên miền, gửi yêu cầu rồi hiển thị nội dung nhận được. Một địa chỉ Web có ba phần thường gặp: giao thức cho biết cách kết nối, tên miền chỉ máy chủ và đường dẫn chỉ nội dung cần mở. Ví dụ dưới tách ba phần để người đọc dễ nhận ra chúng [@ff].",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "figure",
+   "src": "assets/img/chuong2-hinh7.jpg",
+   "caption": "Minh họa cửa sổ trình duyệt Firefox",
+   "width": 14.5
+  },
+  {
+   "t": "code",
+   "text": "Giao thức:  https\nTên miền:   example.org\nĐường dẫn:  /huong-dan\nĐịa chỉ:    https://example.org/huong-dan",
+   "title": ""
+  },
+  {
+   "t": "p",
+   "text": "Biểu tượng ổ khóa trên trình duyệt cho biết kết nối đang được mã hóa. Nó không chứng minh rằng thông tin trên trang là đúng hoặc tệp tải về là an toàn. Muốn đánh giá một hướng dẫn phần mềm, cần xem ai phát hành, tài liệu dành cho phiên bản nào và được cập nhật khi nào. Một tên miền gần giống tên của dự án chính thức vẫn có thể dẫn tới trang khác.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "VLC phục vụ công việc nghe và xem tệp đa phương tiện. Một tệp video không chỉ chứa hình ảnh. Nó có thể chứa cả tiếng, phụ đề và thông tin về cách nén từng phần. Phần đuôi của tên tệp chỉ gợi ý loại tệp; nó không mô tả hết nội dung bên trong. Vì vậy, khi video có hình mà không có tiếng, nguyên nhân có thể là luồng tiếng, thiết bị phát âm thanh hoặc cách phần mềm giải mã. Kết luận “tệp hỏng” chỉ nên đưa ra sau khi đã kiểm tra những khả năng ấy [@vlc].",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "figure",
+   "src": "assets/img/chuong2-hinh8.jpg",
+   "caption": "Minh họa cửa sổ phát nội dung của VLC",
+   "width": 14.5
+  },
+  {
+   "t": "p",
+   "text": "Trình duyệt giúp tìm và đọc nguồn; VLC giúp kiểm tra tư liệu nghe nhìn. Cả hai đều liên quan đến việc sử dụng thông tin từ người khác. Một nội dung có thể xem hoặc tải được trên Internet nhưng vẫn có điều kiện về sao chép, chỉnh sửa và công bố. Ghi rõ nguồn và kiểm tra quyền sử dụng là một phần của việc tạo tài liệu đáng tin cậy.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "h3",
+   "text": "2.3.3. GIMP, Inkscape và các công cụ đồ họa"
+  },
+  {
+   "t": "p",
+   "text": "Ảnh chụp và sơ đồ có thể cùng xuất hiện trên một trang sách, nhưng chúng được tạo theo hai cách khác nhau. Ảnh chụp là ảnh điểm ảnh: hình được ghép từ rất nhiều điểm màu. Khi phóng quá lớn, các điểm có thể lộ ra và đường viền kém sắc. GIMP phù hợp để cắt ảnh, điều chỉnh màu, che thông tin cần giữ riêng hoặc sửa một vùng trên ảnh [@gimp].",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "figure",
+   "src": "assets/img/chuong2-hinh9.jpg",
+   "caption": "Minh họa không gian chỉnh sửa ảnh của GIMP",
+   "width": 14.5
+  },
+  {
+   "t": "p",
+   "text": "Một sơ đồ gồm hộp, đường nối và chữ có thể được lưu thành ảnh vector. Phần mềm ghi lại các hình và đường ấy như những đối tượng có thể sửa. Nhờ vậy, khi phóng to sơ đồ, đường nét vẫn rõ. Inkscape phù hợp để vẽ biểu tượng và sơ đồ, nhất là khi tên hộp hoặc vị trí mũi tên còn cần thay đổi [@inkscape].",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "figure",
+   "src": "assets/img/chuong2-hinh10.jpg",
+   "caption": "Minh họa không gian thiết kế vector của Inkscape",
+   "width": 14.5
+  },
+  {
+   "t": "p",
+   "text": "Việc cắt, chỉnh ảnh chụp dùng GIMP (bản gốc `.xcf`, bản xuất `.png`); việc vẽ biểu tượng, sơ đồ dùng Inkscape (bản gốc `.svg`, bản xuất `.png`).",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Hai công cụ trên gợi ý một thói quen quan trọng: giữ bản gốc có thể sửa, rồi xuất một bản phù hợp để đưa vào tài liệu. Bản xuất không thay thế bản gốc. Với hình có nguồn bên ngoài, chú thích cần cho biết hình thể hiện điều gì và nguồn của hình. Nếu tác giả tự vẽ lại một sơ đồ dựa trên tài liệu tham khảo, nguồn của ý tưởng vẫn cần được ghi nhận. Tất cả ứng dụng trong mục này đều là phần mềm mã nguồn mở, và cũng như đã nhấn mạnh ở Chương 1, người dùng nên đọc giấy phép của từng ứng dụng trước khi phân phối lại hoặc đưa vào sản phẩm thương mại.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "h2",
+   "text": "Thuật ngữ trọng tâm"
+  },
+  {
+   "t": "p",
+   "text": "Bảng dưới tập hợp các thuật ngữ dễ nhầm lẫn. “Linux” có thể chỉ nhân hoặc một hệ điều hành hoàn chỉnh tùy ngữ cảnh; tên bản phân phối và phiên bản nhân giúp mô tả chính xác hai lớp khác nhau.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "table",
+   "caption": "Thuật ngữ trọng tâm của chương",
+   "header": [
+    "Thuật ngữ",
+    "Ý nghĩa ngắn",
+    "Ví dụ hoặc dấu hiệu nhận biết"
+   ],
+   "rows": [
+    [
+     "Nhân Linux",
+     "Lớp quản lý tài nguyên và cung cấp dịch vụ hệ thống",
+     "Xem phiên bản bằng uname -r"
+    ],
+    [
+     "Bản phân phối",
+     "Hệ hoàn chỉnh đã được đóng gói",
+     "Ubuntu, Debian, Fedora"
+    ],
+    [
+     "Terminal",
+     "Cửa sổ tương tác với shell",
+     "Gõ lệnh và đọc đầu ra"
+    ],
+    [
+     "Shell",
+     "Chương trình diễn giải lệnh",
+     "Bash"
+    ],
+    [
+     "Đường dẫn tuyệt đối",
+     "Bắt đầu từ gốc /",
+     "/home/lan/lab2"
+    ],
+    [
+     "Đường dẫn tương đối",
+     "Được hiểu từ thư mục hiện tại",
+     "../dulieu/mau.txt"
+    ],
+    [
+     "Thư mục nhà",
+     "Vùng tệp của một tài khoản",
+     "~, thường dưới /home"
+    ],
+    [
+     "Chủ sở hữu",
+     "Tài khoản sở hữu tệp",
+     "Cột user trong ls -l"
+    ],
+    [
+     "Nhóm",
+     "Tập tài khoản dùng quyền nhóm",
+     "Xem bằng id hoặc groups"
+    ],
+    [
+     "Quyền đọc r",
+     "Cho đọc tệp hoặc liệt kê tên trong thư mục",
+     "Giá trị số 4"
+    ],
+    [
+     "Quyền ghi w",
+     "Cho sửa tệp hoặc thay mục trong thư mục",
+     "Giá trị số 2"
+    ],
+    [
+     "Quyền chạy x",
+     "Cho chạy tệp hoặc đi qua thư mục",
+     "Giá trị số 1"
+    ],
+    [
+     "Gói phần mềm",
+     "Đơn vị cài đặt do hệ quản lý gói theo dõi",
+     "apt show vlc"
+    ],
+    [
+     "Raster",
+     "Hình biểu diễn bằng điểm ảnh",
+     "Ảnh chụp, PNG"
+    ],
+    [
+     "Vector",
+     "Hình mô tả bằng đối tượng và đường nét",
+     "SVG tạo trong Inkscape"
+    ]
+   ],
+   "widths": [
+    4.2,
+    5.4,
+    6.4
+   ],
+   "font": 11.5,
+   "firstBold": true,
+   "center": []
+  },
+  {
+   "t": "callout",
+   "kind": "nho",
+   "title": "Ghi bằng chứng khi báo sự cố",
+   "texts": [
+    "**Một báo cáo sự cố có giá trị ghi câu lệnh, thư mục hiện tại, thông báo lỗi và kết quả của một phép kiểm tra.** Mô tả “máy không chạy” quá chung; báo cáo chỉ rõ tên tệp gõ sai chữ hoa sẽ giúp xác định nguyên nhân nhanh hơn. Cách ghi bằng chứng này tiếp tục có ích khi xử lý lỗi Git, Web và container ở Chương 3."
+   ]
+  },
+  {
+   "t": "h2",
+   "text": "Kết luận chương",
+   "band": true
+  },
+  {
+   "t": "p",
+   "text": "Linux theo nghĩa hẹp là nhân của hệ điều hành, còn bản phân phối như Debian, Ubuntu, Fedora kết hợp nhân với công cụ, thư viện và kho phần mềm để tạo thành hệ thống có thể cài đặt và sử dụng; vì vậy khi gặp vấn đề cần xác định đúng lớp nào đang gây lỗi. Mọi tệp nằm trong một cây thư mục duy nhất và được xác định bằng đường dẫn tuyệt đối hoặc tương đối, trong khi dòng lệnh cho phép diễn đạt thao tác một cách rõ ràng, lặp lại được nhưng đòi hỏi đọc kỹ đầu vào, tác động và kết quả của từng lệnh, nhất là các lệnh xóa hay đổi quyền. Quyền truy cập, tính theo ba đối tượng chủ, nhóm, người khác với các giá trị 4, 2, 1, xác định ai được đọc, sửa hoặc chạy tệp, và việc đặt quyền phải xuất phát từ nhu cầu thực tế thay vì cấp quyền rộng cho tiện. Cuối cùng, các ứng dụng mã nguồn mở như LibreOffice, Firefox, VLC, GIMP, Inkscape được chọn theo loại công việc và loại dữ liệu, kèm trách nhiệm ghi nguồn và tuân thủ giấy phép. Với nền tảng đó, chương tiếp theo chuyển sang các công nghệ mã nguồn mở dùng để phát triển và vận hành phần mềm, bắt đầu từ quản lý phiên bản bằng Git và các nền tảng cộng tác GitHub, GitLab, rồi mở rộng sang máy chủ Web, cơ sở dữ liệu, container và điện toán đám mây.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "h2",
+   "text": "Câu hỏi ôn tập",
+   "band": true
+  },
+  {
+   "t": "h3",
+   "text": "A. Nhận biết và hiểu"
+  },
+  {
+   "t": "list",
+   "ordered": true,
+   "items": [
+    "Trình bày sự khác nhau giữa nhân Linux và bản phân phối Linux. Vì sao hai bản phân phối có thể dùng chung một nhân nhưng trải nghiệm quản lý phần mềm khác nhau?",
+    "So sánh đường dẫn tuyệt đối và đường dẫn tương đối; nêu ý nghĩa của các ký hiệu `/`, `~`, `.`, `..`.",
+    "Giải thích ý nghĩa quyền `r`, `w`, `x` đối với tệp và đối với thư mục. Phân tích quyền `-rw-r-----` của một tệp báo cáo nhóm.",
+    "Phân biệt toán tử `>` với `>>` và nêu công dụng của đường ống `|` trong dòng lệnh.",
+    "Phân biệt ảnh điểm ảnh (raster) với ảnh vector; nêu công cụ mã nguồn mở phù hợp và định dạng lưu bản gốc cho từng loại."
+   ]
+  },
+  {
+   "t": "h3",
+   "text": "B. Vận dụng và phân tích"
+  },
+  {
+   "t": "list",
+   "ordered": true,
+   "items": [
+    "Cho một ví dụ trong đó dùng đường dẫn tương đối dẫn đến sao chép nhầm tệp, rồi nêu cách kiểm tra trước khi thực hiện.",
+    "Cần chia sẻ một thư mục tài liệu cho nhóm đọc nhưng không cho người ngoài truy cập; hãy đề xuất quyền và các lệnh tạo nhóm, đổi nhóm sở hữu, đặt quyền.",
+    "Viết câu lệnh đếm số dòng chứa từ “linux” (không phân biệt chữ hoa, chữ thường) trong một tệp rồi ghi kết quả vào tệp khác; giải thích từng thành phần.",
+    "Mô tả một quy trình từ thu thập tư liệu, soạn báo cáo đến xuất bản PDF bằng Firefox và LibreOffice; nêu hai bước kiểm tra chất lượng.",
+    "Một nhóm cần thiết kế logo phóng to được và xử lý ảnh chụp cho poster. Hãy chọn Inkscape hoặc GIMP cho từng việc, giải thích và nêu định dạng lưu bản gốc."
+   ]
+  },
+  {
+   "t": "h3",
+   "text": "C. Tình huống thảo luận"
+  },
+  {
+   "t": "list",
+   "ordered": true,
+   "items": [
+    "Một sinh viên chạy `chmod -R 777` trên thư mục dự án để khắc phục lỗi “Permission denied”. Phân tích rủi ro và đề xuất cách xử lý đúng.",
+    "Một tệp có quyền đọc cho nhóm nhưng thành viên nhóm vẫn không mở được. Hãy nêu các bước kiểm tra theo thứ tự, kể cả quyền của các thư mục cha."
+   ]
+  },
+  {
+   "t": "h2",
+   "text": "Bài thực hành",
+   "band": true
+  },
+  {
+   "t": "p",
+   "text": "Các bài thực hiện trên Ubuntu Desktop bằng tài khoản của sinh viên. Chỉ tạo, sửa và xóa dữ liệu trong thư mục cá nhân hoặc máy ảo được cấp. Với mỗi bài, nộp kết quả đúng theo dòng “Sản phẩm cần nộp”; các yêu cầu đánh số là nội dung thực hành, không phải trình tự lệnh mẫu.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "h3",
+   "text": "Lab 2.1. Nhận diện hệ thống và tài khoản đang sử dụng"
+  },
+  {
+   "t": "list",
+   "ordered": true,
+   "items": [
+    "Ghi tên và phiên bản bản phân phối Linux đang chạy.",
+    "Ghi phiên bản nhân Linux và kiến trúc máy.",
+    "Xác định tên máy và tên tài khoản đang đăng nhập.",
+    "Xác định mã người dùng, mã nhóm chính và các nhóm mà tài khoản thuộc về.",
+    "Xác định đường dẫn thư mục nhà và thư mục làm việc hiện tại.",
+    "Ghi ngày, giờ và múi giờ hệ thống.",
+    "Mở trang thông tin hệ thống trên giao diện đồ họa; đối chiếu tên bản phân phối với kết quả trong Terminal.",
+    "Tạo thư mục lab2 trong thư mục nhà.",
+    "Kiểm tra thư mục lab2 bằng cả trình quản lý tệp và Terminal.",
+    "Ghi hai thông tin khác nhau để chứng minh bản phân phối Linux và nhân Linux không phải cùng một khái niệm."
+   ]
+  },
+  {
+   "t": "p",
+   "text": "**Sản phẩm cần nộp:** Bảng thông tin hệ thống gồm mười nội dung trên và một ảnh chụp thể hiện cửa sổ Terminal cùng giao diện Desktop.",
+   "indent": false,
+   "left": false
+  },
+  {
+   "t": "h3",
+   "text": "Lab 2.2. Làm việc với cửa sổ quản lý tệp"
+  },
+  {
+   "t": "list",
+   "ordered": true,
+   "items": [
+    "Mở trình quản lý tệp và xác định thư mục nhà của tài khoản.",
+    "Chuyển giữa chế độ biểu tượng và chế độ danh sách; ghi điểm khác nhau về thông tin hiển thị.",
+    "Mở lần lượt các thư mục Documents, Downloads và lab2; ghi đường dẫn của từng thư mục.",
+    "Bật chế độ hiển thị tệp ẩn; ghi tên một mục bắt đầu bằng dấu chấm trong thư mục nhà.",
+    "Tạo trong lab2 một thư mục có tên giao-dien và một tệp văn bản chứa hai câu về môn học.",
+    "Sao chép tệp văn bản sang một thư mục khác trong lab2; xác định số bản đang có.",
+    "Đổi tên bản sao và kiểm tra nội dung của cả hai bản.",
+    "Chuyển bản sao vào Thùng rác, sau đó khôi phục về vị trí cũ.",
+    "Mở thư mục /etc và /var ở chế độ xem; ghi tên hai thư mục con quan sát được.",
+    "Tìm tệp đã tạo bằng thanh tìm kiếm của trình quản lý tệp."
+   ]
+  },
+  {
+   "t": "p",
+   "text": "**Sản phẩm cần nộp:** Ảnh chụp thư mục lab2 ở chế độ danh sách, bảng đường dẫn của ba thư mục và hai câu phân biệt sao chép với di chuyển.",
+   "indent": false,
+   "left": false
+  },
+  {
+   "t": "h3",
+   "text": "Lab 2.3. Điều hướng thư mục bằng Terminal"
+  },
+  {
+   "t": "list",
+   "ordered": true,
+   "items": [
+    "Xác định thư mục làm việc ngay sau khi mở Terminal.",
+    "Chuyển đến thư mục gốc và liệt kê các thư mục nằm trực tiếp dưới gốc.",
+    "Chuyển về thư mục nhà bằng cách viết ngắn dành cho thư mục nhà.",
+    "Chuyển vào lab2 bằng đường dẫn tuyệt đối; ghi lại thư mục làm việc.",
+    "Quay về thư mục nhà rồi vào lab2 bằng đường dẫn tương đối; đối chiếu kết quả với yêu cầu 4.",
+    "Từ lab2, chuyển lên thư mục cha và xác định vị trí mới.",
+    "Liệt kê nội dung lab2 theo dạng ngắn, dạng chi tiết và dạng có tệp ẩn.",
+    "Thử chuyển vào một thư mục không tồn tại; chép nguyên văn thông báo lỗi.",
+    "Dùng đường dẫn đúng để quay lại lab2 sau lỗi ở yêu cầu 8.",
+    "Vẽ cây thư mục ngắn thể hiện gốc, home, thư mục nhà và lab2."
+   ]
+  },
+  {
+   "t": "p",
+   "text": "**Sản phẩm cần nộp:** Bảng các vị trí đã đi qua, một đường dẫn tuyệt đối, một đường dẫn tương đối, thông báo lỗi và cây thư mục.",
+   "indent": false,
+   "left": false
+  },
+  {
+   "t": "h3",
+   "text": "Lab 2.4. Tạo và tổ chức thư mục, tệp"
+  },
+  {
+   "t": "list",
+   "ordered": true,
+   "items": [
+    "Trong lab2, tạo bốn thư mục con: dulieu, baocao, hinhanh và luu-tru.",
+    "Trong dulieu, tạo hai tệp văn bản: sach.txt và tac-gia.txt.",
+    "Ghi ít nhất năm tên sách vào sach.txt, mỗi tên trên một dòng.",
+    "Ghi ít nhất ba tên tác giả vào tac-gia.txt, mỗi tên trên một dòng.",
+    "Trong baocao, tạo một tệp văn bản ghi tên môn học và ngày thực hành.",
+    "Tạo thêm một tệp rỗng trong luu-tru; xác nhận dung lượng ban đầu của tệp.",
+    "Liệt kê toàn bộ thư mục và tệp vừa tạo từ vị trí lab2.",
+    "Đếm số tệp văn bản trong cây lab2.",
+    "Kiểm tra dung lượng của từng tệp và giải thích vì sao tệp rỗng khác tệp đã ghi nội dung.",
+    "Mở cây thư mục bằng giao diện đồ họa và đối chiếu với kết quả Terminal."
+   ]
+  },
+  {
+   "t": "p",
+   "text": "**Sản phẩm cần nộp:** Cây thư mục lab2, danh sách tệp kèm dung lượng và ảnh chụp kết quả liệt kê trong Terminal.",
+   "indent": false,
+   "left": false
+  },
+  {
+   "t": "h3",
+   "text": "Lab 2.5. Sao chép, di chuyển, đổi tên và xóa tệp"
+  },
+  {
+   "t": "list",
+   "ordered": true,
+   "items": [
+    "Tạo một bản sao của sach.txt trong thư mục baocao.",
+    "Đổi tên bản sao thành danh-sach-sach.txt.",
+    "So sánh nội dung tệp gốc với bản sao sau khi đổi tên.",
+    "Di chuyển tac-gia.txt từ dulieu sang luu-tru.",
+    "Kiểm tra vị trí mới của tac-gia.txt và xác nhận vị trí cũ không còn tệp đó.",
+    "Tạo một thư mục con trong luu-tru rồi sao chép tệp danh-sach-sach.txt vào đó.",
+    "Tìm tất cả tệp có phần mở rộng .txt trong lab2.",
+    "Tìm tệp có tên chứa từ “sach” trong lab2.",
+    "Xóa riêng bản sao đặt trong thư mục con của luu-tru; kiểm tra tệp gốc vẫn tồn tại.",
+    "Thử sao chép một tệp không tồn tại; ghi thông báo lỗi và xác định tên tệp đã nhập sai."
+   ]
+  },
+  {
+   "t": "p",
+   "text": "**Sản phẩm cần nộp:** Bảng “tệp nguồn – thao tác – vị trí sau thao tác”, kết quả tìm tệp và thông báo lỗi ở yêu cầu 10.",
+   "indent": false,
+   "left": false
+  },
+  {
+   "t": "h3",
+   "text": "Lab 2.6. Đọc, tìm kiếm và ghi kết quả ra tệp"
+  },
+  {
+   "t": "list",
+   "ordered": true,
+   "items": [
+    "Hiển thị toàn bộ nội dung sach.txt trong Terminal.",
+    "Xem nội dung sach.txt theo từng màn hình rồi thoát về dấu nhắc lệnh.",
+    "Hiển thị hai dòng đầu và hai dòng cuối của sach.txt.",
+    "Đếm số dòng, số từ và số ký tự của sach.txt.",
+    "Tìm một tên sách có trong tệp và ghi số dòng xuất hiện.",
+    "Tìm cùng tên sách nhưng thay đổi chữ hoa hoặc chữ thường; ghi nhận sự khác nhau của kết quả.",
+    "Tìm một từ không có trong tệp; ghi trạng thái đầu ra quan sát được.",
+    "Ghi danh sách tên tệp của thư mục baocao vào một tệp mới trong lab2.",
+    "Nối thêm một dòng ghi ngày thực hành vào cuối tệp kết quả vừa tạo.",
+    "Ghi đè tệp kết quả bằng một danh sách mới và xác định dòng được nối thêm còn hay mất.",
+    "Chỉ ra hai tệp trong lab2 có nội dung giống nhau bằng một phép so sánh tệp."
+   ]
+  },
+  {
+   "t": "p",
+   "text": "**Sản phẩm cần nộp:** Tệp kết quả, bảng số đếm, ba kết quả tìm kiếm và một câu phân biệt ghi đè với nối thêm.",
+   "indent": false,
+   "left": false
+  },
+  {
+   "t": "h3",
+   "text": "Lab 2.7. Xem và thay đổi quyền truy cập"
+  },
+  {
+   "t": "list",
+   "ordered": true,
+   "items": [
+    "Ghi chủ sở hữu, nhóm sở hữu và chuỗi quyền của sach.txt.",
+    "Ghi quyền của thư mục dulieu và so sánh cách hiểu quyền đối với thư mục và đối với tệp.",
+    "Thiết lập cho một tệp trong baocao quyền đọc và ghi của chủ, quyền chỉ đọc của nhóm, không cấp quyền cho người khác.",
+    "Kiểm tra chuỗi quyền sau thay đổi và viết dạng số tương ứng.",
+    "Bỏ quyền ghi của chủ trên một tệp thử nghiệm; thử ghi thêm một dòng vào tệp đó bằng Terminal.",
+    "Khôi phục quyền ghi của chủ; lưu lại nội dung và xác nhận kết quả.",
+    "Tạo một tệp kịch bản chỉ in ra dòng chữ “Xin chào Linux”.",
+    "Thử chạy tệp kịch bản trước khi cấp quyền thực thi; ghi thông báo nhận được.",
+    "Cấp quyền thực thi cho chủ và chạy lại tệp kịch bản.",
+    "Ghi hai tình huống khác nhau có thể dẫn tới thông báo từ chối quyền."
+   ]
+  },
+  {
+   "t": "p",
+   "text": "**Sản phẩm cần nộp:** Bảng quyền trước và sau, tệp kịch bản và ảnh chụp hai lần chạy ở yêu cầu 8–9.",
+   "indent": false,
+   "left": false
+  },
+  {
+   "t": "h3",
+   "text": "Lab 2.8. Người dùng, nhóm và quản lý gói"
+  },
+  {
+   "t": "list",
+   "ordered": true,
+   "items": [
+    "Ghi tên tài khoản hiện tại, mã người dùng và các nhóm của tài khoản.",
+    "Xác định tài khoản có được phép dùng quyền quản trị trên máy ảo hay không.",
+    "Trên máy ảo riêng, tạo một tài khoản thử nghiệm có tên do giảng viên quy định.",
+    "Xác định thư mục nhà và nhóm chính của tài khoản thử nghiệm.",
+    "So sánh chủ sở hữu một tệp của tài khoản ban đầu với chủ sở hữu tệp do tài khoản mới tạo.",
+    "Kiểm tra LibreOffice, Firefox và VLC đã có trên máy hay chưa.",
+    "Tra cứu mô tả và phiên bản của một gói phần mềm chưa cài hoặc đang cài.",
+    "Cập nhật danh mục gói trên máy ảo; ghi thời điểm thực hiện.",
+    "Cài một gói nhỏ do giảng viên chỉ định và xác nhận chương trình có thể chạy.",
+    "Ghi tên gói, phiên bản và vị trí chương trình sau cài đặt."
+   ]
+  },
+  {
+   "t": "p",
+   "text": "**Sản phẩm cần nộp:** Bảng thông tin hai tài khoản, bảng trạng thái ba ứng dụng và bằng chứng gói được cài. Không ghi mật khẩu vào sản phẩm nộp.",
+   "indent": false,
+   "left": false
+  },
+  {
+   "t": "h3",
+   "text": "Lab 2.9. Soạn thảo và trình bày bằng LibreOffice"
+  },
+  {
+   "t": "list",
+   "ordered": true,
+   "items": [
+    "Tạo trong Writer một báo cáo hai trang về những thao tác Linux đã thực hiện.",
+    "Đặt tiêu đề báo cáo và ít nhất ba tiêu đề mục bằng kiểu định dạng thích hợp.",
+    "Viết một đoạn giới thiệu ngắn về bản phân phối và tài khoản thực hành.",
+    "Tạo bảng ba cột gồm tên thao tác, mục đích và kết quả quan sát; điền ít nhất năm hàng.",
+    "Chèn một ảnh chụp màn hình do chính sinh viên tạo và thêm chú thích hình.",
+    "Tạo số trang ở chân trang và kiểm tra thứ tự trang.",
+    "Dùng Calc lập bảng số lượng tệp theo bốn thư mục con của lab2; tính tổng bằng công thức.",
+    "Tạo trong Impress hai trang chiếu tóm tắt cây thư mục và một kết quả thực hành.",
+    "Lưu tệp gốc của cả ba ứng dụng theo định dạng tương ứng.",
+    "Xuất báo cáo Writer thành PDF và mở lại để kiểm tra dấu tiếng Việt, bảng, ảnh và số trang."
+   ]
+  },
+  {
+   "t": "p",
+   "text": "**Sản phẩm cần nộp:** Tệp Writer, Calc, Impress và PDF; ảnh chụp một trang báo cáo cùng bảng tính có công thức.",
+   "indent": false,
+   "left": false
+  },
+  {
+   "t": "h3",
+   "text": "Lab 2.10. Firefox, VLC, GIMP và Inkscape"
+  },
+  {
+   "t": "list",
+   "ordered": true,
+   "items": [
+    "Dùng Firefox mở trang tài liệu chính thức của một phần mềm mã nguồn mở đã học.",
+    "Ghi tên tổ chức phát hành, địa chỉ trang và ngày truy cập.",
+    "Tải một hình được phép sử dụng hoặc dùng ảnh do chính sinh viên chụp; ghi nguồn của hình.",
+    "Mở hình trong GIMP, cắt vùng thừa và lưu tệp dự án có thể chỉnh sửa.",
+    "Xuất từ GIMP một bản PNG có kích thước phù hợp để chèn vào văn bản.",
+    "Dùng Inkscape vẽ một biểu tượng gồm ít nhất ba hình cơ bản và một dòng chữ.",
+    "Lưu bản gốc SVG và xuất thêm bản PNG từ Inkscape.",
+    "Chèn một trong hai ảnh PNG vào báo cáo Writer, có chú thích và nguồn.",
+    "Mở bằng VLC một tệp âm thanh hoặc video được cung cấp hợp pháp; ghi loại tệp, thời lượng và trạng thái phát.",
+    "So sánh bản gốc SVG với bản PNG về khả năng sửa hình và phóng to."
+   ]
+  },
+  {
+   "t": "p",
+   "text": "**Sản phẩm cần nộp:** Đường dẫn nguồn, tệp dự án GIMP, tệp SVG, hai tệp PNG, báo cáo đã chèn hình và bảng thông tin tệp mở bằng VLC.",
+   "indent": false,
+   "left": false
+  },
+  {
+   "t": "h2",
+   "text": "Tài liệu tham khảo",
+   "band": true
+  },
+  {
+   "t": "refs"
+  }
+ ],
+ "refs": {
+  "kernellic": "The Linux Kernel documentation. (n.d.). *Linux kernel licensing rules*. https://docs.kernel.org/process/license-rules.html",
+  "debian": "Debian Project. (n.d.). *About Debian*. https://www.debian.org/intro/about",
+  "ubrel": "Canonical. (n.d.). *Ubuntu release cycle*. https://ubuntu.com/about/release-cycle",
+  "fedora": "Fedora Project. (n.d.). *Fedora Docs*. https://docs.fedoraproject.org/",
+  "ubinstall": "Canonical. (n.d.). *Install Ubuntu Desktop*; *Install an application*. Ubuntu Desktop documentation. https://ubuntu.com/tutorials/install-ubuntu-desktop",
+  "shotts": "Shotts, W. E. (n.d.). *The Linux command line* (6th Internet ed.). LinuxCommand.org. https://linuxcommand.org/tlcl.php",
+  "ubman_user": "Ubuntu Manpages. (n.d.). *adduser*; *passwd*; *sudo* (Ubuntu 24.04). https://manpages.ubuntu.com/manpages/noble/man8/adduser.8.html",
+  "coreutils": "Free Software Foundation. (n.d.). *GNU Coreutils manual* (pwd, ls, mkdir, touch, cp, mv, rm, cat, head, tail, wc, du, df, uname, date; Numeric modes; Mode structure; chmod invocation; stat invocation). https://www.gnu.org/software/coreutils/manual/coreutils.html",
+  "ubman_sys": "Ubuntu Manpages. (n.d.). *apt*; *apt-get* (Ubuntu 24.04). https://manpages.ubuntu.com/manpages/noble/man8/apt.8.html",
+  "fhs": "Linux Foundation. (2015). *Filesystem Hierarchy Standard, version 3.0*. https://refspecs.linuxfoundation.org/fhs.shtml",
+  "ubman_find": "Ubuntu Manpages. (n.d.). *find*; *grep* (Ubuntu 24.04). https://manpages.ubuntu.com/manpages/noble/man1/find.1.html",
+  "ubman_files": "Ubuntu Manpages. (n.d.). *less*; *file*; *diff*; *man* (Ubuntu 24.04). https://manpages.ubuntu.com/manpages/noble/man1/less.1.html",
+  "ubman_bash": "Ubuntu Manpages. (n.d.). *bash* (Ubuntu 24.04): lệnh có sẵn, mở rộng tên và chuyển hướng. https://manpages.ubuntu.com/manpages/noble/man1/bash.1.html",
+  "ubman_id": "Ubuntu Manpages. (n.d.). *id*; *chmod*; *chown*; *stat* (Ubuntu 24.04). https://manpages.ubuntu.com/manpages/noble/man1/id.1.html",
+  "lodocs": "The Document Foundation. (n.d.). *LibreOffice documentation*. https://documentation.libreoffice.org/en/english-documentation/",
+  "ff": "Mozilla. (n.d.). *Firefox Help*. https://support.mozilla.org/en-US/products/firefox",
+  "vlc": "VideoLAN. (n.d.). *VLC user documentation*. https://docs.videolan.me/vlc-user/",
+  "gimp": "GIMP Development Team. (n.d.). *GIMP documentation*. https://docs.gimp.org/",
+  "inkscape": "Inkscape Project. (n.d.). *Inkscape manual*. https://inkscape-manuals.readthedocs.io/en/latest/"
+ },
+ "order": [
+  "kernellic",
+  "debian",
+  "ubrel",
+  "fedora",
+  "ubinstall",
+  "shotts",
+  "ubman_user",
+  "coreutils",
+  "ubman_sys",
+  "fhs",
+  "ubman_find",
+  "ubman_files",
+  "ubman_bash",
+  "ubman_id",
+  "lodocs",
+  "ff",
+  "vlc",
+  "gimp",
+  "inkscape"
+ ]
+}

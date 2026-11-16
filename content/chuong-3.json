@@ -1,0 +1,1652 @@
+{
+ "number": 3,
+ "title": "CÔNG NGHỆ MÃ NGUỒN MỞ",
+ "titleText": "Công nghệ mã nguồn mở",
+ "blocks": [
+  {
+   "t": "h2",
+   "text": "Giới thiệu chương",
+   "band": true
+  },
+  {
+   "t": "p",
+   "text": "Sau khi làm quen với Linux ở Chương 2, người học cần biết những công nghệ mã nguồn mở thường được dùng để xây dựng và vận hành một ứng dụng thực tế, từ khi viết mã cho đến khi dịch vụ chạy trên máy chủ. Chương này đi theo đúng hành trình đó. Trước hết là quản lý phiên bản bằng Git, công cụ ghi lại lịch sử thay đổi của mã nguồn, cùng hai nền tảng cộng tác GitHub và GitLab giúp nhiều người cùng làm việc trên một dự án và xem xét thay đổi của nhau. Tiếp theo là nền tảng chạy ứng dụng Web, gồm máy chủ Web Apache và Nginx cùng hệ quản trị cơ sở dữ liệu MySQL và PostgreSQL. Sau đó chương giới thiệu container và Docker, cách đóng gói ứng dụng để chạy giống nhau trên nhiều máy, kèm Docker Compose để mô tả một nhóm dịch vụ. Cuối cùng là điện toán đám mây mã nguồn mở với OpenStack ở vai trò hạ tầng và Kubernetes ở vai trò điều phối container. Mỗi công nghệ được trình bày theo khái niệm, vai trò trong chuỗi vận hành và các thao tác cơ bản, đồng thời gắn với giấy phép đã học ở Chương 1; phần cuối chương có bảng thuật ngữ, bảng chẩn đoán sự cố và mười bài thực hành.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "h3",
+   "text": "Mục tiêu học tập"
+  },
+  {
+   "t": "p",
+   "text": "Sau khi học xong chương này, người học có thể:",
+   "indent": true,
+   "left": true
+  },
+  {
+   "t": "list",
+   "ordered": false,
+   "items": [
+    "Giải thích được cách Git quản lý phiên bản và thực hiện được các thao tác cơ bản với repository, commit, nhánh; mô tả được quy trình cộng tác qua GitHub hoặc GitLab bằng pull request hoặc merge request.",
+    "Mô tả được đường đi của một yêu cầu từ trình duyệt đến máy chủ Web, ứng dụng và cơ sở dữ liệu; phân biệt được Apache với Nginx, MySQL với PostgreSQL và nhận biết được các lỗi thường gặp.",
+    "Phân biệt được máy ảo và container; chạy được ứng dụng bằng Docker và Docker Compose; trình bày được vai trò của điện toán đám mây, OpenStack và Kubernetes trong hạ tầng mã nguồn mở."
+   ]
+  },
+  {
+   "t": "h2",
+   "text": "3.1. Quản lý phiên bản với Git"
+  },
+  {
+   "t": "h3",
+   "text": "3.1.1. Khái niệm và vai trò của Git"
+  },
+  {
+   "t": "p",
+   "text": "Git là gì? Git là phần mềm quản lý phiên bản phân tán. Phần mềm này theo dõi những thay đổi của tệp theo thời gian và cho phép người dùng quay lại một phiên bản trước khi cần. Từ “phân tán” cho biết mỗi bản sao đầy đủ của dự án có thể chứa cả lịch sử, vì vậy người dùng vẫn xem được các commit khi chưa kết nối mạng [@progit].",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Giả sử hai người cùng sửa trang giới thiệu cửa hàng. Người thứ nhất thêm danh mục sản phẩm, người thứ hai đổi giao diện. Nếu họ gửi tệp cho nhau qua tin nhắn, rất dễ có các bản index-moi.html, index-cuoi.html và index-cuoi-lan-2.html. Tên tệp không cho biết ai sửa, sửa chỗ nào, hay bản nào có thể phục hồi. Hệ thống quản lý phiên bản ghi những mốc thay đổi có tổ chức để nhóm có thể xem lại lịch sử và kết hợp công việc.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Git quản lý lịch sử ngay trong một thư mục dự án gọi là kho (repository). Mỗi lần ghi mốc, Git lưu một commit kèm thông điệp. Commit nên trả lời “thay đổi này giải quyết việc gì?”. Với dự án cửa hàng, “Thêm danh sách ba sản phẩm” hữu ích hơn “Đã sửa”. Khi cần tìm lỗi xuất hiện sau một lần sửa, lịch sử giúp xác định mốc và xem chính xác phần đã thay đổi. Git không tự quyết định một sửa đổi là đúng; người làm dự án vẫn phải đọc và kiểm tra.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "figure",
+   "src": "assets/img/chuong3-hinh1.jpg",
+   "caption": "Dòng đi của thay đổi trong Git [@progit]",
+   "width": 14.5
+  },
+  {
+   "t": "p",
+   "text": "Git đặc biệt phù hợp với tệp văn bản như mã nguồn, tài liệu Markdown và cấu hình. Với tệp nhị phân lớn, Git vẫn có thể lưu nhưng khó thể hiện phần khác nhau giữa hai phiên bản và có thể làm kho nặng. Vì vậy, dự án cần xác định rõ tệp nào nên theo dõi, tệp nào là kết quả tạo ra có thể tái tạo, và tệp nào chứa bí mật không được đưa vào kho.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "callout",
+   "kind": "luuy",
+   "title": "",
+   "texts": [
+    "**Không đưa mật khẩu, khóa API hay khóa riêng SSH vào repository.** Một khi bí mật đã nằm trong lịch sử commit, việc xóa tệp ở lần commit sau không xóa nó khỏi lịch sử; nếu kho được đẩy lên nền tảng công khai thì bí mật coi như đã bị lộ và phải được thu hồi, đổi mới. Dùng tệp `.gitignore` để loại các tệp này khỏi việc theo dõi."
+   ]
+  },
+  {
+   "t": "h3",
+   "text": "3.1.2. Repository, Commit và Branch"
+  },
+  {
+   "t": "p",
+   "text": "Git không ghi lại mọi thao tác gõ phím. Trước khi tạo một mốc trong lịch sử, người làm dự án chọn những thay đổi cần ghi. Những tệp đang mở và sửa nằm trong thư mục làm việc. Phần đã chọn nằm ở vùng chuẩn bị. Khi tạo một commit, Git lưu phần đã chuẩn bị vào lịch sử của dự án. Phần chưa chọn vẫn ở thư mục làm việc và có thể được xử lý sau.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Giả sử hai tệp cùng được sửa: một tệp chứa trang giới thiệu sản phẩm, tệp kia chứa hướng dẫn dự án. Có thể chọn chỉ một tệp cho commit kế tiếp. Phần chưa chọn vẫn ở thư mục làm việc. Việc xem trạng thái và so sánh nội dung trước khi ghi mốc giúp tránh đưa nhầm dữ liệu vào lịch sử.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Khi cần làm một việc mới mà chưa muốn ảnh hưởng đến phiên bản đang dùng, nhóm có thể tạo một nhánh. Chẳng hạn, một nhánh dành riêng cho việc thêm trang sản phẩm. Công việc trên nhánh ấy được xem lại rồi hợp nhất vào nhánh chính. Git theo dõi mối liên hệ giữa các mốc lịch sử, nên người dùng không phải tự sao chép cả thư mục dự án để tạo nhánh.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "h4",
+   "text": "Khi hai người sửa cùng một chỗ"
+  },
+  {
+   "t": "p",
+   "text": "Nếu một người đổi tiêu đề trang thành “Sản phẩm mới” và người khác đổi chính dòng ấy thành “Danh mục sản phẩm”, Git không thể biết nhóm muốn giữ câu nào. Git đánh dấu chỗ cần xem lại; tình huống đó gọi là xung đột. Người làm dự án đọc cả hai cách sửa, chọn hoặc viết lại nội dung cuối cùng, rồi kiểm tra trang Web sau khi hợp nhất.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "h3",
+   "text": "3.1.3. Các thao tác Git cơ bản"
+  },
+  {
+   "t": "p",
+   "text": "Git chỉ ghi một phiên bản khi người dùng chủ động tạo commit. Vì vậy, thao tác với Git có thể hiểu qua một chu trình ngắn: xem trạng thái, chọn nội dung cần lưu, tạo commit và đọc lại lịch sử. Ở mức nhập môn, người học cần hiểu ý nghĩa của chu trình này trước khi tìm hiểu các cách làm nâng cao.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "h4",
+   "text": "Cấu trúc chung của lệnh Git"
+  },
+  {
+   "t": "p",
+   "text": "Một lệnh Git thường bắt đầu bằng git, sau đó là tên công việc cần thực hiện. Thành phần đặt trong dấu ngoặc vuông là phần có thể có hoặc không, tùy từng lệnh.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "code",
+   "text": "git LỆNH_CON [TÙY_CHỌN] [ĐỐI_SỐ]",
+   "title": ""
+  },
+  {
+   "t": "p",
+   "text": "Người dùng không gõ dấu ngoặc vuông. Chẳng hạn, trong git add README.md, add là lệnh con và README.md là đối số, tức tệp được chọn để chuẩn bị ghi vào lịch sử.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "table",
+   "caption": "Lệnh Git cơ bản [@progit]",
+   "header": [
+    "Mẫu sử dụng",
+    "Thành phần cần thay",
+    "Công dụng"
+   ],
+   "rows": [
+    [
+     "`git init [THƯ_MỤC]`",
+     "Thư mục dự án",
+     "Tạo kho Git trong một thư mục."
+    ],
+    [
+     "`git status`",
+     "Không bắt buộc",
+     "Cho biết nhánh hiện tại và những tệp đang thay đổi."
+    ],
+    [
+     "`git add ĐƯỜNG_DẪN`",
+     "Tên tệp hoặc thư mục",
+     "Chọn nội dung sẽ được đưa vào commit kế tiếp."
+    ],
+    [
+     "`git commit -m \"THÔNG_ĐIỆP\"`",
+     "Thông điệp mô tả",
+     "Ghi một mốc mới vào lịch sử."
+    ],
+    [
+     "`git log --oneline`",
+     "Không bắt buộc",
+     "Hiển thị các commit đã được tạo."
+    ]
+   ],
+   "widths": [
+    5.4,
+    5.6,
+    5.0
+   ],
+   "font": 11,
+   "firstBold": false,
+   "center": []
+  },
+  {
+   "t": "h4",
+   "text": "Ví dụ minh họa: ghi phiên bản đầu tiên"
+  },
+  {
+   "t": "p",
+   "text": "Giả sử thư mục thu-vien đã có tệp README.md. Các lệnh sau tạo kho, chọn tệp và ghi phiên bản đầu tiên.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "code",
+   "text": "cd ~/thu-vien\ngit init\ngit status\ngit add README.md\ngit commit -m \"Them gioi thieu du an\"\ngit log --oneline",
+   "title": ""
+  },
+  {
+   "t": "p",
+   "text": "Sau git add, tệp chưa trở thành một commit; Git mới chỉ đánh dấu nội dung sẽ được ghi. Commit được tạo ở lệnh tiếp theo. git log --oneline giúp người dùng kiểm tra mốc vừa tạo bằng một dòng ngắn.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Trong lần commit đầu tiên, Git có thể yêu cầu tên và thư điện tử của tác giả. Hai giá trị này được lưu cùng commit và không phải mật khẩu của GitHub hoặc GitLab.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "code",
+   "text": "git config user.name \"Nguyen Van A\"\ngit config user.email \"a@example.org\"",
+   "title": ""
+  },
+  {
+   "t": "p",
+   "text": "Các thông báo lỗi thường gặp có ý nghĩa khá rõ. `not a git repository` cho biết thư mục hiện tại chưa thuộc một kho Git, nên cần kiểm tra thư mục đang đứng hoặc chạy `git init` đúng nơi. `nothing to commit` cho biết chưa có nội dung mới được chọn để ghi, cần xem lại `git status` và tệp đã sửa. `Please tell me who you are` nghĩa là Git chưa có thông tin tác giả, cần khai báo `user.name` và `user.email`. `pathspec ... did not match` nghĩa là tên tệp hoặc tên nhánh không tồn tại, cần kiểm tra cách viết tên và thư mục hiện tại.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "h2",
+   "text": "3.2. GitHub và GitLab"
+  },
+  {
+   "t": "h3",
+   "text": "3.2.1. Tổng quan về GitHub và GitLab"
+  },
+  {
+   "t": "p",
+   "text": "GitHub là gì? GitHub là một dịch vụ trực tuyến dùng để lưu trữ kho Git và tổ chức công việc phát triển phần mềm. Ngoài tệp và lịch sử commit, GitHub còn cung cấp issue, pull request, trang tài liệu và các quy trình kiểm tra tự động [@ghdocs].",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "GitLab là gì? GitLab là một nền tảng quản lý dự án phần mềm dựa trên Git. Nền tảng này có các chức năng như kho mã, issue và merge request, đồng thời hỗ trợ quy trình kiểm tra, đóng gói và triển khai tự động. GitLab có dịch vụ trực tuyến và cũng có thể được cài đặt trên hạ tầng riêng của tổ chức [@gldocs].",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Git lưu lịch sử thay đổi ngay trên máy của người làm dự án. Khi nhiều người cùng tham gia, họ cần thêm một nơi để chia sẻ lịch sử và trao đổi về công việc. GitHub và GitLab cung cấp nơi đặt kho từ xa cùng trang Web để nhóm xem mã nguồn, ghi việc cần làm và bàn bạc trước khi nhận một thay đổi vào nhánh chính. Mất kết nối với dịch vụ này không làm lịch sử Git đã lưu trên máy biến mất.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Một việc cần làm thường được ghi thành issue để nhóm biết vấn đề và trao đổi cách giải quyết. Khi đã sửa xong, người viết mở một đề xuất hợp nhất để người khác đọc thay đổi trước khi đưa vào nhánh chính. GitHub gọi đề xuất đó là pull request (PR); GitLab gọi là merge request (MR). Tên khác nhau, nhưng cả hai đều tạo một chỗ để giải thích mục đích, xem phần đã sửa và ghi nhận nhận xét [@ghdocs,@gldocs].",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Hai nền tảng dùng tên gọi khác nhau cho cùng một việc. Việc ghi một việc cần làm đều gọi là *Issue*; việc đề nghị hợp nhất thay đổi gọi là *Pull request* ở GitHub và *Merge request* ở GitLab; còn việc chạy bước kiểm tra tự động gọi là *Actions* ở GitHub và *CI/CD pipelines* ở GitLab.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "callout",
+   "kind": "nho",
+   "title": "Câu hỏi của nhóm",
+   "texts": [
+    "Giao diện của hai dịch vụ có thể thay đổi, nhưng những câu hỏi của nhóm thì không: việc gì đang được giải quyết, ai đã sửa, thay đổi gồm những gì và đã được kiểm tra ra sao. Trả lời rõ những câu hỏi này quan trọng hơn việc nhớ vị trí một nút bấm trên màn hình."
+   ]
+  },
+  {
+   "t": "h3",
+   "text": "3.2.2. Tạo và quản lý Repository"
+  },
+  {
+   "t": "p",
+   "text": "Kho trên máy cá nhân được gọi là kho cục bộ. Kho đặt trên GitHub hoặc GitLab được gọi là kho từ xa. Kho từ xa giúp nhiều người truy cập cùng một lịch sử và tạo bản sao dự án trên những máy khác nhau. Một thay đổi đã ghi trên máy khác với một thay đổi đã gửi cho cả nhóm: ban đầu lịch sử mới chỉ nằm trong kho của người viết, và chỉ sau khi được gửi lên kho từ xa thì người khác mới xem và lấy về được.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Ba thao tác cơ bản nhất là sao chép một kho về máy, lấy phiên bản mới của nhóm và gửi commit của mình lên máy chủ.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "table",
+   "caption": "Lệnh làm việc với kho từ xa [@progit]",
+   "header": [
+    "Mẫu sử dụng",
+    "Thành phần cần thay",
+    "Công dụng"
+   ],
+   "rows": [
+    [
+     "`git clone URL`",
+     "Địa chỉ kho",
+     "Tạo một bản sao của kho từ xa trên máy."
+    ],
+    [
+     "`git pull`",
+     "Thường không cần khi kho đã liên kết",
+     "Nhận thay đổi mới và đưa vào nhánh đang làm việc."
+    ],
+    [
+     "`git push`",
+     "Thường không cần khi nhánh đã liên kết",
+     "Gửi các commit cục bộ lên kho từ xa."
+    ]
+   ],
+   "widths": [
+    5.4,
+    5.6,
+    5.0
+   ],
+   "font": 11,
+   "firstBold": false,
+   "center": []
+  },
+  {
+   "t": "h4",
+   "text": "Ví dụ minh họa: lấy một dự án về máy"
+  },
+  {
+   "t": "code",
+   "text": "git clone https://example.org/nhom/thu-vien.git\ncd thu-vien\ngit status",
+   "title": ""
+  },
+  {
+   "t": "p",
+   "text": "URL trong ví dụ cần được thay bằng địa chỉ thật do GitHub hoặc GitLab cung cấp. Sau khi sao chép, thư mục mới đã chứa cả tệp dự án và lịch sử Git. Những lần làm việc sau, người dùng thường chạy git pull trước khi sửa và git push sau khi đã tạo commit.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Nếu xuất hiện thông báo repository not found hoặc authentication failed, cần kiểm tra lại địa chỉ kho, trạng thái đăng nhập và quyền truy cập của tài khoản. Nếu git push bị từ chối vì kho từ xa có thay đổi mới, người dùng cần nhận thay đổi của nhóm trước khi gửi lại.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "h3",
+   "text": "3.2.3. Chia sẻ và cộng tác trên dự án"
+  },
+  {
+   "t": "p",
+   "text": "Làm việc chung không chỉ là gửi tệp cho nhau. Một thay đổi nên có lý do, phạm vi và người xem lại. Sau khi người viết hoàn thành phần việc trên nhánh riêng, đề xuất hợp nhất cho phép cả nhóm thấy những dòng được thêm, sửa hoặc xóa. Người xem xét đối chiếu chúng với mục đích đã nêu và kiểm tra xem phần cũ của dự án có bị ảnh hưởng không.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "figure",
+   "src": "assets/img/chuong3-hinh2.jpg",
+   "caption": "Giao diện một yêu cầu hợp nhất thực tế trên GitLab.com, truy cập ngày 07/10/2026 [@glmrshot]",
+   "width": 14.5
+  },
+  {
+   "t": "figure",
+   "src": "assets/img/chuong3-hinh3.jpg",
+   "caption": "Chu trình cộng tác qua yêu cầu hợp nhất [@ghdocs,@gldocs]",
+   "width": 14.5
+  },
+  {
+   "t": "p",
+   "text": "Một nhận xét hữu ích chỉ rõ chỗ cần xem, điều có thể sai và lý do. Chẳng hạn, nếu một đường dẫn ảnh khiến trình duyệt không tìm thấy hình khi trang được đặt trong thư mục con, người xem nên chỉ ra đường dẫn ấy và tình huống gây lỗi. Câu “đoạn này sai” để lại quá nhiều việc đoán cho người sửa. Khi tác giả trả lời và chỉnh lại, cuộc trao đổi trở thành một phần lịch sử quyết định của nhóm.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "callout",
+   "kind": "nho",
+   "title": "Hợp nhất chưa phải là triển khai",
+   "texts": [
+    "**Hợp nhất đưa thay đổi vào lịch sử của nhánh nhận.** Nó chưa đồng nghĩa với việc phiên bản mới đã chạy trên máy chủ. Muốn ứng dụng được cập nhật ngoài kho mã, dự án còn cần một bước triển khai riêng và phải kiểm tra kết quả của bước đó."
+   ]
+  },
+  {
+   "t": "h2",
+   "text": "3.3. Web và cơ sở dữ liệu mã nguồn mở"
+  },
+  {
+   "t": "h3",
+   "text": "3.3.1. Khái niệm Web Server và ứng dụng Web"
+  },
+  {
+   "t": "p",
+   "text": "Web server là gì? Web server, hay máy chủ Web, là phần mềm tiếp nhận yêu cầu HTTP từ trình duyệt và gửi phản hồi trở lại. Phản hồi có thể là một tệp HTML có sẵn, một hình ảnh hoặc nội dung do ứng dụng tạo ra. Thuật ngữ này đôi khi cũng được dùng để chỉ chiếc máy đang chạy phần mềm máy chủ Web; người đọc cần dựa vào ngữ cảnh để phân biệt.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Khi người dùng nhập một địa chỉ Web, trình duyệt tạo một yêu cầu HTTP và gửi tới máy chủ. Máy chủ trả về một phản hồi gồm mã trạng thái, thông tin mô tả và nội dung [@rfc9110].",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Web server nhận kết nối, đọc yêu cầu và quyết định cách trả lời. Ứng dụng Web xử lý quy tắc nghiệp vụ, chẳng hạn tìm danh sách sách theo từ khóa. Cơ sở dữ liệu lưu thông tin có cấu trúc để ứng dụng đọc hoặc cập nhật. Trong một hệ thống nhỏ, ba thành phần có thể chạy trên cùng máy; việc cùng vị trí không làm vai trò của chúng giống nhau.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "figure",
+   "src": "assets/img/chuong3-hinh4.jpg",
+   "caption": "Đường đi của yêu cầu Web đến cơ sở dữ liệu",
+   "width": 14.5
+  },
+  {
+   "t": "p",
+   "text": "Một yêu cầu xem danh sách sách có thể đi theo trình tự sau: trình duyệt gửi yêu cầu; Web server tiếp nhận; ứng dụng kiểm tra đường dẫn và tham số; ứng dụng gửi câu truy vấn tới cơ sở dữ liệu; cơ sở dữ liệu trả các hàng phù hợp; ứng dụng tạo phản hồi; Web server chuyển phản hồi về trình duyệt. Khi có lỗi, cần xác định yêu cầu dừng ở tầng nào.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "table",
+   "caption": "Một số mã trạng thái HTTP thường gặp [@rfc9110]",
+   "header": [
+    "Mã trạng thái",
+    "Nhóm ý nghĩa",
+    "Cách hiểu trong tình huống cơ bản"
+   ],
+   "rows": [
+    [
+     "200",
+     "Thành công",
+     "Máy chủ đã xử lý yêu cầu và trả nội dung."
+    ],
+    [
+     "301, 302",
+     "Chuyển hướng",
+     "Tài nguyên được hướng tới một địa chỉ khác."
+    ],
+    [
+     "400",
+     "Yêu cầu chưa hợp lệ",
+     "Dữ liệu gửi lên không phù hợp với điều máy chủ chờ đợi."
+    ],
+    [
+     "401, 403",
+     "Xác thực hoặc quyền",
+     "Yêu cầu thiếu thông tin xác thực hoặc không được phép truy cập."
+    ],
+    [
+     "404",
+     "Không tìm thấy",
+     "Máy chủ hoạt động nhưng không có tài nguyên tại đường dẫn yêu cầu."
+    ],
+    [
+     "500, 502, 503",
+     "Lỗi phía máy chủ",
+     "Ứng dụng, dịch vụ phía sau hoặc máy chủ đang gặp sự cố."
+    ]
+   ],
+   "widths": [
+    4.2,
+    5.4,
+    6.4
+   ],
+   "font": 11.5,
+   "firstBold": true,
+   "center": []
+  },
+  {
+   "t": "h4",
+   "text": "Quan sát phản hồi bằng curl"
+  },
+  {
+   "t": "p",
+   "text": "curl là công cụ gửi yêu cầu tới một địa chỉ Web từ cửa sổ dòng lệnh. Ở mức nhập môn, công cụ này được dùng để kiểm tra nhanh xem máy chủ có trả lời hay không.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "table",
+   "caption": "Lệnh curl",
+   "header": [
+    "Mẫu sử dụng",
+    "Thành phần cần thay",
+    "Công dụng"
+   ],
+   "rows": [
+    [
+     "`curl URL`",
+     "Địa chỉ Web",
+     "Gửi yêu cầu và hiển thị nội dung máy chủ trả về."
+    ]
+   ],
+   "widths": [
+    5.4,
+    5.6,
+    5.0
+   ],
+   "font": 11,
+   "firstBold": false,
+   "center": []
+  },
+  {
+   "t": "code",
+   "text": "curl http://localhost:8080",
+   "title": ""
+  },
+  {
+   "t": "p",
+   "text": "localhost chỉ chính máy đang chạy lệnh. Nếu lệnh báo không thể kết nối, nguyên nhân thường là dịch vụ chưa chạy hoặc số cổng chưa đúng. Nếu máy chủ trả mã 404, kết nối đã tới nơi nhưng tài nguyên được yêu cầu không tồn tại.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "h3",
+   "text": "3.3.2. Apache và Nginx"
+  },
+  {
+   "t": "p",
+   "text": "Apache là gì? Apache HTTP Server là phần mềm máy chủ Web mã nguồn mở do cộng đồng Apache phát triển. Khi Apache đang chạy, nó lắng nghe yêu cầu HTTP hoặc HTTPS, tìm tài nguyên phù hợp rồi gửi phản hồi về cho trình duyệt. Apache có thể phục vụ trực tiếp các tệp HTML, CSS, ảnh hoặc chuyển yêu cầu tới một ứng dụng Web. Apache HTTP Server phát hành theo Apache License 2.0 [@httpd,@asflic].",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Nginx là gì? Nginx, đọc gần giống “engine-x”, cũng là phần mềm máy chủ Web mã nguồn mở. Nginx thường được dùng để phục vụ tệp tĩnh, tiếp nhận nhiều kết nối và làm reverse proxy, tức nhận yêu cầu từ người dùng rồi chuyển tiếp tới ứng dụng chạy phía sau. Nginx phát hành theo giấy phép kiểu BSD hai điều khoản [@nginx,@nginxlic]; cùng với Apache, đây đều là giấy phép thuộc nhóm permissive như đã học ở Chương 1.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Apache HTTP Server và Nginx đều đứng giữa trình duyệt và tài nguyên Web. Một máy chủ chỉ cần chọn một trong hai nếu nhu cầu cơ bản là phục vụ trang HTML. Trong hệ thống lớn hơn, chúng có thể được dùng ở những tầng khác nhau tùy thiết kế.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Apache có hệ thống mô đun phong phú và được dùng lâu năm trên nhiều máy chủ. Nginx có kiến trúc hướng sự kiện và thường được chọn để phục vụ tệp tĩnh hoặc làm máy chủ trung gian. Ở mức nhập môn, người học cần nhận biết vai trò của chúng; việc tối ưu hiệu năng và cấu hình nhiều website thuộc nội dung quản trị chuyên sâu hơn. Trên Ubuntu, tên dịch vụ của hai phần mềm lần lượt là `apache2` và `nginx`; cả hai đều phục vụ được tệp HTML, CSS, ảnh và chuyển tiếp yêu cầu tới ứng dụng phía sau, còn vị trí tệp cấu hình thay đổi theo bản phân phối [@httpd,@nginx].",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Trên Linux dùng systemd, người dùng có thể kiểm tra trạng thái hoặc khởi động lại dịch vụ bằng systemctl.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "table",
+   "caption": "Lệnh systemctl",
+   "header": [
+    "Mẫu sử dụng",
+    "Thành phần cần thay",
+    "Công dụng"
+   ],
+   "rows": [
+    [
+     "`systemctl status TÊN_DỊCH_VỤ`",
+     "Tên dịch vụ",
+     "Xem dịch vụ có đang hoạt động hay không."
+    ],
+    [
+     "`sudo systemctl restart TÊN_DỊCH_VỤ`",
+     "Tên dịch vụ",
+     "Khởi động lại dịch vụ sau khi thay đổi cấu hình."
+    ]
+   ],
+   "widths": [
+    5.4,
+    5.6,
+    5.0
+   ],
+   "font": 11,
+   "firstBold": false,
+   "center": []
+  },
+  {
+   "t": "h4",
+   "text": "Ví dụ minh họa: kiểm tra Apache"
+  },
+  {
+   "t": "code",
+   "text": "systemctl status apache2\ncurl http://localhost",
+   "title": ""
+  },
+  {
+   "t": "p",
+   "text": "Lệnh đầu kiểm tra tiến trình Apache. Lệnh sau kiểm tra nội dung mà máy chủ trả về. Trạng thái dịch vụ đang chạy chỉ cho biết tiến trình tồn tại; kết quả từ trình duyệt hoặc curl mới cho biết trang Web có được phục vụ đúng hay không.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Khi gặp sự cố, có thể đối chiếu theo hiện tượng. Không mở được trang thường do dịch vụ chưa chạy, sai địa chỉ hoặc sai cổng. Nếu trang mặc định vẫn xuất hiện, tệp mới có thể bị đặt sai thư mục hoặc sai tên. Mã `403 Forbidden` cho biết máy chủ không có quyền đọc tệp hoặc cấu hình không cho phép truy cập, còn `404 Not Found` cho biết đường dẫn trên URL không khớp với tài nguyên có trên máy chủ.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "h3",
+   "text": "3.3.3. MySQL, PostgreSQL và cơ sở dữ liệu mã nguồn mở"
+  },
+  {
+   "t": "p",
+   "text": "Cơ sở dữ liệu giúp ứng dụng lưu thông tin theo cấu trúc và tìm lại thông tin khi cần. MySQL và PostgreSQL đều là hệ quản trị cơ sở dữ liệu quan hệ mã nguồn mở. Dữ liệu được tổ chức thành bảng; mỗi bảng có các cột mô tả thuộc tính và các hàng chứa bản ghi.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "MySQL là gì? MySQL là hệ quản trị cơ sở dữ liệu quan hệ thường gặp trong các hệ thống Web. Phần mềm này nhận câu lệnh SQL từ ứng dụng, lưu dữ liệu vào bảng và trả kết quả truy vấn. MySQL có hệ sinh thái công cụ rộng và được nhiều hệ quản trị nội dung sử dụng. Về giấy phép, MySQL Community theo GPL và Oracle bán thêm giấy phép thương mại, một ví dụ của mô hình giấy phép kép ở Chương 1 [@mysql,@mysqllic].",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "PostgreSQL là gì? PostgreSQL là hệ quản trị cơ sở dữ liệu quan hệ mã nguồn mở chú trọng tính đúng đắn của dữ liệu, khả năng mở rộng và các kiểu dữ liệu phong phú. PostgreSQL thường được chọn khi ứng dụng cần truy vấn phức tạp hoặc cần mở rộng chức năng của cơ sở dữ liệu. PostgreSQL phát hành theo giấy phép PostgreSQL, thuộc nhóm permissive [@pgdocs,@pglic].",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Với bài học nhập môn, hai hệ thống cùng được nhìn qua các khái niệm bảng, hàng, cột, khóa và truy vấn. Chúng là hai sản phẩm riêng; một ứng dụng thường kết nối tới hệ quản trị đã được chọn thay vì đồng thời sử dụng cả hai cho cùng một bảng dữ liệu.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Có năm khái niệm cơ bản cần nắm. Bảng là nơi lưu các bản ghi cùng loại; cột là một thuộc tính của dữ liệu, chẳng hạn tên sách; hàng là một bản ghi cụ thể trong bảng; khóa chính là giá trị giúp phân biệt từng hàng; còn truy vấn là yêu cầu đọc hoặc thay đổi dữ liệu.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Ở mức cơ bản, ba câu lệnh SQL sau đủ để người học nhìn thấy quá trình tạo cấu trúc, thêm dữ liệu và đọc dữ liệu.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "table",
+   "caption": "Câu lệnh SQL cơ bản",
+   "header": [
+    "Mẫu sử dụng",
+    "Thành phần cần thay",
+    "Công dụng"
+   ],
+   "rows": [
+    [
+     "`CREATE TABLE TÊN_BẢNG (...);`",
+     "Tên bảng và các cột",
+     "Tạo một bảng mới."
+    ],
+    [
+     "`INSERT INTO TÊN_BẢNG (...) VALUES (...);`",
+     "Tên bảng, cột và giá trị",
+     "Thêm một hàng dữ liệu."
+    ],
+    [
+     "`SELECT CỘT FROM TÊN_BẢNG;`",
+     "Cột và bảng cần đọc",
+     "Đọc dữ liệu trong bảng."
+    ]
+   ],
+   "widths": [
+    5.4,
+    5.6,
+    5.0
+   ],
+   "font": 11,
+   "firstBold": false,
+   "center": []
+  },
+  {
+   "t": "h4",
+   "text": "Ví dụ minh họa: bảng sách đơn giản"
+  },
+  {
+   "t": "code",
+   "text": "CREATE TABLE sach (\n    ma_sach INTEGER PRIMARY KEY,\n    ten_sach VARCHAR(100)\n);\n\nINSERT INTO sach (ma_sach, ten_sach)\nVALUES (1, 'Nhap mon Linux');\n\nSELECT ma_sach, ten_sach FROM sach;",
+   "title": ""
+  },
+  {
+   "t": "p",
+   "text": "Dấu chấm phẩy kết thúc một câu lệnh SQL. Tên cột trong INSERT cho biết mỗi giá trị được đặt vào đâu. SELECT chỉ đọc dữ liệu nên không làm thay đổi bảng.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Nếu không kết nối được, cần kiểm tra dịch vụ cơ sở dữ liệu, tên máy, cổng và tài khoản. Nếu hệ thống báo bảng không tồn tại, cần xem lại cơ sở dữ liệu đang sử dụng và cách viết tên bảng. Các thao tác sửa, xóa, phân quyền và sao lưu cần được học trong học phần cơ sở dữ liệu hoặc quản trị hệ thống.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "h2",
+   "text": "3.4. Container và Docker"
+  },
+  {
+   "t": "h3",
+   "text": "3.4.1. Khái niệm Container và Docker"
+  },
+  {
+   "t": "p",
+   "text": "Một ứng dụng có thể chạy tốt trên máy của người viết nhưng không chạy trên máy khác. Nguyên nhân thường là máy kia thiếu thành phần cần thiết hoặc dùng phiên bản khác. Container giúp mang ứng dụng và các thành phần ấy đi cùng nhau, để chúng được chạy trong một môi trường đã chuẩn bị.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Docker là gì? Docker là nền tảng gồm các công cụ dùng để đóng gói, phân phối và chạy ứng dụng dưới dạng container. Người dùng lấy một image làm mẫu, tạo container từ image đó và quản lý container bằng cùng một nhóm lệnh. Docker thường được dùng trong học tập, phát triển phần mềm, kiểm thử và triển khai dịch vụ. Phần lõi của Docker (Docker Engine, thuộc dự án Moby) theo Apache License 2.0 [@dockerdocs,@mobylic], còn các sản phẩm đi kèm như Docker Desktop có điều khoản cấp phép riêng như đã nêu ở Chương 1.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Máy ảo và container đều tạo môi trường riêng cho chương trình, nhưng tổ chức khác nhau. Máy ảo có một hệ điều hành riêng bên trong. Container dùng chung phần lõi của hệ điều hành trên máy đang chạy nó. Vì mang theo ít thành phần hơn, container thường gọn và khởi động nhanh. Máy ảo vẫn cần thiết khi phải chạy một hệ điều hành khác hoặc cần cách tách biệt phù hợp với yêu cầu của hệ thống.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "figure",
+   "src": "assets/img/chuong3-hinh5.jpg",
+   "caption": "Máy ảo và container nhìn theo các lớp",
+   "width": 14.5
+  },
+  {
+   "t": "p",
+   "text": "Một máy ảo chứa hệ điều hành khách và có thể chạy nhiều ứng dụng; container thường đóng gói một dịch vụ cùng các thư viện cần thiết. Ví dụ, máy ảo Ubuntu cung cấp một hệ thống hoàn chỉnh, còn container Nginx tập trung vào việc phục vụ Web. Sự khác biệt nằm ở lớp được đóng gói và quản lý.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "h3",
+   "text": "3.4.2. Docker Image và Docker Container"
+  },
+  {
+   "t": "p",
+   "text": "Image là mẫu chứa các tệp cần thiết để khởi tạo môi trường chạy. Container là một lần chạy được tạo từ image. Một image có thể tạo nhiều container, giống như một mẫu có thể được dùng nhiều lần.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "callout",
+   "kind": "luuy",
+   "title": "Dữ liệu trong container",
+   "texts": [
+    "**Dữ liệu nằm bên trong container có thể mất khi container bị xóa.** Khi dữ liệu cần được giữ lâu dài, Docker dùng volume hoặc liên kết với một thư mục trên máy chủ. Cổng được công bố giúp người dùng bên ngoài truy cập dịch vụ đang chạy trong container."
+   ]
+  },
+  {
+   "t": "figure",
+   "src": "assets/img/chuong3-hinh6.jpg",
+   "caption": "Image, container, cổng và volume",
+   "width": 14.5
+  },
+  {
+   "t": "h4",
+   "text": "Cấu trúc chung của lệnh Docker"
+  },
+  {
+   "t": "code",
+   "text": "docker LỆNH_CON [TÙY_CHỌN] [ĐỐI_SỐ]",
+   "title": ""
+  },
+  {
+   "t": "table",
+   "caption": "Lệnh Docker cơ bản [@dockerdocs]",
+   "header": [
+    "Mẫu sử dụng",
+    "Thành phần cần thay",
+    "Công dụng"
+   ],
+   "rows": [
+    [
+     "`docker pull IMAGE`",
+     "Tên image",
+     "Tải image về máy."
+    ],
+    [
+     "`docker run [TÙY_CHỌN] IMAGE`",
+     "Tên image, tên container và cổng",
+     "Tạo và chạy container."
+    ],
+    [
+     "`docker ps`",
+     "Không bắt buộc",
+     "Xem các container đang chạy."
+    ],
+    [
+     "`docker stop CONTAINER`",
+     "Tên hoặc mã container",
+     "Dừng một container."
+    ]
+   ],
+   "widths": [
+    5.4,
+    5.6,
+    5.0
+   ],
+   "font": 11,
+   "firstBold": false,
+   "center": []
+  },
+  {
+   "t": "h4",
+   "text": "Ví dụ minh họa: chạy Web server trong container"
+  },
+  {
+   "t": "code",
+   "text": "docker pull nginx:stable-alpine\ndocker run --name web-mau -d -p 8080:80 nginx:stable-alpine\ndocker ps",
+   "title": ""
+  },
+  {
+   "t": "p",
+   "text": "Trong -p 8080:80, số 8080 là cổng trên máy và số 80 là cổng của dịch vụ trong container. Người dùng có thể mở http://localhost:8080 để xem trang mặc định của Nginx.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Nếu Docker báo cổng đã được sử dụng, cần chọn một cổng khác ở phía bên trái. Nếu container dừng ngay sau khi tạo, cần kiểm tra tên image và nhật ký của container. Các thao tác xây dựng image, thiết kế mạng và quản lý dữ liệu lâu dài thuộc phần học nâng cao.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "h3",
+   "text": "3.4.3. Triển khai ứng dụng cơ bản với Docker Compose"
+  },
+  {
+   "t": "p",
+   "text": "Docker Compose là gì? Docker Compose là công cụ dùng một tệp YAML để mô tả và chạy một nhóm dịch vụ Docker. Cách này giúp người dùng lưu lại tên image, cổng và thư mục dữ liệu thay vì phải nhớ nhiều câu lệnh dài. Compose thường phù hợp cho môi trường học tập, phát triển và ứng dụng nhỏ chạy trên một máy [@composedocs].",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Ví dụ sau mô tả một dịch vụ Nginx. Khoảng trắng đầu dòng trong YAML thể hiện quan hệ giữa các thành phần, vì vậy cần giữ đúng cách thụt lề.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "code",
+   "text": "services:\n  web:\n    image: nginx:stable-alpine\n    ports:\n      - \"8080:80\"",
+   "title": ""
+  },
+  {
+   "t": "p",
+   "text": "services là nhóm dịch vụ của dự án. web là tên do người viết đặt. image cho biết mẫu dùng để tạo container, còn ports công bố cổng của dịch vụ ra máy đang chạy Docker.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "table",
+   "caption": "Lệnh Docker Compose [@composedocs]",
+   "header": [
+    "Mẫu sử dụng",
+    "Thành phần cần thay",
+    "Công dụng"
+   ],
+   "rows": [
+    [
+     "`docker compose config`",
+     "Không bắt buộc",
+     "Kiểm tra tệp Compose có đọc được hay không."
+    ],
+    [
+     "`docker compose up -d`",
+     "Tùy chọn -d",
+     "Tạo và khởi động dịch vụ."
+    ],
+    [
+     "`docker compose down`",
+     "Không bắt buộc",
+     "Dừng và xóa container cùng mạng do dự án tạo."
+    ]
+   ],
+   "widths": [
+    5.4,
+    5.6,
+    5.0
+   ],
+   "font": 11,
+   "firstBold": false,
+   "center": []
+  },
+  {
+   "t": "h4",
+   "text": "Ví dụ minh họa: chạy dự án Compose"
+  },
+  {
+   "t": "code",
+   "text": "docker compose config\ndocker compose up -d\ndocker compose down",
+   "title": ""
+  },
+  {
+   "t": "p",
+   "text": "Nếu Compose báo lỗi YAML, cần kiểm tra thụt lề và dấu hai chấm. Nếu dịch vụ đã chạy nhưng không mở được trang, cần kiểm tra cổng trong tệp và địa chỉ đang dùng trên trình duyệt. Compose phù hợp để giới thiệu cách mô tả một nhóm dịch vụ trên một máy; việc điều phối trên nhiều máy cần công cụ khác.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "h2",
+   "text": "3.5. Điện toán đám mây mã nguồn mở"
+  },
+  {
+   "t": "h3",
+   "text": "3.5.1. Khái niệm và mô hình điện toán đám mây"
+  },
+  {
+   "t": "p",
+   "text": "Điện toán đám mây là gì? Điện toán đám mây là cách cung cấp tài nguyên tính toán như máy chủ, mạng, lưu trữ hoặc phần mềm dưới dạng dịch vụ. Người dùng yêu cầu tài nguyên khi cần và quản lý chúng qua giao diện hoặc API, thay vì trực tiếp chuẩn bị từng thiết bị vật lý. Theo định nghĩa của NIST, đám mây có các đặc trưng cốt lõi là tự phục vụ theo nhu cầu, truy cập qua mạng, gom tài nguyên dùng chung, co giãn nhanh và đo lường được mức sử dụng [@nist145].",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Một ứng dụng phục vụ nhiều người cần máy chạy, kết nối mạng và nơi lưu dữ liệu. Với điện toán đám mây, nhóm có thể yêu cầu những tài nguyên ấy từ một hệ thống đã được xây dựng sẵn và sử dụng theo nhu cầu. Dù máy thuộc ai, nhóm vẫn phải biết ai cài hệ điều hành, ai cập nhật phần mềm và ai giữ an toàn cho dữ liệu.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Có ba cách cung cấp dịch vụ thường gặp. Với IaaS, người dùng nhận máy ảo, mạng và chỗ lưu dữ liệu; họ còn phải quản lý phần mềm bên trong máy ảo. Với PaaS, người dùng đưa ứng dụng lên một môi trường đã được chuẩn bị để chạy. Với SaaS, họ sử dụng luôn ứng dụng hoàn chỉnh. Càng đi từ IaaS đến SaaS, càng nhiều phần việc vận hành được nhà cung cấp đảm nhận. Trách nhiệm cụ thể vẫn cần đọc trong mô tả của từng dịch vụ.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "figure",
+   "src": "assets/img/chuong3-hinh7.jpg",
+   "caption": "Các tầng dịch vụ và trách nhiệm [@nist145]",
+   "width": 14.5
+  },
+  {
+   "t": "callout",
+   "kind": "luuy",
+   "title": "",
+   "texts": [
+    "**Dù dùng loại đám mây nào, người vận hành vẫn phải quản lý quyền truy cập, sao lưu và cập nhật.** Tên gọi “riêng” không tự bảo đảm rằng dữ liệu đã an toàn."
+   ]
+  },
+  {
+   "t": "h4",
+   "text": "Ai sử dụng hạ tầng đám mây"
+  },
+  {
+   "t": "p",
+   "text": "Một trường đại học có thể xây dựng hệ thống để cấp máy ảo cho các khoa của mình. Đây là ví dụ về đám mây riêng (private cloud): tài nguyên phục vụ một tổ chức. Nếu tài nguyên do một nhà cung cấp vận hành cho nhiều khách hàng, đó là đám mây công cộng (public cloud). Một tổ chức cũng có thể kết hợp cả hai, gọi là đám mây lai (hybrid cloud). Tên gọi cho biết cách cung cấp tài nguyên; nó không tự nói lên mức độ an toàn hay giấy phép của phần mềm bên trong.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "h3",
+   "text": "3.5.2. OpenStack và Private Cloud"
+  },
+  {
+   "t": "p",
+   "text": "OpenStack là gì? OpenStack là một nền tảng điện toán đám mây mã nguồn mở. Nền tảng này giúp tổ chức dùng một nhóm máy chủ vật lý để cung cấp máy ảo, mạng và vùng lưu trữ cho người dùng. Người dùng có thể yêu cầu tài nguyên qua giao diện Web hoặc giao diện lập trình thay vì phải cấu hình trực tiếp từng máy vật lý [@openstackdocs].",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Khi một nhóm cần máy mới, hệ thống phải lần lượt kiểm tra người yêu cầu, chọn mẫu hệ điều hành, tìm nơi đủ khả năng chạy máy, nối mạng và cấp chỗ lưu dữ liệu. OpenStack chia các công việc đó cho những dịch vụ khác nhau.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "figure",
+   "src": "assets/img/chuong3-hinh8.jpg",
+   "caption": "Các dịch vụ tham gia cấp máy ảo trên OpenStack [@openstackdocs]",
+   "width": 14.5
+  },
+  {
+   "t": "p",
+   "text": "Năm dịch vụ chính của OpenStack cùng trả lời năm câu hỏi. Keystone cho biết ai được đăng nhập và làm việc gì; Glance cho biết máy ảo khởi động từ image nào; Nova cho biết máy ảo được tạo và chạy ở đâu; Neutron cho biết máy ảo kết nối vào mạng nào; còn Cinder cho biết ổ lưu trữ được cấp và gắn ra sao.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Một cụm OpenStack thật cần nhiều máy, mạng, lưu trữ và công việc vận hành. Vì vậy, ở mức nhập môn có thể đọc sơ đồ cấp phát và thử trên hệ thống đã chuẩn bị thay vì bắt đầu bằng cài toàn bộ nền tảng. OpenStack Operations Guide cung cấp góc nhìn vận hành nhưng được xuất bản từ 2014 và chỉ cập nhật một phần về sau; tên lệnh, phiên bản và thao tác triển khai cần đối chiếu tài liệu OpenStack hiện hành [@osops].",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "h4",
+   "text": "Quản lý lượng tài nguyên được cấp"
+  },
+  {
+   "t": "p",
+   "text": "Số máy ảo, bộ nhớ và dung lượng lưu trữ đều có giới hạn. Nếu một nhóm tạo nhiều máy rồi bỏ quên, nhóm khác có thể không còn tài nguyên để dùng. Người vận hành vì thế đặt mức sử dụng tối đa cho từng nhóm, theo dõi máy nào còn cần và thu hồi máy không sử dụng. Việc cấp máy phải đi cùng sao lưu và hỗ trợ khi có sự cố.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "h3",
+   "text": "3.5.3. Giới thiệu Kubernetes và triển khai ứng dụng"
+  },
+  {
+   "t": "p",
+   "text": "Kubernetes là gì? Kubernetes là nền tảng mã nguồn mở dùng để điều phối ứng dụng container trên một cụm máy. “Điều phối” ở đây có nghĩa là quyết định container chạy ở đâu, theo dõi chúng còn hoạt động hay không và tạo bản thay thế khi cần. Kubernetes phù hợp khi hệ thống có nhiều container hoặc cần duy trì nhiều bản chạy của cùng một ứng dụng. Kubernetes phát hành theo Apache License 2.0 [@k8sdocs,@k8slic].",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Người dùng mô tả trạng thái mong muốn, chẳng hạn ứng dụng cần có hai bản chạy. Kubernetes theo dõi trạng thái thực tế và cố gắng đưa hệ thống về trạng thái đã mô tả. Người dùng không cần chọn thủ công một máy cụ thể cho từng container trong các thao tác thông thường.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Pod là đơn vị chạy cơ bản và thường chứa một container chính. Deployment quản lý số lượng Pod của ứng dụng. Service tạo một địa chỉ ổn định để truy cập nhóm Pod. Ba khái niệm này giúp người học hình dung Kubernetes tách việc chạy ứng dụng khỏi vị trí cụ thể của từng container [@k8sup].",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "figure",
+   "src": "assets/img/chuong3-hinh9.jpg",
+   "caption": "Deployment duy trì Pod và Service tạo điểm truy cập [@k8sdocs]",
+   "width": 14.5
+  },
+  {
+   "t": "p",
+   "text": "kubectl là công cụ dòng lệnh dùng để xem và quản lý tài nguyên Kubernetes. Trong phần nhập môn, người học chủ yếu dùng công cụ này để quan sát một cụm đã được chuẩn bị sẵn.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "table",
+   "caption": "Lệnh kubectl [@k8sdocs]",
+   "header": [
+    "Mẫu sử dụng",
+    "Thành phần cần thay",
+    "Công dụng"
+   ],
+   "rows": [
+    [
+     "`kubectl get LOẠI`",
+     "Loại tài nguyên",
+     "Xem danh sách và trạng thái tóm tắt."
+    ],
+    [
+     "`kubectl describe LOẠI TÊN`",
+     "Loại và tên tài nguyên",
+     "Xem thông tin chi tiết và sự kiện."
+    ],
+    [
+     "`kubectl logs TÊN_POD`",
+     "Tên Pod",
+     "Đọc nhật ký của ứng dụng trong Pod."
+    ]
+   ],
+   "widths": [
+    5.4,
+    5.6,
+    5.0
+   ],
+   "font": 11,
+   "firstBold": false,
+   "center": []
+  },
+  {
+   "t": "h4",
+   "text": "Ví dụ minh họa: quan sát cụm có sẵn"
+  },
+  {
+   "t": "code",
+   "text": "kubectl get nodes\nkubectl get pods\nkubectl get services",
+   "title": ""
+  },
+  {
+   "t": "p",
+   "text": "Nút ở trạng thái Ready có thể nhận công việc. Pod ở trạng thái Running cho biết container đang chạy, nhưng ứng dụng vẫn cần được kiểm tra qua Service hoặc nhật ký. Nếu nhận thông báo Forbidden, tài khoản hiện tại chưa có quyền thực hiện thao tác. Nếu không kết nối được API server, cần kiểm tra tệp cấu hình cụm và kết nối mạng.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "callout",
+   "kind": "nho",
+   "title": "Vai trò của các công nghệ",
+   "texts": [
+    "**Docker chạy container trên một máy.** Docker Compose mô tả một nhóm dịch vụ Docker. Kubernetes điều phối container trên cụm, còn OpenStack cung cấp hạ tầng như máy ảo, mạng và lưu trữ. Ở chương này, người học chỉ cần phân biệt vai trò của bốn công nghệ và nhận biết các đối tượng cơ bản."
+   ]
+  },
+  {
+   "t": "h2",
+   "text": "Thuật ngữ và chẩn đoán sự cố"
+  },
+  {
+   "t": "p",
+   "text": "Các công nghệ của Chương 3 trải từ quản lý lịch sử dự án đến vận hành ứng dụng. Git ghi lịch sử; nền tảng kho mã tổ chức cộng tác; máy chủ Web nhận HTTP; cơ sở dữ liệu lưu bản ghi; Docker chạy container; OpenStack cấp hạ tầng; Kubernetes điều phối ứng dụng trên cụm. Mỗi công cụ có phạm vi và đối tượng quản lý riêng.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "table",
+   "caption": "Thuật ngữ trọng tâm của chương",
+   "header": [
+    "Thuật ngữ",
+    "Chức năng",
+    "Đối tượng liên quan"
+   ],
+   "rows": [
+    [
+     "Repository",
+     "Chứa lịch sử Git và tệp dự án",
+     ".git, commit"
+    ],
+    [
+     "Working tree",
+     "Tệp đang làm việc trên ổ đĩa",
+     "git diff"
+    ],
+    [
+     "Staging area",
+     "Phần đã chọn cho commit kế",
+     "git add"
+    ],
+    [
+     "Commit",
+     "Một mốc trạng thái có thông điệp",
+     "git log"
+    ],
+    [
+     "Branch",
+     "Tên hướng phát triển",
+     "main, them-trang-web"
+    ],
+    [
+     "Remote",
+     "Kho ở địa chỉ khác",
+     "origin"
+    ],
+    [
+     "PR/MR",
+     "Đề xuất hợp nhất và nơi xem xét",
+     "Diff, nhận xét"
+    ],
+    [
+     "HTTP",
+     "Giao thức yêu cầu/phản hồi Web",
+     "GET, mã 200/404/500"
+    ],
+    [
+     "Web server",
+     "Nhận yêu cầu và phục vụ/chuyển tiếp",
+     "Apache, Nginx"
+    ],
+    [
+     "DBMS",
+     "Quản lý cơ sở dữ liệu",
+     "PostgreSQL, MySQL"
+    ],
+    [
+     "Image",
+     "Mẫu tạo container",
+     "nginx:stable-alpine"
+    ],
+    [
+     "Container",
+     "Phiên chạy của image",
+     "web-mau"
+    ],
+    [
+     "Volume",
+     "Nơi giữ dữ liệu ngoài lớp ghi container",
+     "dbdata"
+    ],
+    [
+     "Compose service",
+     "Thành phần mô tả trong YAML",
+     "web, db"
+    ],
+    [
+     "Kubernetes Pod",
+     "Đơn vị chạy container trên cụm",
+     "kubectl get pods"
+    ],
+    [
+     "Deployment",
+     "Quản lý trạng thái và số bản sao Pod",
+     "replicas=3"
+    ],
+    [
+     "Service",
+     "Điểm truy cập ổn định cho Pod",
+     "ClusterIP"
+    ]
+   ],
+   "widths": [
+    4.2,
+    5.4,
+    6.4
+   ],
+   "font": 11.5,
+   "firstBold": true,
+   "center": []
+  },
+  {
+   "t": "callout",
+   "kind": "tinhhuong",
+   "title": "Đã push lên GitHub nghĩa là đã chạy trên cloud?",
+   "texts": [
+    "Một nhóm nói: “Chúng em đã push lên GitHub nên ứng dụng đã chạy trên cloud.” Nhận định này thiếu nhiều bước. git push chỉ chuyển commit từ kho cục bộ tới kho từ xa; nó không tự khởi động Web server hoặc cơ sở dữ liệu. Nếu có quy trình CI/CD được cấu hình, một sự kiện push có thể kích hoạt xây và triển khai, nhưng điều đó phải được thiết lập riêng và có kết quả kiểm tra. Nhóm cần chỉ rõ ứng dụng chạy ở máy nào hoặc cụm nào, dùng image nào, cổng truy cập nào và dữ liệu lưu ở đâu. Đây là ví dụ phân biệt lưu mã nguồn với vận hành dịch vụ.",
+    "Nếu ứng dụng chạy bằng Compose trên laptop, người ngoài mạng có thể chưa truy cập được; địa chỉ loopback chỉ trỏ tới chính máy đang dùng. Nếu đưa lên cụm Kubernetes, Deployment và Service cần được tạo, kiểm tra Pod và thiết lập cách truy cập từ ngoài theo hạ tầng. Nếu dùng OpenStack, trước hết phải có instance, mạng và quyền truy cập; sau đó mới cài và chạy ứng dụng hoặc cụm. Không một tên công nghệ nào tự thay toàn bộ chuỗi triển khai."
+   ]
+  },
+  {
+   "t": "table",
+   "caption": "Chẩn đoán sự cố thường gặp",
+   "header": [
+    "Hiện tượng",
+    "Nơi cần kiểm tra trước",
+    "Dấu hiệu cần kiểm tra"
+   ],
+   "rows": [
+    [
+     "git push bị từ chối",
+     "Remote, xác thực, lịch sử mới",
+     "git remote -v, git status"
+    ],
+    [
+     "Web không kết nối",
+     "Dịch vụ và ánh xạ cổng",
+     "docker compose ps, curl -I"
+    ],
+    [
+     "Trang trả 404",
+     "Tuyến/tệp trong thư mục phục vụ",
+     "URL, index.html, log Web"
+    ],
+    [
+     "Database không kết nối",
+     "Tên host db, trạng thái dịch vụ",
+     "Log Web và database"
+    ],
+    [
+     "Dữ liệu mất sau chạy lại",
+     "Volume và thao tác down -v",
+     "compose.yaml, truy vấn trước/sau"
+    ],
+    [
+     "Pod ở trạng thái Pending",
+     "Tài nguyên/nút cụm",
+     "kubectl get nodes, sự kiện"
+    ],
+    [
+     "Có 3 Pod nhưng vẫn ngừng khi hỏng một nút",
+     "Vị trí Pod và số nút",
+     "kubectl get pods -o wide"
+    ]
+   ],
+   "widths": [
+    4.2,
+    5.4,
+    6.4
+   ],
+   "font": 11.5,
+   "firstBold": true,
+   "center": []
+  },
+  {
+   "t": "p",
+   "text": "Từ bảng này, có thể viết nhật ký sự cố theo cấu trúc: hiện tượng, giả thuyết, lệnh kiểm tra, kết quả, kết luận và cách sửa. Chẳng hạn, nếu trang không mở, trước tiên ghi URL đã thử; sau đó kiểm tra docker compose ps và curl -I; cuối cùng mới thay cấu hình. Cách làm giúp tránh sửa nhiều thành phần cùng lúc khiến không biết thay đổi nào có tác dụng.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "h2",
+   "text": "Kết luận chương",
+   "band": true
+  },
+  {
+   "t": "p",
+   "text": "Git ghi lịch sử thay đổi của mã nguồn qua ba khu vực làm việc, chuẩn bị và kho cục bộ; GitHub và GitLab bổ sung nơi lưu kho từ xa cùng cách cộng tác qua pull request hoặc merge request, trong đó hợp nhất mã chưa đồng nghĩa với việc ứng dụng đã được triển khai. Một dịch vụ Web gồm máy chủ Web nhận yêu cầu HTTP, ứng dụng xử lý nghiệp vụ và cơ sở dữ liệu lưu thông tin, và khi có lỗi cần xác định yêu cầu dừng ở tầng nào; Apache, Nginx, MySQL và PostgreSQL là các lựa chọn mã nguồn mở thường gặp với những giấy phép khác nhau cần được tính đến. Container đóng gói ứng dụng cùng thành phần cần thiết để chạy giống nhau ở nhiều nơi, Docker và Compose cho phép chạy một hoặc nhiều dịch vụ trên một máy, còn Kubernetes và OpenStack đảm nhiệm điều phối container và cung cấp hạ tầng ở quy mô cụm. Những công nghệ này cùng nhau tạo thành chuỗi từ viết mã đến vận hành, nhưng mỗi khâu vẫn cần kiểm soát quyền truy cập và giữ bí mật cấu hình. Vì vậy, chương tiếp theo chuyển sang trí tuệ nhân tạo và Generative AI, một lĩnh vực cũng xây dựng trên nền các công cụ mã nguồn mở này và đặt ra thêm những vấn đề về giấy phép, dữ liệu và trách nhiệm sử dụng.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "h2",
+   "text": "Câu hỏi ôn tập",
+   "band": true
+  },
+  {
+   "t": "h3",
+   "text": "A. Nhận biết và hiểu"
+  },
+  {
+   "t": "list",
+   "ordered": true,
+   "items": [
+    "Phân biệt Git với GitHub và GitLab; phân biệt kho cục bộ với kho từ xa.",
+    "Mô tả sự khác nhau giữa thư mục làm việc (working tree), vùng chuẩn bị (staging area) và commit. Vì sao nên xem `git diff` và `git status` trước khi commit?",
+    "Nêu vai trò của máy chủ Web, ứng dụng Web và cơ sở dữ liệu; vẽ hoặc mô tả đường đi của một yêu cầu xem danh sách sách từ trình duyệt qua các thành phần này.",
+    "So sánh image, container và volume. Điều gì xảy ra với dữ liệu ghi trong container nếu container bị xóa mà không có volume?",
+    "Phân biệt IaaS, PaaS, SaaS và nêu sự khác nhau giữa đám mây riêng, đám mây công cộng và đám mây lai."
+   ]
+  },
+  {
+   "t": "h3",
+   "text": "B. Vận dụng và phân tích"
+  },
+  {
+   "t": "list",
+   "ordered": true,
+   "items": [
+    "Trình bày quy trình một nhóm hai người cùng sửa một dự án qua nhánh và pull request hoặc merge request. Nếu có xung đột, nhóm cần làm gì trước khi hợp nhất?",
+    "Một trang Web trả mã 403 sau khi triển khai trên Nginx; hãy nêu các bước kiểm tra theo thứ tự và liên hệ với kiến thức về quyền tệp ở Chương 2.",
+    "Viết tệp `compose.yaml` chạy Nginx ở cổng 8081 và gắn thư mục `html` ở chế độ chỉ đọc; giải thích từng khai báo.",
+    "So sánh Apache với Nginx và MySQL với PostgreSQL về mục đích sử dụng và giấy phép; cho biết mỗi giấy phép thuộc nhóm nào ở Chương 1.",
+    "Một trường đại học muốn cấp máy ảo nội bộ và triển khai ứng dụng Web có ba bản sao. Hãy nêu vai trò của OpenStack và Kubernetes, và giải thích vì sao Docker Compose chưa giải quyết toàn bộ yêu cầu."
+   ]
+  },
+  {
+   "t": "h3",
+   "text": "C. Tình huống thảo luận"
+  },
+  {
+   "t": "list",
+   "ordered": true,
+   "items": [
+    "Một sinh viên vô tình commit tệp chứa mật khẩu cơ sở dữ liệu rồi đẩy lên GitHub công khai. Nhóm cần xử lý như thế nào và rút ra quy tắc gì?",
+    "Một nhóm nói: “Chúng em đã push lên GitHub nên ứng dụng đã chạy trên cloud.” Hãy chỉ ra các bước còn thiếu và đề xuất quy trình triển khai."
+   ]
+  },
+  {
+   "t": "h2",
+   "text": "Bài thực hành",
+   "band": true
+  },
+  {
+   "t": "p",
+   "text": "Các bài thực hành dùng máy ảo Ubuntu hoặc môi trường do giảng viên cung cấp. Mỗi bài tập trung vào cài đặt, nhận biết thành phần, chạy thử và cấu hình ban đầu. Sinh viên thực hiện yêu cầu và nộp kết quả quan sát; phần Lab không yêu cầu xây dựng một hệ thống hoàn chỉnh.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "h3",
+   "text": "Lab 3.1. Cài đặt và cấu hình Git"
+  },
+  {
+   "t": "list",
+   "ordered": true,
+   "items": [
+    "Kiểm tra máy đã có chương trình Git hay chưa.",
+    "Cài Git từ kho phần mềm của Ubuntu nếu chương trình chưa có.",
+    "Hiển thị phiên bản Git sau khi cài đặt.",
+    "Xác định đường dẫn của chương trình Git trên hệ thống.",
+    "Đặt tên tác giả Git ở phạm vi toàn tài khoản thực hành.",
+    "Đặt địa chỉ thư điện tử tác giả Git ở cùng phạm vi.",
+    "Hiển thị lại riêng tên tác giả đã cấu hình.",
+    "Hiển thị lại riêng địa chỉ thư điện tử đã cấu hình.",
+    "Xác định tệp cấu hình chứa hai giá trị vừa đặt.",
+    "Ghi phiên bản, đường dẫn chương trình và hai giá trị cấu hình vào báo cáo."
+   ]
+  },
+  {
+   "t": "p",
+   "text": "**Sản phẩm cần nộp:** Bảng thông tin Git và ảnh chụp kết quả kiểm tra cấu hình.",
+   "indent": false,
+   "left": false
+  },
+  {
+   "t": "h3",
+   "text": "Lab 3.2. Tạo kho Git và ghi phiên bản đầu tiên"
+  },
+  {
+   "t": "list",
+   "ordered": true,
+   "items": [
+    "Tạo thư mục dự án thu-vien trong thư mục nhà.",
+    "Chuyển thư mục làm việc vào dự án.",
+    "Khởi tạo kho Git trong thư mục dự án.",
+    "Kiểm tra nhánh hiện tại và trạng thái kho.",
+    "Tạo tệp README.md gồm tên dự án và hai câu mô tả.",
+    "Kiểm tra trạng thái trước khi đưa tệp vào vùng chuẩn bị.",
+    "Đưa riêng README.md vào vùng chuẩn bị.",
+    "Kiểm tra phần thay đổi đang chuẩn bị cho commit.",
+    "Tạo commit đầu tiên với thông điệp mô tả đúng nội dung.",
+    "Hiển thị lịch sử rút gọn và trạng thái kho sau commit."
+   ]
+  },
+  {
+   "t": "p",
+   "text": "**Sản phẩm cần nộp:** Thư mục kho Git, tệp README.md, ảnh trạng thái trước commit và lịch sử sau commit.",
+   "indent": false,
+   "left": false
+  },
+  {
+   "t": "h3",
+   "text": "Lab 3.3. Làm quen với nhánh Git"
+  },
+  {
+   "t": "list",
+   "ordered": true,
+   "items": [
+    "Mở lại kho thu-vien và xác định tên nhánh chính.",
+    "Tạo nhánh them-trang-gioi-thieu và chuyển sang nhánh đó.",
+    "Xác nhận nhánh hiện tại.",
+    "Tạo tệp index.html có tiêu đề và một đoạn giới thiệu.",
+    "Kiểm tra phần thay đổi của nhánh.",
+    "Đưa tệp HTML vào vùng chuẩn bị và tạo commit.",
+    "Chuyển về nhánh chính.",
+    "Kiểm tra danh sách tệp trước khi hợp nhất.",
+    "Hợp nhất nhánh them-trang-gioi-thieu vào nhánh chính.",
+    "Hiển thị lịch sử dạng rút gọn có sơ đồ và xác nhận tệp HTML đã có trên nhánh chính."
+   ]
+  },
+  {
+   "t": "p",
+   "text": "**Sản phẩm cần nộp:** Tệp HTML, tên hai nhánh và ảnh lịch sử sau hợp nhất. Bài này không yêu cầu tạo xung đột.",
+   "indent": false,
+   "left": false
+  },
+  {
+   "t": "h3",
+   "text": "Lab 3.4. Tạo kho trên GitHub hoặc GitLab"
+  },
+  {
+   "t": "list",
+   "ordered": true,
+   "items": [
+    "Đăng nhập nền tảng GitHub hoặc GitLab được lớp sử dụng.",
+    "Tạo một kho riêng tư mới cho dự án thu-vien.",
+    "Ghi tên kho, chế độ truy cập và URL của kho.",
+    "Kiểm tra các remote hiện có trong kho cục bộ.",
+    "Thêm URL kho mới với tên origin.",
+    "Hiển thị lại địa chỉ fetch và push của origin.",
+    "Đẩy nhánh chính lên kho từ xa và thiết lập quan hệ theo dõi.",
+    "Kiểm tra README.md và index.html trên giao diện Web.",
+    "Sửa một câu trong README trên máy, tạo commit thứ hai và đẩy lên kho.",
+    "Kiểm tra lịch sử hai commit trên giao diện Web và ghi mã rút gọn của commit mới nhất."
+   ]
+  },
+  {
+   "t": "p",
+   "text": "**Sản phẩm cần nộp:** URL kho, ảnh danh sách tệp, lịch sử commit và kết quả git remote -v. Nếu lớp không có tài khoản hoặc Internet, nộp kho cục bộ có hai commit.",
+   "indent": false,
+   "left": false
+  },
+  {
+   "t": "h3",
+   "text": "Lab 3.5. Cài đặt máy chủ Web cơ bản"
+  },
+  {
+   "t": "list",
+   "ordered": true,
+   "items": [
+    "Kiểm tra Apache HTTP Server đã có trên máy ảo hay chưa.",
+    "Cài gói Apache nếu máy chưa có.",
+    "Hiển thị phiên bản máy chủ Web.",
+    "Kiểm tra cú pháp cấu hình hiện tại.",
+    "Kiểm tra trạng thái dịch vụ sau cài đặt.",
+    "Gửi yêu cầu tới http://localhost và ghi mã trạng thái.",
+    "Xác định thư mục chứa trang Web mặc định trên máy thực hành.",
+    "Thay trang mặc định bằng tệp HTML có tiêu đề và hai đoạn văn do sinh viên viết.",
+    "Tải lại trang bằng trình duyệt và bằng curl.",
+    "Ghi tên dịch vụ, cổng, đường dẫn tệp HTML và mã trạng thái vào báo cáo."
+   ]
+  },
+  {
+   "t": "p",
+   "text": "**Sản phẩm cần nộp:** Tệp HTML, ảnh trang Web, kết quả kiểm tra cấu hình và trạng thái dịch vụ.",
+   "indent": false,
+   "left": false
+  },
+  {
+   "t": "h3",
+   "text": "Lab 3.6. Cài đặt và sử dụng PostgreSQL ở mức đầu tiên"
+  },
+  {
+   "t": "list",
+   "ordered": true,
+   "items": [
+    "Kiểm tra PostgreSQL đã được cài trên máy ảo hay chưa.",
+    "Cài PostgreSQL từ kho phần mềm nếu máy chưa có.",
+    "Ghi phiên bản PostgreSQL và trạng thái dịch vụ.",
+    "Mở công cụ dòng lệnh PostgreSQL bằng tài khoản quản trị được lớp cho phép.",
+    "Tạo cơ sở dữ liệu thuvien_lab.",
+    "Kết nối vào cơ sở dữ liệu vừa tạo.",
+    "Tạo bảng sach gồm mã sách, tên sách và năm xuất bản.",
+    "Thêm ba hàng dữ liệu vào bảng.",
+    "Truy vấn toàn bộ hàng theo thứ tự mã sách.",
+    "Sửa tên của một sách bằng điều kiện theo mã rồi truy vấn lại để xác nhận."
+   ]
+  },
+  {
+   "t": "p",
+   "text": "**Sản phẩm cần nộp:** Tên cơ sở dữ liệu, câu lệnh tạo bảng, dữ liệu trước và sau khi cập nhật.",
+   "indent": false,
+   "left": false
+  },
+  {
+   "t": "h3",
+   "text": "Lab 3.7. Cài đặt và kiểm tra Docker"
+  },
+  {
+   "t": "list",
+   "ordered": true,
+   "items": [
+    "Kiểm tra chương trình Docker đã có trên máy ảo hay chưa.",
+    "Cài Docker theo gói và nguồn được lớp quy định nếu máy chưa có.",
+    "Hiển thị phiên bản Docker client.",
+    "Kiểm tra trạng thái Docker daemon.",
+    "Chạy container thử nghiệm nhỏ do giảng viên chỉ định.",
+    "Ghi thông báo cuối cùng của container thử nghiệm.",
+    "Liệt kê image đã tải về.",
+    "Liệt kê container đang chạy.",
+    "Liệt kê toàn bộ container, kể cả container đã dừng.",
+    "Ghi tên image, mã container, trạng thái và thời điểm chạy vào báo cáo."
+   ]
+  },
+  {
+   "t": "p",
+   "text": "**Sản phẩm cần nộp:** Phiên bản Docker, danh sách image, danh sách container và ảnh kết quả chạy thử.",
+   "indent": false,
+   "left": false
+  },
+  {
+   "t": "h3",
+   "text": "Lab 3.8. Chạy một trang Web trong Docker"
+  },
+  {
+   "t": "list",
+   "ordered": true,
+   "items": [
+    "Tải image nginx:stable-alpine từ registry được lớp cho phép.",
+    "Kiểm tra image đã xuất hiện trong danh sách trên máy.",
+    "Tạo container tên web-lab và nối cổng 8080 với cổng 80 trong container.",
+    "Kiểm tra trạng thái container và ánh xạ cổng.",
+    "Mở trang mặc định bằng trình duyệt tại http://localhost:8080.",
+    "Gửi yêu cầu bằng curl và ghi mã trạng thái.",
+    "Xem 20 dòng nhật ký gần nhất của container.",
+    "Dừng container và xác nhận trang không còn truy cập được.",
+    "Khởi động lại container và kiểm tra trang lần nữa.",
+    "Xóa container sau khi đã ghi đầy đủ kết quả."
+   ]
+  },
+  {
+   "t": "p",
+   "text": "**Sản phẩm cần nộp:** Bảng thông tin container, ảnh trang Web, nhật ký và kết quả trước, sau khi dừng container.",
+   "indent": false,
+   "left": false
+  },
+  {
+   "t": "h3",
+   "text": "Lab 3.9. Cấu hình Docker Compose một dịch vụ"
+  },
+  {
+   "t": "list",
+   "ordered": true,
+   "items": [
+    "Kiểm tra lệnh Docker Compose có trên máy ảo.",
+    "Tạo thư mục dự án compose-web.",
+    "Tạo thư mục con html và tệp index.html có nội dung riêng.",
+    "Tạo tệp compose.yaml gồm một dịch vụ Web dùng image Nginx.",
+    "Khai báo ánh xạ cổng 8081:80.",
+    "Gắn thư mục html vào thư mục phục vụ của Nginx ở chế độ chỉ đọc.",
+    "Kiểm tra cấu hình bằng docker compose config.",
+    "Khởi chạy dự án ở chế độ nền và kiểm tra trạng thái dịch vụ.",
+    "Mở trang Web, xem nhật ký rồi ghi tên dịch vụ và cổng.",
+    "Dừng dự án bằng docker compose down và xác nhận container của dự án đã được xóa."
+   ]
+  },
+  {
+   "t": "p",
+   "text": "**Sản phẩm cần nộp:** Tệp compose.yaml, tệp HTML, ảnh trang Web và kết quả kiểm tra trạng thái trước, sau khi dừng.",
+   "indent": false,
+   "left": false
+  },
+  {
+   "t": "h3",
+   "text": "Lab 3.10. Nhận biết OpenStack và Kubernetes trên môi trường có sẵn"
+  },
+  {
+   "t": "list",
+   "ordered": true,
+   "items": [
+    "Đăng nhập OpenStack Horizon bằng tài khoản do lớp cung cấp.",
+    "Mở trang danh sách máy ảo và ghi tên một instance mẫu.",
+    "Ghi trạng thái, flavor, image và địa chỉ mạng của instance đó.",
+    "Xác định vị trí quản lý image trong Horizon.",
+    "Xác định vị trí quản lý network trong Horizon.",
+    "Mở cửa sổ dòng lệnh đã được cấu hình để truy cập cụm Kubernetes của lớp.",
+    "Liệt kê các nút và ghi trạng thái của từng nút.",
+    "Liệt kê Deployment, Pod và Service trong namespace được cấp.",
+    "Chọn một Deployment, ghi số bản sao mong muốn và số Pod đang sẵn sàng.",
+    "Viết hai câu phân biệt vai trò của instance OpenStack, Pod và Service vừa quan sát."
+   ]
+  },
+  {
+   "t": "p",
+   "text": "**Sản phẩm cần nộp:** Hai ảnh chụp màn hình và bảng thông tin OpenStack, Kubernetes đã quan sát. Bài này chỉ thực hiện khi lớp được cấp môi trường; không yêu cầu tự cài OpenStack hoặc Kubernetes.",
+   "indent": false,
+   "left": false
+  },
+  {
+   "t": "h2",
+   "text": "Tài liệu tham khảo",
+   "band": true
+  },
+  {
+   "t": "refs"
+  }
+ ],
+ "refs": {
+  "progit": "Chacon, S., & Straub, B. (2014). *Pro Git* (2nd ed.). Apress. https://git-scm.com/book/en/v2",
+  "ghdocs": "GitHub. (n.d.). *About repositories*; *Pull requests*. GitHub Docs. https://docs.github.com/en/repositories",
+  "gldocs": "GitLab. (n.d.). *Projects*; *Merge requests*. GitLab Docs. https://docs.gitlab.com/user/project/",
+  "glmrshot": "GitLab.org. (n.d.). *Merge request* [Ảnh chụp màn hình giao diện, truy cập ngày 07/10/2026]. GitLab. https://gitlab.com/gitlab-org/gitlab/-/merge_requests/252562",
+  "rfc9110": "Fielding, R., Nottingham, M., & Reschke, J. (2022). *HTTP semantics* (RFC 9110). Internet Engineering Task Force. https://www.rfc-editor.org/rfc/rfc9110",
+  "httpd": "Apache Software Foundation. (n.d.). *Apache HTTP Server documentation*. https://httpd.apache.org/docs/",
+  "asflic": "Apache Software Foundation. (n.d.). *Apache licenses*. https://www.apache.org/licenses/",
+  "nginx": "Nginx. (n.d.). *Nginx documentation*. https://nginx.org/en/docs/",
+  "nginxlic": "Nginx. (n.d.). *License*. https://nginx.org/LICENSE",
+  "mysql": "Oracle. (n.d.). *MySQL reference manual*. https://dev.mysql.com/doc/",
+  "mysqllic": "Oracle. (n.d.). *MySQL licensing information*. https://www.mysql.com/about/legal/licensing/",
+  "pgdocs": "PostgreSQL Global Development Group. (n.d.). *PostgreSQL documentation*. https://www.postgresql.org/docs/",
+  "pglic": "PostgreSQL Global Development Group. (n.d.). *PostgreSQL licence*. https://www.postgresql.org/about/licence/",
+  "dockerdocs": "Docker Inc. (n.d.). *Get started*. Docker Docs. https://docs.docker.com/get-started/",
+  "mobylic": "Moby Project. (n.d.). *Moby – LICENSE*. GitHub. https://github.com/moby/moby/blob/master/LICENSE",
+  "composedocs": "Docker Inc. (n.d.). *Docker Compose: Get started*. Docker Docs. https://docs.docker.com/compose/gettingstarted/",
+  "nist145": "Mell, P., & Grance, T. (2011). *The NIST definition of cloud computing* (NIST Special Publication 800-145). National Institute of Standards and Technology. https://csrc.nist.gov/pubs/sp/800/145/final",
+  "openstackdocs": "OpenStack. (n.d.). *OpenStack documentation*. https://docs.openstack.org/",
+  "osops": "OpenStack Foundation. (n.d.). *OpenStack operations guide*. https://docs.openstack.org/operations-guide/",
+  "k8sdocs": "The Kubernetes Authors. (n.d.). *Kubernetes basics tutorial*; *Deployments*. Kubernetes Documentation. https://kubernetes.io/docs/tutorials/kubernetes-basics/",
+  "k8slic": "The Kubernetes Authors. (n.d.). *Kubernetes – LICENSE*. GitHub. https://github.com/kubernetes/kubernetes/blob/master/LICENSE",
+  "k8sup": "Burns, B., Beda, J., Hightower, K., & Evenson, L. (2022). *Kubernetes: Up and running* (3rd ed.). O’Reilly Media. https://www.oreilly.com/library/view/kubernetes-up-and/9781098110192/"
+ },
+ "order": [
+  "progit",
+  "ghdocs",
+  "gldocs",
+  "glmrshot",
+  "rfc9110",
+  "httpd",
+  "asflic",
+  "nginx",
+  "nginxlic",
+  "mysql",
+  "mysqllic",
+  "pgdocs",
+  "pglic",
+  "dockerdocs",
+  "mobylic",
+  "composedocs",
+  "nist145",
+  "openstackdocs",
+  "osops",
+  "k8sdocs",
+  "k8slic",
+  "k8sup"
+ ]
+}

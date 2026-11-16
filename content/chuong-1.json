@@ -1,0 +1,857 @@
+{
+ "number": 1,
+ "title": "TỔNG QUAN VỀ PHẦN MỀM MÃ NGUỒN MỞ",
+ "titleText": "Tổng quan về phần mềm mã nguồn mở",
+ "blocks": [
+  {
+   "t": "h2",
+   "text": "Giới thiệu chương",
+   "band": true
+  },
+  {
+   "t": "p",
+   "text": "Từ trình duyệt dùng để tra cứu, máy chủ Web phục vụ trang tin, hệ điều hành trên điện thoại cho đến hạ tầng đám mây và các thư viện trí tuệ nhân tạo, phần mềm mã nguồn mở hiện diện trong hầu hết hoạt động số hằng ngày, nên việc hiểu nó là gì, vận hành theo quy tắc nào và được sử dụng ra sao là kiến thức nền cho mọi chương sau của giáo trình. Chương này đi từ khái niệm đến thực hành pháp lý rồi đến hệ sinh thái. Phần đầu làm rõ mã nguồn mở là gì, khác gì phần mềm tự do và phần mềm thương mại, cùng những lợi ích và hạn chế khi sử dụng. Phần tiếp theo bàn về giấy phép và bản quyền, tức là người dùng được phép làm gì với mã nguồn của người khác và phải tuân thủ nghĩa vụ nào, đây là điều quyết định việc dùng một đoạn mã có hợp pháp hay không. Phần cuối giới thiệu hệ sinh thái gồm cộng đồng, quy trình đóng góp, các kho mã nguồn, cách đánh giá một dự án và những xu hướng phát triển hiện nay.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "h3",
+   "text": "Mục tiêu học tập"
+  },
+  {
+   "t": "p",
+   "text": "Sau khi học xong chương này, người học có thể:",
+   "indent": true,
+   "left": true
+  },
+  {
+   "t": "list",
+   "ordered": false,
+   "items": [
+    "Trình bày và phân biệt được các khái niệm mã nguồn mở, phần mềm tự do, phần mềm thương mại và phần mềm chỉ công khai mã nguồn, đồng thời giải thích được đặc điểm, lợi ích, hạn chế và vai trò của phần mềm mã nguồn mở.",
+    "So sánh được các giấy phép phổ biến như MIT, BSD, Apache 2.0, MPL, LGPL, GPL và AGPL, xác định được nghĩa vụ đi kèm và thực hiện được việc kiểm tra giấy phép trước khi tích hợp một thư viện vào dự án.",
+    "Mô tả được cách cộng đồng vận hành và quy trình đóng góp cho dự án mã nguồn mở, đánh giá được mức độ tin cậy của một dự án và nhận biết được các xu hướng phát triển chính."
+   ]
+  },
+  {
+   "t": "h2",
+   "text": "1.1. Khái niệm và đặc điểm"
+  },
+  {
+   "t": "h3",
+   "text": "1.1.1. Khái niệm phần mềm mã nguồn mở"
+  },
+  {
+   "t": "h4",
+   "text": "a) Mã nguồn và mã thực thi"
+  },
+  {
+   "t": "p",
+   "text": "Chương trình máy tính được viết bằng các ngôn ngữ như C, Java, Python hay PHP. Tập hợp các câu lệnh mà con người đọc và chỉnh sửa được gọi là **mã nguồn** (source code). Máy tính không chạy trực tiếp mã nguồn mà chạy mã thực thi (executable, binary) do trình biên dịch hoặc trình thông dịch tạo ra.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "callout",
+   "kind": "vidu",
+   "title": "",
+   "texts": [
+    "Dòng lệnh Python `print(\"Hello, Open Source!\")` là một đoạn mã nguồn hoàn chỉnh.",
+    "Người chỉ nhận được tệp thực thi thì chạy được chương trình nhưng không biết nó được viết thế nào. Người nhận mã nguồn có thể đọc, sửa và biên dịch lại."
+   ]
+  },
+  {
+   "t": "p",
+   "text": "Với phần mềm thương mại truyền thống, nhà phát triển thường chỉ phát hành mã thực thi và giữ kín mã nguồn, gọi là mô hình **mã nguồn đóng**. Với phần mềm mã nguồn mở, mã nguồn được cung cấp cùng các quyền sử dụng ghi trong giấy phép.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "h4",
+   "text": "b) Định nghĩa phần mềm mã nguồn mở"
+  },
+  {
+   "t": "p",
+   "text": "**Phần mềm mã nguồn mở** (Open Source Software – OSS) là phần mềm có mã nguồn được công bố kèm giấy phép cho phép người dùng sử dụng, nghiên cứu, sửa đổi và phân phối lại theo các điều kiện của giấy phép. Tiêu chuẩn tham chiếu quốc tế là *Open Source Definition* của Tổ chức Mã nguồn mở (Open Source Initiative – OSI) [@osd], gồm mười tiêu chí:",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "callout",
+   "kind": "mo",
+   "title": "Mười tiêu chí của Open Source Definition (tóm lược)",
+   "texts": [
+    "- 1) Tự do phân phối lại; 2) có mã nguồn dưới dạng lập trình viên sửa được; 3) cho phép sản phẩm phái sinh.",
+    "- 4) Có thể yêu cầu bản sửa đổi đổi tên hoặc phân phối dạng bản vá, nhưng vẫn phải cho phép phân phối bản đã sửa.",
+    "- 5) Không phân biệt đối xử với cá nhân hay nhóm người; 6) không phân biệt lĩnh vực sử dụng.",
+    "- 7) Quyền áp dụng cho mọi người nhận chương trình; 8) không gắn với một sản phẩm hay bản phân phối cụ thể.",
+    "- 9) Không áp đặt điều kiện lên phần mềm khác đi kèm; 10) trung lập về công nghệ."
+   ]
+  },
+  {
+   "t": "callout",
+   "kind": "nho",
+   "title": "",
+   "texts": [
+    "**Mã nguồn mở không chỉ là “xem được mã”.** Một phần mềm là mã nguồn mở khi *giấy phép* trao các quyền tự do đối với mã nguồn. Phần mềm công bố mã nhưng cấm sửa đổi hoặc phân phối lại thuộc nhóm **source-available** (mã nguồn có thể truy cập), chưa đáp ứng định nghĩa của OSI."
+   ]
+  },
+  {
+   "t": "p",
+   "text": "Mã nguồn mở cũng không có nghĩa là “không có bản quyền”: tác giả vẫn giữ quyền tác giả và dùng giấy phép để trao quyền cho cộng đồng (xem mục 1.2.3). Một số sản phẩm tiêu biểu gồm nhân Linux cùng các bản phân phối Ubuntu, Debian, Fedora; bộ ứng dụng văn phòng LibreOffice; trình duyệt Firefox; máy chủ Web Apache HTTP Server và Nginx; hệ quản trị cơ sở dữ liệu PostgreSQL và MariaDB; ngôn ngữ Python; hệ quản trị nội dung WordPress.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "h4",
+   "text": "c) Quá trình hình thành và phát triển"
+  },
+  {
+   "t": "p",
+   "text": "Hình 1.1 tóm tắt các mốc quan trọng của mã nguồn mở, từ Dự án GNU đến định nghĩa Open Source AI. Mỗi giai đoạn gắn với một thay đổi trong cách xã hội nhìn nhận mã nguồn, được giải thích dưới đây.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "figure",
+   "src": "assets/img/chuong1-hinh1.jpg",
+   "caption": "Các mốc chính trong lịch sử phần mềm mã nguồn mở [@gnu85,@fss,@torvalds,@osdhist,@osai,@opentofu]",
+   "width": 16.0
+  },
+  {
+   "t": "p",
+   "text": "**Trước thập niên 1980 – văn hóa chia sẻ.** Trong những năm đầu của ngành máy tính, phần mềm thường đi kèm phần cứng và chưa được coi là một sản phẩm thương mại độc lập. Mã nguồn được trao đổi tự nhiên giữa các lập trình viên trong phòng thí nghiệm và trường đại học để cùng sửa lỗi và cải tiến [@fss].",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "**Thập niên 1980 – Phong trào Phần mềm Tự do.** Khi phần mềm bị thương mại hóa và mã nguồn bị đóng lại, người dùng mất khả năng nghiên cứu và tùy biến chương trình mình đang dùng. Để đáp lại, Richard Stallman khởi xướng Dự án GNU (1983) nhằm xây dựng một hệ điều hành hoàn toàn tự do, thành lập Free Software Foundation (FSF) năm 1985 và công bố giấy phép *GNU General Public License* phiên bản 1 vào năm 1989 [@gnu85,@gpl].",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "**1991 – Nhân Linux.** Linus Torvalds, khi đó là sinh viên, công bố bản đầu tiên của nhân Linux trên nhóm thảo luận comp.os.minix và mời mọi người cùng phát triển [@torvalds]. Khi kết hợp nhân này với các công cụ của Dự án GNU, một hệ điều hành mở hoàn chỉnh (GNU/Linux) ra đời, tạo bước ngoặt cho hạ tầng công nghệ thông tin.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "**1998 – Thuật ngữ “open source”.** Sau khi Netscape công bố mã nguồn trình duyệt, một nhóm người gồm Christine Peterson, Eric S. Raymond, Bruce Perens cùng những người khác nhận thấy chữ “free” dễ bị hiểu thành “miễn phí” và khó thuyết phục giới doanh nghiệp. Họ đề xuất thuật ngữ *open source* và thành lập OSI trong cùng năm [@osdhist,@peterson].",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "**Từ 2005 đến nay – nền tảng của hạ tầng số.** Git (2005), GitHub (2008), Docker (2013) và Kubernetes (2014) cho thấy mã nguồn mở đã trở thành cách phát triển phần mềm chủ đạo. Gần như toàn bộ hệ thống trong danh sách TOP500 siêu máy tính chạy Linux [@top500]; Android dựa trên nhân Linux, còn phần lớn mã nguồn Android do dự án AOSP phát hành theo Apache License 2.0 [@aosp].",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "h3",
+   "text": "1.1.2. Đặc điểm và vai trò của phần mềm mã nguồn mở"
+  },
+  {
+   "t": "h4",
+   "text": "a) Đặc điểm"
+  },
+  {
+   "t": "p",
+   "text": "Đặc điểm đầu tiên và quan trọng nhất của phần mềm mã nguồn mở là **khả năng tiếp cận mã nguồn**. Nhờ đó, lập trình viên có thể đọc để hiểu thuật toán, rà soát lỗ hổng bảo mật, còn sinh viên có thể học kiến trúc hệ thống từ các dự án thực tế, chẳng hạn đọc mã nhân Linux để hiểu cách hệ điều hành lập lịch tiến trình. Gắn liền với quyền tiếp cận là quyền sửa đổi và phân phối lại theo giấy phép: một trường đại học có thể bổ sung tính năng thi trực tuyến vào Moodle cho phù hợp quy chế của mình, còn các bản phân phối Linux đóng gói lại phần mềm của nhiều dự án để người dùng cài đặt thuận tiện.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Đặc điểm thứ hai là **phát triển theo cộng đồng và minh bạch**. Người dùng không chỉ sử dụng mà còn báo lỗi bằng *issue*, gửi bản sửa bằng *pull request*, viết tài liệu hoặc dịch giao diện. Toàn bộ lịch sử thay đổi, danh sách lỗi và lộ trình phát triển của nhiều dự án được công khai trên GitHub hoặc GitLab, nên bất kỳ ai cũng có thể theo dõi dự án đang đi theo hướng nào. Đặc điểm cuối cùng là giảm sự phụ thuộc vào nhà cung cấp: vì nắm mã nguồn, tổ chức có thể tự vận hành hoặc thuê một đơn vị khác bảo trì mà không lo bị ép giá hay bị bỏ rơi khi nhà cung cấp ban đầu ngừng hoạt động, tình trạng thường gọi là *vendor lock-in*.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "callout",
+   "kind": "luuy",
+   "title": "",
+   "texts": [
+    "**Mã nguồn mở không đồng nghĩa với miễn phí.** “Open” nói về quyền đối với mã nguồn, không nói về giá. Doanh nghiệp mã nguồn mở vẫn có doanh thu từ triển khai, đào tạo, hỗ trợ kỹ thuật, tư vấn và dịch vụ đám mây.",
+    "Khi tính chi phí cần xét **Tổng chi phí sở hữu** (Total Cost of Ownership – TCO). Miễn phí bản quyền không có nghĩa là không tốn chi phí triển khai, vận hành, bảo trì và đào tạo nhân sự."
+   ]
+  },
+  {
+   "t": "h4",
+   "text": "b) Lợi ích và hạn chế"
+  },
+  {
+   "t": "p",
+   "text": "Về **lợi ích**, tổ chức tiết kiệm chi phí bản quyền, chủ động trong công nghệ vì tự sửa lỗi hoặc thêm tính năng, và đẩy nhanh đổi mới nhờ tái sử dụng thư viện sẵn có thay vì xây lại từ đầu. Một nhóm phát triển Web có thể ghép Linux, Nginx, PostgreSQL, Python và Docker thành một hệ thống hoàn chỉnh mà tập trung công sức vào tính năng riêng của sản phẩm. Với người học, đây còn là kho mã thực tế đạt chuẩn công nghiệp để nghiên cứu. Cộng tác toàn cầu giúp một lỗi do người dùng ở nước này phát hiện được lập trình viên ở nước khác sửa, rồi cộng đồng kiểm thử, tạo nên chu trình cải tiến liên tục.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Bên cạnh đó, việc sử dụng mã nguồn mở cũng có những **hạn chế** cần tính trước. Thứ nhất, nhiều hệ thống hạ tầng như máy chủ, cơ sở dữ liệu hay DevOps đòi hỏi đội ngũ am hiểu Linux, mạng và bảo mật; nếu thiếu năng lực nội bộ, tổ chức sẽ khó xử lý sự cố phức tạp. Thứ hai, chất lượng giữa các dự án không đồng đều: có dự án do tập đoàn bảo trợ với tài liệu đầy đủ và bản vá đều đặn, nhưng cũng có dự án cá nhân thiếu tài liệu hoặc bị bỏ rơi, vì vậy cần đánh giá dự án trước khi chọn (mục 1.3.2). Thứ ba, phần lớn dự án không có cam kết hỗ trợ 24/7; tổ chức có thể mua gói hỗ trợ doanh nghiệp từ các công ty như Red Hat, SUSE hoặc dựa vào cộng đồng. Cuối cùng là rủi ro pháp lý và an ninh: dùng sai giấy phép, dùng thư viện có lỗ hổng, hoặc gặp dự án đổi giấy phép, những vấn đề được bàn ở mục 1.2.3 và 1.3.3.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "h4",
+   "text": "c) Vai trò"
+  },
+  {
+   "t": "p",
+   "text": "Đối với **người học**, mã nguồn mở cho phép thực hành trên công nghệ chuẩn công nghiệp mà không vướng chi phí bản quyền, đồng thời làm quen với Git, issue, pull request và cách làm việc nhóm hiện đại. Đối với cơ sở giáo dục, đó là cách chủ động xây dựng hạ tầng đào tạo bằng Moodle, LibreOffice, PostgreSQL, Linux và thu hẹp khoảng cách giữa học thuật với công nghệ doanh nghiệp đang dùng. Đối với doanh nghiệp, mã nguồn mở rút ngắn thời gian đưa sản phẩm ra thị trường và cho phép tùy biến linh hoạt. Ở quy mô toàn ngành, nó là nền tảng của đám mây, container, dữ liệu lớn, DevOps và AI (Kubernetes, Spark, Kafka, PyTorch, Ansible), đồng thời giúp chuẩn hóa giao thức và chia sẻ tri thức giữa các quốc gia.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "h3",
+   "text": "1.1.3. Phân biệt phần mềm mã nguồn mở, phần mềm tự do và phần mềm thương mại"
+  },
+  {
+   "t": "p",
+   "text": "Ba khái niệm này hay bị dùng lẫn lộn nhưng **không phải ba nhóm tách rời**: chúng giao nhau và được xét theo các tiêu chí khác nhau.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "**Phần mềm mã nguồn mở** nhấn mạnh khả năng tiếp cận mã nguồn và mô hình phát triển cộng tác; tiêu chuẩn đánh giá là Open Source Definition [@osd]. Phần mềm tự do (Free Software) nhấn mạnh *quyền tự do của người dùng*, trong đó “free” nghĩa là tự do (freedom) chứ không phải miễn phí. FSF xác định bốn quyền: quyền chạy chương trình cho mọi mục đích (quyền 0); quyền nghiên cứu và sửa đổi chương trình, đòi hỏi phải có mã nguồn (quyền 1); quyền phân phối lại bản sao để giúp người khác (quyền 2); và quyền cải tiến rồi công bố bản cải tiến cho cộng đồng (quyền 3) [@fsfdef].",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "**Phần mềm thương mại** (commercial software) là phần mềm được phát triển hoặc phân phối nhằm tạo doanh thu. Đây là tiêu chí về *mô hình kinh doanh*, không nói gì về việc mã nguồn mở hay đóng. Hai phong trào đầu có phạm vi chồng lấn rất lớn nên thường được gọi chung là FOSS (Free and Open Source Software) hoặc FLOSS (Free/Libre and Open Source Software). Khác biệt chủ yếu nằm ở triết lý: phần mềm tự do coi tự do là vấn đề đạo đức, còn mã nguồn mở coi đây là phương pháp phát triển phần mềm hiệu quả [@fsfmiss].",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "table",
+   "caption": "So sánh ba khái niệm",
+   "header": [
+    "Tiêu chí",
+    "Mã nguồn mở",
+    "Phần mềm tự do",
+    "Phần mềm thương mại"
+   ],
+   "rows": [
+    [
+     "Trọng tâm",
+     "Tiếp cận mã nguồn; phát triển cộng tác",
+     "Quyền tự do của người dùng",
+     "Kinh doanh, tạo doanh thu"
+    ],
+    [
+     "Mã nguồn",
+     "Có",
+     "Có",
+     "Tùy nhà cung cấp (thường đóng)"
+    ],
+    [
+     "Sửa đổi, phân phối lại",
+     "Được, theo giấy phép",
+     "Được, theo bốn quyền tự do",
+     "Theo hợp đồng, giấy phép sử dụng"
+    ],
+    [
+     "Thu phí",
+     "Có thể thu phí dịch vụ, hỗ trợ",
+     "Có thể bán bản sao hoặc dịch vụ",
+     "Thu phí bản quyền hoặc dịch vụ"
+    ],
+    [
+     "Ví dụ",
+     "Linux, Firefox, PostgreSQL",
+     "GCC, Bash (dự án GNU)",
+     "Microsoft 365, Photoshop, AutoCAD"
+    ]
+   ],
+   "widths": [
+    3.1,
+    4.4,
+    4.2,
+    4.3
+   ],
+   "font": 12,
+   "firstBold": true,
+   "center": []
+  },
+  {
+   "t": "callout",
+   "kind": "nho",
+   "title": "",
+   "texts": [
+    "Hai hiểu lầm cần tránh:",
+    "- **Sai:** mã nguồn mở = miễn phí. **Đúng:** mã nguồn mở nói về quyền, giá có thể khác không.",
+    "- **Sai:** phần mềm thương mại = mã nguồn đóng. **Đúng:** một sản phẩm có thể vừa mã nguồn mở vừa thương mại. Red Hat, chẳng hạn, bán gói đăng ký (hỗ trợ, bản vá, chứng nhận) trên nền các thành phần mã nguồn mở."
+   ]
+  },
+  {
+   "t": "h2",
+   "text": "1.2. Giấy phép và bản quyền"
+  },
+  {
+   "t": "h3",
+   "text": "1.2.1. Khái niệm và vai trò của giấy phép phần mềm"
+  },
+  {
+   "t": "p",
+   "text": "**Giấy phép phần mềm** (software license) là văn bản pháp lý quy định phạm vi quyền và nghĩa vụ của người dùng đối với một phần mềm. Theo pháp luật Việt Nam, quyền tác giả phát sinh từ khi tác phẩm được sáng tạo và thể hiện dưới một hình thức vật chất nhất định, không cần đăng ký; chương trình máy tính được bảo hộ như tác phẩm văn học [@luat05,@luat22]. Vì vậy, nếu không có giấy phép, người khác không có quyền sao chép, sửa đổi hay phân phối phần mềm; giấy phép chính là sự “ủy quyền” của chủ sở hữu.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "callout",
+   "kind": "luuy",
+   "title": "",
+   "texts": [
+    "Mã nguồn đăng công khai trên GitHub, GitLab, blog hay diễn đàn **không mặc nhiên** cho phép tải về, dùng hoặc thương mại hóa. Kho mã không có giấy phép được hiểu là tác giả giữ toàn bộ quyền [@ghlic]."
+   ]
+  },
+  {
+   "t": "p",
+   "text": "Khi tiếp cận một dự án, việc đầu tiên là tìm các tệp pháp lý ở thư mục gốc của repository. Tệp `LICENSE` (hoặc `LICENSE.txt`) chứa toàn văn giấy phép như MIT, Apache 2.0 hay GPL; tệp `COPYING` có vai trò tương đương và thường gặp trong các dự án GNU; tệp `NOTICE` chứa thông báo pháp lý bắt buộc, danh sách tác giả hoặc các thành phần bên thứ ba. Ngoài ra, nhiều dự án ghi dòng `SPDX-License-Identifier` ở đầu mỗi tệp mã, là mã định danh chuẩn của giấy phép, chẳng hạn `MIT`, `Apache-2.0` hoặc `GPL-3.0-only`, giúp công cụ tự động nhận diện giấy phép [@spdx].",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Dù khác nhau về chi tiết, một giấy phép thường gồm ba nhóm điều khoản. **Cấp quyền** cho phép chạy, sao chép, sửa đổi và phân phối lại phần mềm. Điều kiện và nghĩa vụ bao gồm giữ thông báo bản quyền, đính kèm giấy phép, công bố mã nguồn phái sinh (với copyleft) và các quy định về bằng sáng chế, nhãn hiệu. Miễn trừ trách nhiệm nêu rằng phần mềm được cung cấp “nguyên trạng” (AS IS), tác giả không bảo hành và không chịu trách nhiệm về thiệt hại phát sinh.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "h3",
+   "text": "1.2.2. Các giấy phép mã nguồn mở phổ biến"
+  },
+  {
+   "t": "p",
+   "text": "Có hàng trăm giấy phép được OSI phê chuẩn [@osilic]. Dựa vào mức ràng buộc khi phân phối sản phẩm phái sinh, có thể chia thành hai nhóm lớn: **permissive** (ít điều kiện) và copyleft (yêu cầu sản phẩm phái sinh tiếp tục được mở). Hình 1.2 sắp xếp các giấy phép phổ biến từ trái sang phải theo mức ràng buộc tăng dần: càng sang phải, người dùng càng bị ràng buộc phải giữ mở mã nguồn phái sinh.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "figure",
+   "src": "assets/img/chuong1-hinh2.jpg",
+   "caption": "Phổ giấy phép mã nguồn mở theo mức ràng buộc",
+   "width": 16.0
+  },
+  {
+   "t": "p",
+   "text": "**Nhóm permissive** gồm MIT, BSD và Apache 2.0. MIT ngắn gọn, ít ràng buộc nhất trong các giấy phép phổ biến, chỉ yêu cầu giữ thông báo bản quyền và bản giấy phép. BSD (bản 2-Clause và 3-Clause) tương tự MIT; bản 3-Clause thêm điều khoản cấm dùng tên tác giả để quảng bá sản phẩm phái sinh. Apache License 2.0 chặt chẽ hơn ở chỗ có điều khoản bằng sáng chế: người đóng góp mã đồng thời cấp quyền sử dụng các sáng chế liên quan, và quyền này chấm dứt đối với bên khởi kiện về sáng chế chống lại dự án; giấy phép còn yêu cầu giữ thông báo, đính kèm bản giấy phép và ghi chú các tệp đã sửa [@apache]. Cả ba đều cho phép đưa mã vào sản phẩm thương mại mã nguồn đóng.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "**Nhóm copyleft yếu** gồm MPL 2.0 và LGPL. MPL 2.0 áp dụng copyleft ở mức *tệp*: tệp MPL bị sửa phải được công bố, nhưng có thể kết hợp với mã theo giấy phép khác trong cùng sản phẩm [@mpl]. LGPL được thiết kế riêng cho thư viện: phần mềm đóng được phép liên kết với thư viện LGPL miễn là người dùng vẫn thay thế được thư viện đó, còn sửa đổi chính thư viện thì phải công bố.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "**Nhóm copyleft mạnh và copyleft mạng** gồm GPL và AGPL. Với GPL (phiên bản 2 và 3), khi *phân phối* sản phẩm phái sinh thì phải phát hành toàn bộ mã nguồn phái sinh theo chính giấy phép GPL; nhân Linux dùng GPLv2 [@gpl]. Tuy nhiên, GPL chỉ kích hoạt khi phần mềm được phân phối, nên một doanh nghiệp chạy phần mềm trên máy chủ và chỉ cho khách hàng dùng qua Web (mô hình SaaS) thì không phải công bố mã. AGPL v3 ra đời để lấp khoảng trống đó: người vận hành dịch vụ phải cung cấp mã nguồn cho mọi người dùng tương tác với dịch vụ qua mạng.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "table",
+   "caption": "So sánh các giấy phép mã nguồn mở phổ biến",
+   "header": [
+    "Giấy phép",
+    "Nhóm",
+    "Dùng trong sản phẩm đóng",
+    "Nghĩa vụ chính",
+    "Ví dụ"
+   ],
+   "rows": [
+    [
+     "MIT",
+     "Permissive",
+     "Có",
+     "Giữ bản quyền và giấy phép",
+     "React, Rails"
+    ],
+    [
+     "BSD",
+     "Permissive",
+     "Có",
+     "Giữ bản quyền; (3-Clause) không dùng tên tác giả quảng bá",
+     "FreeBSD, Nginx"
+    ],
+    [
+     "Apache 2.0",
+     "Permissive",
+     "Có",
+     "Giữ thông báo; ghi tệp đã sửa; điều khoản sáng chế",
+     "Kubernetes, Apache HTTP Server"
+    ],
+    [
+     "MPL 2.0",
+     "Copyleft yếu",
+     "Có (tách ở mức tệp)",
+     "Công bố các tệp MPL đã sửa",
+     "Firefox, LibreOffice"
+    ],
+    [
+     "LGPL",
+     "Copyleft yếu",
+     "Có (liên kết thư viện)",
+     "Công bố sửa đổi thư viện; cho phép thay thư viện",
+     "GTK, glibc"
+    ],
+    [
+     "GPL",
+     "Copyleft mạnh",
+     "Hạn chế: phái sinh phải mở khi phân phối",
+     "Công bố mã nguồn phái sinh theo GPL",
+     "Nhân Linux, GIMP, WordPress"
+    ],
+    [
+     "AGPL",
+     "Copyleft mạng",
+     "Hạn chế: kể cả khi cung cấp qua mạng",
+     "Như GPL, áp dụng cả với dịch vụ qua mạng",
+     "Nextcloud, Grafana"
+    ]
+   ],
+   "widths": [
+    2.4,
+    2.6,
+    3.5,
+    4.4,
+    3.1
+   ],
+   "font": 11.5,
+   "firstBold": true,
+   "center": []
+  },
+  {
+   "t": "callout",
+   "kind": "luuy",
+   "title": "",
+   "texts": [
+    "Cụm từ “GPL lây nhiễm” chỉ là cách nói hình ảnh về hiệu ứng copyleft. Ranh giới giữa “liên kết”, “tích hợp” và “tác phẩm phái sinh” còn phụ thuộc kỹ thuật cụ thể và pháp luật từng nước. **Với sản phẩm thương mại, cần tham vấn bộ phận pháp lý** thay vì tự suy diễn."
+   ]
+  },
+  {
+   "t": "callout",
+   "kind": "tinhhuong",
+   "title": "Chọn thư viện",
+   "texts": [
+    "Một công ty khởi nghiệp muốn dùng thư viện mã hóa theo **GPLv3** trong ứng dụng đóng gói bán cho khách hàng dưới dạng tệp cài đặt.",
+    "Phân tích: việc phân phối kích hoạt nghĩa vụ copyleft nên có nguy cơ phải công bố mã nguồn toàn bộ ứng dụng. Các hướng xử lý: dùng thư viện thay thế theo giấy phép permissive; mua giấy phép thương mại nếu tác giả cung cấp; hoặc phát hành toàn bộ ứng dụng theo GPLv3."
+   ]
+  },
+  {
+   "t": "callout",
+   "kind": "mo",
+   "title": "",
+   "texts": [
+    "**Mã nguồn mở “đổi giấy phép”.** Tháng 8/2023, HashiCorp chuyển Terraform từ MPL 2.0 sang Business Source License (BSL), loại giấy phép không được OSI công nhận là mã nguồn mở; cộng đồng tạo nhánh OpenTofu dưới sự bảo trợ của Linux Foundation [@opentofu]. Elastic chuyển Elasticsearch khỏi Apache 2.0 năm 2021, rồi đến tháng 8/2024 bổ sung AGPLv3 như một lựa chọn [@elastic].",
+    "Bài học: khi chọn thành phần cho hệ thống lâu dài, **không chỉ kiểm tra giấy phép hiện tại mà còn theo dõi lịch sử và cách quản trị dự án**."
+   ]
+  },
+  {
+   "t": "h3",
+   "text": "1.2.3. Bản quyền và nguyên tắc sử dụng phần mềm mã nguồn mở"
+  },
+  {
+   "t": "h4",
+   "text": "a) Mã nguồn mở vẫn được bảo hộ bản quyền"
+  },
+  {
+   "t": "p",
+   "text": "Tác giả mã nguồn mở không từ bỏ bản quyền mà **chủ động cấp phép** cho cộng đồng. Điều này khác với phạm vi công cộng (public domain), nơi tác phẩm đã hết thời hạn bảo hộ hoặc tác giả từ bỏ quyền, và người dùng không bị ràng buộc điều kiện nào. Với mã nguồn mở, các điều kiện của giấy phép luôn có hiệu lực, và vi phạm điều kiện đồng nghĩa với vi phạm bản quyền.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "h4",
+   "text": "b) Nguyên tắc ứng xử khi tái sử dụng mã"
+  },
+  {
+   "t": "p",
+   "text": "Dù tái sử dụng cả một thư viện hay chỉ một đoạn mã nhỏ, lập trình viên phải giữ nguyên thông báo bản quyền, tên tác giả cùng các tệp `LICENSE` và `NOTICE`, không được xóa bỏ hay mạo nhận mã của người khác là sản phẩm của mình. Nếu có sửa đổi, cần ghi nhận thay đổi khi giấy phép yêu cầu, như Apache 2.0. Khi phân phối sản phẩm có chứa thành phần mã nguồn mở, doanh nghiệp nên bổ sung trang “Open Source Notices” liệt kê các thành phần bên thứ ba và đính kèm mã nguồn tương ứng đối với những thành phần theo GPL hoặc LGPL.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "h4",
+   "text": "c) Kiểm tra giấy phép trước khi tích hợp"
+  },
+  {
+   "t": "p",
+   "text": "Trước khi thêm một thư viện vào dự án, lập trình viên cần làm rõ năm vấn đề. **Trước hết**, thư viện dùng giấy phép nào; nếu không xác định được thì chưa nên dùng. Tiếp theo, giấy phép có cho phép dùng trong sản phẩm thương mại mã nguồn đóng hay không; nếu không, cần tìm thành phần khác hoặc xin giấy phép riêng. Thứ ba, khi phân phối sản phẩm có phải công bố mã nguồn phái sinh không, và nếu có thì phải đánh giá lại kiến trúc hoặc cân nhắc mở toàn bộ. Thứ tư, có phải đính kèm `LICENSE`, `NOTICE` hoặc ghi công trong sản phẩm đầu ra hay không. Cuối cùng, thư viện có kéo theo các phụ thuộc khác với giấy phép khác không; mỗi phụ thuộc đều phải được kiểm tra và ghi vào danh mục (Bảng 1.3).",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "callout",
+   "kind": "luuy",
+   "title": "",
+   "texts": [
+    "**Mã không rõ giấy phép (unlicensed code):** đoạn mã trên blog, diễn đàn, Gist hoặc kho không có `LICENSE` mặc định thuộc “mọi quyền được bảo lưu”. Sao chép vào dự án thương mại có thể gây tranh chấp bản quyền.",
+    "Rủi ro tương tự với mã do trợ lý lập trình AI sinh ra mà không rà soát nguồn gốc và giấy phép; nguyên tắc dùng AI có trách nhiệm được trình bày ở Chương 4."
+   ]
+  },
+  {
+   "t": "h4",
+   "text": "d) Quản lý thành phần phụ thuộc và SBOM"
+  },
+  {
+   "t": "p",
+   "text": "Một ứng dụng hiện đại thường phụ thuộc vào hàng trăm thư viện. **Danh mục thành phần phần mềm** (Software Bill of Materials – SBOM) liệt kê thành phần, phiên bản, nhà cung cấp và quan hệ phụ thuộc, giúp kiểm soát cả rủi ro giấy phép lẫn lỗ hổng bảo mật [@ntia]. Bảng 1.3 là ví dụ minh họa với dữ liệu giả định, trong đó thành phần dùng GPL được đánh dấu rủi ro cao vì có thể buộc phải công bố mã khi phân phối.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "table",
+   "caption": "Ví dụ bảng quản lý thành phần phụ thuộc (dữ liệu giả định)",
+   "header": [
+    "Thành phần",
+    "Phiên bản",
+    "Giấy phép",
+    "Cách sử dụng",
+    "Đánh giá rủi ro pháp lý"
+   ],
+   "rows": [
+    [
+     "Library A",
+     "2.1.0",
+     "MIT",
+     "Giao diện",
+     "Thấp – giữ thông báo bản quyền"
+    ],
+    [
+     "Library B",
+     "5.0.2",
+     "Apache-2.0",
+     "Xử lý logic",
+     "Thấp – giữ NOTICE, ghi tệp đã sửa"
+    ],
+    [
+     "Library C",
+     "3.2.1",
+     "BSD-3-Clause",
+     "Kết nối mạng",
+     "Thấp – không dùng tên tác giả quảng bá"
+    ],
+    [
+     "Library D",
+     "1.0.0",
+     "GPL-3.0-only",
+     "Mô-đun mã hóa",
+     "Cao – phải công bố mã phái sinh khi phân phối"
+    ]
+   ],
+   "widths": [
+    2.6,
+    2.0,
+    3.0,
+    3.0,
+    5.4
+   ],
+   "font": 12,
+   "firstBold": false,
+   "center": []
+  },
+  {
+   "t": "h2",
+   "text": "1.3. Hệ sinh thái mã nguồn mở"
+  },
+  {
+   "t": "p",
+   "text": "Hệ sinh thái mã nguồn mở gồm **mã nguồn, cộng đồng, nền tảng lưu trữ và cộng tác, giấy phép, tổ chức bảo trợ và doanh nghiệp tham gia**. Các thành phần này liên kết với nhau để phần mềm được xây dựng, kiểm thử, chia sẻ và cải tiến liên tục.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "h3",
+   "text": "1.3.1. Cộng đồng và dự án mã nguồn mở"
+  },
+  {
+   "t": "p",
+   "text": "**Cộng đồng mã nguồn mở** là tập hợp cá nhân và tổ chức cùng sử dụng, phát triển và hoàn thiện một hay nhiều dự án, thường cộng tác qua Internet. Cộng đồng hoạt động tốt giúp phát hiện lỗi nhanh, bổ sung tính năng, hoàn thiện tài liệu và hỗ trợ người dùng hiệu quả.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Trong một dự án, **người sáng lập** (founder) khởi tạo dự án và xác định định hướng ban đầu; người duy trì (maintainer) quản lý dự án, xem xét các thay đổi được đề xuất và quyết định việc hợp nhất vào nhánh chính; lập trình viên chính (core developer) thường xuyên phát triển các thành phần quan trọng. Xung quanh họ là người đóng góp (contributor) gửi mã, tài liệu, bản dịch hoặc ý tưởng, người kiểm thử (tester) kiểm tra phiên bản mới và phản hồi chất lượng, và đông đảo người dùng (user) báo lỗi, đề xuất tính năng. Các vai trò này không cố định: một người dùng tích cực có thể trở thành người đóng góp, rồi sau một thời gian được giao thêm trách nhiệm duy trì dự án. Nhiều dự án lớn còn được quản trị bởi tổ chức phi lợi nhuận như Linux Foundation, Apache Software Foundation hay Eclipse Foundation để bảo đảm tính trung lập và bền vững [@ghgov].",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "callout",
+   "kind": "nho",
+   "title": "",
+   "texts": [
+    "**Đóng góp không chỉ là viết mã.** Báo lỗi, kiểm thử, viết hoặc sửa tài liệu, dịch giao diện, thiết kế UI/UX, hỗ trợ người dùng, viết hướng dẫn đều là đóng góp có giá trị. Người chưa giỏi lập trình vẫn có thể tham gia."
+   ]
+  },
+  {
+   "t": "h4",
+   "text": "Quy trình đóng góp mã nguồn"
+  },
+  {
+   "t": "p",
+   "text": "Khi muốn sửa một lỗi hoặc bổ sung tính năng cho dự án trên GitHub, người đóng góp thường đi qua tám bước như Hình 1.3. Tuy tên gọi có thể khác ở nền tảng khác, trình tự này khá phổ biến [@ghcontrib].",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "figure",
+   "src": "assets/img/chuong1-hinh3.jpg",
+   "caption": "Quy trình đóng góp mã nguồn phổ biến trên GitHub [@ghcontrib]",
+   "width": 16.0
+  },
+  {
+   "t": "p",
+   "text": "**Các bước chuẩn bị (1–3).** Ở bước 1, người đóng góp tìm dự án phù hợp và đọc `README.md` để hiểu mục đích, đọc `CONTRIBUTING.md` để biết quy tắc đóng góp của dự án. Bước 2 là fork: tạo một bản sao của repository gốc ngay trên tài khoản GitHub của mình, nhờ đó có thể thoải mái chỉnh sửa mà không ảnh hưởng đến dự án gốc. Bước 3 là clone: sao chép bản fork về máy cục bộ để làm việc bằng công cụ quen thuộc.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "**Các bước thực hiện thay đổi (4–6).** Bước 4 là tạo một nhánh (branch) riêng cho thay đổi, tách biệt với nhánh chính để dễ theo dõi và dễ loại bỏ nếu cần. Ở bước 5, người đóng góp chỉnh sửa mã nguồn rồi ghi nhận thay đổi bằng commit kèm thông điệp mô tả ngắn gọn. Bước 6 là push: đẩy nhánh vừa tạo lên bản fork trên máy chủ để chuẩn bị gửi cho dự án.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "**Các bước đề xuất và hợp nhất (7–8).** Bước 7, người đóng góp mở một pull request (PR) để đề nghị dự án xem xét thay đổi, nêu rõ mục đích và nội dung đã sửa. Ở bước 8, người duy trì thực hiện review mã nguồn và có thể yêu cầu chỉnh sửa; sau khi các điều chỉnh được chấp nhận, thay đổi được merge (hợp nhất) vào dự án chính. Nếu bị từ chối, người đóng góp vẫn nhận được phản hồi để cải thiện lần sau.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Quy trình cụ thể có thể khác nhau giữa các dự án, vì vậy cần tuân thủ quy tắc về mã nguồn, kiểm thử và giao tiếp mà dự án quy định. Một số dự án còn yêu cầu người đóng góp ký thỏa thuận cấp phép (CLA) hoặc xác nhận nguồn gốc mã (DCO) trước khi nhận đóng góp.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "h4",
+   "text": "Báo lỗi và đề xuất qua Issue"
+  },
+  {
+   "t": "p",
+   "text": "**Issue** là nơi ghi nhận lỗi, đề xuất tính năng, trao đổi kỹ thuật hoặc theo dõi nhiệm vụ của dự án. Một báo cáo lỗi tốt nêu rõ mô tả lỗi, các bước tái hiện, kết quả mong đợi so với kết quả thực tế, phiên bản phần mềm và môi trường sử dụng, kèm nhật ký lỗi hoặc ảnh chụp nếu cần, để người duy trì có thể tái hiện và sửa nhanh.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "callout",
+   "kind": "luuy",
+   "title": "",
+   "texts": [
+    "**Lỗ hổng bảo mật không nên báo công khai bằng Issue.** Hãy làm theo chính sách bảo mật của dự án (thường ghi trong `SECURITY.md`) để tác giả kịp sửa trước khi lỗ hổng bị khai thác."
+   ]
+  },
+  {
+   "t": "h3",
+   "text": "1.3.2. Giới thiệu các kho mã nguồn"
+  },
+  {
+   "t": "p",
+   "text": "**Repository** (repo) là kho lưu trữ mã nguồn, tài liệu, tệp cấu hình và lịch sử thay đổi của một dự án. Cần phân biệt: Git là hệ thống quản lý phiên bản phân tán, tức là công cụ theo dõi thay đổi; còn GitHub, GitLab, Bitbucket, SourceForge là các nền tảng lưu trữ repository Git và hỗ trợ cộng tác. Chi tiết về Git được trình bày ở Chương 3.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "**GitHub** phổ biến nhất cho các dự án mở, cung cấp Issue, Pull Request, Releases, Projects và GitHub Actions để tự động hóa quy trình; tuy nhiên một kho trên GitHub chưa chắc là mã nguồn mở, mà phải xem giấy phép cụ thể. GitLab có chức năng tương tự, tích hợp CI/CD và DevSecOps, đồng thời cho phép tổ chức tự triển khai trên hạ tầng riêng (Self-Managed). Bitbucket thuộc hệ sinh thái Atlassian, tích hợp chặt với Jira và Confluence nên thường được doanh nghiệp lựa chọn. SourceForge là nền tảng lâu đời, từng được dùng rộng rãi trước khi các dịch vụ dựa trên Git phổ biến và nay vẫn dùng để phân phối bản cài đặt.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Một repository được tổ chức tốt thường có sáu tệp quen thuộc: `README.md` giới thiệu dự án, yêu cầu hệ thống và cách cài đặt, sử dụng; `LICENSE` nêu giấy phép; `CONTRIBUTING.md` hướng dẫn đóng góp; `CODE_OF_CONDUCT.md` đặt nguyên tắc ứng xử trong cộng đồng; `CHANGELOG.md` ghi lại thay đổi qua các phiên bản; và `SECURITY.md` chỉ cách báo cáo lỗ hổng. Không phải dự án nào cũng đủ cả sáu tệp, nhưng đây là dấu hiệu của một dự án được quản lý cẩn thận.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "h4",
+   "text": "Đánh giá một dự án mã nguồn mở"
+  },
+  {
+   "t": "p",
+   "text": "Không nên chọn phần mềm chỉ vì lượt tải hay số sao (star) cao. Với hệ thống quan trọng, nên xem xét dự án theo ba góc độ.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "**Góc độ pháp lý và tương thích.** Giấy phép phải rõ ràng và phù hợp mục đích sử dụng; dự án không có giấy phép hoặc có giấy phép xung đột với sản phẩm của mình là dấu hiệu cần dừng lại. Cùng với đó, phần mềm cần tương thích với hệ điều hành, phiên bản và hệ thống đang vận hành, vì nếu phải chỉnh sửa lớn để tích hợp thì chi phí sẽ tăng.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "**Góc độ mức độ hoạt động.** Một dự án khỏe mạnh có commit và bản phát hành đều đặn, gần đây, nhiều người đóng góp, và Issue hay Pull Request được phản hồi nhanh. Ngược lại, nhiều tháng hoặc nhiều năm không có thay đổi, chỉ có một tác giả duy nhất hoặc Issue tồn đọng là dấu hiệu dự án có thể bị bỏ rơi.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "**Góc độ chất lượng và an toàn.** Tài liệu cần có hướng dẫn cài đặt, API và xử lý sự cố, không lỗi thời. Về bảo mật, dự án nên có `SECURITY.md`, công bố và vá lỗ hổng kịp thời; lỗ hổng nghiêm trọng chưa được xử lý là lý do để cân nhắc lại việc sử dụng.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "h3",
+   "text": "1.3.3. Xu hướng phát triển của phần mềm mã nguồn mở"
+  },
+  {
+   "t": "p",
+   "text": "**Hạ tầng số và đám mây.** Linux, Kubernetes, OpenStack, Prometheus, Grafana là những thành phần cốt lõi của kiến trúc cloud-native, giúp tổ chức tự động hóa hạ tầng và giảm phụ thuộc vào giải pháp độc quyền. Cần lưu ý phân biệt dự án mở như Docker Engine/Moby với sản phẩm có điều khoản cấp phép riêng như Docker Desktop [@docker]. Cùng với đó là DevOps và hạ tầng dưới dạng mã (Infrastructure as Code): Git, Jenkins, Ansible, Kubernetes và OpenTofu hỗ trợ tự động hóa toàn bộ chuỗi *Develop → Build → Test → Deploy → Monitor*.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "**Trí tuệ nhân tạo và dữ liệu lớn.** Python, PyTorch, TensorFlow, scikit-learn, Jupyter, OpenCV là nền tảng của AI và học máy, còn Hadoop, Spark, Kafka là nền tảng xử lý dữ liệu lớn. Riêng với AI, cần phân biệt phần mềm mã nguồn mở với mô hình AI “mở”: việc cho tải trọng số mô hình chưa chắc đáp ứng *Open Source AI Definition 1.0* của OSI, vốn đòi hỏi các quyền sử dụng, nghiên cứu, sửa đổi, chia sẻ cùng thông tin về dữ liệu huấn luyện, mã và tham số [@osai].",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "**Doanh nghiệp tham gia sâu hơn.** Doanh nghiệp công bố dự án nội bộ, tài trợ cộng đồng, thuê maintainer toàn thời gian và xây dựng sản phẩm thương mại trên nền dự án mở. Có bốn mô hình kinh doanh phổ biến. Mô hình *dịch vụ và hỗ trợ* bán gói đăng ký gồm hỗ trợ kỹ thuật, bản vá và đào tạo, như Red Hat hay SUSE. Mô hình *Open Core* phát hành phần lõi theo giấy phép mở và bán các tính năng doanh nghiệp theo giấy phép thương mại, như GitLab. Mô hình *giấy phép kép* phát hành cùng một mã theo giấy phép mở và giấy phép thương mại, như MySQL [@oracle]. Mô hình *SaaS* vận hành phần mềm trên đám mây rồi thu phí lưu trữ và hỗ trợ, như WordPress.com.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "**Bảo mật chuỗi cung ứng phần mềm.** Phần mềm hiện đại phụ thuộc vào nhiều thành phần bên thứ ba, nên một thành phần bị xâm nhập sẽ kéo theo mọi hệ thống sử dụng nó. Vụ cài mã độc vào thư viện nén xz-utils (CVE-2024-3094), được phát hiện năm 2024, là ví dụ điển hình [@nvd]. Vì vậy các tổ chức ngày càng chú trọng quản lý phụ thuộc, quét lỗ hổng tự động, kiểm tra nguồn gốc gói và lập SBOM. Cuối cùng, trong giáo dục, mục tiêu học mã nguồn mở không dừng ở việc biết cài đặt phần mềm mà là hiểu cách dự án vận hành, đọc và tuân thủ giấy phép, dùng Git thành thạo và từng bước tham gia cộng đồng.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "h2",
+   "text": "Kết luận chương",
+   "band": true
+  },
+  {
+   "t": "p",
+   "text": "Phần mềm mã nguồn mở là phần mềm có mã nguồn được công bố kèm giấy phép trao quyền sử dụng, nghiên cứu, sửa đổi và phân phối lại; nó không đồng nghĩa với miễn phí hay không có bản quyền, và khác với phần mềm tự do về triết lý, với phần mềm thương mại về tiêu chí phân loại. Giấy phép là trung tâm của việc sử dụng hợp pháp, vì vậy người dùng phải đọc, hiểu nghĩa vụ và kiểm tra giấy phép trước khi tích hợp bất kỳ thành phần nào, đồng thời quản lý các phụ thuộc bằng SBOM. Sức mạnh của mã nguồn mở còn đến từ hệ sinh thái gồm cộng đồng, nền tảng cộng tác và doanh nghiệp, nên người sử dụng cần biết đóng góp, biết đánh giá một dự án theo giấy phép, mức độ hoạt động và chất lượng, cũng như theo dõi các xu hướng về đám mây, DevOps, trí tuệ nhân tạo và an ninh chuỗi cung ứng. Những hiểu biết này sẽ được áp dụng ngay ở chương tiếp theo, bắt đầu từ sản phẩm mã nguồn mở tiêu biểu nhất là hệ điều hành Linux, nơi người học tìm hiểu nhân Linux và các bản phân phối, cài đặt hệ thống, làm việc bằng dòng lệnh và sử dụng các ứng dụng văn phòng, Internet, đồ họa mã nguồn mở.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "h2",
+   "text": "Câu hỏi ôn tập",
+   "band": true
+  },
+  {
+   "t": "h3",
+   "text": "A. Nhận biết và hiểu"
+  },
+  {
+   "t": "list",
+   "ordered": true,
+   "items": [
+    "Mã nguồn là gì? Phân biệt mã nguồn và mã thực thi.",
+    "Vì sao một phần mềm công khai mã nguồn trên Internet chưa chắc là phần mềm mã nguồn mở?",
+    "Nêu bốn quyền tự do của phần mềm tự do và ít nhất ba tiêu chí của Open Source Definition.",
+    "Phần mềm mã nguồn mở có luôn miễn phí không? Giải thích bằng khái niệm TCO.",
+    "Phân biệt phần mềm mã nguồn mở, phần mềm tự do và phần mềm thương mại; cho ví dụ một sản phẩm thuộc nhiều nhóm cùng lúc.",
+    "Giấy phép phần mềm là gì? Vì sao kho mã không có giấy phép lại không được tự do sử dụng?",
+    "Phân biệt giấy phép permissive và copyleft; lấy hai ví dụ cho mỗi nhóm.",
+    "Mô tả vai trò của Maintainer, Contributor và Tester trong một dự án mã nguồn mở."
+   ]
+  },
+  {
+   "t": "h3",
+   "text": "B. Vận dụng và phân tích"
+  },
+  {
+   "t": "list",
+   "ordered": true,
+   "items": [
+    "So sánh MIT, Apache 2.0 và GPLv3 về nghĩa vụ chính, khả năng dùng trong sản phẩm đóng và điều khoản sáng chế.",
+    "AGPL giải quyết khoảng trống nào của GPL đối với dịch vụ chạy trên đám mây?",
+    "Lập danh mục kiểm tra giấy phép cho một ứng dụng Web sử dụng năm thư viện với các giấy phép khác nhau.",
+    "Trình bày các bước đóng góp một bản sửa lỗi tài liệu cho một dự án trên GitHub, từ Fork đến Merge.",
+    "Chọn một dự án mã nguồn mở bất kỳ và đánh giá theo ba góc độ ở mục 1.3.2; nêu kết luận có nên sử dụng không."
+   ]
+  },
+  {
+   "t": "h3",
+   "text": "C. Tình huống thảo luận"
+  },
+  {
+   "t": "list",
+   "ordered": true,
+   "items": [
+    "Một sinh viên sao chép đoạn mã từ blog không có giấy phép vào sản phẩm đồ án thương mại hóa. Phân tích rủi ro và đề xuất cách xử lý.",
+    "Một nhóm dự án dùng công cụ A theo giấy phép mã nguồn mở, sau đó nhà cung cấp chuyển sang giấy phép BSL. Nhóm nên làm gì để giảm rủi ro dài hạn?"
+   ]
+  },
+  {
+   "t": "h2",
+   "text": "Tài liệu tham khảo",
+   "band": true
+  },
+  {
+   "t": "refs"
+  }
+ ],
+ "refs": {
+  "osd": "Open Source Initiative. (n.d.). *The Open Source Definition*. https://opensource.org/osd",
+  "gnu85": "Stallman, R. M. (1985). The GNU Manifesto. *Dr. Dobb’s Journal of Software Tools, 10*(3). https://www.gnu.org/gnu/manifesto.html",
+  "fss": "Stallman, R. M. (2002). *Free software, free society: Selected essays of Richard M. Stallman*. GNU Press.",
+  "torvalds": "Torvalds, L. (1991, August 25). What would you like to see most in minix? [Usenet post]. *comp.os.minix*.",
+  "osdhist": "Open Source Initiative. (n.d.). *History of the Open Source Initiative*. https://opensource.org/20years",
+  "osai": "Open Source Initiative. (2024). *The Open Source AI Definition 1.0*. https://opensource.org/ai/open-source-ai-definition",
+  "opentofu": "OpenTofu. (n.d.). *OpenTofu announces fork of Terraform*. https://opentofu.org/blog/opentofu-announces-fork-of-terraform/",
+  "gpl": "Free Software Foundation. (n.d.). *GNU General Public License, version 3*. https://www.gnu.org/licenses/gpl-3.0.html",
+  "peterson": "Peterson, C. (2018, February 2). How I coined the term “open source”. *Opensource.com*. https://opensource.com/article/18/2/coining-term-open-source-software",
+  "top500": "TOP500. (n.d.). *TOP500 supercomputer sites*. https://www.top500.org/",
+  "aosp": "Android Open Source Project. (n.d.). *Licenses*. https://source.android.com/docs/setup/about/licenses",
+  "fsfdef": "Free Software Foundation. (n.d.). *What is free software? The Free Software Definition*. GNU Project. https://www.gnu.org/philosophy/free-sw.html",
+  "fsfmiss": "Free Software Foundation. (n.d.). *Why open source misses the point of free software*. GNU Project. https://www.gnu.org/philosophy/open-source-misses-the-point.html",
+  "luat05": "Quốc hội. (2005). *Luật Sở hữu trí tuệ* (Luật số 50/2005/QH11).",
+  "luat22": "Quốc hội. (2022). *Luật số 07/2022/QH15 sửa đổi, bổ sung một số điều của Luật Sở hữu trí tuệ*.",
+  "ghlic": "GitHub. (n.d.). *Licensing a repository*. GitHub Docs. https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/licensing-a-repository",
+  "spdx": "SPDX. (n.d.). *SPDX License List*. Linux Foundation. https://spdx.org/licenses/",
+  "osilic": "Open Source Initiative. (n.d.). *OSI approved licenses*. https://opensource.org/licenses",
+  "apache": "Apache Software Foundation. (2004). *Apache License, Version 2.0*. https://www.apache.org/licenses/LICENSE-2.0",
+  "mpl": "Mozilla Foundation. (n.d.). *Mozilla Public License, version 2.0*. https://www.mozilla.org/en-US/MPL/2.0/",
+  "elastic": "Banon, S. (2024, August 29). *Elasticsearch is open source, again*. Elastic. https://www.elastic.co/blog/elasticsearch-is-open-source-again",
+  "ntia": "National Telecommunications and Information Administration. (2021). *The minimum elements for a Software Bill of Materials (SBOM)*. U.S. Department of Commerce. https://www.ntia.gov/report/2021/minimum-elements-software-bill-materials-sbom",
+  "ghgov": "GitHub. (n.d.). *Leadership and governance*. Open Source Guides. https://opensource.guide/leadership-and-governance/",
+  "ghcontrib": "GitHub. (n.d.). *How to contribute to open source*. Open Source Guides. https://opensource.guide/how-to-contribute/",
+  "docker": "Docker Inc. (n.d.). *Docker Subscription Service Agreement*. https://www.docker.com/legal/docker-subscription-service-agreement/",
+  "oracle": "Oracle. (n.d.). *MySQL licensing information*. https://www.mysql.com/about/legal/licensing/",
+  "nvd": "National Vulnerability Database. (2024). *CVE-2024-3094*. National Institute of Standards and Technology. https://nvd.nist.gov/vuln/detail/CVE-2024-3094"
+ },
+ "order": [
+  "osd",
+  "gnu85",
+  "fss",
+  "torvalds",
+  "osdhist",
+  "osai",
+  "opentofu",
+  "gpl",
+  "peterson",
+  "top500",
+  "aosp",
+  "fsfdef",
+  "fsfmiss",
+  "luat05",
+  "luat22",
+  "ghlic",
+  "spdx",
+  "osilic",
+  "apache",
+  "mpl",
+  "elastic",
+  "ntia",
+  "ghgov",
+  "ghcontrib",
+  "docker",
+  "oracle",
+  "nvd"
+ ]
+}

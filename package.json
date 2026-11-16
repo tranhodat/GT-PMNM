@@ -1,0 +1,12 @@
+{
+  "name": "giao-trinh-pmnm-editor",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Trình biên tập Giáo trình Phần mềm mã nguồn mở: sửa nội dung 6 chương và xuất Word theo rules.md",
+  "engines": { "node": ">=18" },
+  "scripts": {
+    "dev": "npx serve .",
+    "test": "node test/export.test.js"
+  },
+  "devDependencies": { "docx": "8.5.0" }
+}

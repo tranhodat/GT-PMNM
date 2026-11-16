@@ -1,0 +1,1532 @@
+{
+ "number": 6,
+ "title": "AN TOÀN VÀ BẢO MẬT HỆ THỐNG MÃ NGUỒN MỞ",
+ "titleText": "An toàn và bảo mật hệ thống mã nguồn mở",
+ "blocks": [
+  {
+   "t": "h2",
+   "text": "Giới thiệu chương",
+   "band": true
+  },
+  {
+   "t": "p",
+   "text": "Phần mềm mã nguồn mở được tin dùng nhờ tính minh bạch và linh hoạt, nhưng chính vì được người dùng tự triển khai, cấu hình và vận hành nên mức độ an toàn của một hệ thống thực tế phụ thuộc rất nhiều vào cách quản trị. Chương này trình bày những kiến thức nền tảng về an toàn thông tin, các nguy cơ và lỗ hổng thường gặp, những nguyên tắc giảm thiểu rủi ro và các cơ chế bảo mật quan trọng trên hệ điều hành Linux. Trước hết, phần tổng quan giới thiệu ba thuộc tính bí mật, toàn vẹn, sẵn sàng, các khái niệm tài sản, mối đe dọa, lỗ hổng, rủi ro, các nguy cơ phổ biến, nguyên tắc đặc quyền tối thiểu và phòng thủ nhiều lớp cùng các biện pháp phòng ngừa. Tiếp theo, chương đi vào bảo mật hệ điều hành với quản lý tài khoản và nhóm, bảo mật tệp và thư mục, chính sách mật khẩu và xác thực, kiểm soát quyền quản trị và truy cập từ xa. Phần cuối giới thiệu ba nhóm công cụ có vai trò thiết thực trong quản trị hệ thống: Wireshark để quan sát lưu lượng mạng, Firewall để kiểm soát truy cập và Nmap để kiểm tra các dịch vụ, cổng mạng đang được công bố, kèm quy tắc chỉ sử dụng trong môi trường thực hành hoặc hệ thống được cấp quyền. Chương này cũng củng cố các kiến thức về quyền tệp (Chương 2), dịch vụ, container (Chương 3) và chuỗi cung ứng phần mềm (Chương 1) từ góc nhìn an toàn.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "h3",
+   "text": "Mục tiêu học tập"
+  },
+  {
+   "t": "p",
+   "text": "Sau khi học xong chương này, người học có thể:",
+   "indent": true,
+   "left": true
+  },
+  {
+   "t": "list",
+   "ordered": false,
+   "items": [
+    "Nhận biết được các nguy cơ và lỗ hổng bảo mật phổ biến, phân biệt được tài sản, mối đe dọa, lỗ hổng, rủi ro và biện pháp kiểm soát; giải thích được các nguyên tắc bảo vệ hệ thống như đặc quyền tối thiểu, phòng thủ nhiều lớp, mặc định từ chối và quy trách nhiệm, truy vết.",
+    "Quản lý được tài khoản, nhóm và quyền truy cập trên Linux; thiết lập được quyền tệp, ACL và chính sách mật khẩu, xác thực (kể cả khóa SSH và sudo) theo khuyến nghị hiện hành.",
+    "Sử dụng được Wireshark, Firewall (UFW) và Nmap trong môi trường thực hành được cấp quyền để quan sát lưu lượng, kiểm soát truy cập và kiểm tra dịch vụ, cổng mạng, đồng thời tuân thủ các giới hạn đạo đức và pháp lý khi kiểm tra."
+   ]
+  },
+  {
+   "t": "h2",
+   "text": "6.1. Tổng quan về an toàn thông tin"
+  },
+  {
+   "t": "p",
+   "text": "An toàn thông tin là tập hợp các biện pháp nhằm bảo vệ thông tin và hệ thống xử lý thông tin trước những hành động truy cập, sử dụng, tiết lộ, thay đổi, phá hủy hoặc gây gián đoạn trái phép. Đối tượng cần bảo vệ không chỉ là dữ liệu. Trong một hệ thống máy tính, tài khoản người dùng, phần mềm, dịch vụ mạng, cấu hình hệ thống, thiết bị và các thông tin xác thực đều là những tài sản có giá trị.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Ba thuộc tính thường được sử dụng để mô tả các mục tiêu cơ bản của an toàn thông tin là Confidentiality, Integrity và Availability, gọi tắt là mô hình CIA.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Confidentiality – tính bí mật hướng đến việc bảo đảm thông tin chỉ được truy cập bởi những người hoặc hệ thống có thẩm quyền. Ví dụ, hồ sơ người dùng không được cung cấp cho một tài khoản không được phân quyền.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Integrity – tính toàn vẹn yêu cầu dữ liệu và cấu hình không bị thay đổi trái phép hoặc ngoài ý muốn. Một tệp cấu hình hệ thống bị sửa bởi tài khoản không được phép là ví dụ về sự vi phạm tính toàn vẹn.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Availability – tính sẵn sàng yêu cầu thông tin và dịch vụ có thể được truy cập khi người dùng hợp lệ có nhu cầu. Một máy chủ bị ngừng hoạt động trong thời gian dài hoặc bị tấn công từ chối dịch vụ có thể làm mất tính sẵn sàng.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "figure",
+   "src": "assets/img/chuong6-hinh1.jpg",
+   "caption": "Ba thuộc tính cơ bản của an toàn thông tin [@nistcsf]",
+   "width": 14.0
+  },
+  {
+   "t": "p",
+   "text": "Trong thực tế, bảo mật không kết thúc ở việc ngăn chặn một cuộc tấn công. NIST Cybersecurity Framework 2.0 tổ chức hoạt động quản trị rủi ro an ninh mạng theo sáu chức năng Govern, Identify, Protect, Detect, Respond và Recover. Cách tiếp cận này cho thấy tổ chức cần đồng thời quản trị rủi ro, nhận diện tài sản, triển khai biện pháp bảo vệ, phát hiện bất thường, ứng phó sự cố và phục hồi hoạt động [@nistcsf].",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Có năm khái niệm cơ bản cần phân biệt. Tài sản (asset) là đối tượng có giá trị cần được bảo vệ, chẳng hạn dữ liệu, máy chủ, tài khoản hoặc dịch vụ. Mối đe dọa (threat) là yếu tố hoặc sự kiện có khả năng gây ảnh hưởng bất lợi đến tài sản. Lỗ hổng (vulnerability) là điểm yếu của hệ thống, phần mềm, cấu hình hoặc quy trình có thể bị khai thác. Rủi ro (risk) là khả năng xảy ra và mức độ hậu quả khi một mối đe dọa khai thác điểm yếu. Biện pháp kiểm soát (control) là cơ chế hoặc biện pháp được sử dụng để phòng ngừa, phát hiện hoặc giảm thiểu rủi ro.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Ví dụ, một máy chủ Web là tài sản. Nếu Web Server đang sử dụng một phiên bản tồn tại lỗ hổng thì lỗ hổng đó trở thành điểm yếu của hệ thống. Một đối tượng bên ngoài có khả năng khai thác điểm yếu này tạo nên mối đe dọa. Khi khả năng khai thác và hậu quả tiềm tàng được xem xét cùng nhau, người quản trị có thể đánh giá rủi ro để quyết định các biện pháp xử lý phù hợp.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "h3",
+   "text": "6.1.1. Các nguy cơ và lỗ hổng bảo mật phổ biến"
+  },
+  {
+   "t": "p",
+   "text": "Sự cố an toàn thông tin không phải lúc nào cũng bắt nguồn từ những kỹ thuật tấn công phức tạp. Trong nhiều trường hợp, nguyên nhân xuất phát từ những sai sót tương đối đơn giản như sử dụng mật khẩu dễ đoán, không cập nhật phần mềm, cấp quyền quá rộng hoặc vận hành các dịch vụ không còn cần thiết.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Một trong những nhóm nguy cơ quan trọng liên quan đến tài khoản và thông tin xác thực. Tài khoản sử dụng mật khẩu yếu có thể bị đoán hoặc bị khai thác khi cùng mật khẩu được tái sử dụng trên nhiều dịch vụ. Tài khoản của nhân viên đã nghỉ việc nhưng chưa bị vô hiệu hóa, tài khoản thử nghiệm bị quên hoặc tài khoản dịch vụ có quyền quá cao cũng có thể trở thành đường truy cập vào hệ thống. CIS Controls 8.1 xem quản lý tài khoản và quản lý quyền truy cập là các hoạt động bảo vệ nền tảng của hệ thống.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Phần mềm chưa được cập nhật là một nhóm điểm yếu khác. Khi một lỗ hổng đã được công bố và bản sửa đã tồn tại, việc tiếp tục sử dụng phiên bản cũ kéo dài khoảng thời gian mà hệ thống có thể bị khai thác. Điều này đặc biệt quan trọng đối với các dịch vụ có thể truy cập từ mạng như SSH, Web Server, File Server và Database Server.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Cấu hình không an toàn cũng thường xuyên tạo ra các điểm yếu. Một phần mềm có thể không chứa lỗ hổng nghiêm trọng nhưng vẫn tạo rủi ro nếu được cấu hình cho phép truy cập quá rộng. Ví dụ, một cơ sở dữ liệu vốn chỉ được ứng dụng cục bộ sử dụng nhưng lại lắng nghe trên tất cả interface mạng sẽ làm tăng khả năng bị truy cập từ bên ngoài.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Trong hệ thống Linux, phân quyền không phù hợp là một lỗi tương đối phổ biến. Chẳng hạn, việc sử dụng lệnh `chmod 777 dulieu/` có thể nhanh chóng giải quyết một lỗi “Permission denied”, nhưng đồng thời cấp quyền đọc, ghi và thực thi cho tất cả các nhóm người dùng. Nếu thư mục chứa dữ liệu quan trọng, đây có thể là một cấu hình không an toàn.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Một nguy cơ khác là dịch vụ và cổng mạng dư thừa. Mỗi dịch vụ đang hoạt động là một thành phần phải được cấu hình, cập nhật và giám sát. Một máy chủ Web không cần dịch vụ FTP thì không nên duy trì FTP chỉ vì phần mềm đã được cài đặt trước đó. Việc giảm số lượng dịch vụ giúp giảm bề mặt tấn công của hệ thống.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Ngoài các yếu tố kỹ thuật, con người cũng là một thành phần quan trọng. Email giả mạo, social engineering, phần mềm được tải từ nguồn không đáng tin cậy và hành vi chia sẻ thông tin đăng nhập đều có thể làm suy giảm mức độ bảo vệ của hệ thống.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "table",
+   "caption": "Một số nguy cơ bảo mật phổ biến và biện pháp giảm thiểu",
+   "header": [
+    "Nguy cơ hoặc điểm yếu",
+    "Hậu quả có thể xảy ra",
+    "Biện pháp cơ bản"
+   ],
+   "rows": [
+    [
+     "Mật khẩu yếu",
+     "Chiếm quyền tài khoản",
+     "Chính sách mật khẩu phù hợp, MFA"
+    ],
+    [
+     "Tài khoản không còn sử dụng",
+     "Truy cập trái phép",
+     "Rà soát và vô hiệu hóa"
+    ],
+    [
+     "Phần mềm lỗi thời",
+     "Khai thác lỗ hổng đã biết",
+     "Cập nhật và vá lỗi"
+    ],
+    [
+     "Quyền tệp quá rộng",
+     "Rò rỉ hoặc thay đổi dữ liệu",
+     "Áp dụng least privilege"
+    ],
+    [
+     "Dịch vụ dư thừa",
+     "Tăng bề mặt tấn công",
+     "Tắt hoặc gỡ dịch vụ"
+    ],
+    [
+     "Cổng mở không cần thiết",
+     "Tăng khả năng truy cập từ mạng",
+     "Sử dụng Firewall"
+    ],
+    [
+     "Cấu hình dịch vụ sai",
+     "Truy cập ngoài dự kiến",
+     "Hardening cấu hình"
+    ],
+    [
+     "Không theo dõi log",
+     "Khó phát hiện và điều tra sự cố",
+     "Thu thập và rà soát log"
+    ],
+    [
+     "Không sao lưu",
+     "Khó phục hồi dữ liệu",
+     "Sao lưu định kỳ và kiểm tra khả năng khôi phục"
+    ]
+   ],
+   "widths": [
+    4.2,
+    5.4,
+    6.4
+   ],
+   "font": 11.5,
+   "firstBold": true,
+   "center": []
+  },
+  {
+   "t": "callout",
+   "kind": "luuy",
+   "title": "Mã nguồn mở không đồng nghĩa với an toàn tuyệt đối",
+   "texts": [
+    "**Một điểm cần lưu ý là mã nguồn mở không đồng nghĩa với an toàn tuyệt đối.** Khả năng công khai mã nguồn tạo điều kiện để cộng đồng kiểm tra và phát hiện lỗi, nhưng mức độ an toàn của một hệ thống thực tế vẫn phụ thuộc rất nhiều vào cách phần mềm được triển khai và vận hành."
+   ]
+  },
+  {
+   "t": "callout",
+   "kind": "mo",
+   "title": "",
+   "texts": [
+    "**Mã nguồn mở và an ninh chuỗi cung ứng.** Vụ cài mã độc vào thư viện nén xz-utils (CVE-2024-3094), đã nêu ở Chương 1, cho thấy lỗ hổng có thể nằm ngay trong thành phần được tin cậy và lan sang mọi hệ thống phụ thuộc [@nvd]. Vì vậy, quản lý thành phần phụ thuộc, cập nhật bản vá và theo dõi thông báo bảo mật của dự án là một phần của vận hành an toàn."
+   ]
+  },
+  {
+   "t": "h3",
+   "text": "6.1.2. Các nguyên tắc bảo đảm an toàn thông tin"
+  },
+  {
+   "t": "p",
+   "text": "Một hệ thống an toàn thường không phụ thuộc vào một biện pháp duy nhất. Các cơ chế bảo vệ cần được xây dựng thành nhiều lớp, trong đó mỗi lớp đảm nhận một vai trò nhất định.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Nguyên tắc đầu tiên là đặc quyền tối thiểu – Principle of Least Privilege. Theo nguyên tắc này, người dùng, chương trình hoặc dịch vụ chỉ được cấp mức quyền thực sự cần thiết để thực hiện nhiệm vụ. Nếu một tài khoản chỉ cần đọc dữ liệu thì không nên cấp quyền ghi. Nếu một Web Server chỉ cần truy cập một thư mục nhất định thì không nên cho phép tiến trình Web Server ghi vào toàn bộ hệ thống tệp.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Least privilege vừa làm giảm khả năng truy cập trái phép, vừa hạn chế hậu quả nếu một tài khoản hoặc ứng dụng bị xâm nhập.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Nguyên tắc thứ hai là phòng thủ nhiều lớp - Defense in Depth. Một cơ chế đơn lẻ khó có khả năng ngăn chặn mọi tình huống. Firewall có thể giới hạn kết nối mạng nhưng không thay thế cho quyền tệp. Mật khẩu mạnh có thể bảo vệ tài khoản nhưng không khắc phục lỗ hổng của một dịch vụ. Phần mềm chống mã độc cũng không thể thay thế quá trình cập nhật hệ thống.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Có thể hình dung hệ thống bảo vệ theo các lớp:",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "figure",
+   "src": "assets/img/chuong6-hinh2.jpg",
+   "caption": "Mô hình phòng thủ nhiều lớp",
+   "width": 14.0
+  },
+  {
+   "t": "p",
+   "text": "Hình 6.2 sắp xếp bảy lớp bảo vệ theo thứ tự mà một cuộc tấn công hoặc sự cố phải đi qua. Hai lớp đầu kiểm soát *ai được vào* (xác thực) và *được làm gì* (phân quyền); lớp thứ ba và thứ tư giới hạn tác động lên dữ liệu và ứng dụng bằng quyền tệp, ACL và cơ chế như AppArmor; lớp firewall kiểm soát lưu lượng mạng; hai lớp cuối là giám sát, giúp phát hiện và điều tra, và sao lưu, giúp phục hồi khi các lớp trước thất bại. Không lớp nào đủ một mình: mật khẩu mạnh không thay thế quyền tệp, firewall không thay thế cập nhật phần mềm, và sao lưu không ngăn được tấn công mà chỉ giảm hậu quả.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Một nguyên tắc liên quan là Deny by Default, tức mặc định từ chối và chỉ cho phép những hoạt động đã được xác định rõ. Trong firewall, chính sách này có thể được thể hiện bằng việc từ chối các kết nối đến theo mặc định, sau đó chỉ mở những cổng thực sự cần thiết. Trong quản lý tệp, người quản trị chỉ cấp quyền cho những tài khoản có nhu cầu truy cập.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Secure by Default lại hướng đến việc xây dựng trạng thái ban đầu của hệ thống theo hướng tương đối an toàn. Những dịch vụ không cần thiết không nên tự động được kích hoạt; tài khoản mặc định phải được kiểm soát; các interface quản trị không nên tự động công bố ra Internet nếu không có yêu cầu.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Bên cạnh đó, hệ thống cần bảo đảm khả năng quy trách nhiệm và truy vết. Nếu nhiều người sử dụng chung một tài khoản quản trị, rất khó xác định ai đã thực hiện một thay đổi. Việc sử dụng tài khoản cá nhân kết hợp với lệnh sudo giúp tăng khả năng truy vết hơn so với chia sẻ một mật khẩu root.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Log đóng vai trò quan trọng trong quá trình này. Những sự kiện như đăng nhập, đăng nhập thất bại, sử dụng đặc quyền quản trị, thay đổi cấu hình và hoạt động của dịch vụ có thể được ghi lại để phục vụ giám sát và điều tra. CIS Controls 8.1 tiếp tục xem audit log là một thành phần cốt lõi trong hoạt động phát hiện và phân tích sự cố [@cis].",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "h3",
+   "text": "6.1.3. Biện pháp phòng ngừa và giảm thiểu rủi ro"
+  },
+  {
+   "t": "p",
+   "text": "Bảo mật hệ thống nên bắt đầu từ việc xác định các tài sản đang tồn tại. Người quản trị cần biết máy chủ nào đang hoạt động, phần mềm nào được cài đặt, tài khoản nào còn hiệu lực và dịch vụ nào đang lắng nghe trên mạng. Một dịch vụ không được biết đến hoặc bị quên rất khó được cập nhật và giám sát đầy đủ.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Cập nhật hệ điều hành và phần mềm là một biện pháp phòng ngừa quan trọng. Các bản cập nhật có thể sửa lỗi chức năng, lỗi bảo mật hoặc cải thiện cơ chế phòng vệ. Với máy chủ sản xuất, quá trình cập nhật nên kết hợp kiểm thử, sao lưu và có phương án phục hồi khi cần thiết [@ubsec].",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Các dịch vụ không cần thiết nên được vô hiệu hóa. Những dịch vụ còn lại phải được giới hạn quyền và phạm vi truy cập. Một Database Server chỉ phục vụ ứng dụng trên cùng máy có thể không cần công bố cổng cơ sở dữ liệu ra toàn mạng.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Bảo mật hệ thống cũng cần kết hợp cơ chế kiểm soát ở tầng ứng dụng. Trên Ubuntu, AppArmor cung cấp cơ chế Mandatory Access Control để bổ sung cho mô hình quyền Unix truyền thống. AppArmor sử dụng các profile theo chương trình để xác định tài nguyên và hành động mà ứng dụng được phép thực hiện. Ubuntu hiện cài và nạp AppArmor mặc định [@ubaa].",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Có thể kiểm tra trạng thái bằng lệnh `sudo aa-status`.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "AppArmor có hai chế độ thường gặp. Ở chế độ complain, hành vi vi phạm profile được ghi log nhưng chưa bị ngăn chặn. Chế độ này hữu ích khi xây dựng và kiểm thử profile. Ở chế độ enforce, các hành vi không phù hợp với profile sẽ bị chặn và được ghi nhận.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Sao lưu cũng là một thành phần của bảo mật. Sao lưu không ngăn được tấn công, nhưng có thể giảm đáng kể hậu quả khi dữ liệu bị xóa, bị mã hóa hoặc thiết bị lưu trữ hỏng. Một chiến lược sao lưu hiệu quả cần quan tâm không chỉ đến việc tạo bản sao mà còn phải kiểm tra khả năng phục hồi dữ liệu từ các bản sao đó.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Cuối cùng, người quản trị phải theo dõi hoạt động của hệ thống. Log của hệ điều hành, log xác thực, log Firewall và log của các ứng dụng cung cấp thông tin để nhận biết các sự kiện bất thường. Bảo mật vì vậy không phải là công việc được thực hiện một lần sau khi cài đặt hệ thống mà là quá trình được lặp lại trong suốt vòng đời vận hành.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "callout",
+   "kind": "mo",
+   "title": "",
+   "texts": [
+    "**Bối cảnh pháp lý Việt Nam.** Hoạt động bảo đảm an toàn thông tin của tổ chức tại Việt Nam còn chịu sự điều chỉnh của Luật An toàn thông tin mạng [@luat86], Luật An ninh mạng [@luat24] và các quy định về bảo vệ dữ liệu cá nhân [@nd13]. Khi xây dựng chính sách cho một hệ thống thực tế, cần đối chiếu các văn bản còn hiệu lực tại thời điểm áp dụng, vì một số văn bản đã và đang được sửa đổi, thay thế."
+   ]
+  },
+  {
+   "t": "h2",
+   "text": "6.2. Bảo mật hệ điều hành và tài khoản người dùng"
+  },
+  {
+   "t": "p",
+   "text": "Hệ điều hành Linux được xây dựng cho môi trường nhiều người dùng. Mỗi người dùng có danh tính, các nhóm liên quan và tập hợp quyền khác nhau. Cơ chế này tạo ra lớp kiểm soát truy cập cơ bản của hệ thống.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Ubuntu Server Documentation xem quản lý người dùng và đặc quyền là một thành phần quan trọng của bảo mật máy chủ. Việc quản lý tài khoản không hiệu quả có thể dẫn đến hệ thống bị xâm nhập ngay cả khi những thành phần khác được cấu hình tương đối tốt [@ubuser].",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "h3",
+   "text": "6.2.1. Bảo mật tài khoản và nhóm người dùng"
+  },
+  {
+   "t": "p",
+   "text": "Trong Linux, mỗi tài khoản người dùng được nhận dạng bằng một UID – User Identifier. Mỗi nhóm có một GID – Group Identifier. Hệ điều hành sử dụng UID và GID để xác định chủ sở hữu của tệp, tiến trình và các tài nguyên khác.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Một số tệp hệ thống quan trọng liên quan đến tài khoản gồm: `/etc/passwd` chứa thông tin cơ bản về tài khoản như tên đăng nhập, UID, GID, thư mục home và shell. `/etc/shadow` chứa thông tin liên quan đến mật khẩu đã được mã hóa/băm và chính sách tuổi mật khẩu. Quyền đọc tệp này được giới hạn nghiêm ngặt. `/etc/group` chứa thông tin về các nhóm người dùng.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Việc sử dụng nhóm giúp đơn giản hóa quá trình phân quyền. Giả sử một nhóm giảng viên cần truy cập thư mục dùng chung. Thay vì cấp quyền riêng cho từng người, người quản trị có thể tạo nhóm giangvien, đưa các tài khoản cần thiết vào nhóm và gán quyền của thư mục cho nhóm đó.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "table",
+   "caption": "Một số lệnh quản lý tài khoản và nhóm trong Linux",
+   "header": [
+    "Lệnh",
+    "Ý nghĩa"
+   ],
+   "rows": [
+    [
+     "id username",
+     "Hiển thị UID, GID và các nhóm của tài khoản"
+    ],
+    [
+     "groups username",
+     "Hiển thị các nhóm mà người dùng tham gia"
+    ],
+    [
+     "adduser username",
+     "Tạo tài khoản mới trên Ubuntu/Debian"
+    ],
+    [
+     "passwd username",
+     "Đặt hoặc thay đổi mật khẩu"
+    ],
+    [
+     "usermod",
+     "Thay đổi thuộc tính tài khoản"
+    ],
+    [
+     "userdel",
+     "Xóa tài khoản"
+    ],
+    [
+     "groupadd",
+     "Tạo nhóm"
+    ],
+    [
+     "groupdel",
+     "Xóa nhóm"
+    ],
+    [
+     "usermod -aG group user",
+     "Thêm tài khoản vào nhóm bổ sung"
+    ]
+   ],
+   "widths": [
+    5.6,
+    10.4
+   ],
+   "font": 11.5,
+   "firstBold": true,
+   "center": []
+  },
+  {
+   "t": "p",
+   "text": "Ví dụ:",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "code",
+   "text": "sudo adduser sv01\nsudo groupadd developers\nsudo usermod -aG developers sv01\nid sv01",
+   "title": ""
+  },
+  {
+   "t": "p",
+   "text": "Khi sử dụng lệnh usermod -aG, tùy chọn -a có ý nghĩa bổ sung nhóm mới nhưng không làm mất những nhóm bổ sung hiện tại của tài khoản. Đây là chi tiết quan trọng khi quản trị nhóm người dùng.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Quản lý tài khoản không nên chỉ thực hiện tại thời điểm tạo. Mỗi tài khoản cần được quản lý theo vòng đời tài khoản, bắt đầu từ thời điểm tạo, cấp quyền, thay đổi quyền khi nhiệm vụ thay đổi, rà soát định kỳ và cuối cùng là vô hiệu hóa hoặc xóa khi không còn nhu cầu.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Tài khoản quản trị cần được kiểm soát đặc biệt. Trên Ubuntu, tài khoản root được cấu hình mặc định để không đăng nhập trực tiếp bằng mật khẩu. Thay vào đó, người dùng được ủy quyền sử dụng sudo để tạm thời thực hiện các tác vụ yêu cầu đặc quyền và sử dụng mật khẩu của chính mình. Cách tiếp cận này hỗ trợ tốt hơn cho việc kiểm soát và truy vết hoạt động quản trị.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Ví dụ, `sudo apt update` thực thi lệnh `apt update` với đặc quyền quản trị nhưng người dùng vẫn làm việc bằng tài khoản thông thường trong phần lớn thời gian.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "figure",
+   "src": "assets/img/chuong6-hinh3.jpg",
+   "caption": "Mô hình kiểm soát truy cập cơ bản trong Linux",
+   "width": 14.0
+  },
+  {
+   "t": "p",
+   "text": "Hình 6.3 cho thấy đường đi của một yêu cầu truy cập. Người dùng, được nhận dạng bằng UID và các nhóm (GID), phải xác thực trước; sau đó mọi thao tác được thực hiện bởi các tiến trình chạy dưới danh tính đó. Khi tiến trình truy cập một tài nguyên như tệp hay thư mục, hệ điều hành kiểm tra quyền theo thứ tự chủ sở hữu, nhóm sở hữu, những người khác và, nếu có, cả ACL, rồi cho phép hoặc từ chối. Khi cần quyền quản trị, người dùng được ủy quyền dùng sudo để nâng quyền tạm thời theo chính sách, và các hoạt động đăng nhập, sudo, thay đổi cấu hình nên được ghi vào nhật ký để truy vết.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "h3",
+   "text": "6.2.2. Bảo mật tệp và thư mục"
+  },
+  {
+   "t": "p",
+   "text": "Mô hình quyền truy cập truyền thống của Linux dựa trên ba nhóm đối tượng là owner (chủ sở hữu), group (nhóm) và others (những người dùng còn lại), mỗi nhóm có thể được cấp ba loại quyền cơ bản là read, write và execute. Cách đọc chuỗi quyền, cách tính quyền bằng số theo các giá trị 4, 2, 1 và các lệnh `chmod` dạng số hoặc ký hiệu đã được trình bày chi tiết ở mục 2.2.3, nên mục này chỉ nhắc lại những điểm cốt lõi và tập trung vào khía cạnh bảo mật.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "GNU Coreutils xác định quyền read, write và execute có ý nghĩa khác nhau tùy đối tượng là tệp hay thư mục. Với thư mục, quyền read cho phép liệt kê nội dung; write liên quan đến việc tạo và xóa các entry bên trong; execute cho phép truy cập hoặc đi xuyên qua thư mục để tiếp cận các thành phần bên trong [@coreutils].",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Quyền sở hữu có thể được thay đổi bằng chown:",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "code",
+   "text": "sudo chown alice report.txt\nsudo chown alice:developers project/",
+   "title": ""
+  },
+  {
+   "t": "p",
+   "text": "Nhóm có thể được thay đổi bằng:",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "code",
+   "text": "sudo chgrp developers project/",
+   "title": ""
+  },
+  {
+   "t": "callout",
+   "kind": "luuy",
+   "title": "Không dùng chmod 777 để chữa lỗi truy cập",
+   "texts": [
+    "**Một sai lầm phổ biến là sử dụng lệnh `chmod 777` cho tệp hoặc thư mục chỉ vì gặp lỗi truy cập.** Quyền 777 đồng nghĩa với việc owner, group và others đều có quyền rwx. Trong phần lớn trường hợp, cách xử lý phù hợp hơn là xác định người dùng hoặc nhóm thực sự cần quyền rồi cấp đúng mức cần thiết."
+   ]
+  },
+  {
+   "t": "p",
+   "text": "Ngoài mô hình owner–group–others, Linux còn hỗ trợ Access Control List – ACL. ACL hữu ích khi cần cấp quyền cho một tài khoản cụ thể nhưng không muốn thay đổi owner hoặc tổ chức lại toàn bộ nhóm.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Ví dụ:",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "`getfacl project/` dùng để xem ACL.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Có thể cấp quyền:",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "code",
+   "text": "setfacl -m u:sv01:rwx project/",
+   "title": ""
+  },
+  {
+   "t": "p",
+   "text": "hoặc cấp cho một nhóm:",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "code",
+   "text": "setfacl -m g:developers:rx project/",
+   "title": ""
+  },
+  {
+   "t": "p",
+   "text": "ACL làm cho cơ chế phân quyền linh hoạt hơn, nhưng cũng yêu cầu quản trị viên kiểm tra cẩn thận khi phân tích một sự cố permission vì quyền hiệu lực có thể không chỉ xuất phát từ các bit Unix truyền thống.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Linux còn có ba quyền đặc biệt là setuid, setgid và sticky bit. GNU Coreutils xem đây là các special mode bits bổ sung cho quyền thông thường [@coreutils].",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Setuid trên một tệp thực thi có thể làm cho tiến trình sử dụng effective UID của chủ sở hữu tệp. Do khả năng thay đổi ngữ cảnh đặc quyền, các chương trình có setuid, đặc biệt là setuid root, cần được kiểm soát cẩn thận.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Setgid trên tệp thực thi có tác dụng tương tự đối với group. Trên thư mục, setgid thường hữu ích trong thư mục làm việc chung vì các tệp mới tạo có thể kế thừa group của thư mục.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Sticky bit thường xuất hiện trên thư mục cho phép nhiều người dùng ghi như /tmp. Nó giúp ngăn người dùng thông thường xóa hoặc đổi tên tệp của người khác mặc dù thư mục có quyền ghi chung. GNU Coreutils cũng dẫn /tmp như một ví dụ điển hình của sticky bit.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Một cơ chế khác liên quan đến quyền mặc định là umask, đã được giải thích ở mục 2.2.3. Khi chương trình tạo tệp hoặc thư mục, hệ điều hành kết hợp mode yêu cầu với umask để xác định quyền cuối cùng. Ví dụ, umask 022 thường làm cho tệp thông thường được tạo với mức quyền hạn chế hơn cho group và others.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Việc hiểu umask giúp người quản trị tránh trường hợp các tệp mới tạo tự động nhận quyền rộng hơn dự kiến.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "h3",
+   "text": "6.2.3. Chính sách mật khẩu và xác thực người dùng"
+  },
+  {
+   "t": "p",
+   "text": "Mật khẩu là một trong những phương thức xác thực phổ biến nhất. Tuy nhiên, mật khẩu cũng thường xuyên bị khai thác thông qua đoán mật khẩu, credential stuffing, phishing hoặc rò rỉ dữ liệu từ những dịch vụ khác.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Các khuyến nghị hiện đại về mật khẩu đã có nhiều thay đổi so với cách tiếp cận truyền thống. NIST SP 800-63B-4 hiện yêu cầu mật khẩu sử dụng như một yếu tố xác thực duy nhất phải có ít nhất 15 ký tự. Nếu mật khẩu chỉ là một thành phần trong quy trình xác thực đa yếu tố, mức tối thiểu có thể là 8 ký tự. NIST cũng yêu cầu kiểm tra mật khẩu mới đối với blocklist chứa những mật khẩu phổ biến, dễ đoán hoặc đã bị lộ [@nist63b].",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "NIST không khuyến nghị bắt buộc các quy tắc thành phần như phải đồng thời có chữ hoa, chữ thường, chữ số và ký tự đặc biệt. Tài liệu cũng không yêu cầu đổi mật khẩu theo chu kỳ cố định nếu chưa có bằng chứng mật khẩu bị xâm phạm.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "table",
+   "caption": "Một số định hướng xây dựng chính sách mật khẩu",
+   "header": [
+    "Nội dung",
+    "Định hướng"
+   ],
+   "rows": [
+    [
+     "Độ dài",
+     "Ưu tiên mật khẩu dài hoặc passphrase"
+    ],
+    [
+     "Mật khẩu phổ biến",
+     "Kiểm tra blocklist"
+    ],
+    [
+     "Quy tắc thành phần cứng nhắc",
+     "Không nên xem là yêu cầu chính"
+    ],
+    [
+     "Thay mật khẩu định kỳ",
+     "Không bắt buộc nếu chưa có bằng chứng bị lộ"
+    ],
+    [
+     "Mật khẩu bị lộ",
+     "Yêu cầu thay đổi"
+    ],
+    [
+     "Số lần thử sai",
+     "Cần giới hạn/rate limit"
+    ],
+    [
+     "Password manager",
+     "Khuyến khích khi phù hợp"
+    ],
+    [
+     "MFA",
+     "Nên áp dụng cho tài khoản quan trọng"
+    ]
+   ],
+   "widths": [
+    5.6,
+    10.4
+   ],
+   "font": 11.5,
+   "firstBold": true,
+   "center": []
+  },
+  {
+   "t": "p",
+   "text": "Một chuỗi như: “MaiTroiMuaVaoThuBay!”   có thể dễ ghi nhớ hơn một mật khẩu ngắn được tạo chỉ để thỏa mãn các quy tắc phức tạp. Điều quan trọng là không nên sử dụng ví dụ này làm mật khẩu thực tế vì một mật khẩu xuất hiện trong tài liệu công khai không còn là một bí mật tốt.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Trong Linux, cơ chế PAM – Pluggable Authentication Modules cho phép nhiều dịch vụ sử dụng hệ thống xác thực có thể cấu hình. Các module như pam_pwquality có thể hỗ trợ kiểm tra chất lượng mật khẩu theo chính sách của tổ chức.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Quản trị viên cũng có thể kiểm tra tuổi mật khẩu của một tài khoản bằng `chage -l username`, và Linux cung cấp khả năng đặt thời hạn mật khẩu. Tuy nhiên, khả năng kỹ thuật này không có nghĩa mọi tổ chức đều nên bắt buộc đổi mật khẩu định kỳ. Chính sách cụ thể cần dựa trên yêu cầu an toàn, quy định áp dụng và mức độ rủi ro.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Đối với quản trị máy chủ từ xa, SSH public key authentication thường được sử dụng thay cho hoặc kết hợp với mật khẩu. OpenSSH hỗ trợ nhiều phương thức xác thực, trong đó có mật khẩu, public key và Kerberos. Ubuntu sử dụng OpenSSH làm triển khai SSH phổ biến để cung cấp kênh điều khiển và truyền dữ liệu được mã hóa [@ubssh].",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Có thể tạo cặp khóa bằng `ssh-keygen -t ed25519`, sau đó cài public key lên máy chủ bằng `ssh-copy-id username@server`.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Public key được đặt trên máy chủ, trong khi private key phải được giữ bí mật trên máy khách. Private key nên được bảo vệ bằng passphrase khi phù hợp.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Xác thực đa yếu tố – Multi-Factor Authentication, MFA – tiếp tục tăng mức bảo vệ bằng cách yêu cầu ít nhất hai yếu tố thuộc những nhóm khác nhau, chẳng hạn điều người dùng biết và điều người dùng sở hữu. Đối với các tài khoản quản trị hoặc tài khoản truy cập từ Internet, MFA là biện pháp nên được xem xét nghiêm túc.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "h3",
+   "text": "6.2.4. Kiểm soát quyền quản trị và truy cập hệ thống"
+  },
+  {
+   "t": "p",
+   "text": "Quyền quản trị cho phép thay đổi các thành phần quan trọng của hệ thống. Một tài khoản quản trị có thể cài đặt phần mềm, sửa cấu hình, tạo tài khoản, đọc dữ liệu của người khác hoặc thay đổi firewall. Vì vậy, việc kiểm soát quyền quản trị là một trong những yêu cầu quan trọng của hardening hệ thống.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Ubuntu mặc định không sử dụng đăng nhập trực tiếp bằng mật khẩu root mà khuyến khích sử dụng sudo. sudo cho phép một người dùng đã được ủy quyền tạm thời nâng đặc quyền bằng mật khẩu của chính mình. Điều này giúp giảm việc chia sẻ mật khẩu root và tăng khả năng gắn thao tác quản trị với một tài khoản cụ thể [@ubuser].",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Có thể xem nhóm của người dùng bằng `groups username`.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Trên Ubuntu, người dùng thuộc nhóm sudo thường có khả năng thực hiện các lệnh quản trị theo cấu hình mặc định.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Cấu hình quyền sudo nên được chỉnh sửa thông qua `sudo visudo` thay vì trực tiếp mở `/etc/sudoers` bằng trình soạn thảo thông thường. `visudo` kiểm tra cú pháp trước khi ghi, qua đó làm giảm khả năng cấu hình sai khiến sudo không hoạt động.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Nguyên tắc least privilege cũng cần áp dụng cho sudo. Một tài khoản không nhất thiết phải có toàn bộ quyền quản trị nếu chỉ cần thực hiện một số tác vụ cụ thể.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Truy cập từ xa qua SSH cũng cần được giới hạn. OpenSSH Server sử dụng daemon sshd để tiếp nhận kết nối. Cấu hình chính nằm trong: `/etc/ssh/sshd_config` và Ubuntu hiện cũng hỗ trợ các file cấu hình bổ sung trong `/etc/ssh/sshd_config.d/` [@ubssh]",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Một số hệ thống có thể giới hạn người dùng hoặc nhóm được SSH bằng các directive như `AllowUsers admin01 admin02` hoặc `AllowGroups sshusers`.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Sau khi thay đổi cấu hình SSH, nên kiểm tra cú pháp trước bằng `sudo sshd -t`.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Việc này đặc biệt quan trọng khi cấu hình máy chủ từ xa. Một lỗi trong sshd_config có thể khiến dịch vụ SSH không khởi động lại được và người quản trị mất quyền truy cập.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "callout",
+   "kind": "luuy",
+   "title": "Khóa mật khẩu chưa loại bỏ mọi đường truy cập",
+   "texts": [
+    "**Khi vô hiệu hóa một tài khoản, cần lưu ý rằng khóa mật khẩu chưa chắc đã loại bỏ mọi phương thức truy cập.** Ubuntu cảnh báo rằng người dùng có SSH public key vẫn có thể đăng nhập bằng khóa trong một số tình huống mặc dù mật khẩu đã bị khóa. Vì vậy việc thu hồi tài khoản cần xem xét cả public key, phiên đăng nhập và các quyền liên quan."
+   ]
+  },
+  {
+   "t": "p",
+   "text": "Quá trình kiểm soát quyền quản trị cần được kết hợp với logging. Các hoạt động đăng nhập, sử dụng sudo, thay đổi cấu hình và khởi động/dừng dịch vụ nên có khả năng được truy vết khi xảy ra sự cố.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "callout",
+   "kind": "nho",
+   "title": "Tóm lược các biện pháp bảo vệ tài khoản và quyền quản trị",
+   "texts": [
+    "Các biện pháp bảo vệ tài khoản và quyền quản trị gồm: dùng tài khoản riêng cho từng người để tăng khả năng truy vết; hạn chế đăng nhập root để giảm lạm dụng đặc quyền; dùng sudo để nâng quyền có kiểm soát; áp dụng least privilege để giảm phạm vi thiệt hại; dùng SSH public key và MFA cho tài khoản quan trọng để tăng khả năng chống chiếm tài khoản; rà soát tài khoản định kỳ để loại bỏ tài khoản không còn nhu cầu; và theo dõi log để hỗ trợ phát hiện, điều tra."
+   ]
+  },
+  {
+   "t": "h2",
+   "text": "6.3. Công cụ kiểm tra và giám sát bảo mật"
+  },
+  {
+   "t": "p",
+   "text": "Bảo mật hệ thống không chỉ dựa vào các chính sách được cấu hình trước. Người quản trị còn cần quan sát hoạt động thực tế của hệ thống để xác định những dịch vụ nào đang hoạt động, lưu lượng nào đang đi qua mạng và những kết nối nào được cho phép.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Trong phần này, ba công cụ được xem xét từ ba góc nhìn bổ sung cho nhau: Wireshark giúp quan sát và phân tích lưu lượng mạng. Firewall kiểm soát lưu lượng được phép hoặc bị từ chối. Nmap giúp kiểm tra các host, cổng và dịch vụ đang được công bố.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Ba công cụ này có thể được kết hợp thành một quy trình kiểm tra: Nmap xác định cổng đang mở, Firewall điều chỉnh chính sách truy cập, Nmap được sử dụng lại để xác minh kết quả, trong khi Wireshark giúp quan sát chi tiết cách các packet được trao đổi.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "h3",
+   "text": "6.3.1. Wireshark và phân tích lưu lượng mạng"
+  },
+  {
+   "t": "p",
+   "text": "Wireshark là phần mềm phân tích giao thức mạng mã nguồn mở cho phép thu thập và phân tích packet. Công cụ hỗ trợ số lượng lớn giao thức và được sử dụng trong quản trị mạng, xử lý sự cố, nghiên cứu giao thức và phân tích bảo mật. Wireshark phát hành theo giấy phép GPL phiên bản 2 [@wireshark].",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Wireshark không tự động biến người sử dụng thành một hệ thống phát hiện xâm nhập. Giá trị chính của công cụ nằm ở khả năng cho phép người phân tích quan sát trực tiếp những gì đang xảy ra trên mạng.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Giao diện Wireshark có ba vùng phân tích quan trọng. Packet List hiển thị danh sách các packet/frame đã được capture. Mỗi dòng thường chứa số thứ tự, thời gian, địa chỉ nguồn, địa chỉ đích, giao thức và thông tin tóm tắt. Packet Details hiển thị cấu trúc của packet theo từng tầng giao thức, chẳng hạn Ethernet, IP, TCP và lớp ứng dụng. Packet Bytes hiển thị dữ liệu ở dạng byte, hỗ trợ người dùng xem nội dung thực tế của frame.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "figure",
+   "src": "assets/img/chuong6-hinh4.jpg",
+   "caption": "Quy trình phân tích lưu lượng mạng bằng Wireshark [@wireshark]",
+   "width": 14.0
+  },
+  {
+   "t": "p",
+   "text": "Hình 6.4 gồm sáu bước. Trước hết xác định mục tiêu: hành vi cần phân tích, sự cố mạng hoặc lưu lượng cần điều tra. Tiếp theo cấu hình và bắt gói, chọn card mạng, tiến hành bắt gói trực tiếp hoặc nạp một tệp đã lưu (`.pcap`, `.pcapng`). Ở bước thứ ba, áp dụng Display Filter như `ip.addr`, `tcp` hay `http` để khoanh vùng các gói tin mục tiêu. Bước thứ tư kiểm tra chi tiết từng gói trong Packet Details và Packet Bytes, bước thứ năm dùng “Follow Stream” để ghép nối hội thoại TCP, UDP hoặc HTTP và trích xuất dữ liệu. Cuối cùng đánh giá, phát hiện sự cố, thống kê và lập báo cáo kèm đề xuất khắc phục.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Một nội dung rất quan trọng khi sử dụng Wireshark là phân biệt Capture Filter và Display Filter. Wireshark sử dụng hai ngôn ngữ lọc khác nhau. Capture Filter quyết định packet nào được thu ngay từ khi capture, trong khi Display Filter chỉ xác định packet nào được hiển thị sau khi dữ liệu đã được thu. Khi sử dụng Display Filter, những packet không phù hợp chỉ bị ẩn khỏi màn hình chứ không bị xóa khỏi capture file.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Ví dụ Capture Filter:",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "code",
+   "text": "tcp port 80",
+   "title": ""
+  },
+  {
+   "t": "p",
+   "text": "Trong khi Display Filter tương ứng có cú pháp `tcp.port == 80`.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Wireshark cũng chỉ rõ capture filter và display filter là hai loại filter khác nhau và không nên nhầm lẫn cú pháp của chúng [@wireshark].",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "table",
+   "caption": "Một số Display Filter cơ bản của Wireshark",
+   "header": [
+    "Filter",
+    "Ý nghĩa"
+   ],
+   "rows": [
+    [
+     "arp",
+     "Hiển thị ARP"
+    ],
+    [
+     "dns",
+     "Hiển thị DNS"
+    ],
+    [
+     "tcp",
+     "Hiển thị packet có TCP"
+    ],
+    [
+     "udp",
+     "Hiển thị UDP"
+    ],
+    [
+     "icmp",
+     "Hiển thị ICMP"
+    ],
+    [
+     "ip.addr == 192.168.1.10",
+     "Packet liên quan IP cụ thể"
+    ],
+    [
+     "ip.src == 192.168.1.10",
+     "IP nguồn cụ thể"
+    ],
+    [
+     "ip.dst == 192.168.1.20",
+     "IP đích cụ thể"
+    ],
+    [
+     "tcp.port == 22",
+     "Lưu lượng TCP port 22"
+    ],
+    [
+     "tcp.port == 80",
+     "Lưu lượng TCP port 80"
+    ],
+    [
+     "tcp.flags.syn == 1",
+     "Packet TCP có cờ SYN"
+    ],
+    [
+     "tls",
+     "Lưu lượng được Wireshark nhận diện là TLS"
+    ]
+   ],
+   "widths": [
+    6.5,
+    9.5
+   ],
+   "font": 11.5,
+   "firstBold": true,
+   "center": []
+  },
+  {
+   "t": "p",
+   "text": "Display Filter có thể kiểm tra sự tồn tại của protocol hoặc field, so sánh giá trị của field và kết hợp điều kiện bằng các toán tử logic.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Ví dụ, `ip.addr == 192.168.1.10 and tcp.port == 80` giới hạn hiển thị tới lưu lượng TCP port 80 liên quan đến máy 192.168.1.10.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Một tình huống thực tế là khi người dùng báo rằng không truy cập được một website. Người quản trị có thể dùng Wireshark để kiểm tra theo thứ tự: DNS có trả về địa chỉ IP hay không; TCP three-way handshake có hoàn thành không; nếu TCP thành công thì giao tiếp tầng ứng dụng diễn ra như thế nào.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Cách phân tích theo từng tầng giúp tránh kết luận vội vàng rằng lỗi nằm ở Web Server khi vấn đề thực chất xuất phát từ DNS hoặc kết nối mạng.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Wireshark cũng cung cấp nhiều công cụ hỗ trợ như Follow TCP Stream, thống kê conversation, endpoint, protocol hierarchy và biểu đồ I/O. Tuy nhiên, trong phạm vi học phần này, người học trước hết cần nắm được quy trình capture, lọc và phân tích packet cơ bản.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "callout",
+   "kind": "luuy",
+   "title": "Dữ liệu bắt gói có thể chứa thông tin nhạy cảm",
+   "texts": [
+    "**Dữ liệu capture có thể chứa thông tin nhạy cảm.** Vì vậy người học chỉ nên capture lưu lượng trên máy tính, mạng thực hành hoặc hệ thống mà mình được phép quản lý."
+   ]
+  },
+  {
+   "t": "h3",
+   "text": "6.3.2. Firewall và kiểm soát truy cập mạng"
+  },
+  {
+   "t": "p",
+   "text": "Firewall là cơ chế được sử dụng để kiểm soát lưu lượng mạng theo một tập hợp các quy tắc. Trong hệ thống Linux, kernel cung cấp subsystem Netfilter để xử lý và quyết định cách thức packet được chấp nhận, từ chối hoặc xử lý. Ubuntu cung cấp UFW – Uncomplicated Firewall như một giao diện đơn giản để xây dựng host-based firewall.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "UFW đặc biệt phù hợp với người học mới làm quen với firewall vì cú pháp tương đối đơn giản. Theo Ubuntu Server Documentation, UFW mặc định ban đầu ở trạng thái disabled và được thiết kế chủ yếu để quản lý các rule firewall phía máy chủ [@ubfw].",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Có thể kiểm tra bằng `sudo ufw status`.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Nếu chưa bật, hệ thống có thể hiển thị `status: inactive`.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Một chính sách phổ biến cho máy chủ là từ chối kết nối đến theo mặc định và cho phép kết nối đi ra, sau đó chỉ mở những dịch vụ thực sự cần thiết.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Ví dụ:",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "code",
+   "text": "sudo ufw default deny incoming\nsudo ufw default allow outgoing",
+   "title": ""
+  },
+  {
+   "t": "p",
+   "text": "Nếu máy chủ được quản trị qua SSH, cần cho phép SSH trước khi bật Firewall:",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "code",
+   "text": "sudo ufw allow OpenSSH",
+   "title": ""
+  },
+  {
+   "t": "p",
+   "text": "Sau đó bật firewall bằng `sudo ufw enable` và kiểm tra bằng `sudo ufw status verbose`.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "figure",
+   "src": "assets/img/chuong6-hinh5.jpg",
+   "caption": "Cơ chế kiểm soát lưu lượng bằng Firewall [@ubfw]",
+   "width": 14.0
+  },
+  {
+   "t": "p",
+   "text": "Hình 6.5 minh họa cơ chế kiểm soát của firewall. Gói tin từ mạng ngoài hoặc Internet đến hệ thống được đối chiếu với tập luật (firewall rules). Gói nào khớp luật từ chối bị chặn hoặc hủy; gói được phép đi tiếp vào mạng nội bộ để đến các dịch vụ như SSH, Web, cơ sở dữ liệu hoặc dịch vụ khác. Vì vậy việc mở hay đóng một cổng trong firewall quyết định trực tiếp dịch vụ nào có thể được truy cập từ bên ngoài.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Một Web Server có thể cần mở HTTP bằng `sudo ufw allow 80/tcp` và HTTPS bằng `sudo ufw allow 443/tcp`.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Nếu dịch vụ Telnet không cần được sử dụng, có thể tạo rule `sudo ufw deny 23/tcp`.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Một cách bảo vệ tốt hơn đối với SSH là giới hạn nguồn truy cập. Ví dụ chỉ cho phép mạng quản trị 192.168.10.0/24:",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "code",
+   "text": "sudo ufw allow from 192.168.10.0/24 to any port 22 proto tcp",
+   "title": ""
+  },
+  {
+   "t": "p",
+   "text": "Có thể xem rule theo số bằng `sudo ufw status numbered`.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Ubuntu cung cấp các thao tác allow, deny, insert, delete và giới hạn rule theo host hoặc network, giúp xây dựng firewall đơn giản mà không cần trực tiếp thao tác mọi chi tiết của Netfilter.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "table",
+   "caption": "Ví dụ chính sách Firewall cho một máy chủ",
+   "header": [
+    "Dịch vụ",
+    "Port",
+    "Chính sách ví dụ"
+   ],
+   "rows": [
+    [
+     "SSH",
+     "22/TCP",
+     "Chỉ cho phép mạng quản trị"
+    ],
+    [
+     "HTTP",
+     "80/TCP",
+     "Cho phép nếu cung cấp Web"
+    ],
+    [
+     "HTTPS",
+     "443/TCP",
+     "Cho phép nếu cung cấp HTTPS"
+    ],
+    [
+     "MySQL",
+     "3306/TCP",
+     "Chỉ application server hoặc localhost"
+    ],
+    [
+     "Telnet",
+     "23/TCP",
+     "Không mở nếu không có yêu cầu đặc biệt"
+    ]
+   ],
+   "widths": [
+    4.2,
+    5.4,
+    6.4
+   ],
+   "font": 11.5,
+   "firstBold": true,
+   "center": []
+  },
+  {
+   "t": "p",
+   "text": "Một nguyên tắc quan trọng là Firewall chỉ nên mở những gì thực sự cần thiết. Nếu máy chủ không cung cấp HTTP thì không có lý do để duy trì rule cho phép port 80.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Tuy nhiên, firewall không thể thay thế các biện pháp khác. Nếu Web Server có lỗ hổng và port 443 buộc phải được mở để cung cấp dịch vụ, firewall vẫn phải cho phép người dùng truy cập. Do đó việc cập nhật Web Server, giới hạn quyền tiến trình và giám sát log vẫn cần thiết.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "h3",
+   "text": "6.3.3. Nmap và kiểm tra dịch vụ, cổng mạng"
+  },
+  {
+   "t": "p",
+   "text": "Nmap, viết tắt của Network Mapper, là một công cụ mã nguồn mở được sử dụng trong khám phá mạng và kiểm tra bảo mật. Ngoài port scanning, Nmap hỗ trợ host discovery, nhận diện dịch vụ và phiên bản, phát hiện một số đặc điểm hệ điều hành và thu thập các thông tin khác về hệ thống mạng. Về giấy phép, Nmap theo Nmap Public Source License (NPSL), dựa trên GPLv2 nhưng có điều khoản bổ sung và không phải giấy phép do OSI phê chuẩn [@nmaplic,@nmapbook].",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "callout",
+   "kind": "luuy",
+   "title": "Chỉ quét hệ thống được phép",
+   "texts": [
+    "**Trong phạm vi giáo trình này, Nmap được sử dụng để kiểm tra hệ thống thuộc môi trường thực hành hoặc hệ thống mà người dùng được phép quản lý.** Tài liệu chính thức của Nmap khuyến nghị phải có sự cho phép trước khi quét mạng của tổ chức hoặc cá nhân khác [@nmaplegal]."
+   ]
+  },
+  {
+   "t": "p",
+   "text": "Một trong những khái niệm quan trọng nhất của Nmap là trạng thái cổng. Nmap phân chia cổng thành sáu trạng thái: open, closed, filtered, unfiltered, open|filtered và closed|filtered. Đáng chú ý, đây không phải là thuộc tính tuyệt đối của cổng mà là cách Nmap quan sát cổng từ vị trí scan hiện tại [@nmapbook].",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "table",
+   "caption": "Các trạng thái cổng của Nmap",
+   "header": [
+    "Trạng thái",
+    "Ý nghĩa"
+   ],
+   "rows": [
+    [
+     "open",
+     "Có ứng dụng đang tiếp nhận kết nối hoặc datagram trên cổng"
+    ],
+    [
+     "closed",
+     "Host có phản hồi nhưng không có ứng dụng lắng nghe trên cổng"
+    ],
+    [
+     "filtered",
+     "Nmap không xác định được trạng thái do cơ chế lọc như Firewall"
+    ],
+    [
+     "unfiltered",
+     "Cổng có thể truy cập nhưng phương pháp scan chưa xác định open hay closed"
+    ],
+    [
+     "open|filtered",
+     "Không phân biệt được open và filtered"
+    ],
+    [
+     "closed|filtered",
+     "Không phân biệt được closed và filtered"
+    ]
+   ],
+   "widths": [
+    3.6,
+    12.4
+   ],
+   "font": 11.5,
+   "firstBold": true,
+   "center": []
+  },
+  {
+   "t": "p",
+   "text": "Ví dụ, cổng SSH có thể hiển thị `22/tcp open ssh` khi scan từ mạng nội bộ, nhưng `22/tcp filtered ssh` khi scan từ Internet nếu Firewall ngăn lưu lượng từ bên ngoài.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Để xác định các host đang hoạt động trong mạng, dùng `nmap -sn 192.168.56.0/24`.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Tùy chọn `-sn` thực hiện host discovery mà không tiến hành port scan thông thường.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Kiểm tra một host bằng `nmap 192.168.56.10`; mặc định lệnh này kiểm tra 1.000 TCP port thông dụng của mục tiêu.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Nếu chỉ muốn kiểm tra các cổng cụ thể, dùng `nmap -p 22,80,443 192.168.56.10`.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Có thể yêu cầu Nmap nhận diện dịch vụ và phiên bản bằng `nmap -sV 192.168.56.10`.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Nmap Version Detection không chỉ suy đoán dịch vụ dựa trên số port mà gửi các probe tới cổng đã phát hiện để cố gắng xác định protocol, tên ứng dụng và phiên bản.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Ví dụ:",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "code",
+   "text": "PORT    STATE SERVICE  VERSION\n22/tcp  open    ssh       OpenSSH ...\n80/tcp  open    http      Apache httpd ...",
+   "title": ""
+  },
+  {
+   "t": "p",
+   "text": "Thông tin phiên bản có thể hỗ trợ người quản trị xác định liệu dịch vụ có đúng như cấu hình dự kiến hay không và có cần cập nhật hay không.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Nmap cũng hỗ trợ OS detection bằng `sudo nmap -O 192.168.56.10`.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Kết quả OS detection chỉ nên được xem là kết quả nhận diện có mức độ tin cậy nhất định, không phải bằng chứng tuyệt đối về hệ điều hành.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Có thể lưu kết quả ra tệp bằng `nmap -sV 192.168.56.10 -oN scan.txt`.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Một tình huống thực tế có thể minh họa giá trị của Nmap. Giả sử người quản trị dự kiến máy chủ chỉ cung cấp SSH và Web nhưng Nmap trả về:",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "code",
+   "text": "22/tcp   open  ssh\n80/tcp   open  http\n3306/tcp open  mysql",
+   "title": ""
+  },
+  {
+   "t": "p",
+   "text": "Kết quả cho thấy MySQL đang có thể được truy cập từ vị trí scan. Người quản trị cần kiểm tra xem điều này có đúng với thiết kế hay không.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "Nếu MySQL chỉ được ứng dụng cục bộ sử dụng, có thể điều chỉnh cấu hình Database Server hoặc Firewall. Sau khi thay đổi, thực hiện lại `nmap -p 22,80,3306 192.168.56.10` để xác minh.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "callout",
+   "kind": "nho",
+   "title": "Luôn kiểm tra lại từ góc nhìn của người truy cập",
+   "texts": [
+    "**Đây là một nguyên tắc quan trọng trong quản trị bảo mật: không chỉ cấu hình biện pháp bảo vệ mà còn phải kiểm tra lại từ góc nhìn của đối tượng truy cập.**"
+   ]
+  },
+  {
+   "t": "figure",
+   "src": "assets/img/chuong6-hinh6.jpg",
+   "caption": "Quy trình kiểm tra dịch vụ bằng Nmap [@nmapbook]",
+   "width": 14.0
+  },
+  {
+   "t": "p",
+   "text": "Hình 6.6 mô tả quy trình kiểm tra dịch vụ bằng Nmap gồm bảy bước nối tiếp. Bắt đầu bằng xác định phạm vi được phép, tránh quét hệ thống ngoài quyền quản lý; rồi khám phá host (host discovery), quét cổng (port scanning) và nhận diện dịch vụ, phiên bản (service/version detection). Kết quả được đối chiếu với chính sách để phát hiện cổng hoặc dịch vụ không mong muốn; nếu có thì điều chỉnh cấu hình hoặc firewall, cuối cùng kiểm tra lại để xác minh thay đổi đã có hiệu lực.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "h2",
+   "text": "Kết luận chương",
+   "band": true
+  },
+  {
+   "t": "p",
+   "text": "An toàn và bảo mật hệ thống mã nguồn mở hướng đến bảo vệ tính bí mật, toàn vẹn và sẵn sàng của thông tin cũng như của dịch vụ, và không dừng ở việc ngăn chặn tấn công mà còn gồm nhận diện tài sản, phát hiện bất thường, ứng phó và phục hồi. Các nguy cơ thường gặp không chỉ đến từ lỗ hổng phần mềm mà còn từ mật khẩu yếu, tài khoản không còn sử dụng, cấu hình sai, quyền quá rộng, dịch vụ dư thừa và hành vi của con người, nên cần áp dụng đặc quyền tối thiểu, phòng thủ nhiều lớp, mặc định từ chối, cập nhật, sao lưu và giám sát log. Trên Linux, tài khoản và nhóm người dùng là nền tảng của kiểm soát truy cập; mô hình owner–group–others kết hợp với ACL, các quyền đặc biệt, umask, sudo và cấu hình SSH an toàn giúp phân quyền chặt chẽ nhưng cần được kiểm tra khi phân tích sự cố. Chính sách mật khẩu hiện đại chú trọng độ dài, khả năng chống đoán, tránh mật khẩu phổ biến hoặc đã bị lộ và kết hợp khóa SSH, xác thực đa yếu tố cho tài khoản quan trọng. Wireshark, Firewall và Nmap hỗ trợ bảo mật từ ba góc nhìn bổ sung: quan sát lưu lượng, kiểm soát truy cập và kiểm tra bề mặt tiếp xúc, trong đó biện pháp bảo vệ luôn phải được kiểm tra lại từ góc nhìn của người truy cập và chỉ thực hiện trên hệ thống được phép. Những kiến thức này, cùng các nội dung về giấy phép, Linux, công nghệ vận hành, AI và tài nguyên giáo dục mở của toàn giáo trình, tạo nền tảng để người học tham gia, triển khai và đóng góp cho hệ sinh thái mã nguồn mở một cách an toàn, có trách nhiệm; bước tiếp theo là vận dụng chúng trong các đồ án và dự án thực tế, kết hợp với việc thường xuyên theo dõi thông báo bảo mật và khuyến nghị mới.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "h2",
+   "text": "Câu hỏi ôn tập",
+   "band": true
+  },
+  {
+   "t": "h3",
+   "text": "A. Nhận biết và hiểu"
+  },
+  {
+   "t": "list",
+   "ordered": true,
+   "items": [
+    "Trình bày ý nghĩa của ba thuộc tính Confidentiality, Integrity và Availability.",
+    "Phân biệt mối đe dọa, lỗ hổng và rủi ro. Cho một ví dụ minh họa.",
+    "Phân biệt tài khoản người dùng và nhóm người dùng trong Linux.",
+    "Phân biệt Capture Filter và Display Filter trong Wireshark.",
+    "Phân biệt các trạng thái open, closed và filtered trong Nmap.",
+    "Quyền 750 có ý nghĩa như thế nào? Nêu ý nghĩa của quyền r, w, x đối với tệp và thư mục."
+   ]
+  },
+  {
+   "t": "h3",
+   "text": "B. Vận dụng và phân tích"
+  },
+  {
+   "t": "list",
+   "ordered": true,
+   "items": [
+    "Giải thích nguyên tắc đặc quyền tối thiểu và cho ví dụ áp dụng trên Linux.",
+    "Tại sao hệ thống cần áp dụng nguyên tắc phòng thủ nhiều lớp? Nêu các lớp trong Hình 6.2.",
+    "Tại sao không nên sử dụng chmod 777 như một giải pháp chung cho các lỗi phân quyền?",
+    "ACL giải quyết hạn chế nào của mô hình owner–group–others?",
+    "Trình bày vai trò của sudo trong kiểm soát quyền quản trị.",
+    "Những điểm chính trong chính sách mật khẩu hiện đại theo NIST là gì? So sánh xác thực bằng mật khẩu và SSH public key.",
+    "Trình bày vai trò của Firewall trong bảo vệ máy chủ và giải thích vì sao Firewall không thể thay thế các biện pháp khác.",
+    "Tại sao kết quả Nmap có thể khác nhau khi cùng một máy được scan từ hai vị trí mạng khác nhau? Tại sao cần thực hiện lại Nmap sau khi thay đổi Firewall?"
+   ]
+  },
+  {
+   "t": "h3",
+   "text": "C. Tình huống thảo luận"
+  },
+  {
+   "t": "list",
+   "ordered": true,
+   "items": [
+    "Hãy mô tả một quy trình kết hợp Nmap, Firewall và Wireshark để kiểm tra một máy chủ Linux vừa được triển khai.",
+    "Một nhóm quản trị dùng chung một tài khoản quản trị và mật khẩu đơn giản cho mọi thành viên. Hãy phân tích các rủi ro và đề xuất cải thiện dựa trên các nguyên tắc đã học.",
+    "Một sinh viên dùng Nmap quét toàn bộ mạng ký túc xá để “thử công cụ” mà không xin phép. Hãy phân tích vấn đề đạo đức, pháp lý và đề xuất cách thực hành đúng."
+   ]
+  },
+  {
+   "t": "h2",
+   "text": "Bài tập vận dụng",
+   "band": true
+  },
+  {
+   "t": "h3",
+   "text": "Bài 1. Quản lý tài khoản và nhóm"
+  },
+  {
+   "t": "p",
+   "text": "Trên máy ảo Ubuntu thực hành, tạo tài khoản thử nghiệm `sv01` và nhóm `developers`, thêm `sv01` vào nhóm bằng `usermod -aG`, rồi kiểm tra bằng `id sv01`. Sau đó khóa tài khoản và ghi lại các bước của vòng đời tài khoản (tạo, cấp quyền, rà soát, vô hiệu hóa). Giải thích vì sao khóa mật khẩu chưa chắc đã chặn được đăng nhập bằng khóa SSH.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "**Sản phẩm:** Bảng lệnh đã chạy, kết quả `id`, và đoạn giải thích ngắn; không đưa mật khẩu vào báo cáo.",
+   "indent": false,
+   "left": false
+  },
+  {
+   "t": "h3",
+   "text": "Bài 2. Thư mục dùng chung với quyền và ACL"
+  },
+  {
+   "t": "p",
+   "text": "Tạo thư mục `project/` thuộc nhóm `developers`, đặt quyền để chỉ chủ và nhóm truy cập được, bật setgid để tệp mới kế thừa nhóm, rồi dùng `setfacl` cấp quyền đọc cho một tài khoản ngoài nhóm. Kiểm tra bằng `ls -l`, `getfacl` và thử truy cập bằng hai tài khoản khác nhau; ghi nhận kết quả khi đổi `umask`.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "**Sản phẩm:** Bảng “tài khoản – thao tác – kết quả”, ảnh chụp `getfacl` và một đoạn giải thích quyền hiệu lực của từng tài khoản.",
+   "indent": false,
+   "left": false
+  },
+  {
+   "t": "h3",
+   "text": "Bài 3. Xác thực và truy cập từ xa an toàn"
+  },
+  {
+   "t": "p",
+   "text": "Trên hai máy ảo, tạo cặp khóa `ed25519` bằng `ssh-keygen`, cài khóa công khai bằng `ssh-copy-id`, chỉnh `sshd_config` để giới hạn người dùng được phép đăng nhập, kiểm tra cú pháp bằng `sudo sshd -t` rồi mới khởi động lại dịch vụ. Luôn giữ một phiên đăng nhập đang mở khi đổi cấu hình để không bị mất quyền truy cập. Cấu hình một quy tắc sudo qua `visudo` cho một tác vụ cụ thể thay vì cấp toàn quyền.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "**Sản phẩm:** Các dòng cấu hình đã thay đổi, kết quả kiểm tra cú pháp, và đoạn giải thích cách cấu hình áp dụng nguyên tắc đặc quyền tối thiểu.",
+   "indent": false,
+   "left": false
+  },
+  {
+   "t": "h3",
+   "text": "Bài 4. Kiểm tra bằng Firewall, Nmap và Wireshark"
+  },
+  {
+   "t": "p",
+   "text": "Trên máy ảo chạy Web server, quét cổng bằng `nmap -sV` từ máy khác trong mạng thực hành và ghi kết quả; bật UFW với chính sách từ chối kết nối đến theo mặc định, cho phép SSH từ mạng quản trị và cổng 80; quét lại để so sánh. Đồng thời dùng Wireshark với Display Filter `tcp.port == 80` để quan sát quá trình bắt tay ba bước khi truy cập Web. Chỉ quét và bắt gói trên các máy ảo do chính mình quản lý.",
+   "indent": true,
+   "left": false
+  },
+  {
+   "t": "p",
+   "text": "**Sản phẩm:** Bảng so sánh kết quả Nmap trước và sau khi bật Firewall, ảnh chụp Wireshark đã lọc và nhận xét về bề mặt tiếp xúc của hệ thống.",
+   "indent": false,
+   "left": false
+  },
+  {
+   "t": "h2",
+   "text": "Tài liệu tham khảo",
+   "band": true
+  },
+  {
+   "t": "refs"
+  }
+ ],
+ "refs": {
+  "nistcsf": "Pascoe, C., Quinn, S., & Scarfone, K. (2024). *The NIST Cybersecurity Framework (CSF) 2.0* (NIST CSWP 29). National Institute of Standards and Technology. https://doi.org/10.6028/NIST.CSWP.29",
+  "nvd": "National Vulnerability Database. (2024). *CVE-2024-3094*. National Institute of Standards and Technology. https://nvd.nist.gov/vuln/detail/CVE-2024-3094",
+  "cis": "Center for Internet Security. (n.d.). *CIS Critical Security Controls, version 8.1*. https://www.cisecurity.org/controls",
+  "ubsec": "Canonical. (n.d.). *Ubuntu Server documentation – Security*. https://documentation.ubuntu.com/server/",
+  "ubaa": "Canonical. (n.d.). *Ubuntu Server documentation – AppArmor*. https://documentation.ubuntu.com/server/",
+  "luat86": "Quốc hội. (2015). *Luật An toàn thông tin mạng* (Luật số 86/2015/QH13).",
+  "luat24": "Quốc hội. (2018). *Luật An ninh mạng* (Luật số 24/2018/QH14).",
+  "nd13": "Chính phủ. (2023). *Nghị định số 13/2023/NĐ-CP về bảo vệ dữ liệu cá nhân*.",
+  "ubuser": "Canonical. (n.d.). *Ubuntu Server documentation – User management*. https://documentation.ubuntu.com/server/",
+  "coreutils": "Free Software Foundation. (2026). *GNU Coreutils 9.11 manual* (file permissions, chmod, chown, chgrp, special mode bits). https://www.gnu.org/software/coreutils/manual/coreutils.html",
+  "nist63b": "National Institute of Standards and Technology. (2025). *Digital identity guidelines: Authentication and authenticator management* (NIST SP 800-63B-4). https://doi.org/10.6028/NIST.SP.800-63B-4",
+  "ubssh": "Canonical. (n.d.). *Ubuntu Server documentation – OpenSSH server*. https://documentation.ubuntu.com/server/",
+  "wireshark": "Wireshark Foundation. (n.d.). *Wireshark user’s guide*. https://www.wireshark.org/docs/wsug_html_chunked/",
+  "ubfw": "Canonical. (n.d.). *Ubuntu Server documentation – Firewall*. https://documentation.ubuntu.com/server/",
+  "nmaplic": "Nmap Project. (n.d.). *Nmap Public Source License (NPSL)*. https://nmap.org/npsl/",
+  "nmapbook": "Lyon, G. F. (2008). *Nmap network scanning: The official Nmap project guide to network discovery and security scanning*. Nmap Project. https://nmap.org/book/",
+  "nmaplegal": "Nmap Project. (n.d.). *Legal issues*. https://nmap.org/book/legal-issues.html"
+ },
+ "order": [
+  "nistcsf",
+  "nvd",
+  "cis",
+  "ubsec",
+  "ubaa",
+  "luat86",
+  "luat24",
+  "nd13",
+  "ubuser",
+  "coreutils",
+  "nist63b",
+  "ubssh",
+  "wireshark",
+  "ubfw",
+  "nmaplic",
+  "nmapbook",
+  "nmaplegal"
+ ]
+}

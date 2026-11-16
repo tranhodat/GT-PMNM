@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Trình biên tập Giáo trình Phần mềm mã nguồn mở</title>
+<meta name="description" content="Biên tập nội dung 6 chương Giáo trình Phần mềm mã nguồn mở và xuất file Word theo quy định trình bày.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 rx=%276%27 fill=%27%231F3864%27/%3E%3Cpath d=%27M9 8h10a4 4 0 0 1 4 4v12H13a4 4 0 0 1-4-4z%27 fill=%27none%27 stroke=%27white%27 stroke-width=%272.4%27/%3E%3Cpath d=%27M13 13h6M13 17h6%27 stroke=%27white%27 stroke-width=%272%27 stroke-linecap=%27round%27/%3E%3C/svg%3E">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="topbar">
+  <button id="btnSide" class="icon-btn only-narrow" title="Mục lục" aria-label="Mục lục">☰</button>
+  <div class="brand">Giáo trình Phần mềm mã nguồn mở <small>Trình biên tập</small></div>
+  <div class="status" id="status" role="status" aria-live="polite">Đang tải…</div>
+  <div class="actions">
+    <button id="btnRefs" class="btn ghost" title="Quản lý tài liệu tham khảo của chương">Tài liệu tham khảo</button>
+    <button id="btnExportOne" class="btn primary" title="Xuất chương đang mở ra file Word">Xuất Word chương này</button>
+    <button id="btnExportAll" class="btn" title="Xuất cả 6 chương ra một file Word">Xuất cả giáo trình</button>
+    <button id="btnMore" class="btn ghost" aria-haspopup="true">Khác ▾</button>
+  </div>
+</header>
+
+<div class="layout">
+  <aside class="side" id="side">
+    <div class="side-title">Các chương</div>
+    <nav id="chapters" class="chapters"></nav>
+    <div class="side-title">Mục lục chương</div>
+    <nav id="outline" class="outline"></nav>
+  </aside>
+
+  <main class="main">
+    <div class="fmtbar" id="fmtbar" role="toolbar" aria-label="Định dạng văn bản">
+      <button data-cmd="bold" title="Chữ đậm (Ctrl+B)"><b>B</b></button>
+      <button data-cmd="italic" title="Chữ nghiêng (Ctrl+I)"><i>I</i></button>
+      <button data-cmd="code" title="Mã / tên lệnh" class="mono">&lt;/&gt;</button>
+      <button data-cmd="cite" title="Chèn trích dẫn [n]">Trích dẫn [n]</button>
+      <button data-cmd="clear" title="Xóa định dạng">Xóa định dạng</button>
+      <span class="sep"></span>
+      <button data-add="p">+ Đoạn văn</button>
+      <button data-add="menu">+ Thêm nội dung ▾</button>
+    </div>
+    <article id="doc" class="paper" aria-label="Nội dung chương"></article>
+  </main>
+
+  <aside class="refs" id="refsPanel" hidden>
+    <div class="refs-head"><strong>Tài liệu tham khảo</strong><button id="btnRefsClose" class="icon-btn" aria-label="Đóng">✕</button></div>
+    <p class="hint">Số [n] được đánh theo thứ tự xuất hiện đầu tiên trong chương. Chèn trích dẫn bằng nút “Trích dẫn [n]”.</p>
+    <div id="refsList"></div>
+    <button id="btnRefAdd" class="btn">+ Thêm nguồn</button>
+  </aside>
+</div>
+
+<!-- menu thêm khối -->
+<div id="addMenu" class="menu" hidden role="menu"></div>
+<!-- menu khác -->
+<div id="moreMenu" class="menu" hidden role="menu">
+  <button data-more="github">Lưu lên GitHub…</button>
+  <button data-more="backup">Tải bản sao lưu (JSON)</button>
+  <button data-more="import">Nhập bản sao lưu…</button>
+  <button data-more="reset">Khôi phục chương về bản gốc</button>
+  <button data-more="help">Hướng dẫn nhanh</button>
+</div>
+
+<div id="modal" class="modal" hidden><div class="modal-card" role="dialog" aria-modal="true"><div id="modalBody"></div></div></div>
+<input type="file" id="fileImport" accept=".json,application/json" hidden>
+<input type="file" id="fileImage" accept="image/*" hidden>
+<div id="toast" class="toast" hidden></div>
+
+<script src="vendor/docx.min.js"></script>
+<script src="js/markup.js"></script>
+<script src="js/export.js"></script>
+<script src="js/store.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
