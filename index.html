@@ -8,12 +8,13 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 rx=%276%27 fill=%27%231F3864%27/%3E%3Cpath d=%27M9 8h10a4 4 0 0 1 4 4v12H13a4 4 0 0 1-4-4z%27 fill=%27none%27 stroke=%27white%27 stroke-width=%272.4%27/%3E%3Cpath d=%27M13 13h6M13 17h6%27 stroke=%27white%27 stroke-width=%272%27 stroke-linecap=%27round%27/%3E%3C/svg%3E">
 <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body class="view">
 <header class="topbar">
   <button id="btnSide" class="icon-btn only-narrow" title="Mục lục" aria-label="Mục lục">☰</button>
   <div class="brand">Giáo trình Phần mềm mã nguồn mở <small>Trình biên tập</small></div>
   <div class="status" id="status" role="status" aria-live="polite">Đang tải…</div>
   <div class="actions">
+    <button id="btnEdit" class="btn" title="Bật chế độ chỉnh sửa (cần mật khẩu)">✎ Edit</button>
     <button id="btnRefs" class="btn ghost" title="Quản lý tài liệu tham khảo của chương">Tài liệu tham khảo</button>
     <button id="btnExportOne" class="btn primary" title="Xuất chương đang mở ra file Word">Xuất Word chương này</button>
     <button id="btnExportAll" class="btn" title="Xuất cả 6 chương ra một file Word">Xuất cả giáo trình</button>
