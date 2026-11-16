@@ -71,7 +71,7 @@
    "t": "figure",
    "src": "assets/img/chuong6-hinh1.jpg",
    "caption": "Ba thuộc tính cơ bản của an toàn thông tin [@nistcsf]",
-   "width": 14.0
+   "width": 14
   },
   {
    "t": "p",
@@ -214,7 +214,7 @@
    "kind": "mo",
    "title": "",
    "texts": [
-    "**Mã nguồn mở và an ninh chuỗi cung ứng.** Vụ cài mã độc vào thư viện nén xz-utils (CVE-2024-3094), đã nêu ở Chương 1, cho thấy lỗ hổng có thể nằm ngay trong thành phần được tin cậy và lan sang mọi hệ thống phụ thuộc [@nvd]. Vì vậy, quản lý thành phần phụ thuộc, cập nhật bản vá và theo dõi thông báo bảo mật của dự án là một phần của vận hành an toàn."
+    "**Mã nguồn mở và an ninh chuỗi cung ứng.** Vụ cài mã độc vào thư viện nén xz-utils (CVE-2024-3094), đã nêu ở Chương 1, cho thấy lỗ hổng có thể nằm ngay trong thành phần được tin cậy và lan sang mọi hệ thống phụ thuộc. Vì vậy, quản lý thành phần phụ thuộc, cập nhật bản vá và theo dõi thông báo bảo mật của dự án là một phần của vận hành an toàn."
    ]
   },
   {
@@ -255,7 +255,7 @@
    "t": "figure",
    "src": "assets/img/chuong6-hinh2.jpg",
    "caption": "Mô hình phòng thủ nhiều lớp",
-   "width": 14.0
+   "width": 14
   },
   {
    "t": "p",
@@ -283,7 +283,7 @@
   },
   {
    "t": "p",
-   "text": "Log đóng vai trò quan trọng trong quá trình này. Những sự kiện như đăng nhập, đăng nhập thất bại, sử dụng đặc quyền quản trị, thay đổi cấu hình và hoạt động của dịch vụ có thể được ghi lại để phục vụ giám sát và điều tra. CIS Controls 8.1 tiếp tục xem audit log là một thành phần cốt lõi trong hoạt động phát hiện và phân tích sự cố [@cis].",
+   "text": "Log đóng vai trò quan trọng trong quá trình này. Những sự kiện như đăng nhập, đăng nhập thất bại, sử dụng đặc quyền quản trị, thay đổi cấu hình và hoạt động của dịch vụ có thể được ghi lại để phục vụ giám sát và điều tra. CIS Controls 8.1 tiếp tục xem audit log là một thành phần cốt lõi trong hoạt động phát hiện và phân tích sự cố.",
    "indent": true,
    "left": false
   },
@@ -299,7 +299,7 @@
   },
   {
    "t": "p",
-   "text": "Cập nhật hệ điều hành và phần mềm là một biện pháp phòng ngừa quan trọng. Các bản cập nhật có thể sửa lỗi chức năng, lỗi bảo mật hoặc cải thiện cơ chế phòng vệ. Với máy chủ sản xuất, quá trình cập nhật nên kết hợp kiểm thử, sao lưu và có phương án phục hồi khi cần thiết [@ubsec].",
+   "text": "Cập nhật hệ điều hành và phần mềm là một biện pháp phòng ngừa quan trọng. Các bản cập nhật có thể sửa lỗi chức năng, lỗi bảo mật hoặc cải thiện cơ chế phòng vệ. Với máy chủ sản xuất, quá trình cập nhật nên kết hợp kiểm thử, sao lưu và có phương án phục hồi khi cần thiết [@ubserver].",
    "indent": true,
    "left": false
   },
@@ -311,7 +311,7 @@
   },
   {
    "t": "p",
-   "text": "Bảo mật hệ thống cũng cần kết hợp cơ chế kiểm soát ở tầng ứng dụng. Trên Ubuntu, AppArmor cung cấp cơ chế Mandatory Access Control để bổ sung cho mô hình quyền Unix truyền thống. AppArmor sử dụng các profile theo chương trình để xác định tài nguyên và hành động mà ứng dụng được phép thực hiện. Ubuntu hiện cài và nạp AppArmor mặc định [@ubaa].",
+   "text": "Bảo mật hệ thống cũng cần kết hợp cơ chế kiểm soát ở tầng ứng dụng. Trên Ubuntu, AppArmor cung cấp cơ chế Mandatory Access Control để bổ sung cho mô hình quyền Unix truyền thống. AppArmor sử dụng các profile theo chương trình để xác định tài nguyên và hành động mà ứng dụng được phép thực hiện. Ubuntu hiện cài và nạp AppArmor mặc định [@ubserver].",
    "indent": true,
    "left": false
   },
@@ -344,7 +344,7 @@
    "kind": "mo",
    "title": "",
    "texts": [
-    "**Bối cảnh pháp lý Việt Nam.** Hoạt động bảo đảm an toàn thông tin của tổ chức tại Việt Nam còn chịu sự điều chỉnh của Luật An toàn thông tin mạng [@luat86], Luật An ninh mạng [@luat24] và các quy định về bảo vệ dữ liệu cá nhân [@nd13]. Khi xây dựng chính sách cho một hệ thống thực tế, cần đối chiếu các văn bản còn hiệu lực tại thời điểm áp dụng, vì một số văn bản đã và đang được sửa đổi, thay thế."
+    "**Bối cảnh pháp lý Việt Nam.** Hoạt động bảo đảm an toàn thông tin của tổ chức tại Việt Nam còn chịu sự điều chỉnh của Luật An toàn thông tin mạng, Luật An ninh mạng và các quy định về bảo vệ dữ liệu cá nhân. Khi xây dựng chính sách cho một hệ thống thực tế, cần đối chiếu các văn bản còn hiệu lực tại thời điểm áp dụng, vì một số văn bản đã và đang được sửa đổi, thay thế."
    ]
   },
   {
@@ -359,7 +359,7 @@
   },
   {
    "t": "p",
-   "text": "Ubuntu Server Documentation xem quản lý người dùng và đặc quyền là một thành phần quan trọng của bảo mật máy chủ. Việc quản lý tài khoản không hiệu quả có thể dẫn đến hệ thống bị xâm nhập ngay cả khi những thành phần khác được cấu hình tương đối tốt [@ubuser].",
+   "text": "Ubuntu Server Documentation xem quản lý người dùng và đặc quyền là một thành phần quan trọng của bảo mật máy chủ. Việc quản lý tài khoản không hiệu quả có thể dẫn đến hệ thống bị xâm nhập ngay cả khi những thành phần khác được cấu hình tương đối tốt [@ubserver].",
    "indent": true,
    "left": false
   },
@@ -477,7 +477,7 @@
    "t": "figure",
    "src": "assets/img/chuong6-hinh3.jpg",
    "caption": "Mô hình kiểm soát truy cập cơ bản trong Linux",
-   "width": 14.0
+   "width": 14
   },
   {
    "t": "p",
@@ -625,7 +625,7 @@
   },
   {
    "t": "p",
-   "text": "Các khuyến nghị hiện đại về mật khẩu đã có nhiều thay đổi so với cách tiếp cận truyền thống. NIST SP 800-63B-4 hiện yêu cầu mật khẩu sử dụng như một yếu tố xác thực duy nhất phải có ít nhất 15 ký tự. Nếu mật khẩu chỉ là một thành phần trong quy trình xác thực đa yếu tố, mức tối thiểu có thể là 8 ký tự. NIST cũng yêu cầu kiểm tra mật khẩu mới đối với blocklist chứa những mật khẩu phổ biến, dễ đoán hoặc đã bị lộ [@nist63b].",
+   "text": "Các khuyến nghị hiện đại về mật khẩu đã có nhiều thay đổi so với cách tiếp cận truyền thống. NIST SP 800-63B-4 hiện yêu cầu mật khẩu sử dụng như một yếu tố xác thực duy nhất phải có ít nhất 15 ký tự. Nếu mật khẩu chỉ là một thành phần trong quy trình xác thực đa yếu tố, mức tối thiểu có thể là 8 ký tự. NIST cũng yêu cầu kiểm tra mật khẩu mới đối với blocklist chứa những mật khẩu phổ biến, dễ đoán hoặc đã bị lộ.",
    "indent": true,
    "left": false
   },
@@ -704,7 +704,7 @@
   },
   {
    "t": "p",
-   "text": "Đối với quản trị máy chủ từ xa, SSH public key authentication thường được sử dụng thay cho hoặc kết hợp với mật khẩu. OpenSSH hỗ trợ nhiều phương thức xác thực, trong đó có mật khẩu, public key và Kerberos. Ubuntu sử dụng OpenSSH làm triển khai SSH phổ biến để cung cấp kênh điều khiển và truyền dữ liệu được mã hóa [@ubssh].",
+   "text": "Đối với quản trị máy chủ từ xa, SSH public key authentication thường được sử dụng thay cho hoặc kết hợp với mật khẩu. OpenSSH hỗ trợ nhiều phương thức xác thực, trong đó có mật khẩu, public key và Kerberos. Ubuntu sử dụng OpenSSH làm triển khai SSH phổ biến để cung cấp kênh điều khiển và truyền dữ liệu được mã hóa [@ubserver].",
    "indent": true,
    "left": false
   },
@@ -738,7 +738,7 @@
   },
   {
    "t": "p",
-   "text": "Ubuntu mặc định không sử dụng đăng nhập trực tiếp bằng mật khẩu root mà khuyến khích sử dụng sudo. sudo cho phép một người dùng đã được ủy quyền tạm thời nâng đặc quyền bằng mật khẩu của chính mình. Điều này giúp giảm việc chia sẻ mật khẩu root và tăng khả năng gắn thao tác quản trị với một tài khoản cụ thể [@ubuser].",
+   "text": "Ubuntu mặc định không sử dụng đăng nhập trực tiếp bằng mật khẩu root mà khuyến khích sử dụng sudo. sudo cho phép một người dùng đã được ủy quyền tạm thời nâng đặc quyền bằng mật khẩu của chính mình. Điều này giúp giảm việc chia sẻ mật khẩu root và tăng khả năng gắn thao tác quản trị với một tài khoản cụ thể [@ubserver].",
    "indent": true,
    "left": false
   },
@@ -768,7 +768,7 @@
   },
   {
    "t": "p",
-   "text": "Truy cập từ xa qua SSH cũng cần được giới hạn. OpenSSH Server sử dụng daemon sshd để tiếp nhận kết nối. Cấu hình chính nằm trong: `/etc/ssh/sshd_config` và Ubuntu hiện cũng hỗ trợ các file cấu hình bổ sung trong `/etc/ssh/sshd_config.d/` [@ubssh]",
+   "text": "Truy cập từ xa qua SSH cũng cần được giới hạn. OpenSSH Server sử dụng daemon sshd để tiếp nhận kết nối. Cấu hình chính nằm trong: `/etc/ssh/sshd_config` và Ubuntu hiện cũng hỗ trợ các file cấu hình bổ sung trong `/etc/ssh/sshd_config.d/` [@ubserver]",
    "indent": true,
    "left": false
   },
@@ -840,7 +840,7 @@
   },
   {
    "t": "p",
-   "text": "Wireshark là phần mềm phân tích giao thức mạng mã nguồn mở cho phép thu thập và phân tích packet. Công cụ hỗ trợ số lượng lớn giao thức và được sử dụng trong quản trị mạng, xử lý sự cố, nghiên cứu giao thức và phân tích bảo mật. Wireshark phát hành theo giấy phép GPL phiên bản 2 [@wireshark].",
+   "text": "Wireshark là phần mềm phân tích giao thức mạng mã nguồn mở cho phép thu thập và phân tích packet. Công cụ hỗ trợ số lượng lớn giao thức và được sử dụng trong quản trị mạng, xử lý sự cố, nghiên cứu giao thức và phân tích bảo mật. Wireshark phát hành theo giấy phép GPL phiên bản 2.",
    "indent": true,
    "left": false
   },
@@ -859,8 +859,8 @@
   {
    "t": "figure",
    "src": "assets/img/chuong6-hinh4.jpg",
-   "caption": "Quy trình phân tích lưu lượng mạng bằng Wireshark [@wireshark]",
-   "width": 14.0
+   "caption": "Quy trình phân tích lưu lượng mạng bằng Wireshark",
+   "width": 14
   },
   {
    "t": "p",
@@ -893,7 +893,7 @@
   },
   {
    "t": "p",
-   "text": "Wireshark cũng chỉ rõ capture filter và display filter là hai loại filter khác nhau và không nên nhầm lẫn cú pháp của chúng [@wireshark].",
+   "text": "Wireshark cũng chỉ rõ capture filter và display filter là hai loại filter khác nhau và không nên nhầm lẫn cú pháp của chúng.",
    "indent": true,
    "left": false
   },
@@ -1012,7 +1012,7 @@
   },
   {
    "t": "p",
-   "text": "UFW đặc biệt phù hợp với người học mới làm quen với firewall vì cú pháp tương đối đơn giản. Theo Ubuntu Server Documentation, UFW mặc định ban đầu ở trạng thái disabled và được thiết kế chủ yếu để quản lý các rule firewall phía máy chủ [@ubfw].",
+   "text": "UFW đặc biệt phù hợp với người học mới làm quen với firewall vì cú pháp tương đối đơn giản. Theo Ubuntu Server Documentation, UFW mặc định ban đầu ở trạng thái disabled và được thiết kế chủ yếu để quản lý các rule firewall phía máy chủ [@ubserver].",
    "indent": true,
    "left": false
   },
@@ -1065,8 +1065,8 @@
   {
    "t": "figure",
    "src": "assets/img/chuong6-hinh5.jpg",
-   "caption": "Cơ chế kiểm soát lưu lượng bằng Firewall [@ubfw]",
-   "width": 14.0
+   "caption": "Cơ chế kiểm soát lưu lượng bằng Firewall [@ubserver]",
+   "width": 14
   },
   {
    "t": "p",
@@ -1171,7 +1171,7 @@
   },
   {
    "t": "p",
-   "text": "Nmap, viết tắt của Network Mapper, là một công cụ mã nguồn mở được sử dụng trong khám phá mạng và kiểm tra bảo mật. Ngoài port scanning, Nmap hỗ trợ host discovery, nhận diện dịch vụ và phiên bản, phát hiện một số đặc điểm hệ điều hành và thu thập các thông tin khác về hệ thống mạng. Về giấy phép, Nmap theo Nmap Public Source License (NPSL), dựa trên GPLv2 nhưng có điều khoản bổ sung và không phải giấy phép do OSI phê chuẩn [@nmaplic,@nmapbook].",
+   "text": "Nmap, viết tắt của Network Mapper, là một công cụ mã nguồn mở được sử dụng trong khám phá mạng và kiểm tra bảo mật. Ngoài port scanning, Nmap hỗ trợ host discovery, nhận diện dịch vụ và phiên bản, phát hiện một số đặc điểm hệ điều hành và thu thập các thông tin khác về hệ thống mạng. Về giấy phép, Nmap theo Nmap Public Source License (NPSL), dựa trên GPLv2 nhưng có điều khoản bổ sung và không phải giấy phép do OSI phê chuẩn.",
    "indent": true,
    "left": false
   },
@@ -1180,12 +1180,12 @@
    "kind": "luuy",
    "title": "Chỉ quét hệ thống được phép",
    "texts": [
-    "**Trong phạm vi giáo trình này, Nmap được sử dụng để kiểm tra hệ thống thuộc môi trường thực hành hoặc hệ thống mà người dùng được phép quản lý.** Tài liệu chính thức của Nmap khuyến nghị phải có sự cho phép trước khi quét mạng của tổ chức hoặc cá nhân khác [@nmaplegal]."
+    "**Trong phạm vi giáo trình này, Nmap được sử dụng để kiểm tra hệ thống thuộc môi trường thực hành hoặc hệ thống mà người dùng được phép quản lý.** Tài liệu chính thức của Nmap khuyến nghị phải có sự cho phép trước khi quét mạng của tổ chức hoặc cá nhân khác."
    ]
   },
   {
    "t": "p",
-   "text": "Một trong những khái niệm quan trọng nhất của Nmap là trạng thái cổng. Nmap phân chia cổng thành sáu trạng thái: open, closed, filtered, unfiltered, open|filtered và closed|filtered. Đáng chú ý, đây không phải là thuộc tính tuyệt đối của cổng mà là cách Nmap quan sát cổng từ vị trí scan hiện tại [@nmapbook].",
+   "text": "Một trong những khái niệm quan trọng nhất của Nmap là trạng thái cổng. Nmap phân chia cổng thành sáu trạng thái: open, closed, filtered, unfiltered, open|filtered và closed|filtered. Đáng chú ý, đây không phải là thuộc tính tuyệt đối của cổng mà là cách Nmap quan sát cổng từ vị trí scan hiện tại.",
    "indent": true,
    "left": false
   },
@@ -1341,8 +1341,8 @@
   {
    "t": "figure",
    "src": "assets/img/chuong6-hinh6.jpg",
-   "caption": "Quy trình kiểm tra dịch vụ bằng Nmap [@nmapbook]",
-   "width": 14.0
+   "caption": "Quy trình kiểm tra dịch vụ bằng Nmap",
+   "width": 14
   },
   {
    "t": "p",
@@ -1367,10 +1367,6 @@
    "band": true
   },
   {
-   "t": "h3",
-   "text": "A. Nhận biết và hiểu"
-  },
-  {
    "t": "list",
    "ordered": true,
    "items": [
@@ -1379,17 +1375,7 @@
     "Phân biệt tài khoản người dùng và nhóm người dùng trong Linux.",
     "Phân biệt Capture Filter và Display Filter trong Wireshark.",
     "Phân biệt các trạng thái open, closed và filtered trong Nmap.",
-    "Quyền 750 có ý nghĩa như thế nào? Nêu ý nghĩa của quyền r, w, x đối với tệp và thư mục."
-   ]
-  },
-  {
-   "t": "h3",
-   "text": "B. Vận dụng và phân tích"
-  },
-  {
-   "t": "list",
-   "ordered": true,
-   "items": [
+    "Quyền 750 có ý nghĩa như thế nào? Nêu ý nghĩa của quyền r, w, x đối với tệp và thư mục.",
     "Giải thích nguyên tắc đặc quyền tối thiểu và cho ví dụ áp dụng trên Linux.",
     "Tại sao hệ thống cần áp dụng nguyên tắc phòng thủ nhiều lớp? Nêu các lớp trong Hình 6.2.",
     "Tại sao không nên sử dụng chmod 777 như một giải pháp chung cho các lỗi phân quyền?",
@@ -1397,17 +1383,7 @@
     "Trình bày vai trò của sudo trong kiểm soát quyền quản trị.",
     "Những điểm chính trong chính sách mật khẩu hiện đại theo NIST là gì? So sánh xác thực bằng mật khẩu và SSH public key.",
     "Trình bày vai trò của Firewall trong bảo vệ máy chủ và giải thích vì sao Firewall không thể thay thế các biện pháp khác.",
-    "Tại sao kết quả Nmap có thể khác nhau khi cùng một máy được scan từ hai vị trí mạng khác nhau? Tại sao cần thực hiện lại Nmap sau khi thay đổi Firewall?"
-   ]
-  },
-  {
-   "t": "h3",
-   "text": "C. Tình huống thảo luận"
-  },
-  {
-   "t": "list",
-   "ordered": true,
-   "items": [
+    "Tại sao kết quả Nmap có thể khác nhau khi cùng một máy được scan từ hai vị trí mạng khác nhau? Tại sao cần thực hiện lại Nmap sau khi thay đổi Firewall?",
     "Hãy mô tả một quy trình kết hợp Nmap, Firewall và Wireshark để kiểm tra một máy chủ Linux vừa được triển khai.",
     "Một nhóm quản trị dùng chung một tài khoản quản trị và mật khẩu đơn giản cho mọi thành viên. Hãy phân tích các rủi ro và đề xuất cải thiện dựa trên các nguyên tắc đã học.",
     "Một sinh viên dùng Nmap quét toàn bộ mạng ký túc xá để “thử công cụ” mà không xin phép. Hãy phân tích vấn đề đạo đức, pháp lý và đề xuất cách thực hành đúng."
@@ -1481,52 +1457,6 @@
    "text": "**Sản phẩm:** Bảng so sánh kết quả Nmap trước và sau khi bật Firewall, ảnh chụp Wireshark đã lọc và nhận xét về bề mặt tiếp xúc của hệ thống.",
    "indent": false,
    "left": false
-  },
-  {
-   "t": "h2",
-   "text": "Tài liệu tham khảo",
-   "band": true
-  },
-  {
-   "t": "refs"
   }
- ],
- "refs": {
-  "nistcsf": "Pascoe, C., Quinn, S., & Scarfone, K. (2024). *The NIST Cybersecurity Framework (CSF) 2.0* (NIST CSWP 29). National Institute of Standards and Technology. https://doi.org/10.6028/NIST.CSWP.29",
-  "nvd": "National Vulnerability Database. (2024). *CVE-2024-3094*. National Institute of Standards and Technology. https://nvd.nist.gov/vuln/detail/CVE-2024-3094",
-  "cis": "Center for Internet Security. (n.d.). *CIS Critical Security Controls, version 8.1*. https://www.cisecurity.org/controls",
-  "ubsec": "Canonical. (n.d.). *Ubuntu Server documentation – Security*. https://documentation.ubuntu.com/server/",
-  "ubaa": "Canonical. (n.d.). *Ubuntu Server documentation – AppArmor*. https://documentation.ubuntu.com/server/",
-  "luat86": "Quốc hội. (2015). *Luật An toàn thông tin mạng* (Luật số 86/2015/QH13).",
-  "luat24": "Quốc hội. (2018). *Luật An ninh mạng* (Luật số 24/2018/QH14).",
-  "nd13": "Chính phủ. (2023). *Nghị định số 13/2023/NĐ-CP về bảo vệ dữ liệu cá nhân*.",
-  "ubuser": "Canonical. (n.d.). *Ubuntu Server documentation – User management*. https://documentation.ubuntu.com/server/",
-  "coreutils": "Free Software Foundation. (2026). *GNU Coreutils 9.11 manual* (file permissions, chmod, chown, chgrp, special mode bits). https://www.gnu.org/software/coreutils/manual/coreutils.html",
-  "nist63b": "National Institute of Standards and Technology. (2025). *Digital identity guidelines: Authentication and authenticator management* (NIST SP 800-63B-4). https://doi.org/10.6028/NIST.SP.800-63B-4",
-  "ubssh": "Canonical. (n.d.). *Ubuntu Server documentation – OpenSSH server*. https://documentation.ubuntu.com/server/",
-  "wireshark": "Wireshark Foundation. (n.d.). *Wireshark user’s guide*. https://www.wireshark.org/docs/wsug_html_chunked/",
-  "ubfw": "Canonical. (n.d.). *Ubuntu Server documentation – Firewall*. https://documentation.ubuntu.com/server/",
-  "nmaplic": "Nmap Project. (n.d.). *Nmap Public Source License (NPSL)*. https://nmap.org/npsl/",
-  "nmapbook": "Lyon, G. F. (2008). *Nmap network scanning: The official Nmap project guide to network discovery and security scanning*. Nmap Project. https://nmap.org/book/",
-  "nmaplegal": "Nmap Project. (n.d.). *Legal issues*. https://nmap.org/book/legal-issues.html"
- },
- "order": [
-  "nistcsf",
-  "nvd",
-  "cis",
-  "ubsec",
-  "ubaa",
-  "luat86",
-  "luat24",
-  "nd13",
-  "ubuser",
-  "coreutils",
-  "nist63b",
-  "ubssh",
-  "wireshark",
-  "ubfw",
-  "nmaplic",
-  "nmapbook",
-  "nmaplegal"
  ]
 }

@@ -8,7 +8,7 @@ Website tĩnh + hàm serverless chạy trên **Vercel**, mã nguồn lưu trên 
 - Sửa trực tiếp trên trang: bấm vào đoạn văn, tiêu đề, ô bảng, chú thích hình; Enter trong đoạn để thêm đoạn mới.
 - Thêm nội dung: đoạn văn, tiêu đề (1.1 / 1.1.1 / a), danh sách, 5 loại hộp nhấn mạnh (Ghi nhớ, Lưu ý, Ví dụ, Tình huống, Mở rộng), bảng (thêm/bớt hàng, cột), khối mã, trích dẫn mẫu, **hình ảnh tải từ máy**.
 - Sắp xếp khối (▲ ▼), nhân đôi, xóa.
-- Định dạng chữ đậm, nghiêng, mã; **trích dẫn số `[n]` tự đánh số theo thứ tự xuất hiện** trong chương; bảng quản lý tài liệu tham khảo.
+- Định dạng chữ đậm, nghiêng, mã; **trích dẫn số `[n]`** trỏ về một danh mục tài liệu tham khảo chung (20 nguồn, APA 7) ở cuối giáo trình, đánh số thống nhất giữa các chương.
 - Hình, bảng tự đánh số theo chương (Hình 2.3, Bảng 3.1).
 - **Xuất Word** một chương hoặc cả giáo trình (A4, lề trái 3 cm, các lề còn lại 2 cm, Times New Roman 13, giãn dòng 1,3, đầu trang “Chương n”, số trang ở chân trang, bảng/hình/hộp nhấn mạnh theo quy định). Việc xuất chạy hoàn toàn trên trình duyệt.
 - Tự lưu trên trình duyệt (IndexedDB), sao lưu/nhập JSON, khôi phục chương về bản gốc.
@@ -26,6 +26,7 @@ js/app.js             trình soạn thảo
 vendor/docx.min.js    thư viện docx 8.5.0 (đã kèm sẵn, không cần cài)
 api/save.js           hàm serverless ghi nội dung/ảnh vào GitHub
 content/chuong-1..6.json   nội dung 6 chương
+content/tai-lieu-tham-khao.json   danh mục tài liệu tham khảo dùng chung
 assets/img/           hình của các chương (và assets/img/uploads/ cho ảnh tải lên)
 test/export.test.js   kiểm thử xuất Word bằng Node
 tools/export_content.py    tạo lại content/*.json từ tập lệnh dựng chương (dùng trên máy tác giả)

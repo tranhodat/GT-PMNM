@@ -77,7 +77,7 @@
    "t": "figure",
    "src": "assets/img/chuong5-hinh1.jpg",
    "caption": "Mối quan hệ giữa giáo dục mở và tài nguyên giáo dục mở",
-   "width": 14.0
+   "width": 14
   },
   {
    "t": "p",
@@ -198,7 +198,7 @@
    "t": "figure",
    "src": "assets/img/chuong5-hinh2.jpg",
    "caption": "Các dạng tài nguyên giáo dục mở",
-   "width": 14.0
+   "width": 14
   },
   {
    "t": "callout",
@@ -264,7 +264,7 @@
   },
   {
    "t": "p",
-   "text": "Tìm kiếm OER không đơn giản là nhập từ khóa vào Google. Một tài nguyên có nội dung phù hợp nhưng không có giấy phép phù hợp có thể không đáp ứng mục đích tái sử dụng. Vì vậy, tìm kiếm OER cần kết hợp xác định nhu cầu, lựa chọn từ khóa, lựa chọn kho tài nguyên và kiểm tra quyền sử dụng [@oer4].",
+   "text": "Tìm kiếm OER không đơn giản là nhập từ khóa vào Google. Một tài nguyên có nội dung phù hợp nhưng không có giấy phép phù hợp có thể không đáp ứng mục đích tái sử dụng. Vì vậy, tìm kiếm OER cần kết hợp xác định nhu cầu, lựa chọn từ khóa, lựa chọn kho tài nguyên và kiểm tra quyền sử dụng.",
    "indent": true,
    "left": false
   },
@@ -296,7 +296,7 @@
    "t": "figure",
    "src": "assets/img/chuong5-hinh3.jpg",
    "caption": "Quy trình tìm kiếm và lựa chọn OER",
-   "width": 14.0
+   "width": 14
   },
   {
    "t": "p",
@@ -310,7 +310,7 @@
   },
   {
    "t": "p",
-   "text": "Việc một tài nguyên được cấp giấy phép mở không bảo đảm rằng tài nguyên đó có chất lượng cao. Giấy phép trả lời câu hỏi “người dùng được phép làm gì”, trong khi đánh giá chất lượng trả lời câu hỏi “tài nguyên có phù hợp để sử dụng hay không”. Hai vấn đề này cần được xem xét độc lập [@oer4].",
+   "text": "Việc một tài nguyên được cấp giấy phép mở không bảo đảm rằng tài nguyên đó có chất lượng cao. Giấy phép trả lời câu hỏi “người dùng được phép làm gì”, trong khi đánh giá chất lượng trả lời câu hỏi “tài nguyên có phù hợp để sử dụng hay không”. Hai vấn đề này cần được xem xét độc lập.",
    "indent": true,
    "left": false
   },
@@ -421,7 +421,7 @@
   },
   {
    "t": "p",
-   "text": "Một đặc điểm quan trọng của OER là người dùng không chỉ được đọc tài nguyên mà trong nhiều trường hợp còn có thể lưu giữ, sử dụng lại, điều chỉnh và chia sẻ. David Wiley khái quát khả năng này thông qua mô hình 5R, gồm Retain, Reuse, Revise, Remix và Redistribute [@oer2].",
+   "text": "Một đặc điểm quan trọng của OER là người dùng không chỉ được đọc tài nguyên mà trong nhiều trường hợp còn có thể lưu giữ, sử dụng lại, điều chỉnh và chia sẻ. David Wiley khái quát khả năng này thông qua mô hình 5R, gồm Retain, Reuse, Revise, Remix và Redistribute.",
    "indent": true,
    "left": false
   },
@@ -440,8 +440,8 @@
   {
    "t": "figure",
    "src": "assets/img/chuong5-hinh4.jpg",
-   "caption": "Mô hình 5R của tài nguyên giáo dục mở [@oer2]",
-   "width": 14.0
+   "caption": "Mô hình 5R của tài nguyên giáo dục mở",
+   "width": 14
   },
   {
    "t": "p",
@@ -479,7 +479,7 @@
   },
   {
    "t": "p",
-   "text": "Một tài nguyên có thể được truy cập miễn phí nhưng vẫn chịu sự bảo hộ đầy đủ của quyền tác giả. Vì vậy, muốn sử dụng OER đúng quy định cần hiểu rõ cơ chế giấy phép mở. Creative Commons là hệ thống giấy phép được sử dụng phổ biến cho tài nguyên giáo dục, hình ảnh, văn bản và nhiều loại nội dung số [@oer6].",
+   "text": "Một tài nguyên có thể được truy cập miễn phí nhưng vẫn chịu sự bảo hộ đầy đủ của quyền tác giả. Vì vậy, muốn sử dụng OER đúng quy định cần hiểu rõ cơ chế giấy phép mở. Creative Commons là hệ thống giấy phép được sử dụng phổ biến cho tài nguyên giáo dục, hình ảnh, văn bản và nhiều loại nội dung số [@cc].",
    "indent": true,
    "left": false
   },
@@ -594,7 +594,7 @@
   },
   {
    "t": "p",
-   "text": "Creative Commons thường sử dụng nguyên tắc TASL để hỗ trợ việc attribution. TASL tương ứng với Title, Author, Source và License. Khi có đủ thông tin, một attribution tốt cần giúp người đọc nhận biết tên tài nguyên, tác giả, nơi tìm thấy tài nguyên và giấy phép được áp dụng [@oer7].",
+   "text": "Creative Commons thường sử dụng nguyên tắc TASL để hỗ trợ việc attribution. TASL tương ứng với Title, Author, Source và License. Khi có đủ thông tin, một attribution tốt cần giúp người đọc nhận biết tên tài nguyên, tác giả, nơi tìm thấy tài nguyên và giấy phép được áp dụng [@cc].",
    "indent": true,
    "left": false
   },
@@ -626,7 +626,7 @@
    "kind": "mo",
    "title": "Bối cảnh Việt Nam",
    "texts": [
-    "Trong bối cảnh Việt Nam, việc sử dụng tác phẩm còn chịu sự điều chỉnh của Luật Sở hữu trí tuệ và các văn bản liên quan, trong đó có Luật số 07/2022/QH15 và Nghị định số 17/2023/NĐ-CP [@oer8,oer9]. Pháp luật có quy định một số ngoại lệ đối với quyền tác giả trong hoạt động nghiên cứu, học tập và giảng dạy, nhưng các ngoại lệ này không nên được hiểu thành quyền sao chép tự do mọi tài liệu phục vụ giáo dục. Khi một tài nguyên được đưa vào giáo trình xuất bản, người biên soạn cần thận trọng hơn, đặc biệt với các hình ảnh, bảng biểu, đoạn dịch dài và tài nguyên có điều khoản NC, ND hoặc SA."
+    "Trong bối cảnh Việt Nam, việc sử dụng tác phẩm còn chịu sự điều chỉnh của Luật Sở hữu trí tuệ và các văn bản liên quan, trong đó có Luật số 07/2022/QH15 và Nghị định số 17/2023/NĐ-CP [@luat]. Pháp luật có quy định một số ngoại lệ đối với quyền tác giả trong hoạt động nghiên cứu, học tập và giảng dạy, nhưng các ngoại lệ này không nên được hiểu thành quyền sao chép tự do mọi tài liệu phục vụ giáo dục. Khi một tài nguyên được đưa vào giáo trình xuất bản, người biên soạn cần thận trọng hơn, đặc biệt với các hình ảnh, bảng biểu, đoạn dịch dài và tài nguyên có điều khoản NC, ND hoặc SA."
    ]
   },
   {
@@ -641,7 +641,7 @@
   },
   {
    "t": "p",
-   "text": "OER không chỉ là những tài nguyên được tạo ra bởi các tổ chức lớn. Giảng viên và sinh viên đều có thể phát triển những tài nguyên có phạm vi phù hợp như tài liệu thực hành, bộ slide, notebook, video, câu hỏi hoặc một mô-đun học tập [@oer3].",
+   "text": "OER không chỉ là những tài nguyên được tạo ra bởi các tổ chức lớn. Giảng viên và sinh viên đều có thể phát triển những tài nguyên có phạm vi phù hợp như tài liệu thực hành, bộ slide, notebook, video, câu hỏi hoặc một mô-đun học tập.",
    "indent": true,
    "left": false
   },
@@ -653,7 +653,7 @@
   },
   {
    "t": "p",
-   "text": "Trước khi tạo mới hoàn toàn, người biên soạn nên kiểm tra các OER đã có. Nếu một tài nguyên đáp ứng gần như đầy đủ yêu cầu, có thể Adopt. Nếu tài nguyên chỉ phù hợp một phần, có thể Adapt bằng cách dịch, rút gọn, cập nhật hoặc kết hợp với nguồn khác. Chỉ khi không có tài nguyên phù hợp mới cần cân nhắc xây dựng hoàn toàn từ đầu [@oer5].",
+   "text": "Trước khi tạo mới hoàn toàn, người biên soạn nên kiểm tra các OER đã có. Nếu một tài nguyên đáp ứng gần như đầy đủ yêu cầu, có thể Adopt. Nếu tài nguyên chỉ phù hợp một phần, có thể Adapt bằng cách dịch, rút gọn, cập nhật hoặc kết hợp với nguồn khác. Chỉ khi không có tài nguyên phù hợp mới cần cân nhắc xây dựng hoàn toàn từ đầu.",
    "indent": true,
    "left": false
   },
@@ -744,10 +744,6 @@
    "band": true
   },
   {
-   "t": "h3",
-   "text": "A. Nhận biết và hiểu"
-  },
-  {
    "t": "list",
    "ordered": true,
    "items": [
@@ -756,33 +752,13 @@
     "Trình bày các loại OER thường gặp và cho ví dụ trong lĩnh vực công nghệ thông tin.",
     "Phân tích vai trò của OER đối với người học, giảng viên và cơ sở giáo dục.",
     "Trình bày ý nghĩa của BY, SA, NC và ND trong Creative Commons.",
-    "Phân biệt Citation với Attribution và giải thích nguyên tắc TASL trong ghi nhận nguồn OER."
-   ]
-  },
-  {
-   "t": "h3",
-   "text": "B. Vận dụng và phân tích"
-  },
-  {
-   "t": "list",
-   "ordered": true,
-   "items": [
+    "Phân biệt Citation với Attribution và giải thích nguyên tắc TASL trong ghi nhận nguồn OER.",
     "Tại sao kết quả tìm kiếm trên Google không thể được xem ngay là OER? Nêu quy trình tìm kiếm và lựa chọn OER.",
     "Những tiêu chí nào cần được xem xét khi đánh giá chất lượng một OER? Cho biết vì sao điểm số chỉ hỗ trợ quyết định.",
     "Trình bày mô hình 5R và minh họa bằng một tài nguyên công nghệ thông tin; phân biệt Adopt và Adapt.",
     "So sánh CC BY và CC BY-SA; giải thích vì sao tài nguyên có điều khoản ND không phù hợp với mục tiêu dịch và phát hành bản dịch.",
     "Tại sao repository GitHub công khai chưa chắc là tài nguyên mở?",
-    "Trình bày những vấn đề cần kiểm tra trước khi công bố một OER."
-   ]
-  },
-  {
-   "t": "h3",
-   "text": "C. Tình huống thảo luận"
-  },
-  {
-   "t": "list",
-   "ordered": true,
-   "items": [
+    "Trình bày những vấn đề cần kiểm tra trước khi công bố một OER.",
     "Một giảng viên muốn dịch sang tiếng Việt và phát hành một giáo trình Linux tiếng Anh đang theo giấy phép CC BY-NC-ND. Hãy phân tích khả năng thực hiện và đề xuất cách xử lý.",
     "Một nhóm giảng viên xây dựng bộ bài thực hành Git gồm văn bản hướng dẫn và mã mẫu. Hãy đề xuất giấy phép cho từng thành phần, cách ghi nhận nguồn các hình lấy từ tài nguyên khác và định dạng chia sẻ."
    ]
@@ -855,36 +831,6 @@
    "text": "**Sản phẩm:** Kế hoạch điều chỉnh có ánh xạ vào 5R, phần ghi nhận nguồn cho bản điều chỉnh và định dạng chia sẻ (bản đọc và tệp nguồn) đề xuất.",
    "indent": false,
    "left": false
-  },
-  {
-   "t": "h2",
-   "text": "Tài liệu tham khảo",
-   "band": true
-  },
-  {
-   "t": "refs"
   }
- ],
- "refs": {
-  "oer1": "UNESCO. (2019). *Recommendation on Open Educational Resources (OER)*. UNESCO. https://www.unesco.org/en/legal-affairs/recommendation-open-educational-resources-oer",
-  "oer4": "Moist, S. (n.d.). *Faculty OER toolkit*. BCcampus Open Education. https://opentextbc.ca/facultyoertoolkit/",
-  "oer2": "Wiley, D. (n.d.). *Defining the “open” in open content and open educational resources*. OpenContent.org. https://opencontent.org/definition/",
-  "oer6": "Creative Commons. (n.d.). *Creative Commons licenses*. https://creativecommons.org/share-your-work/cclicenses/",
-  "oer7": "Creative Commons. (n.d.). *Reusing CC-licensed content*. https://creativecommons.org/use-remix/",
-  "oer8": "Quốc hội. (2022). *Luật số 07/2022/QH15 sửa đổi, bổ sung một số điều của Luật Sở hữu trí tuệ*.",
-  "oer9": "Chính phủ. (2023). *Nghị định số 17/2023/NĐ-CP quy định chi tiết một số điều và biện pháp thi hành Luật Sở hữu trí tuệ về quyền tác giả, quyền liên quan*.",
-  "oer3": "University of Manitoba Libraries. (2024). *OER starter kit: A guide to open publishing at the University of Manitoba*. University of Manitoba Libraries.",
-  "oer5": "Aesoph, L. M. (n.d.). *Adaptation guide*. BCcampus Open Education."
- },
- "order": [
-  "oer1",
-  "oer4",
-  "oer2",
-  "oer6",
-  "oer7",
-  "oer8",
-  "oer9",
-  "oer3",
-  "oer5"
  ]
 }

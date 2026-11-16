@@ -115,36 +115,36 @@
   {
    "t": "figure",
    "src": "assets/img/chuong1-hinh1.jpg",
-   "caption": "Các mốc chính trong lịch sử phần mềm mã nguồn mở [@gnu85,@fss,@torvalds,@osdhist,@osai,@opentofu]",
-   "width": 16.0
+   "caption": "Các mốc chính trong lịch sử phần mềm mã nguồn mở [@fsfdef,@osd,@osai]",
+   "width": 16
   },
   {
    "t": "p",
-   "text": "**Trước thập niên 1980 – văn hóa chia sẻ.** Trong những năm đầu của ngành máy tính, phần mềm thường đi kèm phần cứng và chưa được coi là một sản phẩm thương mại độc lập. Mã nguồn được trao đổi tự nhiên giữa các lập trình viên trong phòng thí nghiệm và trường đại học để cùng sửa lỗi và cải tiến [@fss].",
+   "text": "**Trước thập niên 1980 – văn hóa chia sẻ.** Trong những năm đầu của ngành máy tính, phần mềm thường đi kèm phần cứng và chưa được coi là một sản phẩm thương mại độc lập. Mã nguồn được trao đổi tự nhiên giữa các lập trình viên trong phòng thí nghiệm và trường đại học để cùng sửa lỗi và cải tiến [@fsfdef].",
    "indent": true,
    "left": false
   },
   {
    "t": "p",
-   "text": "**Thập niên 1980 – Phong trào Phần mềm Tự do.** Khi phần mềm bị thương mại hóa và mã nguồn bị đóng lại, người dùng mất khả năng nghiên cứu và tùy biến chương trình mình đang dùng. Để đáp lại, Richard Stallman khởi xướng Dự án GNU (1983) nhằm xây dựng một hệ điều hành hoàn toàn tự do, thành lập Free Software Foundation (FSF) năm 1985 và công bố giấy phép *GNU General Public License* phiên bản 1 vào năm 1989 [@gnu85,@gpl].",
+   "text": "**Thập niên 1980 – Phong trào Phần mềm Tự do.** Khi phần mềm bị thương mại hóa và mã nguồn bị đóng lại, người dùng mất khả năng nghiên cứu và tùy biến chương trình mình đang dùng. Để đáp lại, Richard Stallman khởi xướng Dự án GNU (1983) nhằm xây dựng một hệ điều hành hoàn toàn tự do, thành lập Free Software Foundation (FSF) năm 1985 và công bố giấy phép *GNU General Public License* phiên bản 1 vào năm 1989 [@fsfdef,@gpl].",
    "indent": true,
    "left": false
   },
   {
    "t": "p",
-   "text": "**1991 – Nhân Linux.** Linus Torvalds, khi đó là sinh viên, công bố bản đầu tiên của nhân Linux trên nhóm thảo luận comp.os.minix và mời mọi người cùng phát triển [@torvalds]. Khi kết hợp nhân này với các công cụ của Dự án GNU, một hệ điều hành mở hoàn chỉnh (GNU/Linux) ra đời, tạo bước ngoặt cho hạ tầng công nghệ thông tin.",
+   "text": "**1991 – Nhân Linux.** Linus Torvalds, khi đó là sinh viên, công bố bản đầu tiên của nhân Linux trên nhóm thảo luận comp.os.minix và mời mọi người cùng phát triển. Khi kết hợp nhân này với các công cụ của Dự án GNU, một hệ điều hành mở hoàn chỉnh (GNU/Linux) ra đời, tạo bước ngoặt cho hạ tầng công nghệ thông tin.",
    "indent": true,
    "left": false
   },
   {
    "t": "p",
-   "text": "**1998 – Thuật ngữ “open source”.** Sau khi Netscape công bố mã nguồn trình duyệt, một nhóm người gồm Christine Peterson, Eric S. Raymond, Bruce Perens cùng những người khác nhận thấy chữ “free” dễ bị hiểu thành “miễn phí” và khó thuyết phục giới doanh nghiệp. Họ đề xuất thuật ngữ *open source* và thành lập OSI trong cùng năm [@osdhist,@peterson].",
+   "text": "**1998 – Thuật ngữ “open source”.** Sau khi Netscape công bố mã nguồn trình duyệt, một nhóm người gồm Christine Peterson, Eric S. Raymond, Bruce Perens cùng những người khác nhận thấy chữ “free” dễ bị hiểu thành “miễn phí” và khó thuyết phục giới doanh nghiệp. Họ đề xuất thuật ngữ *open source* và thành lập OSI trong cùng năm [@osd].",
    "indent": true,
    "left": false
   },
   {
    "t": "p",
-   "text": "**Từ 2005 đến nay – nền tảng của hạ tầng số.** Git (2005), GitHub (2008), Docker (2013) và Kubernetes (2014) cho thấy mã nguồn mở đã trở thành cách phát triển phần mềm chủ đạo. Gần như toàn bộ hệ thống trong danh sách TOP500 siêu máy tính chạy Linux [@top500]; Android dựa trên nhân Linux, còn phần lớn mã nguồn Android do dự án AOSP phát hành theo Apache License 2.0 [@aosp].",
+   "text": "**Từ 2005 đến nay – nền tảng của hạ tầng số.** Git (2005), GitHub (2008), Docker (2013) và Kubernetes (2014) cho thấy mã nguồn mở đã trở thành cách phát triển phần mềm chủ đạo. Gần như toàn bộ hệ thống trong danh sách TOP500 siêu máy tính chạy Linux; Android dựa trên nhân Linux, còn phần lớn mã nguồn Android do dự án AOSP phát hành theo Apache License 2.0.",
    "indent": true,
    "left": false
   },
@@ -221,7 +221,7 @@
   },
   {
    "t": "p",
-   "text": "**Phần mềm thương mại** (commercial software) là phần mềm được phát triển hoặc phân phối nhằm tạo doanh thu. Đây là tiêu chí về *mô hình kinh doanh*, không nói gì về việc mã nguồn mở hay đóng. Hai phong trào đầu có phạm vi chồng lấn rất lớn nên thường được gọi chung là FOSS (Free and Open Source Software) hoặc FLOSS (Free/Libre and Open Source Software). Khác biệt chủ yếu nằm ở triết lý: phần mềm tự do coi tự do là vấn đề đạo đức, còn mã nguồn mở coi đây là phương pháp phát triển phần mềm hiệu quả [@fsfmiss].",
+   "text": "**Phần mềm thương mại** (commercial software) là phần mềm được phát triển hoặc phân phối nhằm tạo doanh thu. Đây là tiêu chí về *mô hình kinh doanh*, không nói gì về việc mã nguồn mở hay đóng. Hai phong trào đầu có phạm vi chồng lấn rất lớn nên thường được gọi chung là FOSS (Free and Open Source Software) hoặc FLOSS (Free/Libre and Open Source Software). Khác biệt chủ yếu nằm ở triết lý: phần mềm tự do coi tự do là vấn đề đạo đức, còn mã nguồn mở coi đây là phương pháp phát triển phần mềm hiệu quả [@fsfdef].",
    "indent": true,
    "left": false
   },
@@ -296,7 +296,7 @@
   },
   {
    "t": "p",
-   "text": "**Giấy phép phần mềm** (software license) là văn bản pháp lý quy định phạm vi quyền và nghĩa vụ của người dùng đối với một phần mềm. Theo pháp luật Việt Nam, quyền tác giả phát sinh từ khi tác phẩm được sáng tạo và thể hiện dưới một hình thức vật chất nhất định, không cần đăng ký; chương trình máy tính được bảo hộ như tác phẩm văn học [@luat05,@luat22]. Vì vậy, nếu không có giấy phép, người khác không có quyền sao chép, sửa đổi hay phân phối phần mềm; giấy phép chính là sự “ủy quyền” của chủ sở hữu.",
+   "text": "**Giấy phép phần mềm** (software license) là văn bản pháp lý quy định phạm vi quyền và nghĩa vụ của người dùng đối với một phần mềm. Theo pháp luật Việt Nam, quyền tác giả phát sinh từ khi tác phẩm được sáng tạo và thể hiện dưới một hình thức vật chất nhất định, không cần đăng ký; chương trình máy tính được bảo hộ như tác phẩm văn học [@luat]. Vì vậy, nếu không có giấy phép, người khác không có quyền sao chép, sửa đổi hay phân phối phần mềm; giấy phép chính là sự “ủy quyền” của chủ sở hữu.",
    "indent": true,
    "left": false
   },
@@ -305,12 +305,12 @@
    "kind": "luuy",
    "title": "",
    "texts": [
-    "Mã nguồn đăng công khai trên GitHub, GitLab, blog hay diễn đàn **không mặc nhiên** cho phép tải về, dùng hoặc thương mại hóa. Kho mã không có giấy phép được hiểu là tác giả giữ toàn bộ quyền [@ghlic]."
+    "Mã nguồn đăng công khai trên GitHub, GitLab, blog hay diễn đàn **không mặc nhiên** cho phép tải về, dùng hoặc thương mại hóa. Kho mã không có giấy phép được hiểu là tác giả giữ toàn bộ quyền [@ghdocs]."
    ]
   },
   {
    "t": "p",
-   "text": "Khi tiếp cận một dự án, việc đầu tiên là tìm các tệp pháp lý ở thư mục gốc của repository. Tệp `LICENSE` (hoặc `LICENSE.txt`) chứa toàn văn giấy phép như MIT, Apache 2.0 hay GPL; tệp `COPYING` có vai trò tương đương và thường gặp trong các dự án GNU; tệp `NOTICE` chứa thông báo pháp lý bắt buộc, danh sách tác giả hoặc các thành phần bên thứ ba. Ngoài ra, nhiều dự án ghi dòng `SPDX-License-Identifier` ở đầu mỗi tệp mã, là mã định danh chuẩn của giấy phép, chẳng hạn `MIT`, `Apache-2.0` hoặc `GPL-3.0-only`, giúp công cụ tự động nhận diện giấy phép [@spdx].",
+   "text": "Khi tiếp cận một dự án, việc đầu tiên là tìm các tệp pháp lý ở thư mục gốc của repository. Tệp `LICENSE` (hoặc `LICENSE.txt`) chứa toàn văn giấy phép như MIT, Apache 2.0 hay GPL; tệp `COPYING` có vai trò tương đương và thường gặp trong các dự án GNU; tệp `NOTICE` chứa thông báo pháp lý bắt buộc, danh sách tác giả hoặc các thành phần bên thứ ba. Ngoài ra, nhiều dự án ghi dòng `SPDX-License-Identifier` ở đầu mỗi tệp mã, là mã định danh chuẩn của giấy phép, chẳng hạn `MIT`, `Apache-2.0` hoặc `GPL-3.0-only`, giúp công cụ tự động nhận diện giấy phép.",
    "indent": true,
    "left": false
   },
@@ -326,7 +326,7 @@
   },
   {
    "t": "p",
-   "text": "Có hàng trăm giấy phép được OSI phê chuẩn [@osilic]. Dựa vào mức ràng buộc khi phân phối sản phẩm phái sinh, có thể chia thành hai nhóm lớn: **permissive** (ít điều kiện) và copyleft (yêu cầu sản phẩm phái sinh tiếp tục được mở). Hình 1.2 sắp xếp các giấy phép phổ biến từ trái sang phải theo mức ràng buộc tăng dần: càng sang phải, người dùng càng bị ràng buộc phải giữ mở mã nguồn phái sinh.",
+   "text": "Có hàng trăm giấy phép được OSI phê chuẩn [@osd]. Dựa vào mức ràng buộc khi phân phối sản phẩm phái sinh, có thể chia thành hai nhóm lớn: **permissive** (ít điều kiện) và copyleft (yêu cầu sản phẩm phái sinh tiếp tục được mở). Hình 1.2 sắp xếp các giấy phép phổ biến từ trái sang phải theo mức ràng buộc tăng dần: càng sang phải, người dùng càng bị ràng buộc phải giữ mở mã nguồn phái sinh.",
    "indent": true,
    "left": false
   },
@@ -334,7 +334,7 @@
    "t": "figure",
    "src": "assets/img/chuong1-hinh2.jpg",
    "caption": "Phổ giấy phép mã nguồn mở theo mức ràng buộc",
-   "width": 16.0
+   "width": 16
   },
   {
    "t": "p",
@@ -344,7 +344,7 @@
   },
   {
    "t": "p",
-   "text": "**Nhóm copyleft yếu** gồm MPL 2.0 và LGPL. MPL 2.0 áp dụng copyleft ở mức *tệp*: tệp MPL bị sửa phải được công bố, nhưng có thể kết hợp với mã theo giấy phép khác trong cùng sản phẩm [@mpl]. LGPL được thiết kế riêng cho thư viện: phần mềm đóng được phép liên kết với thư viện LGPL miễn là người dùng vẫn thay thế được thư viện đó, còn sửa đổi chính thư viện thì phải công bố.",
+   "text": "**Nhóm copyleft yếu** gồm MPL 2.0 và LGPL. MPL 2.0 áp dụng copyleft ở mức *tệp*: tệp MPL bị sửa phải được công bố, nhưng có thể kết hợp với mã theo giấy phép khác trong cùng sản phẩm. LGPL được thiết kế riêng cho thư viện: phần mềm đóng được phép liên kết với thư viện LGPL miễn là người dùng vẫn thay thế được thư viện đó, còn sửa đổi chính thư viện thì phải công bố.",
    "indent": true,
    "left": false
   },
@@ -448,7 +448,7 @@
    "kind": "mo",
    "title": "",
    "texts": [
-    "**Mã nguồn mở “đổi giấy phép”.** Tháng 8/2023, HashiCorp chuyển Terraform từ MPL 2.0 sang Business Source License (BSL), loại giấy phép không được OSI công nhận là mã nguồn mở; cộng đồng tạo nhánh OpenTofu dưới sự bảo trợ của Linux Foundation [@opentofu]. Elastic chuyển Elasticsearch khỏi Apache 2.0 năm 2021, rồi đến tháng 8/2024 bổ sung AGPLv3 như một lựa chọn [@elastic].",
+    "**Mã nguồn mở “đổi giấy phép”.** Tháng 8/2023, HashiCorp chuyển Terraform từ MPL 2.0 sang Business Source License (BSL), loại giấy phép không được OSI công nhận là mã nguồn mở; cộng đồng tạo nhánh OpenTofu dưới sự bảo trợ của Linux Foundation. Elastic chuyển Elasticsearch khỏi Apache 2.0 năm 2021, rồi đến tháng 8/2024 bổ sung AGPLv3 như một lựa chọn.",
     "Bài học: khi chọn thành phần cho hệ thống lâu dài, **không chỉ kiểm tra giấy phép hiện tại mà còn theo dõi lịch sử và cách quản trị dự án**."
    ]
   },
@@ -501,7 +501,7 @@
   },
   {
    "t": "p",
-   "text": "Một ứng dụng hiện đại thường phụ thuộc vào hàng trăm thư viện. **Danh mục thành phần phần mềm** (Software Bill of Materials – SBOM) liệt kê thành phần, phiên bản, nhà cung cấp và quan hệ phụ thuộc, giúp kiểm soát cả rủi ro giấy phép lẫn lỗ hổng bảo mật [@ntia]. Bảng 1.3 là ví dụ minh họa với dữ liệu giả định, trong đó thành phần dùng GPL được đánh dấu rủi ro cao vì có thể buộc phải công bố mã khi phân phối.",
+   "text": "Một ứng dụng hiện đại thường phụ thuộc vào hàng trăm thư viện. **Danh mục thành phần phần mềm** (Software Bill of Materials – SBOM) liệt kê thành phần, phiên bản, nhà cung cấp và quan hệ phụ thuộc, giúp kiểm soát cả rủi ro giấy phép lẫn lỗ hổng bảo mật. Bảng 1.3 là ví dụ minh họa với dữ liệu giả định, trong đó thành phần dùng GPL được đánh dấu rủi ro cao vì có thể buộc phải công bố mã khi phân phối.",
    "indent": true,
    "left": false
   },
@@ -547,9 +547,9 @@
    ],
    "widths": [
     2.6,
-    2.0,
-    3.0,
-    3.0,
+    2,
+    3,
+    3,
     5.4
    ],
    "font": 12,
@@ -578,7 +578,7 @@
   },
   {
    "t": "p",
-   "text": "Trong một dự án, **người sáng lập** (founder) khởi tạo dự án và xác định định hướng ban đầu; người duy trì (maintainer) quản lý dự án, xem xét các thay đổi được đề xuất và quyết định việc hợp nhất vào nhánh chính; lập trình viên chính (core developer) thường xuyên phát triển các thành phần quan trọng. Xung quanh họ là người đóng góp (contributor) gửi mã, tài liệu, bản dịch hoặc ý tưởng, người kiểm thử (tester) kiểm tra phiên bản mới và phản hồi chất lượng, và đông đảo người dùng (user) báo lỗi, đề xuất tính năng. Các vai trò này không cố định: một người dùng tích cực có thể trở thành người đóng góp, rồi sau một thời gian được giao thêm trách nhiệm duy trì dự án. Nhiều dự án lớn còn được quản trị bởi tổ chức phi lợi nhuận như Linux Foundation, Apache Software Foundation hay Eclipse Foundation để bảo đảm tính trung lập và bền vững [@ghgov].",
+   "text": "Trong một dự án, **người sáng lập** (founder) khởi tạo dự án và xác định định hướng ban đầu; người duy trì (maintainer) quản lý dự án, xem xét các thay đổi được đề xuất và quyết định việc hợp nhất vào nhánh chính; lập trình viên chính (core developer) thường xuyên phát triển các thành phần quan trọng. Xung quanh họ là người đóng góp (contributor) gửi mã, tài liệu, bản dịch hoặc ý tưởng, người kiểm thử (tester) kiểm tra phiên bản mới và phản hồi chất lượng, và đông đảo người dùng (user) báo lỗi, đề xuất tính năng. Các vai trò này không cố định: một người dùng tích cực có thể trở thành người đóng góp, rồi sau một thời gian được giao thêm trách nhiệm duy trì dự án. Nhiều dự án lớn còn được quản trị bởi tổ chức phi lợi nhuận như Linux Foundation, Apache Software Foundation hay Eclipse Foundation để bảo đảm tính trung lập và bền vững.",
    "indent": true,
    "left": false
   },
@@ -596,15 +596,15 @@
   },
   {
    "t": "p",
-   "text": "Khi muốn sửa một lỗi hoặc bổ sung tính năng cho dự án trên GitHub, người đóng góp thường đi qua tám bước như Hình 1.3. Tuy tên gọi có thể khác ở nền tảng khác, trình tự này khá phổ biến [@ghcontrib].",
+   "text": "Khi muốn sửa một lỗi hoặc bổ sung tính năng cho dự án trên GitHub, người đóng góp thường đi qua tám bước như Hình 1.3. Tuy tên gọi có thể khác ở nền tảng khác, trình tự này khá phổ biến.",
    "indent": true,
    "left": false
   },
   {
    "t": "figure",
    "src": "assets/img/chuong1-hinh3.jpg",
-   "caption": "Quy trình đóng góp mã nguồn phổ biến trên GitHub [@ghcontrib]",
-   "width": 16.0
+   "caption": "Quy trình đóng góp mã nguồn phổ biến trên GitHub",
+   "width": 16
   },
   {
    "t": "p",
@@ -704,7 +704,7 @@
   },
   {
    "t": "p",
-   "text": "**Hạ tầng số và đám mây.** Linux, Kubernetes, OpenStack, Prometheus, Grafana là những thành phần cốt lõi của kiến trúc cloud-native, giúp tổ chức tự động hóa hạ tầng và giảm phụ thuộc vào giải pháp độc quyền. Cần lưu ý phân biệt dự án mở như Docker Engine/Moby với sản phẩm có điều khoản cấp phép riêng như Docker Desktop [@docker]. Cùng với đó là DevOps và hạ tầng dưới dạng mã (Infrastructure as Code): Git, Jenkins, Ansible, Kubernetes và OpenTofu hỗ trợ tự động hóa toàn bộ chuỗi *Develop → Build → Test → Deploy → Monitor*.",
+   "text": "**Hạ tầng số và đám mây.** Linux, Kubernetes, OpenStack, Prometheus, Grafana là những thành phần cốt lõi của kiến trúc cloud-native, giúp tổ chức tự động hóa hạ tầng và giảm phụ thuộc vào giải pháp độc quyền. Cần lưu ý phân biệt dự án mở như Docker Engine/Moby với sản phẩm có điều khoản cấp phép riêng như Docker Desktop. Cùng với đó là DevOps và hạ tầng dưới dạng mã (Infrastructure as Code): Git, Jenkins, Ansible, Kubernetes và OpenTofu hỗ trợ tự động hóa toàn bộ chuỗi *Develop → Build → Test → Deploy → Monitor*.",
    "indent": true,
    "left": false
   },
@@ -716,13 +716,13 @@
   },
   {
    "t": "p",
-   "text": "**Doanh nghiệp tham gia sâu hơn.** Doanh nghiệp công bố dự án nội bộ, tài trợ cộng đồng, thuê maintainer toàn thời gian và xây dựng sản phẩm thương mại trên nền dự án mở. Có bốn mô hình kinh doanh phổ biến. Mô hình *dịch vụ và hỗ trợ* bán gói đăng ký gồm hỗ trợ kỹ thuật, bản vá và đào tạo, như Red Hat hay SUSE. Mô hình *Open Core* phát hành phần lõi theo giấy phép mở và bán các tính năng doanh nghiệp theo giấy phép thương mại, như GitLab. Mô hình *giấy phép kép* phát hành cùng một mã theo giấy phép mở và giấy phép thương mại, như MySQL [@oracle]. Mô hình *SaaS* vận hành phần mềm trên đám mây rồi thu phí lưu trữ và hỗ trợ, như WordPress.com.",
+   "text": "**Doanh nghiệp tham gia sâu hơn.** Doanh nghiệp công bố dự án nội bộ, tài trợ cộng đồng, thuê maintainer toàn thời gian và xây dựng sản phẩm thương mại trên nền dự án mở. Có bốn mô hình kinh doanh phổ biến. Mô hình *dịch vụ và hỗ trợ* bán gói đăng ký gồm hỗ trợ kỹ thuật, bản vá và đào tạo, như Red Hat hay SUSE. Mô hình *Open Core* phát hành phần lõi theo giấy phép mở và bán các tính năng doanh nghiệp theo giấy phép thương mại, như GitLab. Mô hình *giấy phép kép* phát hành cùng một mã theo giấy phép mở và giấy phép thương mại, như MySQL. Mô hình *SaaS* vận hành phần mềm trên đám mây rồi thu phí lưu trữ và hỗ trợ, như WordPress.com.",
    "indent": true,
    "left": false
   },
   {
    "t": "p",
-   "text": "**Bảo mật chuỗi cung ứng phần mềm.** Phần mềm hiện đại phụ thuộc vào nhiều thành phần bên thứ ba, nên một thành phần bị xâm nhập sẽ kéo theo mọi hệ thống sử dụng nó. Vụ cài mã độc vào thư viện nén xz-utils (CVE-2024-3094), được phát hiện năm 2024, là ví dụ điển hình [@nvd]. Vì vậy các tổ chức ngày càng chú trọng quản lý phụ thuộc, quét lỗ hổng tự động, kiểm tra nguồn gốc gói và lập SBOM. Cuối cùng, trong giáo dục, mục tiêu học mã nguồn mở không dừng ở việc biết cài đặt phần mềm mà là hiểu cách dự án vận hành, đọc và tuân thủ giấy phép, dùng Git thành thạo và từng bước tham gia cộng đồng.",
+   "text": "**Bảo mật chuỗi cung ứng phần mềm.** Phần mềm hiện đại phụ thuộc vào nhiều thành phần bên thứ ba, nên một thành phần bị xâm nhập sẽ kéo theo mọi hệ thống sử dụng nó. Vụ cài mã độc vào thư viện nén xz-utils (CVE-2024-3094), được phát hiện năm 2024, là ví dụ điển hình. Vì vậy các tổ chức ngày càng chú trọng quản lý phụ thuộc, quét lỗ hổng tự động, kiểm tra nguồn gốc gói và lập SBOM. Cuối cùng, trong giáo dục, mục tiêu học mã nguồn mở không dừng ở việc biết cài đặt phần mềm mà là hiểu cách dự án vận hành, đọc và tuân thủ giấy phép, dùng Git thành thạo và từng bước tham gia cộng đồng.",
    "indent": true,
    "left": false
   },
@@ -743,10 +743,6 @@
    "band": true
   },
   {
-   "t": "h3",
-   "text": "A. Nhận biết và hiểu"
-  },
-  {
    "t": "list",
    "ordered": true,
    "items": [
@@ -757,101 +753,15 @@
     "Phân biệt phần mềm mã nguồn mở, phần mềm tự do và phần mềm thương mại; cho ví dụ một sản phẩm thuộc nhiều nhóm cùng lúc.",
     "Giấy phép phần mềm là gì? Vì sao kho mã không có giấy phép lại không được tự do sử dụng?",
     "Phân biệt giấy phép permissive và copyleft; lấy hai ví dụ cho mỗi nhóm.",
-    "Mô tả vai trò của Maintainer, Contributor và Tester trong một dự án mã nguồn mở."
-   ]
-  },
-  {
-   "t": "h3",
-   "text": "B. Vận dụng và phân tích"
-  },
-  {
-   "t": "list",
-   "ordered": true,
-   "items": [
+    "Mô tả vai trò của Maintainer, Contributor và Tester trong một dự án mã nguồn mở.",
     "So sánh MIT, Apache 2.0 và GPLv3 về nghĩa vụ chính, khả năng dùng trong sản phẩm đóng và điều khoản sáng chế.",
     "AGPL giải quyết khoảng trống nào của GPL đối với dịch vụ chạy trên đám mây?",
     "Lập danh mục kiểm tra giấy phép cho một ứng dụng Web sử dụng năm thư viện với các giấy phép khác nhau.",
     "Trình bày các bước đóng góp một bản sửa lỗi tài liệu cho một dự án trên GitHub, từ Fork đến Merge.",
-    "Chọn một dự án mã nguồn mở bất kỳ và đánh giá theo ba góc độ ở mục 1.3.2; nêu kết luận có nên sử dụng không."
-   ]
-  },
-  {
-   "t": "h3",
-   "text": "C. Tình huống thảo luận"
-  },
-  {
-   "t": "list",
-   "ordered": true,
-   "items": [
+    "Chọn một dự án mã nguồn mở bất kỳ và đánh giá theo ba góc độ ở mục 1.3.2; nêu kết luận có nên sử dụng không.",
     "Một sinh viên sao chép đoạn mã từ blog không có giấy phép vào sản phẩm đồ án thương mại hóa. Phân tích rủi ro và đề xuất cách xử lý.",
     "Một nhóm dự án dùng công cụ A theo giấy phép mã nguồn mở, sau đó nhà cung cấp chuyển sang giấy phép BSL. Nhóm nên làm gì để giảm rủi ro dài hạn?"
    ]
-  },
-  {
-   "t": "h2",
-   "text": "Tài liệu tham khảo",
-   "band": true
-  },
-  {
-   "t": "refs"
   }
- ],
- "refs": {
-  "osd": "Open Source Initiative. (n.d.). *The Open Source Definition*. https://opensource.org/osd",
-  "gnu85": "Stallman, R. M. (1985). The GNU Manifesto. *Dr. Dobb’s Journal of Software Tools, 10*(3). https://www.gnu.org/gnu/manifesto.html",
-  "fss": "Stallman, R. M. (2002). *Free software, free society: Selected essays of Richard M. Stallman*. GNU Press.",
-  "torvalds": "Torvalds, L. (1991, August 25). What would you like to see most in minix? [Usenet post]. *comp.os.minix*.",
-  "osdhist": "Open Source Initiative. (n.d.). *History of the Open Source Initiative*. https://opensource.org/20years",
-  "osai": "Open Source Initiative. (2024). *The Open Source AI Definition 1.0*. https://opensource.org/ai/open-source-ai-definition",
-  "opentofu": "OpenTofu. (n.d.). *OpenTofu announces fork of Terraform*. https://opentofu.org/blog/opentofu-announces-fork-of-terraform/",
-  "gpl": "Free Software Foundation. (n.d.). *GNU General Public License, version 3*. https://www.gnu.org/licenses/gpl-3.0.html",
-  "peterson": "Peterson, C. (2018, February 2). How I coined the term “open source”. *Opensource.com*. https://opensource.com/article/18/2/coining-term-open-source-software",
-  "top500": "TOP500. (n.d.). *TOP500 supercomputer sites*. https://www.top500.org/",
-  "aosp": "Android Open Source Project. (n.d.). *Licenses*. https://source.android.com/docs/setup/about/licenses",
-  "fsfdef": "Free Software Foundation. (n.d.). *What is free software? The Free Software Definition*. GNU Project. https://www.gnu.org/philosophy/free-sw.html",
-  "fsfmiss": "Free Software Foundation. (n.d.). *Why open source misses the point of free software*. GNU Project. https://www.gnu.org/philosophy/open-source-misses-the-point.html",
-  "luat05": "Quốc hội. (2005). *Luật Sở hữu trí tuệ* (Luật số 50/2005/QH11).",
-  "luat22": "Quốc hội. (2022). *Luật số 07/2022/QH15 sửa đổi, bổ sung một số điều của Luật Sở hữu trí tuệ*.",
-  "ghlic": "GitHub. (n.d.). *Licensing a repository*. GitHub Docs. https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/licensing-a-repository",
-  "spdx": "SPDX. (n.d.). *SPDX License List*. Linux Foundation. https://spdx.org/licenses/",
-  "osilic": "Open Source Initiative. (n.d.). *OSI approved licenses*. https://opensource.org/licenses",
-  "apache": "Apache Software Foundation. (2004). *Apache License, Version 2.0*. https://www.apache.org/licenses/LICENSE-2.0",
-  "mpl": "Mozilla Foundation. (n.d.). *Mozilla Public License, version 2.0*. https://www.mozilla.org/en-US/MPL/2.0/",
-  "elastic": "Banon, S. (2024, August 29). *Elasticsearch is open source, again*. Elastic. https://www.elastic.co/blog/elasticsearch-is-open-source-again",
-  "ntia": "National Telecommunications and Information Administration. (2021). *The minimum elements for a Software Bill of Materials (SBOM)*. U.S. Department of Commerce. https://www.ntia.gov/report/2021/minimum-elements-software-bill-materials-sbom",
-  "ghgov": "GitHub. (n.d.). *Leadership and governance*. Open Source Guides. https://opensource.guide/leadership-and-governance/",
-  "ghcontrib": "GitHub. (n.d.). *How to contribute to open source*. Open Source Guides. https://opensource.guide/how-to-contribute/",
-  "docker": "Docker Inc. (n.d.). *Docker Subscription Service Agreement*. https://www.docker.com/legal/docker-subscription-service-agreement/",
-  "oracle": "Oracle. (n.d.). *MySQL licensing information*. https://www.mysql.com/about/legal/licensing/",
-  "nvd": "National Vulnerability Database. (2024). *CVE-2024-3094*. National Institute of Standards and Technology. https://nvd.nist.gov/vuln/detail/CVE-2024-3094"
- },
- "order": [
-  "osd",
-  "gnu85",
-  "fss",
-  "torvalds",
-  "osdhist",
-  "osai",
-  "opentofu",
-  "gpl",
-  "peterson",
-  "top500",
-  "aosp",
-  "fsfdef",
-  "fsfmiss",
-  "luat05",
-  "luat22",
-  "ghlic",
-  "spdx",
-  "osilic",
-  "apache",
-  "mpl",
-  "elastic",
-  "ntia",
-  "ghgov",
-  "ghcontrib",
-  "docker",
-  "oracle",
-  "nvd"
  ]
 }

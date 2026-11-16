@@ -188,9 +188,38 @@
       };
     }
 
+    /* Phần "Tài liệu tham khảo" dùng chung ở cuối: opts.refs = {order, refs}; opts.onlyCited = chỉ liệt kê nguồn được trích dẫn */
+    function refsSection(g, onlyKeys) {
+      var kids = [new D.Paragraph({
+        heading: D.HeadingLevel.HEADING_1, spacing: { before: 0, after: 240, line: 276 }, alignment: AL.LEFT,
+        border: { bottom: { style: BS.SINGLE, size: 18, color: NAVY, space: 4 } },
+        children: [new D.TextRun({ text: 'TÀI LIỆU THAM KHẢO', bold: true, size: 40, color: NAVY, font: FONT })] })];
+      g.order.forEach(function (k, j) {
+        if (onlyKeys && onlyKeys.indexOf(k) < 0) return;
+        kids.push(para([new D.TextRun({ children: ['[' + (j + 1) + ']', new D.Tab()], bold: true, size: 24, font: FONT })].concat(runs(g.refs[k], {}, { size: 24 })),
+          { align: AL.LEFT, after: 100, line: 276, indent: { left: 567, hanging: 567 }, tabStops: [{ type: D.TabStopType.LEFT, position: 567 }] }));
+      });
+      return {
+        properties: { page: { size: { width: 11906, height: 16838 }, margin: { top: 1134, bottom: 1134, left: 1701, right: 1134, header: 567, footer: 567 } } },
+        headers: { default: new D.Header({ children: [new D.Paragraph({
+          children: [new D.TextRun({ text: 'Giáo trình Phần mềm mã nguồn mở', italics: true, size: 21, color: GREY, font: FONT }),
+                     new D.TextRun({ children: [new D.Tab(), 'Tài liệu tham khảo'], size: 21, color: GREY, font: FONT })],
+          tabStops: [{ type: D.TabStopType.RIGHT, position: TEXT_W }],
+          border: { bottom: { style: BS.SINGLE, size: 6, color: BLUE, space: 1 } } })] }) },
+        footers: { default: new D.Footer({ children: [new D.Paragraph({ alignment: AL.CENTER,
+          children: [new D.TextRun({ children: [D.PageNumber.CURRENT], size: 22, font: FONT })] })] }) },
+        children: kids
+      };
+    }
+
     return (async function () {
       var secs = [];
       for (var i = 0; i < chapters.length; i++) secs.push(await section(chapters[i]));
+      if (opts.refs && opts.refs.order) {
+        var only = null;
+        if (opts.onlyCited) { only = []; chapters.forEach(function (c) { M.computeOrder(c).order.forEach(function (k) { if (only.indexOf(k) < 0) only.push(k); }); }); }
+        if (!only || only.length) secs.push(refsSection(opts.refs, only));
+      }
       return new D.Document({
         creator: 'Giáo trình Phần mềm mã nguồn mở', title: opts.title || 'Giáo trình Phần mềm mã nguồn mở',
         styles: { default: {

@@ -67,6 +67,16 @@ module.exports = async function handler(req, res) {
       const commit = await putFile(GITHUB_REPO, branch, GITHUB_TOKEN, path, Buffer.from(json, 'utf8').toString('base64'), 'Cập nhật chương ' + n + ' từ trình biên tập');
       return res.status(200).json({ ok: true, path, commit });
     }
+    if (body.action === 'refs') {
+      const d = body.data;
+      if (!d || !Array.isArray(d.order) || !d.refs || typeof d.refs !== 'object') return res.status(400).json({ error: 'Dữ liệu tài liệu tham khảo không hợp lệ' });
+      if (d.order.length > 200 || !d.order.every(k => /^[A-Za-z0-9_]{1,40}$/.test(k) && typeof d.refs[k] === 'string' && d.refs[k].length < 2000)) return res.status(400).json({ error: 'Danh mục tài liệu tham khảo không hợp lệ' });
+      const refs = {}; d.order.forEach(k => { refs[k] = d.refs[k]; });
+      const json = JSON.stringify({ title: 'Tài liệu tham khảo', order: d.order, refs }, null, 1) + '\n';
+      const path = 'content/tai-lieu-tham-khao.json';
+      const commit = await putFile(GITHUB_REPO, branch, GITHUB_TOKEN, path, Buffer.from(json, 'utf8').toString('base64'), 'Cập nhật tài liệu tham khảo từ trình biên tập');
+      return res.status(200).json({ ok: true, path, commit });
+    }
     return res.status(400).json({ error: 'Hành động không hợp lệ' });
   } catch (e) {
     return res.status(502).json({ error: String(e.message || e) });

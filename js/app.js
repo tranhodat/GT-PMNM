@@ -7,7 +7,7 @@
   var NCH = 6;
   var KINDS = { nho: 'Ghi nhớ', luuy: 'Lưu ý', vidu: 'Ví dụ', mo: 'Mở rộng', tinhhuong: 'Tình huống' };
   var TYPES = { h2: 'Tiêu đề mục', h3: 'Tiêu đề mục con', h4: 'Tiêu đề cấp 4', p: 'Đoạn văn', list: 'Danh sách', callout: 'Hộp nhấn mạnh',
-                code: 'Khối mã', quote: 'Trích dẫn mẫu', table: 'Bảng', figure: 'Hình', refs: 'Tài liệu tham khảo' };
+                code: 'Khối mã', quote: 'Trích dẫn mẫu', table: 'Bảng', figure: 'Hình', };
   var PT = (function () { var d = document.createElement('div'); try { d.contentEditable = 'plaintext-only'; } catch (e) { return 'true'; } return d.contentEditable === 'plaintext-only' ? 'plaintext-only' : 'true'; })();
 
   var st = { ch: {}, cur: 1, edited: {}, urls: {}, saveT: null, citeT: null, range: null, rangeEl: null, insertAfter: -1, figTarget: -1, saved: null, loadErr: null };
@@ -30,15 +30,28 @@
   function fetchChapter(n) {
     return fetch('content/chuong-' + n + '.json?v=' + Date.now()).then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); });
   }
+  function fetchRefs() {
+    return fetch('content/tai-lieu-tham-khao.json?v=' + Date.now()).then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+      .then(function (d) { d.number = 0; d.titleText = d.title || 'Tài liệu tham khảo'; return d; });
+  }
+  function saveRefs() {
+    st.edited[0] = true; renderSideDots();
+    return S.put('chapters', 0, JSON.parse(JSON.stringify(st.ch[0]))).then(function () { st.saved = new Date(); statusOk(); });
+  }
   function loadAll() {
     var jobs = [];
     for (var n = 1; n <= NCH; n++) (function (n) {
       jobs.push(S.get('chapters', n).then(function (local) {
-        if (local && local.blocks) { st.ch[n] = local; st.edited[n] = true; return; }
+        /* bản cũ lưu trên trình duyệt (còn danh mục tham khảo riêng từng chương) bị bỏ để dùng cấu trúc mới */
+        if (local && local.blocks && !local.refs) { st.ch[n] = local; st.edited[n] = true; return; }
         return fetchChapter(n).then(function (d) { st.ch[n] = d; });
       }));
     })(n);
-    return Promise.all(jobs);
+    jobs.push(S.get('chapters', 0).then(function (local) {
+      if (local && local.order && local.refs) { st.ch[0] = local; st.edited[0] = true; return; }
+      return fetchRefs().then(function (d) { st.ch[0] = d; });
+    }));
+    return Promise.all(jobs).then(function () { M.setGlobalRefs(st.ch[0]); });
   }
   function markDirty() {
     st.edited[st.cur] = true; setStatus('Đang lưu…', 'busy'); renderSideDots();
@@ -52,6 +65,7 @@
   }
   function statusOk() {
     var ch = cur(); var t = st.saved ? st.saved.toTimeString().slice(0, 5) : '';
+    if (st.cur === 0) { setStatus('Tài liệu tham khảo · ' + ch.order.length + ' nguồn' + (st.edited[0] ? ' · đã lưu trên trình duyệt ' + t : ' · bản gốc'), 'ok'); return; }
     setStatus('Chương ' + ch.number + ' · ' + words(ch).toLocaleString('vi-VN') + ' từ' + (st.edited[ch.number] ? ' · đã lưu trên trình duyệt ' + t : ' · bản gốc'), 'ok');
   }
 
@@ -63,10 +77,14 @@
       var b = h('button', n === st.cur ? 'on' : '', '<span class="n">' + n + '</span>' + esc(c.titleText || c.title) + '<span class="dot" title="Đã chỉnh sửa">' + (st.edited[n] ? '●' : '') + '</span>');
       b.dataset.n = n; nav.appendChild(b);
     }
+    if (st.ch[0]) {
+      var rb = h('button', 0 === st.cur ? 'on' : '', '<span class="n">TK</span>Tài liệu tham khảo<span class="dot" title="Đã chỉnh sửa">' + (st.edited[0] ? '●' : '') + '</span>');
+      rb.dataset.n = 0; nav.appendChild(rb);
+    }
   }
   function renderSideDots() { $$('#chapters button').forEach(function (b) { var d = $('.dot', b); if (d) d.textContent = st.edited[+b.dataset.n] ? '●' : ''; }); }
   function renderOutline() {
-    var o = $('#outline'); o.innerHTML = '';
+    var o = $('#outline'); o.innerHTML = ''; if (st.cur === 0) return;
     cur().blocks.forEach(function (b, i) {
       if (b.t !== 'h2' && b.t !== 'h3') return;
       var a = h('a', b.t === 'h3' ? 'l3' : '', esc(b.text || '(chưa có tiêu đề)')); a.href = '#b' + i; a.dataset.i = i; o.appendChild(a);
@@ -114,7 +132,6 @@
       }
       case 'table': sec.appendChild(tableEl(b, map, num)); break;
       case 'figure': sec.appendChild(figureEl(b, map, num)); break;
-      case 'refs': sec.appendChild(refsEl()); break;
     }
     var ins = h('button', 'ins', '+ Thêm nội dung bên dưới'); ins.dataset.act = 'ins'; sec.appendChild(ins);
     return sec;
@@ -156,21 +173,13 @@
     tl.appendChild(sel); f.appendChild(tl);
     f.appendChild(capEl(b.src ? num : '', b.caption, map)); return f;
   }
-  function refsEl() {
-    var ch = cur(), ord = M.computeOrder(ch), w = h('div', 'refsblk');
-    var ol = h('ol'); ord.order.forEach(function (k) { ol.appendChild(h('li', null, M.mdToHtml(ch.refs[k], {}))); });
-    w.appendChild(ol);
-    w.appendChild(h('p', 'hint', 'Danh sách này tự tạo từ các trích dẫn [n] trong chương. Dùng nút “Tài liệu tham khảo” để thêm, sửa hoặc xóa nguồn.'));
-    return w;
-  }
-
   /* ---------- hiển thị chương ---------- */
   var EDIT_PW = 'pmnm26';
   function isView() { return document.body.classList.contains('view'); }
   /* Chế độ xem: khóa mọi vùng nhập liệu; chế độ Edit: mở lại. */
   function applyMode() {
     var v = isView();
-    $$('#doc [contenteditable], #refsList [contenteditable]').forEach(function (e) { if (v) e.dataset.ce = e.contentEditable; e.contentEditable = v ? 'false' : (e.dataset.ce || 'true'); });
+    $$('#doc [contenteditable]').forEach(function (e) { if (v) e.dataset.ce = e.contentEditable; e.contentEditable = v ? 'false' : (e.dataset.ce || 'true'); });
     $$('#doc select, #doc textarea, #doc input').forEach(function (e) { e.disabled = v; });
     var b = $('#btnEdit'); b.textContent = v ? '✎ Edit' : '👁 Xem'; b.classList.toggle('on', !v); b.title = v ? 'Bật chế độ chỉnh sửa (cần mật khẩu)' : 'Quay về chế độ xem';
   }
@@ -184,12 +193,14 @@
   }
   function renderDoc(keepScroll) {
     var y = keepScroll ? window.scrollY : 0;
+    document.body.classList.toggle('refs-page', st.cur === 0);
+    if (st.cur === 0) { renderRefsPage(); renderSide(); renderOutline(); statusOk(); applyMode(); if (keepScroll) window.scrollTo(0, y); return; }
     var ch = cur(), ord = M.computeOrder(ch), nums = M.numbering(ch), doc = $('#doc'); doc.innerHTML = '';
     doc.appendChild(h('div', 'chap-no', 'CHƯƠNG ' + ch.number));
     var t = plain('chap-title', ch.titleText || ch.title, 'Tên chương', 'ctitle'); doc.appendChild(t);
     ch.blocks.forEach(function (b, i) { doc.appendChild(blockEl(b, i, ord.map, nums[i])); });
     if (!ch.blocks.length) { var e = h('p', 'hint', 'Chương chưa có nội dung. Dùng “+ Thêm nội dung” trên thanh công cụ.'); doc.appendChild(e); }
-    renderSide(); renderOutline(); renderRefs(); loadIdbImages(); statusOk();
+    renderSide(); renderOutline(); loadIdbImages(); statusOk();
     $$('#doc textarea').forEach(autoGrow); applyMode();
     if (keepScroll) window.scrollTo(0, y);
   }
@@ -208,8 +219,6 @@
     var ch = cur(), ord = M.computeOrder(ch), nums = M.numbering(ch);
     $$('#doc .cite').forEach(function (c) { c.textContent = M.resolveCites('[@' + (c.dataset.keys || '').split(',').join(',@') + ']', ord.map); });
     $$('#doc .blk').forEach(function (sec) { var i = +sec.dataset.i; var l = $('.cap .lbl', sec); if (l && nums[i] !== undefined) l.textContent = nums[i]; });
-    var rb = $('#doc .refsblk'); if (rb) { var nr = refsEl(); rb.parentNode.replaceChild(nr, rb); }
-    renderRefs();
   }
 
   /* ---------- đồng bộ DOM -> dữ liệu ---------- */
@@ -231,6 +240,7 @@
   }
   function onInput(e) {
     var t = e.target;
+    if (t.classList && t.classList.contains('rt')) { st.ch[0].refs[t.dataset.k] = t.textContent.replace(/\s+/g, ' ').trim(); saveRefs(); return; }
     if (t.dataset && t.dataset.f === 'ctitle') { var ch = cur(); ch.titleText = t.textContent.replace(/\s+/g, ' ').trim(); ch.title = ch.titleText.toUpperCase(); markDirty(); return; }
     var sec = t.closest && t.closest('.blk'); if (!sec) return;
     if (t.tagName === 'TEXTAREA') autoGrow(t);
@@ -287,6 +297,7 @@
   function focusLast(el) { if (el && el.focus) { el.focus(); } }
   function onKeydown(e) {
     var t = e.target, f = t.dataset && t.dataset.f;
+    if (e.key === 'Enter' && t.classList.contains('rt')) { e.preventDefault(); t.blur(); return; }
     if (e.key === 'Enter' && !e.shiftKey && !e.isComposing) {
       if (['th', 'td', 'cap', 'ctitle'].indexOf(f) >= 0 || t.classList.contains('h2') || t.classList.contains('h3') || t.classList.contains('h4')) { e.preventDefault(); t.blur(); return; }
       var sec = t.closest('.blk'); if (!sec) return; var i = +sec.dataset.i, b = cur().blocks[i];
@@ -328,8 +339,8 @@
     st.rangeEl && st.rangeEl.dispatchEvent(new Event('input', { bubbles: true }));
   }
   function openCite() {
-    var ch = cur(), keys = Object.keys(ch.refs || {}), ord = M.computeOrder(ch);
-    var rows = keys.map(function (k) { return '<label><input type="checkbox" value="' + esc(k) + '"><span><b>' + (ord.map[k] ? '[' + ord.map[k] + '] ' : '') + '</b>' + esc(ch.refs[k]).slice(0, 220) + '</span></label>'; }).join('');
+    var ch = cur(), G = st.ch[0], keys = G.order.slice(), ord = M.computeOrder(ch);
+    var rows = keys.map(function (k) { return '<label><input type="checkbox" value="' + esc(k) + '"><span><b>' + (ord.map[k] ? '[' + ord.map[k] + '] ' : '') + '</b>' + esc(G.refs[k]).slice(0, 220) + '</span></label>'; }).join('');
     modal('<h3>Chèn trích dẫn</h3><p>Chọn một hoặc nhiều nguồn trong danh mục của chương, hoặc thêm nguồn mới.</p>' +
       '<input type="search" id="citeQ" placeholder="Tìm nguồn…" aria-label="Tìm nguồn"><div class="citelist" id="citeList">' + (rows || '<p style="padding:10px">Chương chưa có tài liệu tham khảo.</p>') + '</div>' +
       '<label for="citeNew">Thêm nguồn mới (APA: tác giả, năm, tên tài liệu, nơi công bố, URL)</label><input type="text" id="citeNew" placeholder="Ví dụ: Open Source Initiative. (n.d.). The Open Source Definition. https://opensource.org/osd">' +
@@ -338,7 +349,7 @@
         $('#citeCancel', m).onclick = closeModal;
         $('#citeOk', m).onclick = function () {
           var picked = $$('#citeList input:checked', m).map(function (c) { return c.value; }), nw = $('#citeNew', m).value.trim();
-          if (nw) { var k = 'r' + rid(); ch.refs[k] = nw; picked.push(k); }
+          if (nw) { var k = 'r' + rid(); G.refs[k] = nw; G.order.push(k); saveRefs(); picked.push(k); }
           if (!picked.length) { toast('Chưa chọn nguồn nào.'); return; }
           closeModal(); insertCite(picked);
         };
@@ -352,23 +363,35 @@
     st.rangeEl.dispatchEvent(new Event('input', { bubbles: true })); markDirty(); setTimeout(refreshCites, 50);
   }
 
-  /* ---------- tài liệu tham khảo ---------- */
-  function renderRefs() {
-    var ch = cur(), ord = M.computeOrder(ch), box = $('#refsList'); if (!box || $('#refsPanel').hidden) return; box.innerHTML = '';
-    var keys = ord.order.concat(Object.keys(ch.refs || {}).filter(function (k) { return !(k in ord.map); }));
-    keys.forEach(function (k) {
-      var it = h('div', 'refitem'), hd = h('div', 'rk'); hd.innerHTML = ord.map[k] ? '<span class="num">[' + ord.map[k] + ']</span>' : '<span class="badge">chưa được trích dẫn</span>';
-      var del = h('button', null, 'Xóa'); del.onclick = function () { if (ord.map[k]) { toast('Nguồn đang được trích dẫn trong chương; hãy xóa trích dẫn trước.'); return; } delete ch.refs[k]; markDirty(); renderRefs(); }; hd.appendChild(del);
-      var tx = h('div', 'rt', M.mdToHtml(ch.refs[k], {})); tx.contentEditable = isView() ? 'false' : PT; tx.dataset.k = k; tx.spellcheck = false; tx.title = 'Bấm để sửa. Dùng *chữ nghiêng* cho tên tài liệu.';
-      tx.addEventListener('focus', function () { tx.textContent = ch.refs[k]; });
-      tx.addEventListener('blur', function () { ch.refs[k] = tx.textContent.trim(); tx.innerHTML = M.mdToHtml(ch.refs[k], {}); });
-      tx.addEventListener('input', function () { ch.refs[k] = tx.textContent.trim(); markDirty(); clearTimeout(st.citeT); st.citeT = setTimeout(function () { var rb = $('#doc .refsblk'); if (rb) rb.parentNode.replaceChild(refsEl(), rb); }, 500); });
-      it.appendChild(hd); it.appendChild(tx); box.appendChild(it);
-    });
-    if (!keys.length) box.appendChild(h('p', 'hint', 'Chương chưa có nguồn nào.'));
+  /* ---------- tài liệu tham khảo chung (trang cuối giáo trình) ---------- */
+  function citedKeys() {
+    var used = {}; for (var n = 1; n <= NCH; n++) M.computeOrder(st.ch[n]).order.forEach(function (k) { used[k] = 1; }); return used;
   }
-  function toggleRefs(show) {
-    var p = $('#refsPanel'); p.hidden = !(show == null ? p.hidden : show); $('.layout').classList.toggle('with-refs', !p.hidden); renderRefs();
+  function renderRefsPage() {
+    var G = st.ch[0], doc = $('#doc'), used = citedKeys(); doc.innerHTML = '';
+    doc.appendChild(h('div', 'chap-no', 'PHẦN CUỐI'));
+    doc.appendChild(h('div', 'chap-title', 'Tài liệu tham khảo'));
+    doc.appendChild(h('p', 'hint', 'Danh mục dùng chung cho cả giáo trình, trình bày theo APA 7. Số [n] trong các chương trỏ về đúng số thứ tự ở đây. Nguồn mới thêm qua nút “Trích dẫn [n]” sẽ được nối vào cuối danh mục.'));
+    var ol = h('div', 'refpage');
+    G.order.forEach(function (k, j) {
+      var row = h('div', 'refrow'); row.appendChild(h('span', 'num', '[' + (j + 1) + ']'));
+      var tx = h('div', 'rt', M.mdToHtml(G.refs[k], {})); tx.contentEditable = isView() ? 'false' : PT; tx.dataset.k = k; tx.spellcheck = false; tx.title = 'Bấm để sửa. Dùng *chữ nghiêng* cho tên tài liệu.';
+      tx.addEventListener('focus', function () { tx.textContent = G.refs[k]; });
+      tx.addEventListener('blur', function () { G.refs[k] = tx.textContent.replace(/\s+/g, ' ').trim(); tx.innerHTML = M.mdToHtml(G.refs[k], {}); });
+      row.appendChild(tx);
+      var del = h('button', 'mini', '✕'); del.title = used[k] ? 'Nguồn đang được trích dẫn trong các chương' : 'Xóa nguồn'; del.setAttribute('aria-label', 'Xóa nguồn');
+      del.onclick = function () {
+        if (used[k]) { toast('Nguồn đang được trích dẫn trong các chương; hãy xóa trích dẫn trước.'); return; }
+        if (!confirm('Xóa nguồn này khỏi danh mục? Các số trích dẫn phía sau sẽ được đánh lại.')) return;
+        delete G.refs[k]; G.order.splice(G.order.indexOf(k), 1); saveRefs(); renderRefsPage(); applyMode();
+      };
+      row.appendChild(del); ol.appendChild(row);
+    });
+    doc.appendChild(ol);
+    var add = h('button', 'mini', '+ Thêm nguồn'); add.onclick = function () {
+      var k = 'r' + rid(); G.refs[k] = ''; G.order.push(k); saveRefs(); renderRefsPage(); applyMode(); var el = $('.rt[data-k="' + k + '"]'); if (el) el.focus();
+    };
+    doc.appendChild(add);
   }
 
   /* ---------- menu thêm nội dung ---------- */
@@ -417,11 +440,11 @@
     var btns = $$('#btnExportOne,#btnExportAll'); btns.forEach(function (b) { b.disabled = true; });
     setStatus('Đang tạo file Word…', 'busy');
     var chapters = nums.map(function (n) { return st.ch[n]; });
-    return E.build(window.docx, chapters, loader, { title: nums.length === 1 ? 'Chương ' + nums[0] : 'Giáo trình Phần mềm mã nguồn mở' })
+    return E.build(window.docx, chapters, loader, { title: nums.length === 1 ? 'Chương ' + nums[0] : 'Giáo trình Phần mềm mã nguồn mở', refs: st.ch[0], onlyCited: nums.length === 1 })
       .then(function (doc) { return window.docx.Packer.toBlob(doc); })
       .then(function (blob) {
         var a = document.createElement('a'); a.href = URL.createObjectURL(blob);
-        a.download = nums.length === 1 ? 'Chuong-' + nums[0] + '-Giao-trinh-PMNM.docx' : 'Giao-trinh-Phan-mem-ma-nguon-mo.docx';
+        a.download = !nums.length ? 'Tai-lieu-tham-khao-Giao-trinh-PMNM.docx' : nums.length === 1 ? 'Chuong-' + nums[0] + '-Giao-trinh-PMNM.docx' : 'Giao-trinh-Phan-mem-ma-nguon-mo.docx';
         document.body.appendChild(a); a.click(); setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 1500);
         toast('Đã xuất file Word: ' + a.download); statusOk();
       })
@@ -437,6 +460,7 @@
   function b64(blob) { return new Promise(function (res) { var fr = new FileReader(); fr.onload = function () { res(String(fr.result).split(',')[1]); }; fr.readAsDataURL(blob); }); }
   function pushChapter(n) {
     var ch = st.ch[n];
+    if (n === 0) return api({ action: 'refs', data: { order: ch.order, refs: ch.refs } }).then(function (r) { return saveRefs().then(function () { return r; }); });
     var imgs = ch.blocks.filter(function (b) { return b.t === 'figure' && b.src && b.src.indexOf('idb:') === 0; });
     var chain = Promise.resolve();
     imgs.forEach(function (b) {
@@ -448,23 +472,24 @@
   function openGithub() {
     modal('<h3>Lưu lên GitHub</h3><p>Chương đã chỉnh sửa sẽ được ghi vào kho GitHub của dự án (thư mục <code>content/</code>) và Vercel tự triển khai lại. Cần cấu hình biến môi trường trên Vercel (xem README).</p>' +
       '<p id="ghState" class="hint">Đang kiểm tra kết nối…</p><label for="ghPw">Mật khẩu chỉnh sửa (EDIT_PASSWORD)</label><input type="password" id="ghPw" autocomplete="current-password" value="' + esc(sessionStorage.getItem('pmnm-pw') || '') + '">' +
-      '<div class="row"><button class="btn" id="ghClose">Đóng</button><button class="btn" id="ghAll">Lưu mọi chương đã sửa</button><button class="btn primary" id="ghOne">Lưu chương ' + st.cur + '</button></div><p id="ghMsg"></p>', function (m) {
+      '<div class="row"><button class="btn" id="ghClose">Đóng</button><button class="btn" id="ghAll">Lưu mọi chương đã sửa</button><button class="btn primary" id="ghOne">' + (st.cur ? 'Lưu chương ' + st.cur : 'Lưu tài liệu tham khảo') + '</button></div><p id="ghMsg"></p>', function (m) {
         fetch('/api/save').then(function (r) { return r.json(); }).then(function (j) { $('#ghState', m).textContent = j.configured ? 'Đã kết nối kho GitHub (nhánh ' + j.branch + ').' : 'Máy chủ chưa được cấu hình GITHUB_TOKEN, GITHUB_REPO, EDIT_PASSWORD.'; })
           .catch(function () { $('#ghState', m).textContent = 'Không gọi được /api/save (chỉ hoạt động khi đã triển khai trên Vercel).'; });
         $('#ghClose', m).onclick = closeModal;
         function run(list) {
           sessionStorage.setItem('pmnm-pw', $('#ghPw', m).value); var msg = $('#ghMsg', m); msg.textContent = 'Đang lưu…';
-          var chain = Promise.resolve(); list.forEach(function (n) { chain = chain.then(function () { msg.textContent = 'Đang lưu chương ' + n + '…'; return pushChapter(n); }); });
+          var chain = Promise.resolve(); list.forEach(function (n) { chain = chain.then(function () { msg.textContent = n ? 'Đang lưu chương ' + n + '…' : 'Đang lưu tài liệu tham khảo…'; return pushChapter(n); }); });
           chain.then(function () { msg.textContent = 'Đã lưu lên GitHub. Vercel sẽ triển khai lại trong ít phút.'; renderDoc(true); }).catch(function (e) { msg.textContent = 'Lỗi: ' + e.message; });
         }
         $('#ghOne', m).onclick = function () { run([st.cur]); };
-        $('#ghAll', m).onclick = function () { var l = []; for (var n = 1; n <= NCH; n++) if (st.edited[n]) l.push(n); if (!l.length) { $('#ghMsg', m).textContent = 'Chưa có chương nào được chỉnh sửa.'; return; } run(l); };
+        $('#ghAll', m).onclick = function () { var l = []; for (var n = 0; n <= NCH; n++) if (st.edited[n]) l.push(n); if (!l.length) { $('#ghMsg', m).textContent = 'Chưa có chương nào được chỉnh sửa.'; return; } run(l); };
       });
   }
 
   /* ---------- sao lưu / khôi phục ---------- */
   function backup() {
     var out = { version: 1, created: new Date().toISOString(), chapters: {}, images: {} }, ids = [];
+    out.refs = { order: st.ch[0].order, refs: st.ch[0].refs };
     for (var n = 1; n <= NCH; n++) { out.chapters[n] = st.ch[n]; st.ch[n].blocks.forEach(function (b) { if (b.t === 'figure' && b.src && b.src.indexOf('idb:') === 0) ids.push(b.src.slice(4)); }); }
     var chain = Promise.resolve(); ids.forEach(function (id) { chain = chain.then(function () { return S.get('images', id); }).then(function (bl) { return bl ? b64(bl) : null; }).then(function (d) { if (d) out.images[id] = d; }); });
     chain.then(function () {
@@ -480,6 +505,7 @@
         var d = JSON.parse(fr.result); if (!d.chapters) throw new Error('Tệp không đúng định dạng');
         var chain = Promise.resolve();
         Object.keys(d.images || {}).forEach(function (id) { chain = chain.then(function () { return fetch('data:image/jpeg;base64,' + d.images[id]).then(function (r) { return r.blob(); }); }).then(function (bl) { return S.put('images', id, bl); }); });
+        if (d.refs && d.refs.order && d.refs.refs) chain = chain.then(function () { var g = { number: 0, titleText: 'Tài liệu tham khảo', order: d.refs.order, refs: d.refs.refs }; st.ch[0] = g; st.edited[0] = true; M.setGlobalRefs(g); return S.put('chapters', 0, g); });
         Object.keys(d.chapters).forEach(function (n) { chain = chain.then(function () { st.ch[n] = d.chapters[n]; st.edited[n] = true; return S.put('chapters', +n, d.chapters[n]); }); });
         chain.then(function () { st.urls = {}; renderDoc(); toast('Đã nhập bản sao lưu.'); });
       } catch (e) { toast('Không nhập được: ' + e.message); }
@@ -487,6 +513,7 @@
     fr.readAsText(file);
   }
   function resetChapter() {
+    if (st.cur === 0) { if (!confirm('Khôi phục danh mục tài liệu tham khảo về bản gốc của website?')) return; S.del('chapters', 0).then(fetchRefs).then(function (d) { st.ch[0] = d; M.setGlobalRefs(d); delete st.edited[0]; renderDoc(); toast('Đã khôi phục bản gốc.'); }); return; }
     if (!confirm('Khôi phục chương ' + st.cur + ' về bản gốc của website? Mọi chỉnh sửa trên trình duyệt đối với chương này sẽ mất.')) return;
     S.del('chapters', st.cur).then(function () { return fetchChapter(st.cur); }).then(function (d) { st.ch[st.cur] = d; delete st.edited[st.cur]; renderDoc(); toast('Đã khôi phục bản gốc.'); });
   }
@@ -521,12 +548,9 @@
     $('#btnMore').addEventListener('click', function () { var m = $('#moreMenu'), r = this.getBoundingClientRect(); m.hidden = !m.hidden; m.style.left = Math.max(8, r.right - 240) + 'px'; m.style.top = (r.bottom + 4) + 'px'; });
     $('#chapters').addEventListener('click', function (e) { var b = e.target.closest('button'); if (!b) return; st.cur = +b.dataset.n; renderDoc(); window.scrollTo(0, 0); $('#side').classList.remove('open'); });
     $('#outline').addEventListener('click', function (e) { var a = e.target.closest('a'); if (!a) return; e.preventDefault(); var s = $('#b' + a.dataset.i); if (s) s.scrollIntoView({ behavior: 'smooth', block: 'start' }); $('#side').classList.remove('open'); });
-    $('#btnExportOne').addEventListener('click', function () { exportWord([st.cur]); });
+    $('#btnExportOne').addEventListener('click', function () { exportWord(st.cur ? [st.cur] : []); });
     $('#btnExportAll').addEventListener('click', function () { exportWord([1, 2, 3, 4, 5, 6]); });
     $('#btnEdit').addEventListener('click', toggleEdit);
-    $('#btnRefs').addEventListener('click', function () { toggleRefs(); });
-    $('#btnRefsClose').addEventListener('click', function () { toggleRefs(false); });
-    $('#btnRefAdd').addEventListener('click', function () { var k = 'r' + rid(); cur().refs[k] = ''; markDirty(); renderRefs(); var el = $('.rt[data-k="' + k + '"]'); if (el) el.focus(); });
     $('#btnSide').addEventListener('click', function () { $('#side').classList.toggle('open'); });
     $('#fileImage').addEventListener('change', onImageChosen);
     $('#fileImport').addEventListener('change', function () { if (this.files[0]) importBackup(this.files[0]); this.value = ''; });

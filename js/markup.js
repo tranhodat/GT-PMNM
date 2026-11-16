@@ -30,8 +30,26 @@
   }
 
   /* Thứ tự xuất hiện đầu tiên của các khóa trích dẫn trong chương -> {khóa: số} */
+  /* Danh mục tài liệu tham khảo chung cho cả giáo trình: {order:[khóa], refs:{khóa: chuỗi}}.
+     Số [n] là vị trí của khóa trong order (cố định, thống nhất giữa các chương). */
+  var GLOBAL = null;
+  function setGlobalRefs(g) { GLOBAL = g; }
+  function globalRefs() { return GLOBAL; }
+
   function computeOrder(chapter) {
     var order = [], map = {};
+    if (GLOBAL && !chapter.refs) {
+      var cited = {};
+      GLOBAL.order.forEach(function (k, i) { map[k] = i + 1; });
+      (chapter.blocks || []).forEach(function (b) {
+        blockStrings(b).forEach(function (s) {
+          var m; CITE_RE.lastIndex = 0;
+          while ((m = CITE_RE.exec(s || ''))) keysOf(m[1]).forEach(function (k) { if (k in map) cited[k] = 1; });
+        });
+      });
+      GLOBAL.order.forEach(function (k) { if (cited[k]) order.push(k); });
+      return { order: order, map: map };
+    }
     (chapter.blocks || []).forEach(function (b) {
       blockStrings(b).forEach(function (s) {
         var m; CITE_RE.lastIndex = 0;
@@ -119,6 +137,6 @@
     return out;
   }
 
-  return { computeOrder: computeOrder, resolveCites: resolveCites, parseInline: parseInline, numbering: numbering,
+  return { setGlobalRefs: setGlobalRefs, globalRefs: globalRefs, computeOrder: computeOrder, resolveCites: resolveCites, parseInline: parseInline, numbering: numbering,
            mdToHtml: mdToHtml, htmlToMd: htmlToMd, blockStrings: blockStrings, keysOf: keysOf, esc: esc };
 });

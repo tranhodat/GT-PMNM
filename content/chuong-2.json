@@ -70,7 +70,7 @@
    "kind": "nho",
    "title": "",
    "texts": [
-    "**Mã nguồn mở là một đặc điểm về giấy phép và quyền sử dụng mã nguồn, không phải tên khác của Linux.** Firefox và LibreOffice là phần mềm mã nguồn mở nhưng có thể chạy trên nhiều hệ điều hành. Ngược lại, trên một máy Linux vẫn có thể cài phần mềm với giấy phép riêng. Khi cần biết một thành phần có được sửa đổi hoặc phân phối lại hay không, phải đọc giấy phép của chính thành phần đó. Nhân Linux hiện được phát hành theo giấy phép GPL phiên bản 2, nên bất kỳ ai phân phối bản nhân đã sửa đổi đều phải công bố mã nguồn tương ứng, đúng như các nguyên tắc về giấy phép ở Chương 1 [@kernellic]."
+    "**Mã nguồn mở là một đặc điểm về giấy phép và quyền sử dụng mã nguồn, không phải tên khác của Linux.** Firefox và LibreOffice là phần mềm mã nguồn mở nhưng có thể chạy trên nhiều hệ điều hành. Ngược lại, trên một máy Linux vẫn có thể cài phần mềm với giấy phép riêng. Khi cần biết một thành phần có được sửa đổi hoặc phân phối lại hay không, phải đọc giấy phép của chính thành phần đó. Nhân Linux hiện được phát hành theo giấy phép GPL phiên bản 2, nên bất kỳ ai phân phối bản nhân đã sửa đổi đều phải công bố mã nguồn tương ứng, đúng như các nguyên tắc về giấy phép ở Chương 1."
    ]
   },
   {
@@ -107,7 +107,7 @@
   },
   {
    "t": "p",
-   "text": "Khi chọn một bản phân phối, người dùng thường quan tâm ba điều: máy có sẵn những phần mềm nào, việc cập nhật diễn ra ra sao và có thể tìm trợ giúp ở đâu. Debian được biết đến với cách phát hành thận trọng. Ubuntu dựa trên Debian và có nhiều tài liệu hướng dẫn cho máy cá nhân. Fedora thường giới thiệu những phiên bản phần mềm mới sớm hơn. Các đặc điểm này có thể thay đổi theo từng phiên bản, vì vậy cần xem thông tin của phiên bản đang định sử dụng [@debian,@ubrel,@fedora].",
+   "text": "Khi chọn một bản phân phối, người dùng thường quan tâm ba điều: máy có sẵn những phần mềm nào, việc cập nhật diễn ra ra sao và có thể tìm trợ giúp ở đâu. Debian được biết đến với cách phát hành thận trọng. Ubuntu dựa trên Debian và có nhiều tài liệu hướng dẫn cho máy cá nhân. Fedora thường giới thiệu những phiên bản phần mềm mới sớm hơn. Các đặc điểm này có thể thay đổi theo từng phiên bản, vì vậy cần xem thông tin của phiên bản đang định sử dụng.",
    "indent": true,
    "left": false
   },
@@ -133,7 +133,7 @@
   },
   {
    "t": "p",
-   "text": "Trước khi cài đặt, người dùng cần chọn bản phân phối phù hợp, tải tệp ảnh cài đặt ISO từ trang chính thức và kiểm tra yêu cầu phần cứng. Nếu cài trên máy thật, tệp ISO thường được ghi vào USB có khả năng khởi động. Nếu cài trên máy ảo, tệp ISO được gắn vào ổ đĩa quang ảo [@ubinstall].",
+   "text": "Trước khi cài đặt, người dùng cần chọn bản phân phối phù hợp, tải tệp ảnh cài đặt ISO từ trang chính thức và kiểm tra yêu cầu phần cứng. Nếu cài trên máy thật, tệp ISO thường được ghi vào USB có khả năng khởi động. Nếu cài trên máy ảo, tệp ISO được gắn vào ổ đĩa quang ảo.",
    "indent": true,
    "left": false
   },
@@ -166,7 +166,7 @@
   },
   {
    "t": "p",
-   "text": "Khi cần phân tích chi tiết, nhiều công cụ Linux có thể được đọc theo mô hình thường gặp dưới đây: [@shotts]",
+   "text": "Khi cần phân tích chi tiết, nhiều công cụ Linux có thể được đọc theo mô hình thường gặp dưới đây:",
    "indent": true,
    "left": false
   },
@@ -193,7 +193,7 @@
   },
   {
    "t": "p",
-   "text": "sudo không thuộc cấu trúc chung của mọi câu lệnh Linux. Đây là một lệnh riêng, chỉ được dùng khi thao tác cần quyền của tài khoản khác, thường là quyền quản trị, và người dùng đã được chính sách hệ thống cho phép [@ubman_user].",
+   "text": "sudo không thuộc cấu trúc chung của mọi câu lệnh Linux. Đây là một lệnh riêng, chỉ được dùng khi thao tác cần quyền của tài khoản khác, thường là quyền quản trị, và người dùng đã được chính sách hệ thống cho phép [@ubman].",
    "indent": true,
    "left": false
   },
@@ -258,7 +258,7 @@
    "widths": [
     5.4,
     5.6,
-    5.0
+    5
    ],
    "font": 11,
    "firstBold": false,
@@ -282,7 +282,7 @@
   },
   {
    "t": "table",
-   "caption": "Lệnh nhận biết hệ thống và quản lý gói [@coreutils,@ubman_sys]",
+   "caption": "Lệnh nhận biết hệ thống và quản lý gói [@coreutils,@ubman]",
    "header": [
     "Cú pháp",
     "Lệnh con, tùy chọn thường gặp",
@@ -328,7 +328,7 @@
    "widths": [
     5.4,
     5.6,
-    5.0
+    5
    ],
    "font": 11,
    "firstBold": false,
@@ -361,7 +361,7 @@
   },
   {
    "t": "p",
-   "text": "Trước khi cài một chương trình, có thể tìm tên gói và đọc thông tin mô tả của gói. Ví dụ dưới đây tra cứu VLC nhưng chưa làm thay đổi phần mềm trên máy [@ubman_sys].",
+   "text": "Trước khi cài một chương trình, có thể tìm tên gói và đọc thông tin mô tả của gói. Ví dụ dưới đây tra cứu VLC nhưng chưa làm thay đổi phần mềm trên máy [@ubman].",
    "indent": true,
    "left": false
   },
@@ -557,7 +557,7 @@
   },
   {
    "t": "table",
-   "caption": "Lệnh di chuyển và quan sát hệ thống tệp [@coreutils,@ubman_find,@ubman_files]",
+   "caption": "Lệnh di chuyển và quan sát hệ thống tệp [@coreutils,@ubman]",
    "header": [
     "Cú pháp",
     "Lệnh con, tùy chọn thường gặp",
@@ -603,7 +603,7 @@
    "widths": [
     5.4,
     5.6,
-    5.0
+    5
    ],
    "font": 11,
    "firstBold": false,
@@ -677,7 +677,7 @@
    "widths": [
     5.4,
     5.6,
-    5.0
+    5
    ],
    "font": 11,
    "firstBold": false,
@@ -716,7 +716,7 @@
   },
   {
    "t": "table",
-   "caption": "Lệnh đọc và xử lý văn bản [@coreutils,@ubman_find,@ubman_files]",
+   "caption": "Lệnh đọc và xử lý văn bản [@coreutils,@ubman]",
    "header": [
     "Cú pháp",
     "Lệnh con, tùy chọn thường gặp",
@@ -767,7 +767,7 @@
    "widths": [
     5.4,
     5.6,
-    5.0
+    5
    ],
    "font": 11,
    "firstBold": false,
@@ -814,13 +814,13 @@
   },
   {
    "t": "p",
-   "text": "Chuyển hướng và đường ống do trình thông dịch lệnh xử lý. Chúng không phải tùy chọn của lệnh đứng cạnh. Thiết bị xuất chuẩn thường mang kết quả bình thường; thiết bị xuất lỗi chuẩn mang thông báo lỗi. Hai luồng này có thể được chuyển tới những đích khác nhau [@ubman_bash].",
+   "text": "Chuyển hướng và đường ống do trình thông dịch lệnh xử lý. Chúng không phải tùy chọn của lệnh đứng cạnh. Thiết bị xuất chuẩn thường mang kết quả bình thường; thiết bị xuất lỗi chuẩn mang thông báo lỗi. Hai luồng này có thể được chuyển tới những đích khác nhau [@ubman].",
    "indent": true,
    "left": false
   },
   {
    "t": "table",
-   "caption": "Toán tử chuyển hướng và đường ống [@ubman_bash]",
+   "caption": "Toán tử chuyển hướng và đường ống [@ubman]",
    "header": [
     "Cú pháp",
     "Dữ liệu vào và đích",
@@ -856,7 +856,7 @@
    "widths": [
     5.4,
     5.6,
-    5.0
+    5
    ],
    "font": 11,
    "firstBold": false,
@@ -889,7 +889,7 @@
   },
   {
    "t": "table",
-   "caption": "Lệnh tra cứu cú pháp [@ubman_files,@ubman_bash]",
+   "caption": "Lệnh tra cứu cú pháp [@ubman]",
    "header": [
     "Cú pháp",
     "Lệnh con, tùy chọn thường gặp",
@@ -910,7 +910,7 @@
    "widths": [
     5.4,
     5.6,
-    5.0
+    5
    ],
    "font": 11,
    "firstBold": false,
@@ -1004,13 +1004,13 @@
   },
   {
    "t": "p",
-   "text": "Hệ điều hành dùng UID để nhận diện người dùng và GID để nhận diện nhóm. UID và GID là số định danh; chúng không phải các chữ số quyền của tệp. Chẳng hạn, UID 1001 chỉ cho biết một tài khoản có mã 1001, không cho biết tài khoản đó được đọc hay ghi một tệp [@ubman_id].",
+   "text": "Hệ điều hành dùng UID để nhận diện người dùng và GID để nhận diện nhóm. UID và GID là số định danh; chúng không phải các chữ số quyền của tệp. Chẳng hạn, UID 1001 chỉ cho biết một tài khoản có mã 1001, không cho biết tài khoản đó được đọc hay ghi một tệp [@ubman].",
    "indent": true,
    "left": false
   },
   {
    "t": "table",
-   "caption": "Lệnh xem danh tính và nhóm người dùng [@ubman_id]",
+   "caption": "Lệnh xem danh tính và nhóm người dùng [@ubman]",
    "header": [
     "Cú pháp",
     "Lệnh con, tùy chọn thường gặp",
@@ -1036,7 +1036,7 @@
    "widths": [
     5.4,
     5.6,
-    5.0
+    5
    ],
    "font": 11,
    "firstBold": false,
@@ -1319,10 +1319,10 @@
     ]
    ],
    "widths": [
-    2.0,
-    3.0,
-    3.0,
-    8.0
+    2,
+    3,
+    3,
+    8
    ],
    "font": 11.5,
    "firstBold": true,
@@ -1406,7 +1406,7 @@
   },
   {
    "t": "table",
-   "caption": "Lệnh xem thuộc tính và thay đổi quyền [@coreutils,@ubman_id]",
+   "caption": "Lệnh xem thuộc tính và thay đổi quyền [@coreutils,@ubman]",
    "header": [
     "Cú pháp",
     "Lệnh con, tùy chọn thường gặp",
@@ -1427,7 +1427,7 @@
    "widths": [
     5.4,
     5.6,
-    5.0
+    5
    ],
    "font": 11,
    "firstBold": false,
@@ -1623,7 +1623,7 @@
    "widths": [
     5.4,
     5.6,
-    5.0
+    5
    ],
    "font": 11,
    "firstBold": false,
@@ -1662,13 +1662,13 @@
   },
   {
    "t": "p",
-   "text": "Người dùng thông thường có thể đổi mật khẩu của chính mình theo chính sách của hệ thống. Tạo tài khoản hoặc quản lý trạng thái mật khẩu của tài khoản khác là công việc quản trị và thường cần quyền được cấp qua sudo [@ubman_user].",
+   "text": "Người dùng thông thường có thể đổi mật khẩu của chính mình theo chính sách của hệ thống. Tạo tài khoản hoặc quản lý trạng thái mật khẩu của tài khoản khác là công việc quản trị và thường cần quyền được cấp qua sudo [@ubman].",
    "indent": true,
    "left": false
   },
   {
    "t": "table",
-   "caption": "Lệnh tạo tài khoản, đổi mật khẩu và quyền quản trị [@ubman_user]",
+   "caption": "Lệnh tạo tài khoản, đổi mật khẩu và quyền quản trị [@ubman]",
    "header": [
     "Cú pháp",
     "Lệnh con, tùy chọn thường gặp",
@@ -1694,7 +1694,7 @@
    "widths": [
     5.4,
     5.6,
-    5.0
+    5
    ],
    "font": 11,
    "firstBold": false,
@@ -1760,7 +1760,7 @@
   },
   {
    "t": "table",
-   "caption": "Lệnh đổi quyền, chủ sở hữu và nhóm [@coreutils,@ubman_id]",
+   "caption": "Lệnh đổi quyền, chủ sở hữu và nhóm [@coreutils,@ubman]",
    "header": [
     "Cú pháp",
     "Lệnh con, tùy chọn thường gặp",
@@ -1791,7 +1791,7 @@
    "widths": [
     5.4,
     5.6,
-    5.0
+    5
    ],
    "font": 11,
    "firstBold": false,
@@ -1908,7 +1908,7 @@
   },
   {
    "t": "p",
-   "text": "Một báo cáo thường chứa nhiều loại nội dung: lời giải thích, số liệu và hình minh họa. LibreOffice có những ứng dụng khác nhau cho từng loại công việc. Writer giúp soạn và bố trí văn bản; Calc lưu số liệu trong bảng và tính toán bằng công thức; Impress dùng để trình bày ý chính trên các trang chiếu. Chẳng hạn, số liệu của một cuộc khảo sát có thể được tính trong Calc, giải thích trong Writer và tóm lược bằng Impress. Việc chọn đúng ứng dụng giúp tài liệu dễ sửa hơn về sau [@lodocs].",
+   "text": "Một báo cáo thường chứa nhiều loại nội dung: lời giải thích, số liệu và hình minh họa. LibreOffice có những ứng dụng khác nhau cho từng loại công việc. Writer giúp soạn và bố trí văn bản; Calc lưu số liệu trong bảng và tính toán bằng công thức; Impress dùng để trình bày ý chính trên các trang chiếu. Chẳng hạn, số liệu của một cuộc khảo sát có thể được tính trong Calc, giải thích trong Writer và tóm lược bằng Impress. Việc chọn đúng ứng dụng giúp tài liệu dễ sửa hơn về sau.",
    "indent": true,
    "left": false
   },
@@ -1956,7 +1956,7 @@
   },
   {
    "t": "p",
-   "text": "Firefox là trình duyệt Web. Khi người dùng nhập một địa chỉ, trình duyệt tìm máy chủ theo tên miền, gửi yêu cầu rồi hiển thị nội dung nhận được. Một địa chỉ Web có ba phần thường gặp: giao thức cho biết cách kết nối, tên miền chỉ máy chủ và đường dẫn chỉ nội dung cần mở. Ví dụ dưới tách ba phần để người đọc dễ nhận ra chúng [@ff].",
+   "text": "Firefox là trình duyệt Web. Khi người dùng nhập một địa chỉ, trình duyệt tìm máy chủ theo tên miền, gửi yêu cầu rồi hiển thị nội dung nhận được. Một địa chỉ Web có ba phần thường gặp: giao thức cho biết cách kết nối, tên miền chỉ máy chủ và đường dẫn chỉ nội dung cần mở. Ví dụ dưới tách ba phần để người đọc dễ nhận ra chúng.",
    "indent": true,
    "left": false
   },
@@ -1979,7 +1979,7 @@
   },
   {
    "t": "p",
-   "text": "VLC phục vụ công việc nghe và xem tệp đa phương tiện. Một tệp video không chỉ chứa hình ảnh. Nó có thể chứa cả tiếng, phụ đề và thông tin về cách nén từng phần. Phần đuôi của tên tệp chỉ gợi ý loại tệp; nó không mô tả hết nội dung bên trong. Vì vậy, khi video có hình mà không có tiếng, nguyên nhân có thể là luồng tiếng, thiết bị phát âm thanh hoặc cách phần mềm giải mã. Kết luận “tệp hỏng” chỉ nên đưa ra sau khi đã kiểm tra những khả năng ấy [@vlc].",
+   "text": "VLC phục vụ công việc nghe và xem tệp đa phương tiện. Một tệp video không chỉ chứa hình ảnh. Nó có thể chứa cả tiếng, phụ đề và thông tin về cách nén từng phần. Phần đuôi của tên tệp chỉ gợi ý loại tệp; nó không mô tả hết nội dung bên trong. Vì vậy, khi video có hình mà không có tiếng, nguyên nhân có thể là luồng tiếng, thiết bị phát âm thanh hoặc cách phần mềm giải mã. Kết luận “tệp hỏng” chỉ nên đưa ra sau khi đã kiểm tra những khả năng ấy.",
    "indent": true,
    "left": false
   },
@@ -2001,7 +2001,7 @@
   },
   {
    "t": "p",
-   "text": "Ảnh chụp và sơ đồ có thể cùng xuất hiện trên một trang sách, nhưng chúng được tạo theo hai cách khác nhau. Ảnh chụp là ảnh điểm ảnh: hình được ghép từ rất nhiều điểm màu. Khi phóng quá lớn, các điểm có thể lộ ra và đường viền kém sắc. GIMP phù hợp để cắt ảnh, điều chỉnh màu, che thông tin cần giữ riêng hoặc sửa một vùng trên ảnh [@gimp].",
+   "text": "Ảnh chụp và sơ đồ có thể cùng xuất hiện trên một trang sách, nhưng chúng được tạo theo hai cách khác nhau. Ảnh chụp là ảnh điểm ảnh: hình được ghép từ rất nhiều điểm màu. Khi phóng quá lớn, các điểm có thể lộ ra và đường viền kém sắc. GIMP phù hợp để cắt ảnh, điều chỉnh màu, che thông tin cần giữ riêng hoặc sửa một vùng trên ảnh.",
    "indent": true,
    "left": false
   },
@@ -2013,7 +2013,7 @@
   },
   {
    "t": "p",
-   "text": "Một sơ đồ gồm hộp, đường nối và chữ có thể được lưu thành ảnh vector. Phần mềm ghi lại các hình và đường ấy như những đối tượng có thể sửa. Nhờ vậy, khi phóng to sơ đồ, đường nét vẫn rõ. Inkscape phù hợp để vẽ biểu tượng và sơ đồ, nhất là khi tên hộp hoặc vị trí mũi tên còn cần thay đổi [@inkscape].",
+   "text": "Một sơ đồ gồm hộp, đường nối và chữ có thể được lưu thành ảnh vector. Phần mềm ghi lại các hình và đường ấy như những đối tượng có thể sửa. Nhờ vậy, khi phóng to sơ đồ, đường nét vẫn rõ. Inkscape phù hợp để vẽ biểu tượng và sơ đồ, nhất là khi tên hộp hoặc vị trí mũi tên còn cần thay đổi.",
    "indent": true,
    "left": false
   },
@@ -2164,10 +2164,6 @@
    "band": true
   },
   {
-   "t": "h3",
-   "text": "A. Nhận biết và hiểu"
-  },
-  {
    "t": "list",
    "ordered": true,
    "items": [
@@ -2175,32 +2171,12 @@
     "So sánh đường dẫn tuyệt đối và đường dẫn tương đối; nêu ý nghĩa của các ký hiệu `/`, `~`, `.`, `..`.",
     "Giải thích ý nghĩa quyền `r`, `w`, `x` đối với tệp và đối với thư mục. Phân tích quyền `-rw-r-----` của một tệp báo cáo nhóm.",
     "Phân biệt toán tử `>` với `>>` và nêu công dụng của đường ống `|` trong dòng lệnh.",
-    "Phân biệt ảnh điểm ảnh (raster) với ảnh vector; nêu công cụ mã nguồn mở phù hợp và định dạng lưu bản gốc cho từng loại."
-   ]
-  },
-  {
-   "t": "h3",
-   "text": "B. Vận dụng và phân tích"
-  },
-  {
-   "t": "list",
-   "ordered": true,
-   "items": [
+    "Phân biệt ảnh điểm ảnh (raster) với ảnh vector; nêu công cụ mã nguồn mở phù hợp và định dạng lưu bản gốc cho từng loại.",
     "Cho một ví dụ trong đó dùng đường dẫn tương đối dẫn đến sao chép nhầm tệp, rồi nêu cách kiểm tra trước khi thực hiện.",
     "Cần chia sẻ một thư mục tài liệu cho nhóm đọc nhưng không cho người ngoài truy cập; hãy đề xuất quyền và các lệnh tạo nhóm, đổi nhóm sở hữu, đặt quyền.",
     "Viết câu lệnh đếm số dòng chứa từ “linux” (không phân biệt chữ hoa, chữ thường) trong một tệp rồi ghi kết quả vào tệp khác; giải thích từng thành phần.",
     "Mô tả một quy trình từ thu thập tư liệu, soạn báo cáo đến xuất bản PDF bằng Firefox và LibreOffice; nêu hai bước kiểm tra chất lượng.",
-    "Một nhóm cần thiết kế logo phóng to được và xử lý ảnh chụp cho poster. Hãy chọn Inkscape hoặc GIMP cho từng việc, giải thích và nêu định dạng lưu bản gốc."
-   ]
-  },
-  {
-   "t": "h3",
-   "text": "C. Tình huống thảo luận"
-  },
-  {
-   "t": "list",
-   "ordered": true,
-   "items": [
+    "Một nhóm cần thiết kế logo phóng to được và xử lý ảnh chụp cho poster. Hãy chọn Inkscape hoặc GIMP cho từng việc, giải thích và nêu định dạng lưu bản gốc.",
     "Một sinh viên chạy `chmod -R 777` trên thư mục dự án để khắc phục lỗi “Permission denied”. Phân tích rủi ro và đề xuất cách xử lý đúng.",
     "Một tệp có quyền đọc cho nhóm nhưng thành viên nhóm vẫn không mở được. Hãy nêu các bước kiểm tra theo thứ tự, kể cả quyền của các thư mục cha."
    ]
@@ -2476,56 +2452,6 @@
    "text": "**Sản phẩm cần nộp:** Đường dẫn nguồn, tệp dự án GIMP, tệp SVG, hai tệp PNG, báo cáo đã chèn hình và bảng thông tin tệp mở bằng VLC.",
    "indent": false,
    "left": false
-  },
-  {
-   "t": "h2",
-   "text": "Tài liệu tham khảo",
-   "band": true
-  },
-  {
-   "t": "refs"
   }
- ],
- "refs": {
-  "kernellic": "The Linux Kernel documentation. (n.d.). *Linux kernel licensing rules*. https://docs.kernel.org/process/license-rules.html",
-  "debian": "Debian Project. (n.d.). *About Debian*. https://www.debian.org/intro/about",
-  "ubrel": "Canonical. (n.d.). *Ubuntu release cycle*. https://ubuntu.com/about/release-cycle",
-  "fedora": "Fedora Project. (n.d.). *Fedora Docs*. https://docs.fedoraproject.org/",
-  "ubinstall": "Canonical. (n.d.). *Install Ubuntu Desktop*; *Install an application*. Ubuntu Desktop documentation. https://ubuntu.com/tutorials/install-ubuntu-desktop",
-  "shotts": "Shotts, W. E. (n.d.). *The Linux command line* (6th Internet ed.). LinuxCommand.org. https://linuxcommand.org/tlcl.php",
-  "ubman_user": "Ubuntu Manpages. (n.d.). *adduser*; *passwd*; *sudo* (Ubuntu 24.04). https://manpages.ubuntu.com/manpages/noble/man8/adduser.8.html",
-  "coreutils": "Free Software Foundation. (n.d.). *GNU Coreutils manual* (pwd, ls, mkdir, touch, cp, mv, rm, cat, head, tail, wc, du, df, uname, date; Numeric modes; Mode structure; chmod invocation; stat invocation). https://www.gnu.org/software/coreutils/manual/coreutils.html",
-  "ubman_sys": "Ubuntu Manpages. (n.d.). *apt*; *apt-get* (Ubuntu 24.04). https://manpages.ubuntu.com/manpages/noble/man8/apt.8.html",
-  "fhs": "Linux Foundation. (2015). *Filesystem Hierarchy Standard, version 3.0*. https://refspecs.linuxfoundation.org/fhs.shtml",
-  "ubman_find": "Ubuntu Manpages. (n.d.). *find*; *grep* (Ubuntu 24.04). https://manpages.ubuntu.com/manpages/noble/man1/find.1.html",
-  "ubman_files": "Ubuntu Manpages. (n.d.). *less*; *file*; *diff*; *man* (Ubuntu 24.04). https://manpages.ubuntu.com/manpages/noble/man1/less.1.html",
-  "ubman_bash": "Ubuntu Manpages. (n.d.). *bash* (Ubuntu 24.04): lệnh có sẵn, mở rộng tên và chuyển hướng. https://manpages.ubuntu.com/manpages/noble/man1/bash.1.html",
-  "ubman_id": "Ubuntu Manpages. (n.d.). *id*; *chmod*; *chown*; *stat* (Ubuntu 24.04). https://manpages.ubuntu.com/manpages/noble/man1/id.1.html",
-  "lodocs": "The Document Foundation. (n.d.). *LibreOffice documentation*. https://documentation.libreoffice.org/en/english-documentation/",
-  "ff": "Mozilla. (n.d.). *Firefox Help*. https://support.mozilla.org/en-US/products/firefox",
-  "vlc": "VideoLAN. (n.d.). *VLC user documentation*. https://docs.videolan.me/vlc-user/",
-  "gimp": "GIMP Development Team. (n.d.). *GIMP documentation*. https://docs.gimp.org/",
-  "inkscape": "Inkscape Project. (n.d.). *Inkscape manual*. https://inkscape-manuals.readthedocs.io/en/latest/"
- },
- "order": [
-  "kernellic",
-  "debian",
-  "ubrel",
-  "fedora",
-  "ubinstall",
-  "shotts",
-  "ubman_user",
-  "coreutils",
-  "ubman_sys",
-  "fhs",
-  "ubman_find",
-  "ubman_files",
-  "ubman_bash",
-  "ubman_id",
-  "lodocs",
-  "ff",
-  "vlc",
-  "gimp",
-  "inkscape"
  ]
 }

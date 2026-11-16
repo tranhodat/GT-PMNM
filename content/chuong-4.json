@@ -49,7 +49,7 @@
   },
   {
    "t": "p",
-   "text": "Học máy (Machine Learning, ML) là một hướng tiếp cận trong AI: thay vì viết sẵn mọi quy tắc, người phát triển dùng dữ liệu để hình thành mô hình phục vụ một nhiệm vụ. Học sâu (Deep Learning, DL) là một nhánh của ML, sử dụng nhiều lớp xử lý để học các biểu diễn dữ liệu. Cách phân biệt này giúp đặt công cụ vào đúng phạm vi kiến thức, thay vì gọi mọi chương trình tự động là học máy [@goodfellow].",
+   "text": "Học máy (Machine Learning, ML) là một hướng tiếp cận trong AI: thay vì viết sẵn mọi quy tắc, người phát triển dùng dữ liệu để hình thành mô hình phục vụ một nhiệm vụ. Học sâu (Deep Learning, DL) là một nhánh của ML, sử dụng nhiều lớp xử lý để học các biểu diễn dữ liệu. Cách phân biệt này giúp đặt công cụ vào đúng phạm vi kiến thức, thay vì gọi mọi chương trình tự động là học máy.",
    "indent": true,
    "left": false
   },
@@ -91,7 +91,7 @@
   },
   {
    "t": "p",
-   "text": "AI được nghiên cứu và ứng dụng trong xử lý ngôn ngữ, thị giác máy tính và các bài toán học từ dữ liệu. Xử lý ngôn ngữ tự nhiên (Natural Language Processing, NLP) bao gồm nhiều nhiệm vụ với văn bản; các công cụ hiện có hỗ trợ phân loại, trả lời câu hỏi, dịch và sinh văn bản [@hfllm].",
+   "text": "AI được nghiên cứu và ứng dụng trong xử lý ngôn ngữ, thị giác máy tính và các bài toán học từ dữ liệu. Xử lý ngôn ngữ tự nhiên (Natural Language Processing, NLP) bao gồm nhiều nhiệm vụ với văn bản; các công cụ hiện có hỗ trợ phân loại, trả lời câu hỏi, dịch và sinh văn bản [@hf].",
    "indent": true,
    "left": false
   },
@@ -170,7 +170,7 @@
   },
   {
    "t": "p",
-   "text": "Trọng số mô hình (model weights) là các giá trị tham số được điều chỉnh trong huấn luyện. Chúng khác với mã mô tả cách tính toán [@hftransformers].",
+   "text": "Trọng số mô hình (model weights) là các giá trị tham số được điều chỉnh trong huấn luyện. Chúng khác với mã mô tả cách tính toán [@hf].",
    "indent": true,
    "left": false
   },
@@ -206,7 +206,7 @@
   },
   {
    "t": "p",
-   "text": "Python là ngôn ngữ lập trình có cấu trúc dữ liệu và cú pháp phù hợp để xây dựng chương trình xử lý dữ liệu. Người học cần nắm biến, danh sách, câu lệnh điều kiện, vòng lặp, hàm và cách nhập mô-đun trước khi đọc mã học máy [@pytut].",
+   "text": "Python là ngôn ngữ lập trình có cấu trúc dữ liệu và cú pháp phù hợp để xây dựng chương trình xử lý dữ liệu. Người học cần nắm biến, danh sách, câu lệnh điều kiện, vòng lặp, hàm và cách nhập mô-đun trước khi đọc mã học máy.",
    "indent": true,
    "left": false
   },
@@ -218,7 +218,7 @@
   },
   {
    "t": "p",
-   "text": "NumPy: xử lý mảng nhiều chiều và phép toán số. Mảng giúp biểu diễn nhiều mẫu dữ liệu trong một cấu trúc thống nhất [@numpy]. pandas: tổ chức và xử lý dữ liệu dạng bảng, trong đó DataFrame là cấu trúc dữ liệu quan trọng [@pandas]. scikit-learn: cung cấp công cụ học máy, tiền xử lý và đánh giá; các thao tác thường gặp là huấn luyện bằng fit và dự đoán bằng predict [@sklearn]. PyTorch: cung cấp tensor, tính đạo hàm tự động và thành phần xây dựng mạng nơ-ron. Tensor là cấu trúc biểu diễn dữ liệu nhiều chiều [@pytorch].",
+   "text": "NumPy: xử lý mảng nhiều chiều và phép toán số. Mảng giúp biểu diễn nhiều mẫu dữ liệu trong một cấu trúc thống nhất. pandas: tổ chức và xử lý dữ liệu dạng bảng, trong đó DataFrame là cấu trúc dữ liệu quan trọng. scikit-learn: cung cấp công cụ học máy, tiền xử lý và đánh giá; các thao tác thường gặp là huấn luyện bằng fit và dự đoán bằng predict. PyTorch: cung cấp tensor, tính đạo hàm tự động và thành phần xây dựng mạng nơ-ron. Tensor là cấu trúc biểu diễn dữ liệu nhiều chiều.",
    "indent": true,
    "left": false
   },
@@ -252,7 +252,7 @@
   },
   {
    "t": "p",
-   "text": "Mã ví dụ được viết theo giao diện huấn luyện và đánh giá của scikit-learn. Tập huấn luyện dùng để hình thành mô hình; tập kiểm tra dùng để đánh giá trên những mẫu không đưa vào fit. Độ chính xác (accuracy) trong bài này là số dự đoán đúng chia tổng số mẫu kiểm tra [@sklearn].",
+   "text": "Mã ví dụ được viết theo giao diện huấn luyện và đánh giá của scikit-learn. Tập huấn luyện dùng để hình thành mô hình; tập kiểm tra dùng để đánh giá trên những mẫu không đưa vào fit. Độ chính xác (accuracy) trong bài này là số dự đoán đúng chia tổng số mẫu kiểm tra.",
    "indent": true,
    "left": false
   },
@@ -264,7 +264,7 @@
   },
   {
    "t": "p",
-   "text": "Khi làm bài toán lớn hơn, tránh để thông tin tập kiểm tra tham gia huấn luyện hoặc tiền xử lý có học tham số. Hiện tượng này gọi là rò rỉ dữ liệu (data leakage) [@sklpitfalls].",
+   "text": "Khi làm bài toán lớn hơn, tránh để thông tin tập kiểm tra tham gia huấn luyện hoặc tiền xử lý có học tham số. Hiện tượng này gọi là rò rỉ dữ liệu (data leakage).",
    "indent": true,
    "left": false
   },
@@ -277,7 +277,7 @@
   {
    "t": "figure",
    "src": "assets/img/chuong4-hinh1.jpg",
-   "caption": "Quy trình học máy trong ví dụ thực hành [@sklearn,@sklpitfalls]",
+   "caption": "Quy trình học máy trong ví dụ thực hành",
    "width": 14.5
   },
   {
@@ -292,13 +292,13 @@
   },
   {
    "t": "p",
-   "text": "Hugging Face cung cấp hệ sinh thái công cụ và Hub để chia sẻ tài nguyên AI. Thư viện Transformers hỗ trợ sử dụng các mô hình đã huấn luyện cho nhiều nhiệm vụ. Cần phân biệt nền tảng lưu trữ, thư viện lập trình và mô hình cụ thể: chúng không phải cùng một thành phần [@hfllm].",
+   "text": "Hugging Face cung cấp hệ sinh thái công cụ và Hub để chia sẻ tài nguyên AI. Thư viện Transformers hỗ trợ sử dụng các mô hình đã huấn luyện cho nhiều nhiệm vụ. Cần phân biệt nền tảng lưu trữ, thư viện lập trình và mô hình cụ thể: chúng không phải cùng một thành phần [@hf].",
    "indent": true,
    "left": false
   },
   {
    "t": "p",
-   "text": "Thẻ mô hình (model card) là tài liệu mô tả mô hình. Trên Hub, thẻ có thể ghi nhiệm vụ, ngôn ngữ, giấy phép, dữ liệu, cách sử dụng, đánh giá và hạn chế. Chất lượng thông tin phụ thuộc vào nội dung bên phát hành cung cấp; sự tồn tại của một trang mô hình không thay thế việc đọc tài liệu [@modelcards].",
+   "text": "Thẻ mô hình (model card) là tài liệu mô tả mô hình. Trên Hub, thẻ có thể ghi nhiệm vụ, ngôn ngữ, giấy phép, dữ liệu, cách sử dụng, đánh giá và hạn chế. Chất lượng thông tin phụ thuộc vào nội dung bên phát hành cung cấp; sự tồn tại của một trang mô hình không thay thế việc đọc tài liệu [@hf].",
    "indent": true,
    "left": false
   },
@@ -325,7 +325,7 @@
    "kind": "luuy",
    "title": "Rủi ro khi nạp tệp mô hình",
    "texts": [
-    "**Tệp mô hình cũng có thể chứa rủi ro kỹ thuật.** Định dạng pickle có khả năng thực thi mã khi nạp; chức năng quét không bảo đảm phát hiện mọi nguy cơ. Chỉ nạp tài nguyên từ nguồn đã xem xét, và không tự động chấp nhận yêu cầu chạy mã bổ sung [@hfpickle]."
+    "**Tệp mô hình cũng có thể chứa rủi ro kỹ thuật.** Định dạng pickle có khả năng thực thi mã khi nạp; chức năng quét không bảo đảm phát hiện mọi nguy cơ. Chỉ nạp tài nguyên từ nguồn đã xem xét, và không tự động chấp nhận yêu cầu chạy mã bổ sung [@hf]."
    ]
   },
   {
@@ -334,13 +334,13 @@
   },
   {
    "t": "p",
-   "text": "Jupyter Notebook hỗ trợ tài liệu tương tác kết hợp mã, văn bản giải thích và kết quả. JupyterLab cung cấp môi trường làm việc với notebook và các tệp liên quan. Đây là các công cụ thuộc dự án mã nguồn mở Jupyter [@jupyter].",
+   "text": "Jupyter Notebook hỗ trợ tài liệu tương tác kết hợp mã, văn bản giải thích và kết quả. JupyterLab cung cấp môi trường làm việc với notebook và các tệp liên quan. Đây là các công cụ thuộc dự án mã nguồn mở Jupyter.",
    "indent": true,
    "left": false
   },
   {
    "t": "p",
-   "text": "Google Colab là dịch vụ notebook được lưu trữ và vận hành trên hạ tầng của Google, dựa trên Jupyter. Vì vậy, việc dùng nền tảng mã nguồn mở ở bên dưới không đồng nghĩa toàn bộ dịch vụ Colab là phần mềm mã nguồn mở. Tài nguyên của dịch vụ có giới hạn và có thể thay đổi; không nên thiết kế bài học dựa trên giả định luôn được cấp GPU. GPU là bộ xử lý đồ họa, thường được dùng để tăng tốc một số phép tính [@colab].",
+   "text": "Google Colab là dịch vụ notebook được lưu trữ và vận hành trên hạ tầng của Google, dựa trên Jupyter. Vì vậy, việc dùng nền tảng mã nguồn mở ở bên dưới không đồng nghĩa toàn bộ dịch vụ Colab là phần mềm mã nguồn mở. Tài nguyên của dịch vụ có giới hạn và có thể thay đổi; không nên thiết kế bài học dựa trên giả định luôn được cấp GPU. GPU là bộ xử lý đồ họa, thường được dùng để tăng tốc một số phép tính.",
    "indent": true,
    "left": false
   },
@@ -385,13 +385,13 @@
   },
   {
    "t": "p",
-   "text": "Quy trình thực hành đề nghị. Tạo notebook; viết mục đích ở ô văn bản; kiểm tra môi trường; nhập dữ liệu; chạy mã; ghi nhận kết quả; khởi động lại kernel hoặc phiên chạy và chạy lại theo thứ tự. Kernel là tiến trình thực thi mã của notebook. Bước chạy lại giúp phát hiện tình huống một ô phụ thuộc biến được tạo ở lần chạy trước nhưng chưa có trong trình tự hiện tại [@jupyter].",
+   "text": "Quy trình thực hành đề nghị. Tạo notebook; viết mục đích ở ô văn bản; kiểm tra môi trường; nhập dữ liệu; chạy mã; ghi nhận kết quả; khởi động lại kernel hoặc phiên chạy và chạy lại theo thứ tự. Kernel là tiến trình thực thi mã của notebook. Bước chạy lại giúp phát hiện tình huống một ô phụ thuộc biến được tạo ở lần chạy trước nhưng chưa có trong trình tự hiện tại.",
    "indent": true,
    "left": false
   },
   {
    "t": "p",
-   "text": "Khi nộp bài, kèm phiên bản thư viện và hướng dẫn chạy. Trước khi chia sẻ Colab, kiểm tra cả mã lẫn đầu ra: nội dung notebook được chia sẻ có thể bao gồm kết quả đã in ra, trong khi tệp riêng trong máy ảo không tự đi cùng notebook [@colab].",
+   "text": "Khi nộp bài, kèm phiên bản thư viện và hướng dẫn chạy. Trước khi chia sẻ Colab, kiểm tra cả mã lẫn đầu ra: nội dung notebook được chia sẻ có thể bao gồm kết quả đã in ra, trong khi tệp riêng trong máy ảo không tự đi cùng notebook.",
    "indent": true,
    "left": false
   },
@@ -429,7 +429,7 @@
   },
   {
    "t": "p",
-   "text": "Cần phân biệt huấn luyện (training) với suy luận (inference). Huấn luyện điều chỉnh tham số từ dữ liệu; suy luận dùng mô hình đã có để xử lý đầu vào. Tinh chỉnh (fine-tuning) là huấn luyện tiếp mô hình đã được huấn luyện trước cho mục đích cụ thể [@hftransformers].",
+   "text": "Cần phân biệt huấn luyện (training) với suy luận (inference). Huấn luyện điều chỉnh tham số từ dữ liệu; suy luận dùng mô hình đã có để xử lý đầu vào. Tinh chỉnh (fine-tuning) là huấn luyện tiếp mô hình đã được huấn luyện trước cho mục đích cụ thể [@hf].",
    "indent": true,
    "left": false
   },
@@ -442,7 +442,7 @@
   {
    "t": "figure",
    "src": "assets/img/chuong4-hinh2.jpg",
-   "caption": "Minh họa quá trình sinh văn bản tự hồi quy [@hftransformers]",
+   "caption": "Minh họa quá trình sinh văn bản tự hồi quy [@hf]",
    "width": 14.5
   },
   {
@@ -453,7 +453,7 @@
   },
   {
    "t": "p",
-   "text": "Không phải mọi mô hình tạo sinh hoạt động theo sơ đồ trên. Trong sinh ảnh bằng mô hình khuếch tán, quá trình tạo ảnh thường bắt đầu từ nhiễu và thực hiện các bước khử nhiễu theo điều kiện như mô tả văn bản. Câu lệnh hướng dẫn nội dung nhưng không quy định chính xác từng điểm ảnh [@hft2i].",
+   "text": "Không phải mọi mô hình tạo sinh hoạt động theo sơ đồ trên. Trong sinh ảnh bằng mô hình khuếch tán, quá trình tạo ảnh thường bắt đầu từ nhiễu và thực hiện các bước khử nhiễu theo điều kiện như mô tả văn bản. Câu lệnh hướng dẫn nội dung nhưng không quy định chính xác từng điểm ảnh [@hf].",
    "indent": true,
    "left": false
   },
@@ -499,7 +499,7 @@
   },
   {
    "t": "p",
-   "text": "Với công cụ hoặc mô hình hỗ trợ text-to-image, người dùng cung cấp mô tả văn bản để điều khiển nội dung ảnh [@hft2i].",
+   "text": "Với công cụ hoặc mô hình hỗ trợ text-to-image, người dùng cung cấp mô tả văn bản để điều khiển nội dung ảnh [@hf].",
    "indent": true,
    "left": false
   },
@@ -541,7 +541,7 @@
   },
   {
    "t": "p",
-   "text": "Câu lệnh đầu vào (prompt) là thông tin hướng dẫn mô hình thực hiện nhiệm vụ. Có thể cải thiện khả năng đáp ứng bằng cách nêu rõ yêu cầu, tách chỉ dẫn khỏi dữ liệu và mô tả định dạng đầu ra. Một số nhiệm vụ có thể dùng ví dụ mẫu, thường gọi là few-shot prompting. Các kỹ thuật này cần được thử với mô hình và nhiệm vụ cụ thể [@hfprompt].",
+   "text": "Câu lệnh đầu vào (prompt) là thông tin hướng dẫn mô hình thực hiện nhiệm vụ. Có thể cải thiện khả năng đáp ứng bằng cách nêu rõ yêu cầu, tách chỉ dẫn khỏi dữ liệu và mô tả định dạng đầu ra. Một số nhiệm vụ có thể dùng ví dụ mẫu, thường gọi là few-shot prompting. Các kỹ thuật này cần được thử với mô hình và nhiệm vụ cụ thể [@hf].",
    "indent": true,
    "left": false
   },
@@ -687,7 +687,7 @@
   },
   {
    "t": "p",
-   "text": "NIST nhận diện rủi ro về dữ liệu cá nhân, tiết lộ trái phép và suy ra thông tin nhạy cảm trong hệ thống AI tạo sinh [@nist600]. UNESCO nhấn mạnh bảo vệ quyền riêng tư và quản trị dữ liệu trong sử dụng AI [@unesco].",
+   "text": "NIST nhận diện rủi ro về dữ liệu cá nhân, tiết lộ trái phép và suy ra thông tin nhạy cảm trong hệ thống AI tạo sinh [@nist600]. UNESCO nhấn mạnh bảo vệ quyền riêng tư và quản trị dữ liệu trong sử dụng AI.",
    "indent": true,
    "left": false
   },
@@ -735,13 +735,13 @@
   },
   {
    "t": "p",
-   "text": "Sử dụng AI có trách nhiệm bao gồm xem xét tác động đến con người, sự công bằng, tính minh bạch và trách nhiệm giải trình. UNESCO đặt quyền con người và sự giám sát của con người ở vị trí trung tâm của khuyến nghị đạo đức AI [@unesco].",
+   "text": "Sử dụng AI có trách nhiệm bao gồm xem xét tác động đến con người, sự công bằng, tính minh bạch và trách nhiệm giải trình. UNESCO đặt quyền con người và sự giám sát của con người ở vị trí trung tâm của khuyến nghị đạo đức AI.",
    "indent": true,
    "left": false
   },
   {
    "t": "p",
-   "text": "Trong bài học, sinh viên cần phân biệt ba câu hỏi về bản quyền: có quyền dùng tài liệu đầu vào không; giấy phép công cụ hoặc mô hình cho phép làm gì; việc sử dụng và công bố đầu ra có liên quan đến quyền của bên khác không. WIPO trình bày AI và sở hữu trí tuệ như một lĩnh vực có nhiều vấn đề chính sách cần xem xét; không nên suy ra một kết luận chung rằng mọi đầu ra AI đều được tự do sử dụng hoặc đều được bảo hộ [@wipo].",
+   "text": "Trong bài học, sinh viên cần phân biệt ba câu hỏi về bản quyền: có quyền dùng tài liệu đầu vào không; giấy phép công cụ hoặc mô hình cho phép làm gì; việc sử dụng và công bố đầu ra có liên quan đến quyền của bên khác không. WIPO trình bày AI và sở hữu trí tuệ như một lĩnh vực có nhiều vấn đề chính sách cần xem xét; không nên suy ra một kết luận chung rằng mọi đầu ra AI đều được tự do sử dụng hoặc đều được bảo hộ.",
    "indent": true,
    "left": false
   },
@@ -804,10 +804,6 @@
    "band": true
   },
   {
-   "t": "h3",
-   "text": "A. Nhận biết và hiểu"
-  },
-  {
    "t": "list",
    "ordered": true,
    "items": [
@@ -816,32 +812,12 @@
     "Cho phép tải trọng số có đủ để khẳng định một hệ thống AI là mã nguồn mở theo OSI không? Giải thích.",
     "NumPy, pandas, scikit-learn và PyTorch có vai trò gì trong một bài thực hành?",
     "Tập huấn luyện khác tập kiểm tra ở mục đích sử dụng như thế nào?",
-    "Phân biệt huấn luyện, tinh chỉnh và suy luận."
-   ]
-  },
-  {
-   "t": "h3",
-   "text": "B. Vận dụng và phân tích"
-  },
-  {
-   "t": "list",
-   "ordered": true,
-   "items": [
+    "Phân biệt huấn luyện, tinh chỉnh và suy luận.",
     "Cần đọc những thông tin nào trong model card trước khi lựa chọn một mô hình?",
     "Jupyter chạy cục bộ khác Google Colab do Google quản lý ở những điểm nào? Khi nào nên chọn từng loại?",
     "Hãy sửa câu lệnh “Viết giúp tôi một báo cáo” thành một yêu cầu có thể kiểm tra được.",
     "Vì sao câu văn trôi chảy chưa đủ chứng minh thông tin đúng? Trình bày quy trình kiểm chứng đầu ra của AI.",
-    "Vì sao xóa tên trong một hồ sơ chưa đủ để kết luận hồ sơ đã được ẩn danh?"
-   ]
-  },
-  {
-   "t": "h3",
-   "text": "C. Tình huống thảo luận"
-  },
-  {
-   "t": "list",
-   "ordered": true,
-   "items": [
+    "Vì sao xóa tên trong một hồ sơ chưa đủ để kết luận hồ sơ đã được ẩn danh?",
     "Người nộp báo cáo cần làm gì khi đã dùng AI hỗ trợ viết?",
     "Nhóm sinh viên tìm được một kho mô hình cho phép tải về nhưng không thấy giấy phép. Nhóm nên xử lý như thế nào trước khi sử dụng hoặc phân phối lại?"
    ]
@@ -924,56 +900,6 @@
    "text": "Với câu hỏi về trọng số và định nghĩa của OSI, hãy đối chiếu quyền và các thành phần theo OSI chứ không chỉ khả năng tải trọng số. Với câu hỏi về tập huấn luyện và tập kiểm tra, cần nhớ rằng tập kiểm tra phục vụ đánh giá; thông tin của nó không được dùng để điều chỉnh mô hình rồi vẫn coi là kiểm tra độc lập. Huấn luyện và tinh chỉnh cập nhật tham số, còn suy luận sử dụng mô hình đã có. Khi đánh giá câu văn do AI tạo ra, cần đánh giá riêng tính mạch lạc và sự phù hợp với bằng chứng. Với bài so sánh hai model card, chấp nhận kết luận “chưa đủ thông tin để lựa chọn” nếu chỉ rõ còn thiếu gì; với các bài tạo thông báo và phân tích trách nhiệm, người học phải giải thích các quyết định chỉnh sửa và chịu trách nhiệm về sản phẩm nộp.",
    "indent": true,
    "left": false
-  },
-  {
-   "t": "h2",
-   "text": "Tài liệu tham khảo",
-   "band": true
-  },
-  {
-   "t": "refs"
   }
- ],
- "refs": {
-  "goodfellow": "Goodfellow, I., Bengio, Y., & Courville, A. (2016). *Deep learning* (Chapter 1: Introduction). MIT Press. https://www.deeplearningbook.org/",
-  "nist600": "National Institute of Standards and Technology. (2024). *Artificial intelligence risk management framework: Generative artificial intelligence profile* (NIST AI 600-1). https://doi.org/10.6028/NIST.AI.600-1",
-  "hfllm": "Hugging Face. (n.d.). *Introduction*. LLM Course. https://huggingface.co/learn/llm-course/chapter1/1",
-  "osai": "Open Source Initiative. (2024). *The Open Source AI Definition 1.0*. https://opensource.org/ai/open-source-ai-definition",
-  "hftransformers": "Hugging Face. (n.d.). *How do Transformers work?* LLM Course. https://huggingface.co/learn/llm-course/chapter1/4",
-  "pytut": "Python Software Foundation. (n.d.). *The Python tutorial*. https://docs.python.org/3/tutorial/",
-  "numpy": "NumPy Developers. (n.d.). *NumPy: The absolute basics for beginners*. https://numpy.org/doc/stable/user/absolute_beginners.html",
-  "pandas": "pandas Development Team. (n.d.). *Package overview*. https://pandas.pydata.org/docs/getting_started/overview.html",
-  "sklearn": "scikit-learn Developers. (n.d.). *Getting started*. https://scikit-learn.org/stable/getting_started.html",
-  "pytorch": "PyTorch. (n.d.). *Learn the basics*. https://pytorch.org/tutorials/beginner/basics/intro.html",
-  "sklpitfalls": "scikit-learn Developers. (n.d.). *Common pitfalls and recommended practices*. https://scikit-learn.org/stable/common_pitfalls.html",
-  "modelcards": "Hugging Face. (n.d.). *Model cards*. Hugging Face Hub documentation. https://huggingface.co/docs/hub/model-cards",
-  "hfpickle": "Hugging Face. (n.d.). *Pickle scanning*. Hugging Face Hub documentation. https://huggingface.co/docs/hub/security-pickle",
-  "jupyter": "Project Jupyter. (n.d.). *Project Jupyter*. https://jupyter.org/",
-  "colab": "Google. (n.d.). *Colaboratory: Frequently asked questions*. https://research.google.com/colaboratory/faq.html",
-  "hft2i": "Hugging Face. (n.d.). *Text-to-image*. https://huggingface.co/tasks/text-to-image",
-  "hfprompt": "Hugging Face. (n.d.). *Prompt engineering*. Transformers documentation. https://huggingface.co/docs/transformers/tasks/prompting",
-  "unesco": "UNESCO. (n.d.). *Ethics of artificial intelligence*. https://www.unesco.org/en/artificial-intelligence/recommendation-ethics",
-  "wipo": "World Intellectual Property Organization. (n.d.). *Artificial intelligence and intellectual property*. https://www.wipo.int/about-ip/en/artificial_intelligence/"
- },
- "order": [
-  "goodfellow",
-  "nist600",
-  "hfllm",
-  "osai",
-  "hftransformers",
-  "pytut",
-  "numpy",
-  "pandas",
-  "sklearn",
-  "pytorch",
-  "sklpitfalls",
-  "modelcards",
-  "hfpickle",
-  "jupyter",
-  "colab",
-  "hft2i",
-  "hfprompt",
-  "unesco",
-  "wipo"
  ]
 }

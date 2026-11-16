@@ -180,7 +180,7 @@
    "widths": [
     5.4,
     5.6,
-    5.0
+    5
    ],
    "font": 11,
    "firstBold": false,
@@ -240,7 +240,7 @@
   },
   {
    "t": "p",
-   "text": "GitLab là gì? GitLab là một nền tảng quản lý dự án phần mềm dựa trên Git. Nền tảng này có các chức năng như kho mã, issue và merge request, đồng thời hỗ trợ quy trình kiểm tra, đóng gói và triển khai tự động. GitLab có dịch vụ trực tuyến và cũng có thể được cài đặt trên hạ tầng riêng của tổ chức [@gldocs].",
+   "text": "GitLab là gì? GitLab là một nền tảng quản lý dự án phần mềm dựa trên Git. Nền tảng này có các chức năng như kho mã, issue và merge request, đồng thời hỗ trợ quy trình kiểm tra, đóng gói và triển khai tự động. GitLab có dịch vụ trực tuyến và cũng có thể được cài đặt trên hạ tầng riêng của tổ chức [@ghdocs].",
    "indent": true,
    "left": false
   },
@@ -252,7 +252,7 @@
   },
   {
    "t": "p",
-   "text": "Một việc cần làm thường được ghi thành issue để nhóm biết vấn đề và trao đổi cách giải quyết. Khi đã sửa xong, người viết mở một đề xuất hợp nhất để người khác đọc thay đổi trước khi đưa vào nhánh chính. GitHub gọi đề xuất đó là pull request (PR); GitLab gọi là merge request (MR). Tên khác nhau, nhưng cả hai đều tạo một chỗ để giải thích mục đích, xem phần đã sửa và ghi nhận nhận xét [@ghdocs,@gldocs].",
+   "text": "Một việc cần làm thường được ghi thành issue để nhóm biết vấn đề và trao đổi cách giải quyết. Khi đã sửa xong, người viết mở một đề xuất hợp nhất để người khác đọc thay đổi trước khi đưa vào nhánh chính. GitHub gọi đề xuất đó là pull request (PR); GitLab gọi là merge request (MR). Tên khác nhau, nhưng cả hai đều tạo một chỗ để giải thích mục đích, xem phần đã sửa và ghi nhận nhận xét [@ghdocs].",
    "indent": true,
    "left": false
   },
@@ -314,7 +314,7 @@
    "widths": [
     5.4,
     5.6,
-    5.0
+    5
    ],
    "font": 11,
    "firstBold": false,
@@ -354,13 +354,13 @@
   {
    "t": "figure",
    "src": "assets/img/chuong3-hinh2.jpg",
-   "caption": "Giao diện một yêu cầu hợp nhất thực tế trên GitLab.com, truy cập ngày 07/10/2026 [@glmrshot]",
+   "caption": "Giao diện một yêu cầu hợp nhất thực tế trên GitLab.com, truy cập ngày 07/10/2026",
    "width": 14.5
   },
   {
    "t": "figure",
    "src": "assets/img/chuong3-hinh3.jpg",
-   "caption": "Chu trình cộng tác qua yêu cầu hợp nhất [@ghdocs,@gldocs]",
+   "caption": "Chu trình cộng tác qua yêu cầu hợp nhất [@ghdocs]",
    "width": 14.5
   },
   {
@@ -393,7 +393,7 @@
   },
   {
    "t": "p",
-   "text": "Khi người dùng nhập một địa chỉ Web, trình duyệt tạo một yêu cầu HTTP và gửi tới máy chủ. Máy chủ trả về một phản hồi gồm mã trạng thái, thông tin mô tả và nội dung [@rfc9110].",
+   "text": "Khi người dùng nhập một địa chỉ Web, trình duyệt tạo một yêu cầu HTTP và gửi tới máy chủ. Máy chủ trả về một phản hồi gồm mã trạng thái, thông tin mô tả và nội dung.",
    "indent": true,
    "left": false
   },
@@ -417,7 +417,7 @@
   },
   {
    "t": "table",
-   "caption": "Một số mã trạng thái HTTP thường gặp [@rfc9110]",
+   "caption": "Một số mã trạng thái HTTP thường gặp",
    "header": [
     "Mã trạng thái",
     "Nhóm ý nghĩa",
@@ -492,7 +492,7 @@
    "widths": [
     5.4,
     5.6,
-    5.0
+    5
    ],
    "font": 11,
    "firstBold": false,
@@ -515,13 +515,13 @@
   },
   {
    "t": "p",
-   "text": "Apache là gì? Apache HTTP Server là phần mềm máy chủ Web mã nguồn mở do cộng đồng Apache phát triển. Khi Apache đang chạy, nó lắng nghe yêu cầu HTTP hoặc HTTPS, tìm tài nguyên phù hợp rồi gửi phản hồi về cho trình duyệt. Apache có thể phục vụ trực tiếp các tệp HTML, CSS, ảnh hoặc chuyển yêu cầu tới một ứng dụng Web. Apache HTTP Server phát hành theo Apache License 2.0 [@httpd,@asflic].",
+   "text": "Apache là gì? Apache HTTP Server là phần mềm máy chủ Web mã nguồn mở do cộng đồng Apache phát triển. Khi Apache đang chạy, nó lắng nghe yêu cầu HTTP hoặc HTTPS, tìm tài nguyên phù hợp rồi gửi phản hồi về cho trình duyệt. Apache có thể phục vụ trực tiếp các tệp HTML, CSS, ảnh hoặc chuyển yêu cầu tới một ứng dụng Web. Apache HTTP Server phát hành theo Apache License 2.0 [@apache].",
    "indent": true,
    "left": false
   },
   {
    "t": "p",
-   "text": "Nginx là gì? Nginx, đọc gần giống “engine-x”, cũng là phần mềm máy chủ Web mã nguồn mở. Nginx thường được dùng để phục vụ tệp tĩnh, tiếp nhận nhiều kết nối và làm reverse proxy, tức nhận yêu cầu từ người dùng rồi chuyển tiếp tới ứng dụng chạy phía sau. Nginx phát hành theo giấy phép kiểu BSD hai điều khoản [@nginx,@nginxlic]; cùng với Apache, đây đều là giấy phép thuộc nhóm permissive như đã học ở Chương 1.",
+   "text": "Nginx là gì? Nginx, đọc gần giống “engine-x”, cũng là phần mềm máy chủ Web mã nguồn mở. Nginx thường được dùng để phục vụ tệp tĩnh, tiếp nhận nhiều kết nối và làm reverse proxy, tức nhận yêu cầu từ người dùng rồi chuyển tiếp tới ứng dụng chạy phía sau. Nginx phát hành theo giấy phép kiểu BSD hai điều khoản; cùng với Apache, đây đều là giấy phép thuộc nhóm permissive như đã học ở Chương 1.",
    "indent": true,
    "left": false
   },
@@ -533,7 +533,7 @@
   },
   {
    "t": "p",
-   "text": "Apache có hệ thống mô đun phong phú và được dùng lâu năm trên nhiều máy chủ. Nginx có kiến trúc hướng sự kiện và thường được chọn để phục vụ tệp tĩnh hoặc làm máy chủ trung gian. Ở mức nhập môn, người học cần nhận biết vai trò của chúng; việc tối ưu hiệu năng và cấu hình nhiều website thuộc nội dung quản trị chuyên sâu hơn. Trên Ubuntu, tên dịch vụ của hai phần mềm lần lượt là `apache2` và `nginx`; cả hai đều phục vụ được tệp HTML, CSS, ảnh và chuyển tiếp yêu cầu tới ứng dụng phía sau, còn vị trí tệp cấu hình thay đổi theo bản phân phối [@httpd,@nginx].",
+   "text": "Apache có hệ thống mô đun phong phú và được dùng lâu năm trên nhiều máy chủ. Nginx có kiến trúc hướng sự kiện và thường được chọn để phục vụ tệp tĩnh hoặc làm máy chủ trung gian. Ở mức nhập môn, người học cần nhận biết vai trò của chúng; việc tối ưu hiệu năng và cấu hình nhiều website thuộc nội dung quản trị chuyên sâu hơn. Trên Ubuntu, tên dịch vụ của hai phần mềm lần lượt là `apache2` và `nginx`; cả hai đều phục vụ được tệp HTML, CSS, ảnh và chuyển tiếp yêu cầu tới ứng dụng phía sau, còn vị trí tệp cấu hình thay đổi theo bản phân phối.",
    "indent": true,
    "left": false
   },
@@ -566,7 +566,7 @@
    "widths": [
     5.4,
     5.6,
-    5.0
+    5
    ],
    "font": 11,
    "firstBold": false,
@@ -605,13 +605,13 @@
   },
   {
    "t": "p",
-   "text": "MySQL là gì? MySQL là hệ quản trị cơ sở dữ liệu quan hệ thường gặp trong các hệ thống Web. Phần mềm này nhận câu lệnh SQL từ ứng dụng, lưu dữ liệu vào bảng và trả kết quả truy vấn. MySQL có hệ sinh thái công cụ rộng và được nhiều hệ quản trị nội dung sử dụng. Về giấy phép, MySQL Community theo GPL và Oracle bán thêm giấy phép thương mại, một ví dụ của mô hình giấy phép kép ở Chương 1 [@mysql,@mysqllic].",
+   "text": "MySQL là gì? MySQL là hệ quản trị cơ sở dữ liệu quan hệ thường gặp trong các hệ thống Web. Phần mềm này nhận câu lệnh SQL từ ứng dụng, lưu dữ liệu vào bảng và trả kết quả truy vấn. MySQL có hệ sinh thái công cụ rộng và được nhiều hệ quản trị nội dung sử dụng. Về giấy phép, MySQL Community theo GPL và Oracle bán thêm giấy phép thương mại, một ví dụ của mô hình giấy phép kép ở Chương 1.",
    "indent": true,
    "left": false
   },
   {
    "t": "p",
-   "text": "PostgreSQL là gì? PostgreSQL là hệ quản trị cơ sở dữ liệu quan hệ mã nguồn mở chú trọng tính đúng đắn của dữ liệu, khả năng mở rộng và các kiểu dữ liệu phong phú. PostgreSQL thường được chọn khi ứng dụng cần truy vấn phức tạp hoặc cần mở rộng chức năng của cơ sở dữ liệu. PostgreSQL phát hành theo giấy phép PostgreSQL, thuộc nhóm permissive [@pgdocs,@pglic].",
+   "text": "PostgreSQL là gì? PostgreSQL là hệ quản trị cơ sở dữ liệu quan hệ mã nguồn mở chú trọng tính đúng đắn của dữ liệu, khả năng mở rộng và các kiểu dữ liệu phong phú. PostgreSQL thường được chọn khi ứng dụng cần truy vấn phức tạp hoặc cần mở rộng chức năng của cơ sở dữ liệu. PostgreSQL phát hành theo giấy phép PostgreSQL, thuộc nhóm permissive.",
    "indent": true,
    "left": false
   },
@@ -661,7 +661,7 @@
    "widths": [
     5.4,
     5.6,
-    5.0
+    5
    ],
    "font": 11,
    "firstBold": false,
@@ -704,7 +704,7 @@
   },
   {
    "t": "p",
-   "text": "Docker là gì? Docker là nền tảng gồm các công cụ dùng để đóng gói, phân phối và chạy ứng dụng dưới dạng container. Người dùng lấy một image làm mẫu, tạo container từ image đó và quản lý container bằng cùng một nhóm lệnh. Docker thường được dùng trong học tập, phát triển phần mềm, kiểm thử và triển khai dịch vụ. Phần lõi của Docker (Docker Engine, thuộc dự án Moby) theo Apache License 2.0 [@dockerdocs,@mobylic], còn các sản phẩm đi kèm như Docker Desktop có điều khoản cấp phép riêng như đã nêu ở Chương 1.",
+   "text": "Docker là gì? Docker là nền tảng gồm các công cụ dùng để đóng gói, phân phối và chạy ứng dụng dưới dạng container. Người dùng lấy một image làm mẫu, tạo container từ image đó và quản lý container bằng cùng một nhóm lệnh. Docker thường được dùng trong học tập, phát triển phần mềm, kiểm thử và triển khai dịch vụ. Phần lõi của Docker (Docker Engine, thuộc dự án Moby) theo Apache License 2.0 [@dockerdocs], còn các sản phẩm đi kèm như Docker Desktop có điều khoản cấp phép riêng như đã nêu ở Chương 1.",
    "indent": true,
    "left": false
   },
@@ -792,7 +792,7 @@
    "widths": [
     5.4,
     5.6,
-    5.0
+    5
    ],
    "font": 11,
    "firstBold": false,
@@ -825,7 +825,7 @@
   },
   {
    "t": "p",
-   "text": "Docker Compose là gì? Docker Compose là công cụ dùng một tệp YAML để mô tả và chạy một nhóm dịch vụ Docker. Cách này giúp người dùng lưu lại tên image, cổng và thư mục dữ liệu thay vì phải nhớ nhiều câu lệnh dài. Compose thường phù hợp cho môi trường học tập, phát triển và ứng dụng nhỏ chạy trên một máy [@composedocs].",
+   "text": "Docker Compose là gì? Docker Compose là công cụ dùng một tệp YAML để mô tả và chạy một nhóm dịch vụ Docker. Cách này giúp người dùng lưu lại tên image, cổng và thư mục dữ liệu thay vì phải nhớ nhiều câu lệnh dài. Compose thường phù hợp cho môi trường học tập, phát triển và ứng dụng nhỏ chạy trên một máy [@dockerdocs].",
    "indent": true,
    "left": false
   },
@@ -848,7 +848,7 @@
   },
   {
    "t": "table",
-   "caption": "Lệnh Docker Compose [@composedocs]",
+   "caption": "Lệnh Docker Compose [@dockerdocs]",
    "header": [
     "Mẫu sử dụng",
     "Thành phần cần thay",
@@ -874,7 +874,7 @@
    "widths": [
     5.4,
     5.6,
-    5.0
+    5
    ],
    "font": 11,
    "firstBold": false,
@@ -951,7 +951,7 @@
   },
   {
    "t": "p",
-   "text": "OpenStack là gì? OpenStack là một nền tảng điện toán đám mây mã nguồn mở. Nền tảng này giúp tổ chức dùng một nhóm máy chủ vật lý để cung cấp máy ảo, mạng và vùng lưu trữ cho người dùng. Người dùng có thể yêu cầu tài nguyên qua giao diện Web hoặc giao diện lập trình thay vì phải cấu hình trực tiếp từng máy vật lý [@openstackdocs].",
+   "text": "OpenStack là gì? OpenStack là một nền tảng điện toán đám mây mã nguồn mở. Nền tảng này giúp tổ chức dùng một nhóm máy chủ vật lý để cung cấp máy ảo, mạng và vùng lưu trữ cho người dùng. Người dùng có thể yêu cầu tài nguyên qua giao diện Web hoặc giao diện lập trình thay vì phải cấu hình trực tiếp từng máy vật lý.",
    "indent": true,
    "left": false
   },
@@ -964,7 +964,7 @@
   {
    "t": "figure",
    "src": "assets/img/chuong3-hinh8.jpg",
-   "caption": "Các dịch vụ tham gia cấp máy ảo trên OpenStack [@openstackdocs]",
+   "caption": "Các dịch vụ tham gia cấp máy ảo trên OpenStack",
    "width": 14.5
   },
   {
@@ -975,7 +975,7 @@
   },
   {
    "t": "p",
-   "text": "Một cụm OpenStack thật cần nhiều máy, mạng, lưu trữ và công việc vận hành. Vì vậy, ở mức nhập môn có thể đọc sơ đồ cấp phát và thử trên hệ thống đã chuẩn bị thay vì bắt đầu bằng cài toàn bộ nền tảng. OpenStack Operations Guide cung cấp góc nhìn vận hành nhưng được xuất bản từ 2014 và chỉ cập nhật một phần về sau; tên lệnh, phiên bản và thao tác triển khai cần đối chiếu tài liệu OpenStack hiện hành [@osops].",
+   "text": "Một cụm OpenStack thật cần nhiều máy, mạng, lưu trữ và công việc vận hành. Vì vậy, ở mức nhập môn có thể đọc sơ đồ cấp phát và thử trên hệ thống đã chuẩn bị thay vì bắt đầu bằng cài toàn bộ nền tảng. OpenStack Operations Guide cung cấp góc nhìn vận hành nhưng được xuất bản từ 2014 và chỉ cập nhật một phần về sau; tên lệnh, phiên bản và thao tác triển khai cần đối chiếu tài liệu OpenStack hiện hành.",
    "indent": true,
    "left": false
   },
@@ -995,7 +995,7 @@
   },
   {
    "t": "p",
-   "text": "Kubernetes là gì? Kubernetes là nền tảng mã nguồn mở dùng để điều phối ứng dụng container trên một cụm máy. “Điều phối” ở đây có nghĩa là quyết định container chạy ở đâu, theo dõi chúng còn hoạt động hay không và tạo bản thay thế khi cần. Kubernetes phù hợp khi hệ thống có nhiều container hoặc cần duy trì nhiều bản chạy của cùng một ứng dụng. Kubernetes phát hành theo Apache License 2.0 [@k8sdocs,@k8slic].",
+   "text": "Kubernetes là gì? Kubernetes là nền tảng mã nguồn mở dùng để điều phối ứng dụng container trên một cụm máy. “Điều phối” ở đây có nghĩa là quyết định container chạy ở đâu, theo dõi chúng còn hoạt động hay không và tạo bản thay thế khi cần. Kubernetes phù hợp khi hệ thống có nhiều container hoặc cần duy trì nhiều bản chạy của cùng một ứng dụng. Kubernetes phát hành theo Apache License 2.0 [@k8s].",
    "indent": true,
    "left": false
   },
@@ -1007,14 +1007,14 @@
   },
   {
    "t": "p",
-   "text": "Pod là đơn vị chạy cơ bản và thường chứa một container chính. Deployment quản lý số lượng Pod của ứng dụng. Service tạo một địa chỉ ổn định để truy cập nhóm Pod. Ba khái niệm này giúp người học hình dung Kubernetes tách việc chạy ứng dụng khỏi vị trí cụ thể của từng container [@k8sup].",
+   "text": "Pod là đơn vị chạy cơ bản và thường chứa một container chính. Deployment quản lý số lượng Pod của ứng dụng. Service tạo một địa chỉ ổn định để truy cập nhóm Pod. Ba khái niệm này giúp người học hình dung Kubernetes tách việc chạy ứng dụng khỏi vị trí cụ thể của từng container.",
    "indent": true,
    "left": false
   },
   {
    "t": "figure",
    "src": "assets/img/chuong3-hinh9.jpg",
-   "caption": "Deployment duy trì Pod và Service tạo điểm truy cập [@k8sdocs]",
+   "caption": "Deployment duy trì Pod và Service tạo điểm truy cập [@k8s]",
    "width": 14.5
   },
   {
@@ -1025,7 +1025,7 @@
   },
   {
    "t": "table",
-   "caption": "Lệnh kubectl [@k8sdocs]",
+   "caption": "Lệnh kubectl [@k8s]",
    "header": [
     "Mẫu sử dụng",
     "Thành phần cần thay",
@@ -1051,7 +1051,7 @@
    "widths": [
     5.4,
     5.6,
-    5.0
+    5
    ],
    "font": 11,
    "firstBold": false,
@@ -1280,10 +1280,6 @@
    "band": true
   },
   {
-   "t": "h3",
-   "text": "A. Nhận biết và hiểu"
-  },
-  {
    "t": "list",
    "ordered": true,
    "items": [
@@ -1291,32 +1287,12 @@
     "Mô tả sự khác nhau giữa thư mục làm việc (working tree), vùng chuẩn bị (staging area) và commit. Vì sao nên xem `git diff` và `git status` trước khi commit?",
     "Nêu vai trò của máy chủ Web, ứng dụng Web và cơ sở dữ liệu; vẽ hoặc mô tả đường đi của một yêu cầu xem danh sách sách từ trình duyệt qua các thành phần này.",
     "So sánh image, container và volume. Điều gì xảy ra với dữ liệu ghi trong container nếu container bị xóa mà không có volume?",
-    "Phân biệt IaaS, PaaS, SaaS và nêu sự khác nhau giữa đám mây riêng, đám mây công cộng và đám mây lai."
-   ]
-  },
-  {
-   "t": "h3",
-   "text": "B. Vận dụng và phân tích"
-  },
-  {
-   "t": "list",
-   "ordered": true,
-   "items": [
+    "Phân biệt IaaS, PaaS, SaaS và nêu sự khác nhau giữa đám mây riêng, đám mây công cộng và đám mây lai.",
     "Trình bày quy trình một nhóm hai người cùng sửa một dự án qua nhánh và pull request hoặc merge request. Nếu có xung đột, nhóm cần làm gì trước khi hợp nhất?",
     "Một trang Web trả mã 403 sau khi triển khai trên Nginx; hãy nêu các bước kiểm tra theo thứ tự và liên hệ với kiến thức về quyền tệp ở Chương 2.",
     "Viết tệp `compose.yaml` chạy Nginx ở cổng 8081 và gắn thư mục `html` ở chế độ chỉ đọc; giải thích từng khai báo.",
     "So sánh Apache với Nginx và MySQL với PostgreSQL về mục đích sử dụng và giấy phép; cho biết mỗi giấy phép thuộc nhóm nào ở Chương 1.",
-    "Một trường đại học muốn cấp máy ảo nội bộ và triển khai ứng dụng Web có ba bản sao. Hãy nêu vai trò của OpenStack và Kubernetes, và giải thích vì sao Docker Compose chưa giải quyết toàn bộ yêu cầu."
-   ]
-  },
-  {
-   "t": "h3",
-   "text": "C. Tình huống thảo luận"
-  },
-  {
-   "t": "list",
-   "ordered": true,
-   "items": [
+    "Một trường đại học muốn cấp máy ảo nội bộ và triển khai ứng dụng Web có ba bản sao. Hãy nêu vai trò của OpenStack và Kubernetes, và giải thích vì sao Docker Compose chưa giải quyết toàn bộ yêu cầu.",
     "Một sinh viên vô tình commit tệp chứa mật khẩu cơ sở dữ liệu rồi đẩy lên GitHub công khai. Nhóm cần xử lý như thế nào và rút ra quy tắc gì?",
     "Một nhóm nói: “Chúng em đã push lên GitHub nên ứng dụng đã chạy trên cloud.” Hãy chỉ ra các bước còn thiếu và đề xuất quy trình triển khai."
    ]
@@ -1591,62 +1567,6 @@
    "text": "**Sản phẩm cần nộp:** Hai ảnh chụp màn hình và bảng thông tin OpenStack, Kubernetes đã quan sát. Bài này chỉ thực hiện khi lớp được cấp môi trường; không yêu cầu tự cài OpenStack hoặc Kubernetes.",
    "indent": false,
    "left": false
-  },
-  {
-   "t": "h2",
-   "text": "Tài liệu tham khảo",
-   "band": true
-  },
-  {
-   "t": "refs"
   }
- ],
- "refs": {
-  "progit": "Chacon, S., & Straub, B. (2014). *Pro Git* (2nd ed.). Apress. https://git-scm.com/book/en/v2",
-  "ghdocs": "GitHub. (n.d.). *About repositories*; *Pull requests*. GitHub Docs. https://docs.github.com/en/repositories",
-  "gldocs": "GitLab. (n.d.). *Projects*; *Merge requests*. GitLab Docs. https://docs.gitlab.com/user/project/",
-  "glmrshot": "GitLab.org. (n.d.). *Merge request* [Ảnh chụp màn hình giao diện, truy cập ngày 07/10/2026]. GitLab. https://gitlab.com/gitlab-org/gitlab/-/merge_requests/252562",
-  "rfc9110": "Fielding, R., Nottingham, M., & Reschke, J. (2022). *HTTP semantics* (RFC 9110). Internet Engineering Task Force. https://www.rfc-editor.org/rfc/rfc9110",
-  "httpd": "Apache Software Foundation. (n.d.). *Apache HTTP Server documentation*. https://httpd.apache.org/docs/",
-  "asflic": "Apache Software Foundation. (n.d.). *Apache licenses*. https://www.apache.org/licenses/",
-  "nginx": "Nginx. (n.d.). *Nginx documentation*. https://nginx.org/en/docs/",
-  "nginxlic": "Nginx. (n.d.). *License*. https://nginx.org/LICENSE",
-  "mysql": "Oracle. (n.d.). *MySQL reference manual*. https://dev.mysql.com/doc/",
-  "mysqllic": "Oracle. (n.d.). *MySQL licensing information*. https://www.mysql.com/about/legal/licensing/",
-  "pgdocs": "PostgreSQL Global Development Group. (n.d.). *PostgreSQL documentation*. https://www.postgresql.org/docs/",
-  "pglic": "PostgreSQL Global Development Group. (n.d.). *PostgreSQL licence*. https://www.postgresql.org/about/licence/",
-  "dockerdocs": "Docker Inc. (n.d.). *Get started*. Docker Docs. https://docs.docker.com/get-started/",
-  "mobylic": "Moby Project. (n.d.). *Moby – LICENSE*. GitHub. https://github.com/moby/moby/blob/master/LICENSE",
-  "composedocs": "Docker Inc. (n.d.). *Docker Compose: Get started*. Docker Docs. https://docs.docker.com/compose/gettingstarted/",
-  "nist145": "Mell, P., & Grance, T. (2011). *The NIST definition of cloud computing* (NIST Special Publication 800-145). National Institute of Standards and Technology. https://csrc.nist.gov/pubs/sp/800/145/final",
-  "openstackdocs": "OpenStack. (n.d.). *OpenStack documentation*. https://docs.openstack.org/",
-  "osops": "OpenStack Foundation. (n.d.). *OpenStack operations guide*. https://docs.openstack.org/operations-guide/",
-  "k8sdocs": "The Kubernetes Authors. (n.d.). *Kubernetes basics tutorial*; *Deployments*. Kubernetes Documentation. https://kubernetes.io/docs/tutorials/kubernetes-basics/",
-  "k8slic": "The Kubernetes Authors. (n.d.). *Kubernetes – LICENSE*. GitHub. https://github.com/kubernetes/kubernetes/blob/master/LICENSE",
-  "k8sup": "Burns, B., Beda, J., Hightower, K., & Evenson, L. (2022). *Kubernetes: Up and running* (3rd ed.). O’Reilly Media. https://www.oreilly.com/library/view/kubernetes-up-and/9781098110192/"
- },
- "order": [
-  "progit",
-  "ghdocs",
-  "gldocs",
-  "glmrshot",
-  "rfc9110",
-  "httpd",
-  "asflic",
-  "nginx",
-  "nginxlic",
-  "mysql",
-  "mysqllic",
-  "pgdocs",
-  "pglic",
-  "dockerdocs",
-  "mobylic",
-  "composedocs",
-  "nist145",
-  "openstackdocs",
-  "osops",
-  "k8sdocs",
-  "k8slic",
-  "k8sup"
  ]
 }
