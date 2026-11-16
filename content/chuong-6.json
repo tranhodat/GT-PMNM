@@ -1391,72 +1391,17 @@
   },
   {
    "t": "h2",
-   "text": "Bài tập vận dụng",
+   "text": "Bài tập thực hành",
    "band": true
   },
   {
-   "t": "h3",
-   "text": "Bài 1. Quản lý tài khoản và nhóm"
-  },
-  {
-   "t": "p",
-   "text": "Trên máy ảo Ubuntu thực hành, tạo tài khoản thử nghiệm `sv01` và nhóm `developers`, thêm `sv01` vào nhóm bằng `usermod -aG`, rồi kiểm tra bằng `id sv01`. Sau đó khóa tài khoản và ghi lại các bước của vòng đời tài khoản (tạo, cấp quyền, rà soát, vô hiệu hóa). Giải thích vì sao khóa mật khẩu chưa chắc đã chặn được đăng nhập bằng khóa SSH.",
-   "indent": true,
-   "left": false
-  },
-  {
-   "t": "p",
-   "text": "**Sản phẩm:** Bảng lệnh đã chạy, kết quả `id`, và đoạn giải thích ngắn; không đưa mật khẩu vào báo cáo.",
-   "indent": false,
-   "left": false
-  },
-  {
-   "t": "h3",
-   "text": "Bài 2. Thư mục dùng chung với quyền và ACL"
-  },
-  {
-   "t": "p",
-   "text": "Tạo thư mục `project/` thuộc nhóm `developers`, đặt quyền để chỉ chủ và nhóm truy cập được, bật setgid để tệp mới kế thừa nhóm, rồi dùng `setfacl` cấp quyền đọc cho một tài khoản ngoài nhóm. Kiểm tra bằng `ls -l`, `getfacl` và thử truy cập bằng hai tài khoản khác nhau; ghi nhận kết quả khi đổi `umask`.",
-   "indent": true,
-   "left": false
-  },
-  {
-   "t": "p",
-   "text": "**Sản phẩm:** Bảng “tài khoản – thao tác – kết quả”, ảnh chụp `getfacl` và một đoạn giải thích quyền hiệu lực của từng tài khoản.",
-   "indent": false,
-   "left": false
-  },
-  {
-   "t": "h3",
-   "text": "Bài 3. Xác thực và truy cập từ xa an toàn"
-  },
-  {
-   "t": "p",
-   "text": "Trên hai máy ảo, tạo cặp khóa `ed25519` bằng `ssh-keygen`, cài khóa công khai bằng `ssh-copy-id`, chỉnh `sshd_config` để giới hạn người dùng được phép đăng nhập, kiểm tra cú pháp bằng `sudo sshd -t` rồi mới khởi động lại dịch vụ. Luôn giữ một phiên đăng nhập đang mở khi đổi cấu hình để không bị mất quyền truy cập. Cấu hình một quy tắc sudo qua `visudo` cho một tác vụ cụ thể thay vì cấp toàn quyền.",
-   "indent": true,
-   "left": false
-  },
-  {
-   "t": "p",
-   "text": "**Sản phẩm:** Các dòng cấu hình đã thay đổi, kết quả kiểm tra cú pháp, và đoạn giải thích cách cấu hình áp dụng nguyên tắc đặc quyền tối thiểu.",
-   "indent": false,
-   "left": false
-  },
-  {
-   "t": "h3",
-   "text": "Bài 4. Kiểm tra bằng Firewall, Nmap và Wireshark"
-  },
-  {
-   "t": "p",
-   "text": "Trên máy ảo chạy Web server, quét cổng bằng `nmap -sV` từ máy khác trong mạng thực hành và ghi kết quả; bật UFW với chính sách từ chối kết nối đến theo mặc định, cho phép SSH từ mạng quản trị và cổng 80; quét lại để so sánh. Đồng thời dùng Wireshark với Display Filter `tcp.port == 80` để quan sát quá trình bắt tay ba bước khi truy cập Web. Chỉ quét và bắt gói trên các máy ảo do chính mình quản lý.",
-   "indent": true,
-   "left": false
-  },
-  {
-   "t": "p",
-   "text": "**Sản phẩm:** Bảng so sánh kết quả Nmap trước và sau khi bật Firewall, ảnh chụp Wireshark đã lọc và nhận xét về bề mặt tiếp xúc của hệ thống.",
-   "indent": false,
-   "left": false
+   "t": "list",
+   "ordered": true,
+   "items": [
+    "**Tài khoản, nhóm và thư mục dùng chung.** Trên máy ảo, tạo tài khoản `sv01` và nhóm `developers`, thêm tài khoản vào nhóm; tạo thư mục `project/` thuộc nhóm, đặt quyền, bật setgid và dùng `setfacl` cấp quyền đọc cho một tài khoản ngoài nhóm; kiểm tra bằng `id`, `ls -l`, `getfacl`. *Sản phẩm:* bảng “tài khoản – thao tác – kết quả” và giải thích quyền hiệu lực. Không đưa mật khẩu vào báo cáo.",
+    "**Truy cập từ xa an toàn.** Tạo cặp khóa `ed25519`, cài khóa công khai bằng `ssh-copy-id`, giới hạn người được đăng nhập trong `sshd_config`, kiểm tra bằng `sudo sshd -t` rồi mới khởi động lại dịch vụ và luôn giữ một phiên đang mở. *Sản phẩm:* các dòng cấu hình đã đổi và giải thích cách áp dụng nguyên tắc đặc quyền tối thiểu.",
+    "**Kiểm tra bằng Firewall, Nmap và Wireshark.** Quét cổng bằng `nmap -sV`, bật UFW (từ chối kết nối đến theo mặc định, cho phép SSH và cổng 80), quét lại để so sánh; dùng Wireshark với bộ lọc `tcp.port == 80` quan sát bắt tay ba bước. Chỉ quét và bắt gói trên máy ảo do chính mình quản lý. *Sản phẩm:* bảng so sánh Nmap trước và sau, ảnh Wireshark và nhận xét về bề mặt tiếp xúc."
+   ]
   }
  ]
 }

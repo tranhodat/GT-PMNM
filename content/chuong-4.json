@@ -824,82 +824,17 @@
   },
   {
    "t": "h2",
-   "text": "Bài tập vận dụng",
+   "text": "Bài tập thực hành",
    "band": true
   },
   {
-   "t": "h3",
-   "text": "Bài 1. Thực hành học máy và giới hạn đánh giá"
-  },
-  {
-   "t": "p",
-   "text": "Chạy mã ở mục 4.2.1, ghi môi trường và kết quả. Thêm ít nhất hai mẫu giả định có đặc trưng gần nhau nhưng nhãn khác nhau; giải thích vì sao tình huống này làm việc phân loại khó hơn. Không đưa các mẫu kiểm tra vào huấn luyện để làm đẹp kết quả.",
-   "indent": true,
-   "left": false
-  },
-  {
-   "t": "p",
-   "text": "**Sản phẩm:** Notebook có giải thích dữ liệu, kết quả và giới hạn. Đánh giá dựa trên quy trình và lập luận, không dựa vào việc đạt accuracy cao.",
-   "indent": false,
-   "left": false
-  },
-  {
-   "t": "h3",
-   "text": "Bài 2. Đọc và so sánh hai model card"
-  },
-  {
-   "t": "p",
-   "text": "Chọn hai mô hình cùng nhiệm vụ trên Hugging Face. Ghi nhiệm vụ, giấy phép, ngôn ngữ, cách chạy, kết quả đánh giá được công bố và thông tin còn thiếu. Trích đường dẫn cụ thể của từng mô hình tại thời điểm làm bài.",
-   "indent": true,
-   "left": false
-  },
-  {
-   "t": "p",
-   "text": "**Sản phẩm:** Bảng đối chiếu và một đoạn lựa chọn có lý do. Không kết luận mô hình tốt hơn chỉ từ số lượt tải hoặc một chỉ số đo trong điều kiện khác nhau.",
-   "indent": false,
-   "left": false
-  },
-  {
-   "t": "h3",
-   "text": "Bài 3. Tạo bộ thông báo có kiểm chứng"
-  },
-  {
-   "t": "p",
-   "text": "Dùng dữ kiện giả định ở mục 4.3.2 để tạo bản nháp thông báo và hình minh họa. Thử hai phiên bản câu lệnh; lưu đầu ra, lỗi và bản đã sửa. Nếu không có công cụ tạo ảnh phù hợp, hoàn thành phần mô tả ảnh và phiếu tiêu chí để giảng viên tổ chức thử ở môi trường lớp học.",
-   "indent": true,
-   "left": false
-  },
-  {
-   "t": "p",
-   "text": "**Sản phẩm:** Câu lệnh, sản phẩm, phiếu kiểm chứng và ghi nhận công cụ. Tiêu chí: đúng dữ kiện; đúng đối tượng; nhất quán hình–chữ; xác định phần thiếu; bảo vệ dữ liệu.",
-   "indent": false,
-   "left": false
-  },
-  {
-   "t": "h3",
-   "text": "Bài 4. Phân tích trách nhiệm"
-  },
-  {
-   "t": "p",
-   "text": "Một nhóm định gửi danh sách sinh viên và điểm số lên công cụ AI công cộng để tạo nhận xét, sau đó công bố nguyên văn kết quả. Hãy đề xuất phương án thực hiện bài tập bằng dữ liệu giả định; xác định bước kiểm tra, người duyệt và cách ghi nhận hỗ trợ của AI.",
-   "indent": true,
-   "left": false
-  },
-  {
-   "t": "p",
-   "text": "**Sản phẩm:** Quy trình ngắn có giải thích cho từng bước. Phân biệt đề xuất quản trị của nhóm với yêu cầu pháp luật đã có nguồn xác minh.",
-   "indent": false,
-   "left": false
-  },
-  {
-   "t": "h3",
-   "text": "Gợi ý tự đánh giá"
-  },
-  {
-   "t": "p",
-   "text": "Với câu hỏi về trọng số và định nghĩa của OSI, hãy đối chiếu quyền và các thành phần theo OSI chứ không chỉ khả năng tải trọng số. Với câu hỏi về tập huấn luyện và tập kiểm tra, cần nhớ rằng tập kiểm tra phục vụ đánh giá; thông tin của nó không được dùng để điều chỉnh mô hình rồi vẫn coi là kiểm tra độc lập. Huấn luyện và tinh chỉnh cập nhật tham số, còn suy luận sử dụng mô hình đã có. Khi đánh giá câu văn do AI tạo ra, cần đánh giá riêng tính mạch lạc và sự phù hợp với bằng chứng. Với bài so sánh hai model card, chấp nhận kết luận “chưa đủ thông tin để lựa chọn” nếu chỉ rõ còn thiếu gì; với các bài tạo thông báo và phân tích trách nhiệm, người học phải giải thích các quyết định chỉnh sửa và chịu trách nhiệm về sản phẩm nộp.",
-   "indent": true,
-   "left": false
+   "t": "list",
+   "ordered": true,
+   "items": [
+    "**Học máy và giới hạn đánh giá.** Chạy mã ở mục 4.2.1, ghi môi trường và kết quả; thêm hai mẫu giả định có đặc trưng gần nhau nhưng nhãn khác nhau và giải thích vì sao việc phân loại khó hơn. Không đưa mẫu kiểm tra vào huấn luyện để làm đẹp kết quả. *Sản phẩm:* notebook có giải thích dữ liệu, kết quả và giới hạn.",
+    "**So sánh hai model card.** Chọn hai mô hình cùng nhiệm vụ trên Hugging Face; ghi nhiệm vụ, giấy phép, ngôn ngữ, cách chạy, kết quả đánh giá và thông tin còn thiếu. Chấp nhận kết luận “chưa đủ thông tin để lựa chọn” nếu chỉ rõ còn thiếu gì. *Sản phẩm:* bảng đối chiếu và một đoạn lựa chọn có lý do.",
+    "**Dùng AI có trách nhiệm.** Với dữ kiện giả định ở mục 4.3.2, tạo bản nháp thông báo bằng hai phiên bản câu lệnh, lưu đầu ra và bản đã sửa; đề xuất quy trình kiểm chứng, người duyệt và cách ghi nhận hỗ trợ của AI, không đưa dữ liệu cá nhân thật vào công cụ công cộng. *Sản phẩm:* câu lệnh, bản thông báo đã kiểm chứng và quy trình ngắn."
+   ]
   }
  ]
 }

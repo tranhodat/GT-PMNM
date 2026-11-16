@@ -765,72 +765,17 @@
   },
   {
    "t": "h2",
-   "text": "Bài tập vận dụng",
+   "text": "Bài tập thực hành",
    "band": true
   },
   {
-   "t": "h3",
-   "text": "Bài 1. Tìm kiếm và đánh giá OER"
-  },
-  {
-   "t": "p",
-   "text": "Chọn một chủ đề công nghệ thông tin (ví dụ Linux, Git hoặc cơ sở dữ liệu). Tìm tài nguyên giáo dục mở về chủ đề này trên ít nhất ba kho khác nhau (như OER Commons, MERLOT, Open Textbook Library, MIT OpenCourseWare), ghi lại từ khóa đã dùng và số kết quả thu được. Chọn hai tài nguyên, đánh giá từng tài nguyên theo mười nhóm tiêu chí (thang 1 đến 5), ghi giấy phép và nêu kết luận có nên sử dụng hay không.",
-   "indent": true,
-   "left": false
-  },
-  {
-   "t": "p",
-   "text": "**Sản phẩm:** Bảng tìm kiếm, bảng đánh giá hai tài nguyên và một đoạn lựa chọn có lý do. Không kết luận chỉ dựa vào tổng điểm; phải xét riêng lỗi nghiêm trọng về kiến thức hoặc quyền sử dụng.",
-   "indent": false,
-   "left": false
-  },
-  {
-   "t": "h3",
-   "text": "Bài 2. Ghi nhận nguồn theo TASL"
-  },
-  {
-   "t": "p",
-   "text": "Cho ba tài nguyên giả định: một hình CC BY 4.0 chưa chỉnh sửa, một bài viết CC BY-SA 4.0 đã được dịch và rút gọn, và một tài liệu CC BY-NC 4.0 được dùng làm bài đọc. Hãy viết phần ghi nhận nguồn cho từng trường hợp theo nguyên tắc TASL (Title, Author, Source, License), nêu rõ phần đã chỉnh sửa; sau đó viết thêm một trích dẫn học thuật cho bài viết thứ hai và giải thích vì sao trích dẫn không thay thế được việc ghi nhận theo giấy phép.",
-   "indent": true,
-   "left": false
-  },
-  {
-   "t": "p",
-   "text": "**Sản phẩm:** Ba đoạn ghi nhận nguồn, một trích dẫn học thuật và hai câu phân biệt Citation với Attribution.",
-   "indent": false,
-   "left": false
-  },
-  {
-   "t": "h3",
-   "text": "Bài 3. Chọn giấy phép cho một OER mới"
-  },
-  {
-   "t": "p",
-   "text": "Một nhóm giảng viên xây dựng bộ bài thực hành Git gồm văn bản hướng dẫn, hình minh họa và mã mẫu. Hãy xác định nhóm có quyền cấp phép cho từng thành phần hay không, chọn giấy phép phù hợp cho văn bản và hình (có cân nhắc BY, SA, NC, ND) và giấy phép phần mềm cho mã mẫu theo Chương 1, kiểm tra các điều kiện tương thích khi trộn tài nguyên có giấy phép khác nhau, rồi soạn thông báo giấy phép và các thông tin metadata cơ bản (tên, tác giả, mô tả, ngôn ngữ, giấy phép, ngày cập nhật).",
-   "indent": true,
-   "left": false
-  },
-  {
-   "t": "p",
-   "text": "**Sản phẩm:** Bảng “thành phần – giấy phép – lý do”, thông báo giấy phép và bản metadata.",
-   "indent": false,
-   "left": false
-  },
-  {
-   "t": "h3",
-   "text": "Bài 4. Adopt và Adapt một tài nguyên"
-  },
-  {
-   "t": "p",
-   "text": "Chọn một giáo trình hoặc bài thực hành theo CC BY. Lập kế hoạch Adapt gồm các thay đổi dự kiến (dịch, rút gọn, cập nhật phiên bản phần mềm, bổ sung bài tập), xác định hoạt động nào thuộc mô hình 5R (Retain, Reuse, Revise, Remix, Redistribute), nêu các điều kiện giấy phép phải tuân thủ khi phát hành bản điều chỉnh và cách ghi nhận phần thay đổi.",
-   "indent": true,
-   "left": false
-  },
-  {
-   "t": "p",
-   "text": "**Sản phẩm:** Kế hoạch điều chỉnh có ánh xạ vào 5R, phần ghi nhận nguồn cho bản điều chỉnh và định dạng chia sẻ (bản đọc và tệp nguồn) đề xuất.",
-   "indent": false,
-   "left": false
+   "t": "list",
+   "ordered": true,
+   "items": [
+    "**Tìm kiếm và đánh giá OER.** Chọn một chủ đề công nghệ thông tin, tìm tài nguyên trên ít nhất ba kho (như OER Commons, MERLOT, Open Textbook Library), chọn hai tài nguyên và đánh giá theo các nhóm tiêu chí ở mục 5.2, ghi giấy phép và kết luận có nên dùng hay không. *Sản phẩm:* bảng tìm kiếm, bảng đánh giá và đoạn lựa chọn có lý do.",
+    "**Ghi nhận nguồn theo TASL.** Cho ba tài nguyên giả định: hình CC BY 4.0 chưa chỉnh sửa, bài viết CC BY-SA 4.0 đã dịch và rút gọn, tài liệu CC BY-NC 4.0 dùng làm bài đọc. Viết phần ghi nhận nguồn theo TASL (Title, Author, Source, License) cho từng trường hợp, nêu rõ phần chỉnh sửa. *Sản phẩm:* ba đoạn ghi nhận nguồn và hai câu phân biệt trích dẫn học thuật với ghi nhận theo giấy phép.",
+    "**Chọn giấy phép và điều chỉnh OER.** Một nhóm giảng viên xây dựng bộ bài thực hành Git gồm văn bản, hình minh họa và mã mẫu: chọn giấy phép cho từng thành phần, kiểm tra điều kiện tương thích và soạn thông báo giấy phép. Sau đó lập kế hoạch Adapt một giáo trình CC BY và ánh xạ các thay đổi vào mô hình 5R. *Sản phẩm:* bảng “thành phần – giấy phép – lý do” và kế hoạch điều chỉnh."
+   ]
   }
  ]
 }
